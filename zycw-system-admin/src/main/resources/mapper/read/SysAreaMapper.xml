@@ -1,0 +1,165 @@
+<?Mapper version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zycw.tuotui.readdao.sysarea.SysAreaMapper">
+
+
+        <!-- 通用查询映射结果 -->
+        <resultMap id="BaseResultMap" type="com.zycw.tuotui.entity.sysarea.SysArea">
+                    <id column="id" />
+                    <result column="name" />
+                    <result column="city_id" />
+                    <result column="province_id" />
+        </resultMap>
+
+    
+    		        <!-- 通用查询结果列 -->
+        <sql id="Base_Column_List">
+        </sql>
+
+
+    
+    <delete id="deleteById">
+        DELETE FROM sys_area WHERE 
+        id=#{sysAreaId}
+    </delete>
+    
+    
+    <update id="deleteByIdLogic">
+        UPDATE sys_area SET delFlag = 1' 
+        WHERE 
+        id=#{sysAreaId}
+    </update>
+    
+ 
+ 
+ 	<update id="updateObjById"  parameterType="com.zycw.tuotui.entity.sysarea.SysArea">
+        UPDATE sys_area SET 
+		            name=sysAreaName,
+		            city_id=sysAreaCityId,
+		            province_id=#{sysAreaProvinceId}
+        WHERE 
+        id=#{sysAreaId}
+    </update>
+ 
+    
+    <insert id='insertObj' parameterType="com.zycw.tuotui.entity.sysarea.SysArea">
+    	INSERT INTO sys_area(
+    			name,
+    			city_id,
+    			province_id
+    	)
+        VALUES(
+		           #{sysAreaName},
+		           #{sysAreaCityId},
+		           #{sysAreaProvinceId}
+        )
+    </insert>
+    <insert id='batchInsertObj' parameterType="java.util.List">
+    	INSERT INTO sys_area(
+    			name,
+    			city_id,
+    			province_id
+    	)
+        VALUES(
+        <foreach collection="list" item="item"  separator=",">
+		           #{item.sysAreaName},
+		           #{item.sysAreaCityId},
+		           #{item.sysAreaProvinceId}
+        </foreach>
+        )
+    </insert>
+    
+    
+    <select id="selectObjById" parameterType="java.util.Map" resultType="java.util.HashMap">
+    	SELECT  
+        		sysArea.id AS sysAreaId,
+            		
+        		sysArea.name AS sysAreaName,
+            		
+        		sysArea.city_id AS sysAreaCityId,
+        		sysCity.name AS sysCityName,
+            		
+        		sysArea.province_id AS sysAreaProvinceId
+        		sysProvince.name AS sysProvinceName
+		 FROM 
+		 	sys_area sysArea
+        	,sys_city	sysCity
+        	,sys_province	sysProvince
+    	WHERE 1=1
+				and sysArea.city_id = sysCity.id
+				and sysArea.province_id = sysProvince.id
+		  id=#{sysAreaId}
+    </select>
+    
+    <select id="countNum" parameterType="java.util.Map" resultType="Integer">
+    	SELECT 	
+    		COUNT(1)
+    	FROM
+    		sys_area sysArea
+        	,sys_city	sysCity
+        	,sys_province	sysProvince
+    	WHERE 1=1
+    	
+				and sysArea.city_id = sysCity.id
+				and sysArea.province_id = sysProvince.id
+        	<if test="param.sysAreaCityId != null and param.sysAreaCityId != '' ">
+				and city_id =#(param.sysAreaCityId) 
+			</if>
+        	<if test="param.sysAreaProvinceId != null and param.sysAreaProvinceId != '' ">
+				and province_id =#(param.sysAreaProvinceId) 
+			</if>
+    </select>
+    <select id="pageList" parameterType="java.util.Map" resultType="java.util.Map">
+    	SELECT 	
+        		sysArea.id AS sysAreaId,
+            		
+        		sysArea.name AS sysAreaName,
+            		
+        		sysCity.name AS sysCityName,
+            		
+        		sysProvince.name AS sysProvinceName
+    	FROM
+    		sys_area sysArea
+        	,sys_city	sysCity
+        	,sys_province	sysProvince
+    	WHERE 1=1
+    	
+				and sysArea.city_id = sysCity.id
+				and sysArea.province_id = sysProvince.id
+        	<if test="param.sysAreaCityId != null and param.sysAreaCityId != '' ">
+				and city_id =#(param.sysAreaCityId) 
+			</if>
+        	<if test="param.sysAreaProvinceId != null and param.sysAreaProvinceId != '' ">
+				and province_id =#(param.sysAreaProvinceId) 
+			</if>
+    		LIMIT #{param.pageStart},#{param.pageNum}
+    </select>
+    
+    
+    <select id="allList" parameterType="java.util.Map" resultType="java.util.Map">
+    	    	SELECT 	
+        		sysArea.id AS sysAreaId,
+            		
+        		sysArea.name AS sysAreaName,
+            		
+        		sysCity.name AS sysCityName,
+            		
+        		sysProvince.name AS sysProvinceName
+    	FROM
+    		sys_area sysArea
+        	,sys_city	sysCity
+        	,sys_province	sysProvince
+    	WHERE 1=1
+    	
+				and sysArea.city_id = sysCity.id
+				and sysArea.province_id = sysProvince.id
+        	<if test="param.sysAreaCityId != null and param.sysAreaCityId != '' ">
+				and city_id =#(param.sysAreaCityId) 
+			</if>
+        	<if test="param.sysAreaProvinceId != null and param.sysAreaProvinceId != '' ">
+				and province_id =#(param.sysAreaProvinceId) 
+			</if>
+    </select>
+    
+    
+</mapper>

@@ -1,0 +1,52 @@
+spring:
+  application:
+    name: zycw-gateway
+  cloud:
+    bus:
+      enabled: true
+      trace:
+        enabled: true
+      refresh:
+        enabled: true
+    gateway:
+      locator:
+        enabled: true
+      routes:
+      # =====================================
+      - id: ntc-admin
+        uri: lb://ntc-admin
+        order: 8001
+        predicates:
+        - Path=/api/admin/**
+        filters:
+        - StripPrefix=2
+      
+      
+#请求和响应GZIP压缩支持
+feign:
+  httpclient:
+    enabled: false
+  okhttp:
+    enabled: true
+  compression:
+    request:
+      enabled: true
+      mime-types: text/xml,application/xml,application/json
+      min-request-size: 2048
+    response:
+      enabled: true
+eureka:
+  instance:
+    leaseRenewalIntervalInSeconds: 10
+    status-page-url-path: /actuator/info
+    health-check-url-path: /actuator/health
+    # docker 部署开启
+    prefer-ip-address: true
+    ip-address: 127.0.0.1
+  client:
+    serviceUrl:
+      defaultZone: http://127.0.0.1:8751/eureka/
+       
+server:
+  port: 8755 #启动端口
+  

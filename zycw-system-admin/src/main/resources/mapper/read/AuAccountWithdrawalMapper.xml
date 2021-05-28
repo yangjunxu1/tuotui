@@ -1,0 +1,189 @@
+<?Mapper version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zycw.tuotui.readdao.auaccountwithdrawal.AuAccountWithdrawalMapper">
+
+
+        <!-- 通用查询映射结果 -->
+        <resultMap id="BaseResultMap" type="com.zycw.tuotui.entity.auaccountwithdrawal.AuAccountWithdrawal">
+                    <id column="id" />
+                    <result column="user_id" />
+                    <result column="task_id" />
+                    <result column="withdrawal_time" />
+                    <result column="withdrawal_status" />
+                    <result column="withdrawal_path" />
+        </resultMap>
+
+    
+    		        <!-- 通用查询结果列 -->
+        <sql id="Base_Column_List">
+        </sql>
+
+
+    
+    <delete id="deleteById">
+        DELETE FROM au_account_withdrawal WHERE 
+        id=#{auAccountWithdrawalId}
+    </delete>
+    
+    
+    <update id="deleteByIdLogic">
+        UPDATE au_account_withdrawal SET delFlag = 1' 
+        WHERE 
+        id=#{auAccountWithdrawalId}
+    </update>
+    
+ 
+ 
+ 	<update id="updateObjById"  parameterType="com.zycw.tuotui.entity.auaccountwithdrawal.AuAccountWithdrawal">
+        UPDATE au_account_withdrawal SET 
+		            user_id=auAccountWithdrawalUserId,
+		            task_id=auAccountWithdrawalTaskId,
+		            withdrawal_time=auAccountWithdrawalWithdrawalTime,
+		            withdrawal_status=auAccountWithdrawalWithdrawalStatus,
+		            withdrawal_path=#{auAccountWithdrawalWithdrawalPath}
+        WHERE 
+        id=#{auAccountWithdrawalId}
+    </update>
+ 
+    
+    <insert id='insertObj' parameterType="com.zycw.tuotui.entity.auaccountwithdrawal.AuAccountWithdrawal">
+    	INSERT INTO au_account_withdrawal(
+    			user_id,
+    			task_id,
+    			withdrawal_time,
+    			withdrawal_status,
+    			withdrawal_path
+    	)
+        VALUES(
+		           #{auAccountWithdrawalUserId},
+		           #{auAccountWithdrawalTaskId},
+		           #{auAccountWithdrawalWithdrawalTime},
+		           #{auAccountWithdrawalWithdrawalStatus},
+		           #{auAccountWithdrawalWithdrawalPath}
+        )
+    </insert>
+    <insert id='batchInsertObj' parameterType="java.util.List">
+    	INSERT INTO au_account_withdrawal(
+    			user_id,
+    			task_id,
+    			withdrawal_time,
+    			withdrawal_status,
+    			withdrawal_path
+    	)
+        VALUES(
+        <foreach collection="list" item="item"  separator=",">
+		           #{item.auAccountWithdrawalUserId},
+		           #{item.auAccountWithdrawalTaskId},
+		           #{item.auAccountWithdrawalWithdrawalTime},
+		           #{item.auAccountWithdrawalWithdrawalStatus},
+		           #{item.auAccountWithdrawalWithdrawalPath}
+        </foreach>
+        )
+    </insert>
+    
+    
+    <select id="selectObjById" parameterType="java.util.Map" resultType="java.util.HashMap">
+    	SELECT  
+        		auAccountWithdrawal.id AS auAccountWithdrawalId,
+            		
+        		auAccountWithdrawal.user_id AS auAccountWithdrawalUserId,
+        		auUser.mobile AS auUserMobile,
+            		
+        		auAccountWithdrawal.task_id AS auAccountWithdrawalTaskId,
+        		auCustomTask.task_title AS auCustomTaskTaskTitle,
+            		
+        		auAccountWithdrawal.withdrawal_time AS auAccountWithdrawalWithdrawalTime,
+            		
+        		auAccountWithdrawal.withdrawal_status AS auAccountWithdrawalWithdrawalStatus,
+            		
+        		auAccountWithdrawal.withdrawal_path AS auAccountWithdrawalWithdrawalPath
+		 FROM 
+		 	au_account_withdrawal auAccountWithdrawal
+        	,au_user	auUser
+        	,au_custom_task	auCustomTask
+    	WHERE 1=1
+				and auAccountWithdrawal.user_id = auUser.id
+				and auAccountWithdrawal.task_id = auCustomTask.id
+		  id=#{auAccountWithdrawalId}
+    </select>
+    
+    <select id="countNum" parameterType="java.util.Map" resultType="Integer">
+    	SELECT 	
+    		COUNT(1)
+    	FROM
+    		au_account_withdrawal auAccountWithdrawal
+        	,au_user	auUser
+        	,au_custom_task	auCustomTask
+    	WHERE 1=1
+    	
+				and auAccountWithdrawal.user_id = auUser.id
+				and auAccountWithdrawal.task_id = auCustomTask.id
+        	<if test="param.auAccountWithdrawalUserId != null and param.auAccountWithdrawalUserId != '' ">
+				and user_id =#(param.auAccountWithdrawalUserId) 
+			</if>
+        	<if test="param.auAccountWithdrawalTaskId != null and param.auAccountWithdrawalTaskId != '' ">
+				and task_id =#(param.auAccountWithdrawalTaskId) 
+			</if>
+    </select>
+    <select id="pageList" parameterType="java.util.Map" resultType="java.util.Map">
+    	SELECT 	
+        		auAccountWithdrawal.id AS auAccountWithdrawalId,
+            		
+        		auUser.mobile AS auUserMobile,
+            		
+        		auCustomTask.task_title AS auCustomTaskTaskTitle,
+            		
+        		auAccountWithdrawal.withdrawal_time AS auAccountWithdrawalWithdrawalTime,
+            		
+        		auAccountWithdrawal.withdrawal_status AS auAccountWithdrawalWithdrawalStatus,
+            		
+        		auAccountWithdrawal.withdrawal_path AS auAccountWithdrawalWithdrawalPath
+    	FROM
+    		au_account_withdrawal auAccountWithdrawal
+        	,au_user	auUser
+        	,au_custom_task	auCustomTask
+    	WHERE 1=1
+    	
+				and auAccountWithdrawal.user_id = auUser.id
+				and auAccountWithdrawal.task_id = auCustomTask.id
+        	<if test="param.auAccountWithdrawalUserId != null and param.auAccountWithdrawalUserId != '' ">
+				and user_id =#(param.auAccountWithdrawalUserId) 
+			</if>
+        	<if test="param.auAccountWithdrawalTaskId != null and param.auAccountWithdrawalTaskId != '' ">
+				and task_id =#(param.auAccountWithdrawalTaskId) 
+			</if>
+    		LIMIT #{param.pageStart},#{param.pageNum}
+    </select>
+    
+    
+    <select id="allList" parameterType="java.util.Map" resultType="java.util.Map">
+    	    	SELECT 	
+        		auAccountWithdrawal.id AS auAccountWithdrawalId,
+            		
+        		auUser.mobile AS auUserMobile,
+            		
+        		auCustomTask.task_title AS auCustomTaskTaskTitle,
+            		
+        		auAccountWithdrawal.withdrawal_time AS auAccountWithdrawalWithdrawalTime,
+            		
+        		auAccountWithdrawal.withdrawal_status AS auAccountWithdrawalWithdrawalStatus,
+            		
+        		auAccountWithdrawal.withdrawal_path AS auAccountWithdrawalWithdrawalPath
+    	FROM
+    		au_account_withdrawal auAccountWithdrawal
+        	,au_user	auUser
+        	,au_custom_task	auCustomTask
+    	WHERE 1=1
+    	
+				and auAccountWithdrawal.user_id = auUser.id
+				and auAccountWithdrawal.task_id = auCustomTask.id
+        	<if test="param.auAccountWithdrawalUserId != null and param.auAccountWithdrawalUserId != '' ">
+				and user_id =#(param.auAccountWithdrawalUserId) 
+			</if>
+        	<if test="param.auAccountWithdrawalTaskId != null and param.auAccountWithdrawalTaskId != '' ">
+				and task_id =#(param.auAccountWithdrawalTaskId) 
+			</if>
+    </select>
+    
+    
+</mapper>

@@ -1,0 +1,19 @@
+spring:
+  application:
+    name: ntc-eureka-center
+
+server:
+  port: 8751 #启动端口
+
+eureka:
+  server:
+    enable-self-preservation: false #关闭自我保护，开发测试设置为false，生产设置为true
+  instance:
+    prefer-ip-address: true
+    hostname: localhost
+    ip-address: 127.0.0.1
+    instance-id: ${eureka.instance.ip-address}:${server.port}  #表示eureka instance 标识，需要唯一，如果不配置，多个节点最终只会有一个生效。后面加上“:${random.int}”的话就可以不用修改端口同时开启两个实例
+  client:
+    registerWithEureka: false  #false:不作为一个客户端注册到注册中心
+    fetchRegistry: false      #为true时，可以启动，但报异常：Cannot execute request on any known server
+    defaultZone: http://127.0.0.1:8761/eureka

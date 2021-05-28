@@ -1,0 +1,201 @@
+<?Mapper version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zycw.tuotui.readdao.auscheme.AuSchemeMapper">
+
+
+        <!-- 通用查询映射结果 -->
+        <resultMap id="BaseResultMap" type="com.zycw.tuotui.entity.auscheme.AuScheme">
+                    <id column="id" />
+                    <result column="name" />
+                    <result column="price" />
+                    <result column="content" />
+                    <result column="status" />
+                    <result column="extension_type" />
+                    <result column="task_type" />
+                    <result column="task_depth" />
+                    <result column="created_time" />
+                    <result column="updated_time" />
+        </resultMap>
+
+    
+    		        <!-- 通用查询结果列 -->
+        <sql id="Base_Column_List">
+        </sql>
+
+
+    
+    <delete id="deleteById">
+        DELETE FROM au_scheme WHERE 
+        id=#{auSchemeId}
+    </delete>
+    
+    
+    <update id="deleteByIdLogic">
+        UPDATE au_scheme SET delFlag = 1' 
+        WHERE 
+        id=#{auSchemeId}
+    </update>
+    
+ 
+ 
+ 	<update id="updateObjById"  parameterType="com.zycw.tuotui.entity.auscheme.AuScheme">
+        UPDATE au_scheme SET 
+		            name=auSchemeName,
+		            price=auSchemePrice,
+		            content=auSchemeContent,
+		            status=auSchemeStatus,
+		            extension_type=auSchemeExtensionType,
+		            task_type=auSchemeTaskType,
+		            task_depth=auSchemeTaskDepth,
+		            created_time=auSchemeCreatedTime,
+		            updated_time=#{auSchemeUpdatedTime}
+        WHERE 
+        id=#{auSchemeId}
+    </update>
+ 
+    
+    <insert id='insertObj' parameterType="com.zycw.tuotui.entity.auscheme.AuScheme">
+    	INSERT INTO au_scheme(
+    			name,
+    			price,
+    			content,
+    			status,
+    			extension_type,
+    			task_type,
+    			task_depth,
+    			created_time,
+    			updated_time
+    	)
+        VALUES(
+		           #{auSchemeName},
+		           #{auSchemePrice},
+		           #{auSchemeContent},
+		           #{auSchemeStatus},
+		           #{auSchemeExtensionType},
+		           #{auSchemeTaskType},
+		           #{auSchemeTaskDepth},
+		           #{auSchemeCreatedTime},
+		           #{auSchemeUpdatedTime}
+        )
+    </insert>
+    <insert id='batchInsertObj' parameterType="java.util.List">
+    	INSERT INTO au_scheme(
+    			name,
+    			price,
+    			content,
+    			status,
+    			extension_type,
+    			task_type,
+    			task_depth,
+    			created_time,
+    			updated_time
+    	)
+        VALUES(
+        <foreach collection="list" item="item"  separator=",">
+		           #{item.auSchemeName},
+		           #{item.auSchemePrice},
+		           #{item.auSchemeContent},
+		           #{item.auSchemeStatus},
+		           #{item.auSchemeExtensionType},
+		           #{item.auSchemeTaskType},
+		           #{item.auSchemeTaskDepth},
+		           #{item.auSchemeCreatedTime},
+		           #{item.auSchemeUpdatedTime}
+        </foreach>
+        )
+    </insert>
+    
+    
+    <select id="selectObjById" parameterType="java.util.Map" resultType="java.util.HashMap">
+    	SELECT  
+        		auScheme.id AS auSchemeId,
+            		
+        		auScheme.name AS auSchemeName,
+            		
+        		auScheme.price AS auSchemePrice,
+            		
+        		auScheme.content AS auSchemeContent,
+            		
+        		auScheme.status AS auSchemeStatus,
+            		
+        		auScheme.extension_type AS auSchemeExtensionType,
+            		
+        		auScheme.task_type AS auSchemeTaskType,
+            		
+        		auScheme.task_depth AS auSchemeTaskDepth,
+            		
+        		auScheme.created_time AS auSchemeCreatedTime,
+            		
+        		auScheme.updated_time AS auSchemeUpdatedTime
+		 FROM 
+		 	au_scheme auScheme
+    	WHERE 1=1
+		  id=#{auSchemeId}
+    </select>
+    
+    <select id="countNum" parameterType="java.util.Map" resultType="Integer">
+    	SELECT 	
+    		COUNT(1)
+    	FROM
+    		au_scheme auScheme
+    	WHERE 1=1
+    	
+    </select>
+    <select id="pageList" parameterType="java.util.Map" resultType="java.util.Map">
+    	SELECT 	
+        		auScheme.id AS auSchemeId,
+            		
+        		auScheme.name AS auSchemeName,
+            		
+        		auScheme.price AS auSchemePrice,
+            		
+        		auScheme.content AS auSchemeContent,
+            		
+        		auScheme.status AS auSchemeStatus,
+            		
+        		auScheme.extension_type AS auSchemeExtensionType,
+            		
+        		auScheme.task_type AS auSchemeTaskType,
+            		
+        		auScheme.task_depth AS auSchemeTaskDepth,
+            		
+        		auScheme.created_time AS auSchemeCreatedTime,
+            		
+        		auScheme.updated_time AS auSchemeUpdatedTime
+    	FROM
+    		au_scheme auScheme
+    	WHERE 1=1
+    	
+    		LIMIT #{param.pageStart},#{param.pageNum}
+    </select>
+    
+    
+    <select id="allList" parameterType="java.util.Map" resultType="java.util.Map">
+    	    	SELECT 	
+        		auScheme.id AS auSchemeId,
+            		
+        		auScheme.name AS auSchemeName,
+            		
+        		auScheme.price AS auSchemePrice,
+            		
+        		auScheme.content AS auSchemeContent,
+            		
+        		auScheme.status AS auSchemeStatus,
+            		
+        		auScheme.extension_type AS auSchemeExtensionType,
+            		
+        		auScheme.task_type AS auSchemeTaskType,
+            		
+        		auScheme.task_depth AS auSchemeTaskDepth,
+            		
+        		auScheme.created_time AS auSchemeCreatedTime,
+            		
+        		auScheme.updated_time AS auSchemeUpdatedTime
+    	FROM
+    		au_scheme auScheme
+    	WHERE 1=1
+    	
+    </select>
+    
+    
+</mapper>

@@ -1,0 +1,345 @@
+<?Mapper version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zycw.tuotui.readdao.auuser.AuUserMapper">
+
+
+        <!-- 通用查询映射结果 -->
+        <resultMap id="BaseResultMap" type="com.zycw.tuotui.entity.auuser.AuUser">
+                    <id column="id" />
+                    <result column="mobile" />
+                    <result column="type" />
+                    <result column="password" />
+                    <result column="true_name" />
+                    <result column="sex" />
+                    <result column="province_id" />
+                    <result column="city_id" />
+                    <result column="area_id" />
+                    <result column="occupation_id" />
+                    <result column="agentCode" />
+                    <result column="status" />
+                    <result column="wxid" />
+                    <result column="zfbid" />
+                    <result column="created_time" />
+                    <result column="updated_time" />
+        </resultMap>
+
+    
+    		        <!-- 通用查询结果列 -->
+        <sql id="Base_Column_List">
+        </sql>
+
+
+    
+    <delete id="deleteById">
+        DELETE FROM au_user WHERE 
+        id=#{auUserId}
+    </delete>
+    
+    
+    <update id="deleteByIdLogic">
+        UPDATE au_user SET delFlag = 1' 
+        WHERE 
+        id=#{auUserId}
+    </update>
+    
+ 
+ 
+ 	<update id="updateObjById"  parameterType="com.zycw.tuotui.entity.auuser.AuUser">
+        UPDATE au_user SET 
+		            mobile=auUserMobile,
+		            type=auUserType,
+		            password=auUserPassword,
+		            true_name=auUserTrueName,
+		            sex=auUserSex,
+		            province_id=auUserProvinceId,
+		            city_id=auUserCityId,
+		            area_id=auUserAreaId,
+		            occupation_id=auUserOccupationId,
+		            agentCode=auUserAgentCode,
+		            status=auUserStatus,
+		            wxid=auUserWxid,
+		            zfbid=auUserZfbid,
+		            created_time=auUserCreatedTime,
+		            updated_time=#{auUserUpdatedTime}
+        WHERE 
+        id=#{auUserId}
+    </update>
+ 
+    
+    <insert id='insertObj' parameterType="com.zycw.tuotui.entity.auuser.AuUser">
+    	INSERT INTO au_user(
+    			mobile,
+    			type,
+    			password,
+    			true_name,
+    			sex,
+    			province_id,
+    			city_id,
+    			area_id,
+    			occupation_id,
+    			agentCode,
+    			status,
+    			wxid,
+    			zfbid,
+    			created_time,
+    			updated_time
+    	)
+        VALUES(
+		           #{auUserMobile},
+		           #{auUserType},
+		           #{auUserPassword},
+		           #{auUserTrueName},
+		           #{auUserSex},
+		           #{auUserProvinceId},
+		           #{auUserCityId},
+		           #{auUserAreaId},
+		           #{auUserOccupationId},
+		           #{auUserAgentCode},
+		           #{auUserStatus},
+		           #{auUserWxid},
+		           #{auUserZfbid},
+		           #{auUserCreatedTime},
+		           #{auUserUpdatedTime}
+        )
+    </insert>
+    <insert id='batchInsertObj' parameterType="java.util.List">
+    	INSERT INTO au_user(
+    			mobile,
+    			type,
+    			password,
+    			true_name,
+    			sex,
+    			province_id,
+    			city_id,
+    			area_id,
+    			occupation_id,
+    			agentCode,
+    			status,
+    			wxid,
+    			zfbid,
+    			created_time,
+    			updated_time
+    	)
+        VALUES(
+        <foreach collection="list" item="item"  separator=",">
+		           #{item.auUserMobile},
+		           #{item.auUserType},
+		           #{item.auUserPassword},
+		           #{item.auUserTrueName},
+		           #{item.auUserSex},
+		           #{item.auUserProvinceId},
+		           #{item.auUserCityId},
+		           #{item.auUserAreaId},
+		           #{item.auUserOccupationId},
+		           #{item.auUserAgentCode},
+		           #{item.auUserStatus},
+		           #{item.auUserWxid},
+		           #{item.auUserZfbid},
+		           #{item.auUserCreatedTime},
+		           #{item.auUserUpdatedTime}
+        </foreach>
+        )
+    </insert>
+    
+    
+    <select id="selectObjById" parameterType="java.util.Map" resultType="java.util.HashMap">
+    	SELECT  
+        		auUser.id AS auUserId,
+            		
+        		auUser.mobile AS auUserMobile,
+            		
+        		auUser.type AS auUserType,
+            		
+        		auUser.password AS auUserPassword,
+            		
+        		auUser.true_name AS auUserTrueName,
+            		
+        		auUser.sex AS auUserSex,
+            		
+        		auUser.province_id AS auUserProvinceId,
+        		sysProvince.name AS sysProvinceName,
+            		
+        		auUser.city_id AS auUserCityId,
+        		sysCity.name AS sysCityName,
+            		
+        		auUser.area_id AS auUserAreaId,
+        		sysArea.name AS sysAreaName,
+            		
+        		auUser.occupation_id AS auUserOccupationId,
+        		auOccupation.occupation_name AS auOccupationOccupationName,
+            		
+        		auUser.agentCode AS auUserAgentCode,
+            		
+        		auUser.status AS auUserStatus,
+            		
+        		auUser.wxid AS auUserWxid,
+            		
+        		auUser.zfbid AS auUserZfbid,
+            		
+        		auUser.created_time AS auUserCreatedTime,
+            		
+        		auUser.updated_time AS auUserUpdatedTime
+		 FROM 
+		 	au_user auUser
+        	,sys_city	sysCity
+        	,sys_province	sysProvince
+        	,sys_area	sysArea
+        	,au_occupation	auOccupation
+    	WHERE 1=1
+				and auUser.city_id = sysCity.id
+				and auUser.province_id = sysProvince.id
+				and auUser.area_id = sysArea.id
+				and auUser.occupation_id = auOccupation.id
+		  id=#{auUserId}
+    </select>
+    
+    <select id="countNum" parameterType="java.util.Map" resultType="Integer">
+    	SELECT 	
+    		COUNT(1)
+    	FROM
+    		au_user auUser
+        	,sys_city	sysCity
+        	,sys_province	sysProvince
+        	,sys_area	sysArea
+        	,au_occupation	auOccupation
+    	WHERE 1=1
+    	
+				and auUser.city_id = sysCity.id
+				and auUser.province_id = sysProvince.id
+				and auUser.area_id = sysArea.id
+				and auUser.occupation_id = auOccupation.id
+        	<if test="param.auUserCityId != null and param.auUserCityId != '' ">
+				and city_id =#(param.auUserCityId) 
+			</if>
+        	<if test="param.auUserProvinceId != null and param.auUserProvinceId != '' ">
+				and province_id =#(param.auUserProvinceId) 
+			</if>
+        	<if test="param.auUserAreaId != null and param.auUserAreaId != '' ">
+				and area_id =#(param.auUserAreaId) 
+			</if>
+        	<if test="param.auUserOccupationId != null and param.auUserOccupationId != '' ">
+				and occupation_id =#(param.auUserOccupationId) 
+			</if>
+    </select>
+    <select id="pageList" parameterType="java.util.Map" resultType="java.util.Map">
+    	SELECT 	
+        		auUser.id AS auUserId,
+            		
+        		auUser.mobile AS auUserMobile,
+            		
+        		auUser.type AS auUserType,
+            		
+        		auUser.password AS auUserPassword,
+            		
+        		auUser.true_name AS auUserTrueName,
+            		
+        		auUser.sex AS auUserSex,
+            		
+        		sysProvince.name AS sysProvinceName,
+            		
+        		sysCity.name AS sysCityName,
+            		
+        		sysArea.name AS sysAreaName,
+            		
+        		auOccupation.occupation_name AS auOccupationOccupationName,
+            		
+        		auUser.agentCode AS auUserAgentCode,
+            		
+        		auUser.status AS auUserStatus,
+            		
+        		auUser.wxid AS auUserWxid,
+            		
+        		auUser.zfbid AS auUserZfbid,
+            		
+        		auUser.created_time AS auUserCreatedTime,
+            		
+        		auUser.updated_time AS auUserUpdatedTime
+    	FROM
+    		au_user auUser
+        	,sys_city	sysCity
+        	,sys_province	sysProvince
+        	,sys_area	sysArea
+        	,au_occupation	auOccupation
+    	WHERE 1=1
+    	
+				and auUser.city_id = sysCity.id
+				and auUser.province_id = sysProvince.id
+				and auUser.area_id = sysArea.id
+				and auUser.occupation_id = auOccupation.id
+        	<if test="param.auUserCityId != null and param.auUserCityId != '' ">
+				and city_id =#(param.auUserCityId) 
+			</if>
+        	<if test="param.auUserProvinceId != null and param.auUserProvinceId != '' ">
+				and province_id =#(param.auUserProvinceId) 
+			</if>
+        	<if test="param.auUserAreaId != null and param.auUserAreaId != '' ">
+				and area_id =#(param.auUserAreaId) 
+			</if>
+        	<if test="param.auUserOccupationId != null and param.auUserOccupationId != '' ">
+				and occupation_id =#(param.auUserOccupationId) 
+			</if>
+    		LIMIT #{param.pageStart},#{param.pageNum}
+    </select>
+    
+    
+    <select id="allList" parameterType="java.util.Map" resultType="java.util.Map">
+    	    	SELECT 	
+        		auUser.id AS auUserId,
+            		
+        		auUser.mobile AS auUserMobile,
+            		
+        		auUser.type AS auUserType,
+            		
+        		auUser.password AS auUserPassword,
+            		
+        		auUser.true_name AS auUserTrueName,
+            		
+        		auUser.sex AS auUserSex,
+            		
+        		sysProvince.name AS sysProvinceName,
+            		
+        		sysCity.name AS sysCityName,
+            		
+        		sysArea.name AS sysAreaName,
+            		
+        		auOccupation.occupation_name AS auOccupationOccupationName,
+            		
+        		auUser.agentCode AS auUserAgentCode,
+            		
+        		auUser.status AS auUserStatus,
+            		
+        		auUser.wxid AS auUserWxid,
+            		
+        		auUser.zfbid AS auUserZfbid,
+            		
+        		auUser.created_time AS auUserCreatedTime,
+            		
+        		auUser.updated_time AS auUserUpdatedTime
+    	FROM
+    		au_user auUser
+        	,sys_city	sysCity
+        	,sys_province	sysProvince
+        	,sys_area	sysArea
+        	,au_occupation	auOccupation
+    	WHERE 1=1
+    	
+				and auUser.city_id = sysCity.id
+				and auUser.province_id = sysProvince.id
+				and auUser.area_id = sysArea.id
+				and auUser.occupation_id = auOccupation.id
+        	<if test="param.auUserCityId != null and param.auUserCityId != '' ">
+				and city_id =#(param.auUserCityId) 
+			</if>
+        	<if test="param.auUserProvinceId != null and param.auUserProvinceId != '' ">
+				and province_id =#(param.auUserProvinceId) 
+			</if>
+        	<if test="param.auUserAreaId != null and param.auUserAreaId != '' ">
+				and area_id =#(param.auUserAreaId) 
+			</if>
+        	<if test="param.auUserOccupationId != null and param.auUserOccupationId != '' ">
+				and occupation_id =#(param.auUserOccupationId) 
+			</if>
+    </select>
+    
+    
+</mapper>

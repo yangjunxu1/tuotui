@@ -1,0 +1,639 @@
+<?Mapper version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zycw.tuotui.readdao.aucustomtask.AuCustomTaskMapper">
+
+
+        <!-- 通用查询映射结果 -->
+        <resultMap id="BaseResultMap" type="com.zycw.tuotui.entity.aucustomtask.AuCustomTask">
+                    <id column="id" />
+                    <result column="compayn_id" />
+                    <result column="user_id" />
+                    <result column="app_id" />
+                    <result column="task_title" />
+                    <result column="extension_type" />
+                    <result column="scheme_id" />
+                    <result column="task_type" />
+                    <result column="task_depth" />
+                    <result column="province_id" />
+                    <result column="city_id" />
+                    <result column="area_id" />
+                    <result column="occupation_id" />
+                    <result column="start_time" />
+                    <result column="end_time" />
+                    <result column="user_sex" />
+                    <result column="user_age_min" />
+                    <result column="user_age_max" />
+                    <result column="hobby_type" />
+                    <result column="extension_item" />
+                    <result column="extension_nums_item" />
+                    <result column="custom_price" />
+                    <result column="verify_status" />
+                    <result column="task_content" />
+                    <result column="veruft_refuse" />
+                    <result column="verify_time" />
+                    <result column="review_status" />
+                    <result column="review_refuse" />
+                    <result column="review_time" />
+                    <result column="task_reward" />
+                    <result column="task_status" />
+                    <result column="created_time" />
+                    <result column="updated_time" />
+        </resultMap>
+
+    
+    		        <!-- 通用查询结果列 -->
+        <sql id="Base_Column_List">
+        </sql>
+
+
+    
+    <delete id="deleteById">
+        DELETE FROM au_custom_task WHERE 
+        id=#{auCustomTaskId}
+    </delete>
+    
+    
+    <update id="deleteByIdLogic">
+        UPDATE au_custom_task SET delFlag = 1' 
+        WHERE 
+        id=#{auCustomTaskId}
+    </update>
+    
+ 
+ 
+ 	<update id="updateObjById"  parameterType="com.zycw.tuotui.entity.aucustomtask.AuCustomTask">
+        UPDATE au_custom_task SET 
+		            compayn_id=auCustomTaskCompaynId,
+		            user_id=auCustomTaskUserId,
+		            app_id=auCustomTaskAppId,
+		            task_title=auCustomTaskTaskTitle,
+		            extension_type=auCustomTaskExtensionType,
+		            scheme_id=auCustomTaskSchemeId,
+		            task_type=auCustomTaskTaskType,
+		            task_depth=auCustomTaskTaskDepth,
+		            province_id=auCustomTaskProvinceId,
+		            city_id=auCustomTaskCityId,
+		            area_id=auCustomTaskAreaId,
+		            occupation_id=auCustomTaskOccupationId,
+		            start_time=auCustomTaskStartTime,
+		            end_time=auCustomTaskEndTime,
+		            user_sex=auCustomTaskUserSex,
+		            user_age_min=auCustomTaskUserAgeMin,
+		            user_age_max=auCustomTaskUserAgeMax,
+		            hobby_type=auCustomTaskHobbyType,
+		            extension_item=auCustomTaskExtensionItem,
+		            extension_nums_item=auCustomTaskExtensionNumsItem,
+		            custom_price=auCustomTaskCustomPrice,
+		            verify_status=auCustomTaskVerifyStatus,
+		            task_content=auCustomTaskTaskContent,
+		            veruft_refuse=auCustomTaskVeruftRefuse,
+		            verify_time=auCustomTaskVerifyTime,
+		            review_status=auCustomTaskReviewStatus,
+		            review_refuse=auCustomTaskReviewRefuse,
+		            review_time=auCustomTaskReviewTime,
+		            task_reward=auCustomTaskTaskReward,
+		            task_status=auCustomTaskTaskStatus,
+		            created_time=auCustomTaskCreatedTime,
+		            updated_time=#{auCustomTaskUpdatedTime}
+        WHERE 
+        id=#{auCustomTaskId}
+    </update>
+ 
+    
+    <insert id='insertObj' parameterType="com.zycw.tuotui.entity.aucustomtask.AuCustomTask">
+    	INSERT INTO au_custom_task(
+    			compayn_id,
+    			user_id,
+    			app_id,
+    			task_title,
+    			extension_type,
+    			scheme_id,
+    			task_type,
+    			task_depth,
+    			province_id,
+    			city_id,
+    			area_id,
+    			occupation_id,
+    			start_time,
+    			end_time,
+    			user_sex,
+    			user_age_min,
+    			user_age_max,
+    			hobby_type,
+    			extension_item,
+    			extension_nums_item,
+    			custom_price,
+    			verify_status,
+    			task_content,
+    			veruft_refuse,
+    			verify_time,
+    			review_status,
+    			review_refuse,
+    			review_time,
+    			task_reward,
+    			task_status,
+    			created_time,
+    			updated_time
+    	)
+        VALUES(
+		           #{auCustomTaskCompaynId},
+		           #{auCustomTaskUserId},
+		           #{auCustomTaskAppId},
+		           #{auCustomTaskTaskTitle},
+		           #{auCustomTaskExtensionType},
+		           #{auCustomTaskSchemeId},
+		           #{auCustomTaskTaskType},
+		           #{auCustomTaskTaskDepth},
+		           #{auCustomTaskProvinceId},
+		           #{auCustomTaskCityId},
+		           #{auCustomTaskAreaId},
+		           #{auCustomTaskOccupationId},
+		           #{auCustomTaskStartTime},
+		           #{auCustomTaskEndTime},
+		           #{auCustomTaskUserSex},
+		           #{auCustomTaskUserAgeMin},
+		           #{auCustomTaskUserAgeMax},
+		           #{auCustomTaskHobbyType},
+		           #{auCustomTaskExtensionItem},
+		           #{auCustomTaskExtensionNumsItem},
+		           #{auCustomTaskCustomPrice},
+		           #{auCustomTaskVerifyStatus},
+		           #{auCustomTaskTaskContent},
+		           #{auCustomTaskVeruftRefuse},
+		           #{auCustomTaskVerifyTime},
+		           #{auCustomTaskReviewStatus},
+		           #{auCustomTaskReviewRefuse},
+		           #{auCustomTaskReviewTime},
+		           #{auCustomTaskTaskReward},
+		           #{auCustomTaskTaskStatus},
+		           #{auCustomTaskCreatedTime},
+		           #{auCustomTaskUpdatedTime}
+        )
+    </insert>
+    <insert id='batchInsertObj' parameterType="java.util.List">
+    	INSERT INTO au_custom_task(
+    			compayn_id,
+    			user_id,
+    			app_id,
+    			task_title,
+    			extension_type,
+    			scheme_id,
+    			task_type,
+    			task_depth,
+    			province_id,
+    			city_id,
+    			area_id,
+    			occupation_id,
+    			start_time,
+    			end_time,
+    			user_sex,
+    			user_age_min,
+    			user_age_max,
+    			hobby_type,
+    			extension_item,
+    			extension_nums_item,
+    			custom_price,
+    			verify_status,
+    			task_content,
+    			veruft_refuse,
+    			verify_time,
+    			review_status,
+    			review_refuse,
+    			review_time,
+    			task_reward,
+    			task_status,
+    			created_time,
+    			updated_time
+    	)
+        VALUES(
+        <foreach collection="list" item="item"  separator=",">
+		           #{item.auCustomTaskCompaynId},
+		           #{item.auCustomTaskUserId},
+		           #{item.auCustomTaskAppId},
+		           #{item.auCustomTaskTaskTitle},
+		           #{item.auCustomTaskExtensionType},
+		           #{item.auCustomTaskSchemeId},
+		           #{item.auCustomTaskTaskType},
+		           #{item.auCustomTaskTaskDepth},
+		           #{item.auCustomTaskProvinceId},
+		           #{item.auCustomTaskCityId},
+		           #{item.auCustomTaskAreaId},
+		           #{item.auCustomTaskOccupationId},
+		           #{item.auCustomTaskStartTime},
+		           #{item.auCustomTaskEndTime},
+		           #{item.auCustomTaskUserSex},
+		           #{item.auCustomTaskUserAgeMin},
+		           #{item.auCustomTaskUserAgeMax},
+		           #{item.auCustomTaskHobbyType},
+		           #{item.auCustomTaskExtensionItem},
+		           #{item.auCustomTaskExtensionNumsItem},
+		           #{item.auCustomTaskCustomPrice},
+		           #{item.auCustomTaskVerifyStatus},
+		           #{item.auCustomTaskTaskContent},
+		           #{item.auCustomTaskVeruftRefuse},
+		           #{item.auCustomTaskVerifyTime},
+		           #{item.auCustomTaskReviewStatus},
+		           #{item.auCustomTaskReviewRefuse},
+		           #{item.auCustomTaskReviewTime},
+		           #{item.auCustomTaskTaskReward},
+		           #{item.auCustomTaskTaskStatus},
+		           #{item.auCustomTaskCreatedTime},
+		           #{item.auCustomTaskUpdatedTime}
+        </foreach>
+        )
+    </insert>
+    
+    
+    <select id="selectObjById" parameterType="java.util.Map" resultType="java.util.HashMap">
+    	SELECT  
+        		auCustomTask.id AS auCustomTaskId,
+            		
+        		auCustomTask.compayn_id AS auCustomTaskCompaynId,
+        		auCompany.name AS auCompanyAppName,
+            		
+        		auCustomTask.user_id AS auCustomTaskUserId,
+        		auUser.mobile AS auUserMobile,
+            		
+        		auCustomTask.app_id AS auCustomTaskAppId,
+        		auCompanyApp.name AS auCompanyAppName,
+            		
+        		auCustomTask.task_title AS auCustomTaskTaskTitle,
+            		
+        		auCustomTask.extension_type AS auCustomTaskExtensionType,
+            		
+        		auCustomTask.scheme_id AS auCustomTaskSchemeId,
+            		
+        		auCustomTask.task_type AS auCustomTaskTaskType,
+        		sysTaskType.type_title AS sysTaskTypeTypeTitle,
+            		
+        		auCustomTask.task_depth AS auCustomTaskTaskDepth,
+        		sysTaskDepth.depth_title AS sysTaskDepthDepthTitle,
+            		
+        		auCustomTask.province_id AS auCustomTaskProvinceId,
+        		sysProvince.name AS sysProvinceName,
+            		
+        		auCustomTask.city_id AS auCustomTaskCityId,
+        		sysCity.name AS sysCityName,
+            		
+        		auCustomTask.area_id AS auCustomTaskAreaId,
+        		sysArea.name AS sysAreaName,
+            		
+        		auCustomTask.occupation_id AS auCustomTaskOccupationId,
+        		auOccupation.occupation_name AS auOccupationOccupationName,
+            		
+        		auCustomTask.start_time AS auCustomTaskStartTime,
+            		
+        		auCustomTask.end_time AS auCustomTaskEndTime,
+            		
+        		auCustomTask.user_sex AS auCustomTaskUserSex,
+            		
+        		auCustomTask.user_age_min AS auCustomTaskUserAgeMin,
+            		
+        		auCustomTask.user_age_max AS auCustomTaskUserAgeMax,
+            		
+        		auCustomTask.hobby_type AS auCustomTaskHobbyType,
+            		
+        		auCustomTask.extension_item AS auCustomTaskExtensionItem,
+            		
+        		auCustomTask.extension_nums_item AS auCustomTaskExtensionNumsItem,
+            		
+        		auCustomTask.custom_price AS auCustomTaskCustomPrice,
+            		
+        		auCustomTask.verify_status AS auCustomTaskVerifyStatus,
+            		
+        		auCustomTask.task_content AS auCustomTaskTaskContent,
+            		
+        		auCustomTask.veruft_refuse AS auCustomTaskVeruftRefuse,
+            		
+        		auCustomTask.verify_time AS auCustomTaskVerifyTime,
+            		
+        		auCustomTask.review_status AS auCustomTaskReviewStatus,
+            		
+        		auCustomTask.review_refuse AS auCustomTaskReviewRefuse,
+            		
+        		auCustomTask.review_time AS auCustomTaskReviewTime,
+            		
+        		auCustomTask.task_reward AS auCustomTaskTaskReward,
+            		
+        		auCustomTask.task_status AS auCustomTaskTaskStatus,
+            		
+        		auCustomTask.created_time AS auCustomTaskCreatedTime,
+            		
+        		auCustomTask.updated_time AS auCustomTaskUpdatedTime
+		 FROM 
+		 	au_custom_task auCustomTask
+        	,au_company_app	auCompanyApp
+        	,au_company	auCompany
+        	,au_user	auUser
+        	,sys_task_type	sysTaskType
+        	,sys_province	sysProvince
+        	,sys_task_depth	sysTaskDepth
+        	,sys_area	sysArea
+        	,sys_city	sysCity
+        	,au_occupation	auOccupation
+    	WHERE 1=1
+				and auCustomTask.app_id = auCompanyApp.id
+				and auCustomTask.compayn_id = auCompany.id
+				and auCustomTask.user_id = auUser.id
+				and auCustomTask.task_type = sysTaskType.id
+				and auCustomTask.province_id = sysProvince.id
+				and auCustomTask.task_depth = sysTaskDepth.id
+				and auCustomTask.area_id = sysArea.id
+				and auCustomTask.city_id = sysCity.id
+				and auCustomTask.occupation_id = auOccupation.id
+		  id=#{auCustomTaskId}
+    </select>
+    
+    <select id="countNum" parameterType="java.util.Map" resultType="Integer">
+    	SELECT 	
+    		COUNT(1)
+    	FROM
+    		au_custom_task auCustomTask
+        	,au_company_app	auCompanyApp
+        	,au_company	auCompany
+        	,au_user	auUser
+        	,sys_task_type	sysTaskType
+        	,sys_province	sysProvince
+        	,sys_task_depth	sysTaskDepth
+        	,sys_area	sysArea
+        	,sys_city	sysCity
+        	,au_occupation	auOccupation
+    	WHERE 1=1
+    	
+				and auCustomTask.app_id = auCompanyApp.id
+				and auCustomTask.compayn_id = auCompany.id
+				and auCustomTask.user_id = auUser.id
+				and auCustomTask.task_type = sysTaskType.id
+				and auCustomTask.province_id = sysProvince.id
+				and auCustomTask.task_depth = sysTaskDepth.id
+				and auCustomTask.area_id = sysArea.id
+				and auCustomTask.city_id = sysCity.id
+				and auCustomTask.occupation_id = auOccupation.id
+        	<if test="param.auCustomTaskAppId != null and param.auCustomTaskAppId != '' ">
+				and app_id =#(param.auCustomTaskAppId) 
+			</if>
+        	<if test="param.auCustomTaskCompaynId != null and param.auCustomTaskCompaynId != '' ">
+				and compayn_id =#(param.auCustomTaskCompaynId) 
+			</if>
+        	<if test="param.auCustomTaskUserId != null and param.auCustomTaskUserId != '' ">
+				and user_id =#(param.auCustomTaskUserId) 
+			</if>
+        	<if test="param.auCustomTaskTaskType != null and param.auCustomTaskTaskType != '' ">
+				and task_type =#(param.auCustomTaskTaskType) 
+			</if>
+        	<if test="param.auCustomTaskProvinceId != null and param.auCustomTaskProvinceId != '' ">
+				and province_id =#(param.auCustomTaskProvinceId) 
+			</if>
+        	<if test="param.auCustomTaskTaskDepth != null and param.auCustomTaskTaskDepth != '' ">
+				and task_depth =#(param.auCustomTaskTaskDepth) 
+			</if>
+        	<if test="param.auCustomTaskAreaId != null and param.auCustomTaskAreaId != '' ">
+				and area_id =#(param.auCustomTaskAreaId) 
+			</if>
+        	<if test="param.auCustomTaskCityId != null and param.auCustomTaskCityId != '' ">
+				and city_id =#(param.auCustomTaskCityId) 
+			</if>
+        	<if test="param.auCustomTaskOccupationId != null and param.auCustomTaskOccupationId != '' ">
+				and occupation_id =#(param.auCustomTaskOccupationId) 
+			</if>
+    </select>
+    <select id="pageList" parameterType="java.util.Map" resultType="java.util.Map">
+    	SELECT 	
+        		auCustomTask.id AS auCustomTaskId,
+            		
+        		auCompany.name AS auCompanyAppName,
+            		
+        		auUser.mobile AS auUserMobile,
+            		
+        		auCompanyApp.name AS auCompanyAppName,
+            		
+        		auCustomTask.task_title AS auCustomTaskTaskTitle,
+            		
+        		auCustomTask.extension_type AS auCustomTaskExtensionType,
+            		
+        		auCustomTask.scheme_id AS auCustomTaskSchemeId,
+            		
+        		sysTaskType.type_title AS sysTaskTypeTypeTitle,
+            		
+        		sysTaskDepth.depth_title AS sysTaskDepthDepthTitle,
+            		
+        		sysProvince.name AS sysProvinceName,
+            		
+        		sysCity.name AS sysCityName,
+            		
+        		sysArea.name AS sysAreaName,
+            		
+        		auOccupation.occupation_name AS auOccupationOccupationName,
+            		
+        		auCustomTask.start_time AS auCustomTaskStartTime,
+            		
+        		auCustomTask.end_time AS auCustomTaskEndTime,
+            		
+        		auCustomTask.user_sex AS auCustomTaskUserSex,
+            		
+        		auCustomTask.user_age_min AS auCustomTaskUserAgeMin,
+            		
+        		auCustomTask.user_age_max AS auCustomTaskUserAgeMax,
+            		
+        		auCustomTask.hobby_type AS auCustomTaskHobbyType,
+            		
+        		auCustomTask.extension_item AS auCustomTaskExtensionItem,
+            		
+        		auCustomTask.extension_nums_item AS auCustomTaskExtensionNumsItem,
+            		
+        		auCustomTask.custom_price AS auCustomTaskCustomPrice,
+            		
+        		auCustomTask.verify_status AS auCustomTaskVerifyStatus,
+            		
+        		auCustomTask.task_content AS auCustomTaskTaskContent,
+            		
+        		auCustomTask.veruft_refuse AS auCustomTaskVeruftRefuse,
+            		
+        		auCustomTask.verify_time AS auCustomTaskVerifyTime,
+            		
+        		auCustomTask.review_status AS auCustomTaskReviewStatus,
+            		
+        		auCustomTask.review_refuse AS auCustomTaskReviewRefuse,
+            		
+        		auCustomTask.review_time AS auCustomTaskReviewTime,
+            		
+        		auCustomTask.task_reward AS auCustomTaskTaskReward,
+            		
+        		auCustomTask.task_status AS auCustomTaskTaskStatus,
+            		
+        		auCustomTask.created_time AS auCustomTaskCreatedTime,
+            		
+        		auCustomTask.updated_time AS auCustomTaskUpdatedTime
+    	FROM
+    		au_custom_task auCustomTask
+        	,au_company_app	auCompanyApp
+        	,au_company	auCompany
+        	,au_user	auUser
+        	,sys_task_type	sysTaskType
+        	,sys_province	sysProvince
+        	,sys_task_depth	sysTaskDepth
+        	,sys_area	sysArea
+        	,sys_city	sysCity
+        	,au_occupation	auOccupation
+    	WHERE 1=1
+    	
+				and auCustomTask.app_id = auCompanyApp.id
+				and auCustomTask.compayn_id = auCompany.id
+				and auCustomTask.user_id = auUser.id
+				and auCustomTask.task_type = sysTaskType.id
+				and auCustomTask.province_id = sysProvince.id
+				and auCustomTask.task_depth = sysTaskDepth.id
+				and auCustomTask.area_id = sysArea.id
+				and auCustomTask.city_id = sysCity.id
+				and auCustomTask.occupation_id = auOccupation.id
+        	<if test="param.auCustomTaskAppId != null and param.auCustomTaskAppId != '' ">
+				and app_id =#(param.auCustomTaskAppId) 
+			</if>
+        	<if test="param.auCustomTaskCompaynId != null and param.auCustomTaskCompaynId != '' ">
+				and compayn_id =#(param.auCustomTaskCompaynId) 
+			</if>
+        	<if test="param.auCustomTaskUserId != null and param.auCustomTaskUserId != '' ">
+				and user_id =#(param.auCustomTaskUserId) 
+			</if>
+        	<if test="param.auCustomTaskTaskType != null and param.auCustomTaskTaskType != '' ">
+				and task_type =#(param.auCustomTaskTaskType) 
+			</if>
+        	<if test="param.auCustomTaskProvinceId != null and param.auCustomTaskProvinceId != '' ">
+				and province_id =#(param.auCustomTaskProvinceId) 
+			</if>
+        	<if test="param.auCustomTaskTaskDepth != null and param.auCustomTaskTaskDepth != '' ">
+				and task_depth =#(param.auCustomTaskTaskDepth) 
+			</if>
+        	<if test="param.auCustomTaskAreaId != null and param.auCustomTaskAreaId != '' ">
+				and area_id =#(param.auCustomTaskAreaId) 
+			</if>
+        	<if test="param.auCustomTaskCityId != null and param.auCustomTaskCityId != '' ">
+				and city_id =#(param.auCustomTaskCityId) 
+			</if>
+        	<if test="param.auCustomTaskOccupationId != null and param.auCustomTaskOccupationId != '' ">
+				and occupation_id =#(param.auCustomTaskOccupationId) 
+			</if>
+    		LIMIT #{param.pageStart},#{param.pageNum}
+    </select>
+    
+    
+    <select id="allList" parameterType="java.util.Map" resultType="java.util.Map">
+    	    	SELECT 	
+        		auCustomTask.id AS auCustomTaskId,
+            		
+        		auCompany.name AS auCompanyAppName,
+            		
+        		auUser.mobile AS auUserMobile,
+            		
+        		auCompanyApp.name AS auCompanyAppName,
+            		
+        		auCustomTask.task_title AS auCustomTaskTaskTitle,
+            		
+        		auCustomTask.extension_type AS auCustomTaskExtensionType,
+            		
+        		auCustomTask.scheme_id AS auCustomTaskSchemeId,
+            		
+        		sysTaskType.type_title AS sysTaskTypeTypeTitle,
+            		
+        		sysTaskDepth.depth_title AS sysTaskDepthDepthTitle,
+            		
+        		sysProvince.name AS sysProvinceName,
+            		
+        		sysCity.name AS sysCityName,
+            		
+        		sysArea.name AS sysAreaName,
+            		
+        		auOccupation.occupation_name AS auOccupationOccupationName,
+            		
+        		auCustomTask.start_time AS auCustomTaskStartTime,
+            		
+        		auCustomTask.end_time AS auCustomTaskEndTime,
+            		
+        		auCustomTask.user_sex AS auCustomTaskUserSex,
+            		
+        		auCustomTask.user_age_min AS auCustomTaskUserAgeMin,
+            		
+        		auCustomTask.user_age_max AS auCustomTaskUserAgeMax,
+            		
+        		auCustomTask.hobby_type AS auCustomTaskHobbyType,
+            		
+        		auCustomTask.extension_item AS auCustomTaskExtensionItem,
+            		
+        		auCustomTask.extension_nums_item AS auCustomTaskExtensionNumsItem,
+            		
+        		auCustomTask.custom_price AS auCustomTaskCustomPrice,
+            		
+        		auCustomTask.verify_status AS auCustomTaskVerifyStatus,
+            		
+        		auCustomTask.task_content AS auCustomTaskTaskContent,
+            		
+        		auCustomTask.veruft_refuse AS auCustomTaskVeruftRefuse,
+            		
+        		auCustomTask.verify_time AS auCustomTaskVerifyTime,
+            		
+        		auCustomTask.review_status AS auCustomTaskReviewStatus,
+            		
+        		auCustomTask.review_refuse AS auCustomTaskReviewRefuse,
+            		
+        		auCustomTask.review_time AS auCustomTaskReviewTime,
+            		
+        		auCustomTask.task_reward AS auCustomTaskTaskReward,
+            		
+        		auCustomTask.task_status AS auCustomTaskTaskStatus,
+            		
+        		auCustomTask.created_time AS auCustomTaskCreatedTime,
+            		
+        		auCustomTask.updated_time AS auCustomTaskUpdatedTime
+    	FROM
+    		au_custom_task auCustomTask
+        	,au_company_app	auCompanyApp
+        	,au_company	auCompany
+        	,au_user	auUser
+        	,sys_task_type	sysTaskType
+        	,sys_province	sysProvince
+        	,sys_task_depth	sysTaskDepth
+        	,sys_area	sysArea
+        	,sys_city	sysCity
+        	,au_occupation	auOccupation
+    	WHERE 1=1
+    	
+				and auCustomTask.app_id = auCompanyApp.id
+				and auCustomTask.compayn_id = auCompany.id
+				and auCustomTask.user_id = auUser.id
+				and auCustomTask.task_type = sysTaskType.id
+				and auCustomTask.province_id = sysProvince.id
+				and auCustomTask.task_depth = sysTaskDepth.id
+				and auCustomTask.area_id = sysArea.id
+				and auCustomTask.city_id = sysCity.id
+				and auCustomTask.occupation_id = auOccupation.id
+        	<if test="param.auCustomTaskAppId != null and param.auCustomTaskAppId != '' ">
+				and app_id =#(param.auCustomTaskAppId) 
+			</if>
+        	<if test="param.auCustomTaskCompaynId != null and param.auCustomTaskCompaynId != '' ">
+				and compayn_id =#(param.auCustomTaskCompaynId) 
+			</if>
+        	<if test="param.auCustomTaskUserId != null and param.auCustomTaskUserId != '' ">
+				and user_id =#(param.auCustomTaskUserId) 
+			</if>
+        	<if test="param.auCustomTaskTaskType != null and param.auCustomTaskTaskType != '' ">
+				and task_type =#(param.auCustomTaskTaskType) 
+			</if>
+        	<if test="param.auCustomTaskProvinceId != null and param.auCustomTaskProvinceId != '' ">
+				and province_id =#(param.auCustomTaskProvinceId) 
+			</if>
+        	<if test="param.auCustomTaskTaskDepth != null and param.auCustomTaskTaskDepth != '' ">
+				and task_depth =#(param.auCustomTaskTaskDepth) 
+			</if>
+        	<if test="param.auCustomTaskAreaId != null and param.auCustomTaskAreaId != '' ">
+				and area_id =#(param.auCustomTaskAreaId) 
+			</if>
+        	<if test="param.auCustomTaskCityId != null and param.auCustomTaskCityId != '' ">
+				and city_id =#(param.auCustomTaskCityId) 
+			</if>
+        	<if test="param.auCustomTaskOccupationId != null and param.auCustomTaskOccupationId != '' ">
+				and occupation_id =#(param.auCustomTaskOccupationId) 
+			</if>
+    </select>
+    
+    
+</mapper>

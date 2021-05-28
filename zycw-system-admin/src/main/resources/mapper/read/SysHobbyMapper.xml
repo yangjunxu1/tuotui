@@ -1,0 +1,105 @@
+<?Mapper version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zycw.tuotui.readdao.syshobby.SysHobbyMapper">
+
+
+        <!-- 通用查询映射结果 -->
+        <resultMap id="BaseResultMap" type="com.zycw.tuotui.entity.syshobby.SysHobby">
+                    <id column="id" />
+                    <result column="hobby_title" />
+        </resultMap>
+
+    
+    		        <!-- 通用查询结果列 -->
+        <sql id="Base_Column_List">
+        </sql>
+
+
+    
+    <delete id="deleteById">
+        DELETE FROM sys_hobby WHERE 
+        id=#{sysHobbyId}
+    </delete>
+    
+    
+    <update id="deleteByIdLogic">
+        UPDATE sys_hobby SET delFlag = 1' 
+        WHERE 
+        id=#{sysHobbyId}
+    </update>
+    
+ 
+ 
+ 	<update id="updateObjById"  parameterType="com.zycw.tuotui.entity.syshobby.SysHobby">
+        UPDATE sys_hobby SET 
+		            hobby_title=#{sysHobbyHobbyTitle}
+        WHERE 
+        id=#{sysHobbyId}
+    </update>
+ 
+    
+    <insert id='insertObj' parameterType="com.zycw.tuotui.entity.syshobby.SysHobby">
+    	INSERT INTO sys_hobby(
+    			hobby_title
+    	)
+        VALUES(
+		           #{sysHobbyHobbyTitle}
+        )
+    </insert>
+    <insert id='batchInsertObj' parameterType="java.util.List">
+    	INSERT INTO sys_hobby(
+    			hobby_title
+    	)
+        VALUES(
+        <foreach collection="list" item="item"  separator=",">
+		           #{item.sysHobbyHobbyTitle}
+        </foreach>
+        )
+    </insert>
+    
+    
+    <select id="selectObjById" parameterType="java.util.Map" resultType="java.util.HashMap">
+    	SELECT  
+        		sysHobby.id AS sysHobbyId,
+            		
+        		sysHobby.hobby_title AS sysHobbyHobbyTitle
+		 FROM 
+		 	sys_hobby sysHobby
+    	WHERE 1=1
+		  id=#{sysHobbyId}
+    </select>
+    
+    <select id="countNum" parameterType="java.util.Map" resultType="Integer">
+    	SELECT 	
+    		COUNT(1)
+    	FROM
+    		sys_hobby sysHobby
+    	WHERE 1=1
+    	
+    </select>
+    <select id="pageList" parameterType="java.util.Map" resultType="java.util.Map">
+    	SELECT 	
+        		sysHobby.id AS sysHobbyId,
+            		
+        		sysHobby.hobby_title AS sysHobbyHobbyTitle
+    	FROM
+    		sys_hobby sysHobby
+    	WHERE 1=1
+    	
+    		LIMIT #{param.pageStart},#{param.pageNum}
+    </select>
+    
+    
+    <select id="allList" parameterType="java.util.Map" resultType="java.util.Map">
+    	    	SELECT 	
+        		sysHobby.id AS sysHobbyId,
+            		
+        		sysHobby.hobby_title AS sysHobbyHobbyTitle
+    	FROM
+    		sys_hobby sysHobby
+    	WHERE 1=1
+    	
+    </select>
+    
+    
+</mapper>

@@ -1,0 +1,279 @@
+<?Mapper version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zycw.tuotui.readdao.aucompanyapp.AuCompanyAppMapper">
+
+
+        <!-- 通用查询映射结果 -->
+        <resultMap id="BaseResultMap" type="com.zycw.tuotui.entity.aucompanyapp.AuCompanyApp">
+                    <id column="id" />
+                    <result column="company_id" />
+                    <result column="name" />
+                    <result column="remark" />
+                    <result column="icon_path" />
+                    <result column="app_size" />
+                    <result column="down_url" />
+                    <result column="verify_status" />
+                    <result column="veruft_refuse" />
+                    <result column="verify_time" />
+                    <result column="review_status" />
+                    <result column="review_refuse" />
+                    <result column="review_time" />
+                    <result column="created_time" />
+                    <result column="updated_time" />
+        </resultMap>
+
+    
+    		        <!-- 通用查询结果列 -->
+        <sql id="Base_Column_List">
+        </sql>
+
+
+    
+    <delete id="deleteById">
+        DELETE FROM au_company_app WHERE 
+        id=#{auCompanyAppId}
+    </delete>
+    
+    
+    <update id="deleteByIdLogic">
+        UPDATE au_company_app SET delFlag = 1' 
+        WHERE 
+        id=#{auCompanyAppId}
+    </update>
+    
+ 
+ 
+ 	<update id="updateObjById"  parameterType="com.zycw.tuotui.entity.aucompanyapp.AuCompanyApp">
+        UPDATE au_company_app SET 
+		            company_id=auCompanyAppCompanyId,
+		            name=auCompanyAppName,
+		            remark=auCompanyAppRemark,
+		            icon_path=auCompanyAppIconPath,
+		            app_size=auCompanyAppAppSize,
+		            down_url=auCompanyAppDownUrl,
+		            verify_status=auCompanyAppVerifyStatus,
+		            veruft_refuse=auCompanyAppVeruftRefuse,
+		            verify_time=auCompanyAppVerifyTime,
+		            review_status=auCompanyAppReviewStatus,
+		            review_refuse=auCompanyAppReviewRefuse,
+		            review_time=auCompanyAppReviewTime,
+		            created_time=auCompanyAppCreatedTime,
+		            updated_time=#{auCompanyAppUpdatedTime}
+        WHERE 
+        id=#{auCompanyAppId}
+    </update>
+ 
+    
+    <insert id='insertObj' parameterType="com.zycw.tuotui.entity.aucompanyapp.AuCompanyApp">
+    	INSERT INTO au_company_app(
+    			company_id,
+    			name,
+    			remark,
+    			icon_path,
+    			app_size,
+    			down_url,
+    			verify_status,
+    			veruft_refuse,
+    			verify_time,
+    			review_status,
+    			review_refuse,
+    			review_time,
+    			created_time,
+    			updated_time
+    	)
+        VALUES(
+		           #{auCompanyAppCompanyId},
+		           #{auCompanyAppName},
+		           #{auCompanyAppRemark},
+		           #{auCompanyAppIconPath},
+		           #{auCompanyAppAppSize},
+		           #{auCompanyAppDownUrl},
+		           #{auCompanyAppVerifyStatus},
+		           #{auCompanyAppVeruftRefuse},
+		           #{auCompanyAppVerifyTime},
+		           #{auCompanyAppReviewStatus},
+		           #{auCompanyAppReviewRefuse},
+		           #{auCompanyAppReviewTime},
+		           #{auCompanyAppCreatedTime},
+		           #{auCompanyAppUpdatedTime}
+        )
+    </insert>
+    <insert id='batchInsertObj' parameterType="java.util.List">
+    	INSERT INTO au_company_app(
+    			company_id,
+    			name,
+    			remark,
+    			icon_path,
+    			app_size,
+    			down_url,
+    			verify_status,
+    			veruft_refuse,
+    			verify_time,
+    			review_status,
+    			review_refuse,
+    			review_time,
+    			created_time,
+    			updated_time
+    	)
+        VALUES(
+        <foreach collection="list" item="item"  separator=",">
+		           #{item.auCompanyAppCompanyId},
+		           #{item.auCompanyAppName},
+		           #{item.auCompanyAppRemark},
+		           #{item.auCompanyAppIconPath},
+		           #{item.auCompanyAppAppSize},
+		           #{item.auCompanyAppDownUrl},
+		           #{item.auCompanyAppVerifyStatus},
+		           #{item.auCompanyAppVeruftRefuse},
+		           #{item.auCompanyAppVerifyTime},
+		           #{item.auCompanyAppReviewStatus},
+		           #{item.auCompanyAppReviewRefuse},
+		           #{item.auCompanyAppReviewTime},
+		           #{item.auCompanyAppCreatedTime},
+		           #{item.auCompanyAppUpdatedTime}
+        </foreach>
+        )
+    </insert>
+    
+    
+    <select id="selectObjById" parameterType="java.util.Map" resultType="java.util.HashMap">
+    	SELECT  
+        		auCompanyApp.id AS auCompanyAppId,
+            		
+        		auCompanyApp.company_id AS auCompanyAppCompanyId,
+        		auCompany.name AS auCompanyName,
+            		
+        		auCompanyApp.name AS auCompanyAppName,
+            		
+        		auCompanyApp.remark AS auCompanyAppRemark,
+            		
+        		auCompanyApp.icon_path AS auCompanyAppIconPath,
+            		
+        		auCompanyApp.app_size AS auCompanyAppAppSize,
+            		
+        		auCompanyApp.down_url AS auCompanyAppDownUrl,
+            		
+        		auCompanyApp.verify_status AS auCompanyAppVerifyStatus,
+            		
+        		auCompanyApp.veruft_refuse AS auCompanyAppVeruftRefuse,
+            		
+        		auCompanyApp.verify_time AS auCompanyAppVerifyTime,
+            		
+        		auCompanyApp.review_status AS auCompanyAppReviewStatus,
+            		
+        		auCompanyApp.review_refuse AS auCompanyAppReviewRefuse,
+            		
+        		auCompanyApp.review_time AS auCompanyAppReviewTime,
+            		
+        		auCompanyApp.created_time AS auCompanyAppCreatedTime,
+            		
+        		auCompanyApp.updated_time AS auCompanyAppUpdatedTime
+		 FROM 
+		 	au_company_app auCompanyApp
+        	,au_company	auCompany
+    	WHERE 1=1
+				and auCompanyApp.company_id = auCompany.id
+		  id=#{auCompanyAppId}
+    </select>
+    
+    <select id="countNum" parameterType="java.util.Map" resultType="Integer">
+    	SELECT 	
+    		COUNT(1)
+    	FROM
+    		au_company_app auCompanyApp
+        	,au_company	auCompany
+    	WHERE 1=1
+    	
+				and auCompanyApp.company_id = auCompany.id
+        	<if test="param.auCompanyAppCompanyId != null and param.auCompanyAppCompanyId != '' ">
+				and company_id =#(param.auCompanyAppCompanyId) 
+			</if>
+    </select>
+    <select id="pageList" parameterType="java.util.Map" resultType="java.util.Map">
+    	SELECT 	
+        		auCompanyApp.id AS auCompanyAppId,
+            		
+        		auCompany.name AS auCompanyName,
+            		
+        		auCompanyApp.name AS auCompanyAppName,
+            		
+        		auCompanyApp.remark AS auCompanyAppRemark,
+            		
+        		auCompanyApp.icon_path AS auCompanyAppIconPath,
+            		
+        		auCompanyApp.app_size AS auCompanyAppAppSize,
+            		
+        		auCompanyApp.down_url AS auCompanyAppDownUrl,
+            		
+        		auCompanyApp.verify_status AS auCompanyAppVerifyStatus,
+            		
+        		auCompanyApp.veruft_refuse AS auCompanyAppVeruftRefuse,
+            		
+        		auCompanyApp.verify_time AS auCompanyAppVerifyTime,
+            		
+        		auCompanyApp.review_status AS auCompanyAppReviewStatus,
+            		
+        		auCompanyApp.review_refuse AS auCompanyAppReviewRefuse,
+            		
+        		auCompanyApp.review_time AS auCompanyAppReviewTime,
+            		
+        		auCompanyApp.created_time AS auCompanyAppCreatedTime,
+            		
+        		auCompanyApp.updated_time AS auCompanyAppUpdatedTime
+    	FROM
+    		au_company_app auCompanyApp
+        	,au_company	auCompany
+    	WHERE 1=1
+    	
+				and auCompanyApp.company_id = auCompany.id
+        	<if test="param.auCompanyAppCompanyId != null and param.auCompanyAppCompanyId != '' ">
+				and company_id =#(param.auCompanyAppCompanyId) 
+			</if>
+    		LIMIT #{param.pageStart},#{param.pageNum}
+    </select>
+    
+    
+    <select id="allList" parameterType="java.util.Map" resultType="java.util.Map">
+    	    	SELECT 	
+        		auCompanyApp.id AS auCompanyAppId,
+            		
+        		auCompany.name AS auCompanyName,
+            		
+        		auCompanyApp.name AS auCompanyAppName,
+            		
+        		auCompanyApp.remark AS auCompanyAppRemark,
+            		
+        		auCompanyApp.icon_path AS auCompanyAppIconPath,
+            		
+        		auCompanyApp.app_size AS auCompanyAppAppSize,
+            		
+        		auCompanyApp.down_url AS auCompanyAppDownUrl,
+            		
+        		auCompanyApp.verify_status AS auCompanyAppVerifyStatus,
+            		
+        		auCompanyApp.veruft_refuse AS auCompanyAppVeruftRefuse,
+            		
+        		auCompanyApp.verify_time AS auCompanyAppVerifyTime,
+            		
+        		auCompanyApp.review_status AS auCompanyAppReviewStatus,
+            		
+        		auCompanyApp.review_refuse AS auCompanyAppReviewRefuse,
+            		
+        		auCompanyApp.review_time AS auCompanyAppReviewTime,
+            		
+        		auCompanyApp.created_time AS auCompanyAppCreatedTime,
+            		
+        		auCompanyApp.updated_time AS auCompanyAppUpdatedTime
+    	FROM
+    		au_company_app auCompanyApp
+        	,au_company	auCompany
+    	WHERE 1=1
+    	
+				and auCompanyApp.company_id = auCompany.id
+        	<if test="param.auCompanyAppCompanyId != null and param.auCompanyAppCompanyId != '' ">
+				and company_id =#(param.auCompanyAppCompanyId) 
+			</if>
+    </select>
+    
+    
+</mapper>

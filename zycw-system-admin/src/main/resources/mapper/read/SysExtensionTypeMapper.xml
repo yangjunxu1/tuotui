@@ -1,0 +1,129 @@
+<?Mapper version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zycw.tuotui.readdao.sysextensiontype.SysExtensionTypeMapper">
+
+
+        <!-- 通用查询映射结果 -->
+        <resultMap id="BaseResultMap" type="com.zycw.tuotui.entity.sysextensiontype.SysExtensionType">
+                    <id column="id" />
+                    <result column="titel" />
+                    <result column="price" />
+                    <result column="content" />
+        </resultMap>
+
+    
+    		        <!-- 通用查询结果列 -->
+        <sql id="Base_Column_List">
+        </sql>
+
+
+    
+    <delete id="deleteById">
+        DELETE FROM sys_extension_type WHERE 
+        id=#{sysExtensionTypeId}
+    </delete>
+    
+    
+    <update id="deleteByIdLogic">
+        UPDATE sys_extension_type SET delFlag = 1' 
+        WHERE 
+        id=#{sysExtensionTypeId}
+    </update>
+    
+ 
+ 
+ 	<update id="updateObjById"  parameterType="com.zycw.tuotui.entity.sysextensiontype.SysExtensionType">
+        UPDATE sys_extension_type SET 
+		            titel=sysExtensionTypeTitel,
+		            price=sysExtensionTypePrice,
+		            content=#{sysExtensionTypeContent}
+        WHERE 
+        id=#{sysExtensionTypeId}
+    </update>
+ 
+    
+    <insert id='insertObj' parameterType="com.zycw.tuotui.entity.sysextensiontype.SysExtensionType">
+    	INSERT INTO sys_extension_type(
+    			titel,
+    			price,
+    			content
+    	)
+        VALUES(
+		           #{sysExtensionTypeTitel},
+		           #{sysExtensionTypePrice},
+		           #{sysExtensionTypeContent}
+        )
+    </insert>
+    <insert id='batchInsertObj' parameterType="java.util.List">
+    	INSERT INTO sys_extension_type(
+    			titel,
+    			price,
+    			content
+    	)
+        VALUES(
+        <foreach collection="list" item="item"  separator=",">
+		           #{item.sysExtensionTypeTitel},
+		           #{item.sysExtensionTypePrice},
+		           #{item.sysExtensionTypeContent}
+        </foreach>
+        )
+    </insert>
+    
+    
+    <select id="selectObjById" parameterType="java.util.Map" resultType="java.util.HashMap">
+    	SELECT  
+        		sysExtensionType.id AS sysExtensionTypeId,
+            		
+        		sysExtensionType.titel AS sysExtensionTypeTitel,
+            		
+        		sysExtensionType.price AS sysExtensionTypePrice,
+            		
+        		sysExtensionType.content AS sysExtensionTypeContent
+		 FROM 
+		 	sys_extension_type sysExtensionType
+    	WHERE 1=1
+		  id=#{sysExtensionTypeId}
+    </select>
+    
+    <select id="countNum" parameterType="java.util.Map" resultType="Integer">
+    	SELECT 	
+    		COUNT(1)
+    	FROM
+    		sys_extension_type sysExtensionType
+    	WHERE 1=1
+    	
+    </select>
+    <select id="pageList" parameterType="java.util.Map" resultType="java.util.Map">
+    	SELECT 	
+        		sysExtensionType.id AS sysExtensionTypeId,
+            		
+        		sysExtensionType.titel AS sysExtensionTypeTitel,
+            		
+        		sysExtensionType.price AS sysExtensionTypePrice,
+            		
+        		sysExtensionType.content AS sysExtensionTypeContent
+    	FROM
+    		sys_extension_type sysExtensionType
+    	WHERE 1=1
+    	
+    		LIMIT #{param.pageStart},#{param.pageNum}
+    </select>
+    
+    
+    <select id="allList" parameterType="java.util.Map" resultType="java.util.Map">
+    	    	SELECT 	
+        		sysExtensionType.id AS sysExtensionTypeId,
+            		
+        		sysExtensionType.titel AS sysExtensionTypeTitel,
+            		
+        		sysExtensionType.price AS sysExtensionTypePrice,
+            		
+        		sysExtensionType.content AS sysExtensionTypeContent
+    	FROM
+    		sys_extension_type sysExtensionType
+    	WHERE 1=1
+    	
+    </select>
+    
+    
+</mapper>

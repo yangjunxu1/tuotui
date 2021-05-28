@@ -1,0 +1,189 @@
+<?Mapper version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zycw.tuotui.readdao.auaccountconsume.AuAccountConsumeMapper">
+
+
+        <!-- 通用查询映射结果 -->
+        <resultMap id="BaseResultMap" type="com.zycw.tuotui.entity.auaccountconsume.AuAccountConsume">
+                    <id column="id" />
+                    <result column="company_id" />
+                    <result column="user_id" />
+                    <result column="price" />
+                    <result column="task_id" />
+                    <result column="consume_time" />
+        </resultMap>
+
+    
+    		        <!-- 通用查询结果列 -->
+        <sql id="Base_Column_List">
+        </sql>
+
+
+    
+    <delete id="deleteById">
+        DELETE FROM au_account_consume WHERE 
+        id=#{auAccountConsumeId}
+    </delete>
+    
+    
+    <update id="deleteByIdLogic">
+        UPDATE au_account_consume SET delFlag = 1' 
+        WHERE 
+        id=#{auAccountConsumeId}
+    </update>
+    
+ 
+ 
+ 	<update id="updateObjById"  parameterType="com.zycw.tuotui.entity.auaccountconsume.AuAccountConsume">
+        UPDATE au_account_consume SET 
+		            company_id=auAccountConsumeCompanyId,
+		            user_id=auAccountConsumeUserId,
+		            price=auAccountConsumePrice,
+		            task_id=auAccountConsumeTaskId,
+		            consume_time=#{auAccountConsumeConsumeTime}
+        WHERE 
+        id=#{auAccountConsumeId}
+    </update>
+ 
+    
+    <insert id='insertObj' parameterType="com.zycw.tuotui.entity.auaccountconsume.AuAccountConsume">
+    	INSERT INTO au_account_consume(
+    			company_id,
+    			user_id,
+    			price,
+    			task_id,
+    			consume_time
+    	)
+        VALUES(
+		           #{auAccountConsumeCompanyId},
+		           #{auAccountConsumeUserId},
+		           #{auAccountConsumePrice},
+		           #{auAccountConsumeTaskId},
+		           #{auAccountConsumeConsumeTime}
+        )
+    </insert>
+    <insert id='batchInsertObj' parameterType="java.util.List">
+    	INSERT INTO au_account_consume(
+    			company_id,
+    			user_id,
+    			price,
+    			task_id,
+    			consume_time
+    	)
+        VALUES(
+        <foreach collection="list" item="item"  separator=",">
+		           #{item.auAccountConsumeCompanyId},
+		           #{item.auAccountConsumeUserId},
+		           #{item.auAccountConsumePrice},
+		           #{item.auAccountConsumeTaskId},
+		           #{item.auAccountConsumeConsumeTime}
+        </foreach>
+        )
+    </insert>
+    
+    
+    <select id="selectObjById" parameterType="java.util.Map" resultType="java.util.HashMap">
+    	SELECT  
+        		auAccountConsume.id AS auAccountConsumeId,
+            		
+        		auAccountConsume.company_id AS auAccountConsumeCompanyId,
+        		auCompany.name AS auCompanyName,
+            		
+        		auAccountConsume.user_id AS auAccountConsumeUserId,
+        		auUser.mobile AS auUserMobile,
+            		
+        		auAccountConsume.price AS auAccountConsumePrice,
+            		
+        		auAccountConsume.task_id AS auAccountConsumeTaskId,
+            		
+        		auAccountConsume.consume_time AS auAccountConsumeConsumeTime
+		 FROM 
+		 	au_account_consume auAccountConsume
+        	,au_company	auCompany
+        	,au_user	auUser
+    	WHERE 1=1
+				and auAccountConsume.company_id = auCompany.id
+				and auAccountConsume.user_id = auUser.id
+		  id=#{auAccountConsumeId}
+    </select>
+    
+    <select id="countNum" parameterType="java.util.Map" resultType="Integer">
+    	SELECT 	
+    		COUNT(1)
+    	FROM
+    		au_account_consume auAccountConsume
+        	,au_company	auCompany
+        	,au_user	auUser
+    	WHERE 1=1
+    	
+				and auAccountConsume.company_id = auCompany.id
+				and auAccountConsume.user_id = auUser.id
+        	<if test="param.auAccountConsumeCompanyId != null and param.auAccountConsumeCompanyId != '' ">
+				and company_id =#(param.auAccountConsumeCompanyId) 
+			</if>
+        	<if test="param.auAccountConsumeUserId != null and param.auAccountConsumeUserId != '' ">
+				and user_id =#(param.auAccountConsumeUserId) 
+			</if>
+    </select>
+    <select id="pageList" parameterType="java.util.Map" resultType="java.util.Map">
+    	SELECT 	
+        		auAccountConsume.id AS auAccountConsumeId,
+            		
+        		auCompany.name AS auCompanyName,
+            		
+        		auUser.mobile AS auUserMobile,
+            		
+        		auAccountConsume.price AS auAccountConsumePrice,
+            		
+        		auAccountConsume.task_id AS auAccountConsumeTaskId,
+            		
+        		auAccountConsume.consume_time AS auAccountConsumeConsumeTime
+    	FROM
+    		au_account_consume auAccountConsume
+        	,au_company	auCompany
+        	,au_user	auUser
+    	WHERE 1=1
+    	
+				and auAccountConsume.company_id = auCompany.id
+				and auAccountConsume.user_id = auUser.id
+        	<if test="param.auAccountConsumeCompanyId != null and param.auAccountConsumeCompanyId != '' ">
+				and company_id =#(param.auAccountConsumeCompanyId) 
+			</if>
+        	<if test="param.auAccountConsumeUserId != null and param.auAccountConsumeUserId != '' ">
+				and user_id =#(param.auAccountConsumeUserId) 
+			</if>
+    		LIMIT #{param.pageStart},#{param.pageNum}
+    </select>
+    
+    
+    <select id="allList" parameterType="java.util.Map" resultType="java.util.Map">
+    	    	SELECT 	
+        		auAccountConsume.id AS auAccountConsumeId,
+            		
+        		auCompany.name AS auCompanyName,
+            		
+        		auUser.mobile AS auUserMobile,
+            		
+        		auAccountConsume.price AS auAccountConsumePrice,
+            		
+        		auAccountConsume.task_id AS auAccountConsumeTaskId,
+            		
+        		auAccountConsume.consume_time AS auAccountConsumeConsumeTime
+    	FROM
+    		au_account_consume auAccountConsume
+        	,au_company	auCompany
+        	,au_user	auUser
+    	WHERE 1=1
+    	
+				and auAccountConsume.company_id = auCompany.id
+				and auAccountConsume.user_id = auUser.id
+        	<if test="param.auAccountConsumeCompanyId != null and param.auAccountConsumeCompanyId != '' ">
+				and company_id =#(param.auAccountConsumeCompanyId) 
+			</if>
+        	<if test="param.auAccountConsumeUserId != null and param.auAccountConsumeUserId != '' ">
+				and user_id =#(param.auAccountConsumeUserId) 
+			</if>
+    </select>
+    
+    
+</mapper>

@@ -1,0 +1,195 @@
+<?Mapper version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zycw.tuotui.readdao.sysuser.SysUserMapper">
+
+
+        <!-- 通用查询映射结果 -->
+        <resultMap id="BaseResultMap" type="com.zycw.tuotui.entity.sysuser.SysUser">
+                    <id column="id" />
+                    <result column="username" />
+                    <result column="password" />
+                    <result column="role_id" />
+                    <result column="true_name" />
+                    <result column="mobile" />
+                    <result column="created_time" />
+                    <result column="updated_time" />
+        </resultMap>
+
+    
+    		        <!-- 通用查询结果列 -->
+        <sql id="Base_Column_List">
+        </sql>
+
+
+    
+    <delete id="deleteById">
+        DELETE FROM sys_user WHERE 
+        id=#{sysUserId}
+    </delete>
+    
+    
+    <update id="deleteByIdLogic">
+        UPDATE sys_user SET delFlag = 1' 
+        WHERE 
+        id=#{sysUserId}
+    </update>
+    
+ 
+ 
+ 	<update id="updateObjById"  parameterType="com.zycw.tuotui.entity.sysuser.SysUser">
+        UPDATE sys_user SET 
+		            username=sysUserUsername,
+		            password=sysUserPassword,
+		            role_id=sysUserRoleId,
+		            true_name=sysUserTrueName,
+		            mobile=sysUserMobile,
+		            created_time=sysUserCreatedTime,
+		            updated_time=#{sysUserUpdatedTime}
+        WHERE 
+        id=#{sysUserId}
+    </update>
+ 
+    
+    <insert id='insertObj' parameterType="com.zycw.tuotui.entity.sysuser.SysUser">
+    	INSERT INTO sys_user(
+    			username,
+    			password,
+    			role_id,
+    			true_name,
+    			mobile,
+    			created_time,
+    			updated_time
+    	)
+        VALUES(
+		           #{sysUserUsername},
+		           #{sysUserPassword},
+		           #{sysUserRoleId},
+		           #{sysUserTrueName},
+		           #{sysUserMobile},
+		           #{sysUserCreatedTime},
+		           #{sysUserUpdatedTime}
+        )
+    </insert>
+    <insert id='batchInsertObj' parameterType="java.util.List">
+    	INSERT INTO sys_user(
+    			username,
+    			password,
+    			role_id,
+    			true_name,
+    			mobile,
+    			created_time,
+    			updated_time
+    	)
+        VALUES(
+        <foreach collection="list" item="item"  separator=",">
+		           #{item.sysUserUsername},
+		           #{item.sysUserPassword},
+		           #{item.sysUserRoleId},
+		           #{item.sysUserTrueName},
+		           #{item.sysUserMobile},
+		           #{item.sysUserCreatedTime},
+		           #{item.sysUserUpdatedTime}
+        </foreach>
+        )
+    </insert>
+    
+    
+    <select id="selectObjById" parameterType="java.util.Map" resultType="java.util.HashMap">
+    	SELECT  
+        		sysUser.id AS sysUserId,
+            		
+        		sysUser.username AS sysUserUsername,
+            		
+        		sysUser.password AS sysUserPassword,
+            		
+        		sysUser.role_id AS sysUserRoleId,
+        		sysRole.name AS sysRoleName,
+            		
+        		sysUser.true_name AS sysUserTrueName,
+            		
+        		sysUser.mobile AS sysUserMobile,
+            		
+        		sysUser.created_time AS sysUserCreatedTime,
+            		
+        		sysUser.updated_time AS sysUserUpdatedTime
+		 FROM 
+		 	sys_user sysUser
+        	,sys_role	sysRole
+    	WHERE 1=1
+				and sysUser.role_id = sysRole.id
+		  id=#{sysUserId}
+    </select>
+    
+    <select id="countNum" parameterType="java.util.Map" resultType="Integer">
+    	SELECT 	
+    		COUNT(1)
+    	FROM
+    		sys_user sysUser
+        	,sys_role	sysRole
+    	WHERE 1=1
+    	
+				and sysUser.role_id = sysRole.id
+        	<if test="param.sysUserRoleId != null and param.sysUserRoleId != '' ">
+				and role_id =#(param.sysUserRoleId) 
+			</if>
+    </select>
+    <select id="pageList" parameterType="java.util.Map" resultType="java.util.Map">
+    	SELECT 	
+        		sysUser.id AS sysUserId,
+            		
+        		sysUser.username AS sysUserUsername,
+            		
+        		sysUser.password AS sysUserPassword,
+            		
+        		sysRole.name AS sysRoleName,
+            		
+        		sysUser.true_name AS sysUserTrueName,
+            		
+        		sysUser.mobile AS sysUserMobile,
+            		
+        		sysUser.created_time AS sysUserCreatedTime,
+            		
+        		sysUser.updated_time AS sysUserUpdatedTime
+    	FROM
+    		sys_user sysUser
+        	,sys_role	sysRole
+    	WHERE 1=1
+    	
+				and sysUser.role_id = sysRole.id
+        	<if test="param.sysUserRoleId != null and param.sysUserRoleId != '' ">
+				and role_id =#(param.sysUserRoleId) 
+			</if>
+    		LIMIT #{param.pageStart},#{param.pageNum}
+    </select>
+    
+    
+    <select id="allList" parameterType="java.util.Map" resultType="java.util.Map">
+    	    	SELECT 	
+        		sysUser.id AS sysUserId,
+            		
+        		sysUser.username AS sysUserUsername,
+            		
+        		sysUser.password AS sysUserPassword,
+            		
+        		sysRole.name AS sysRoleName,
+            		
+        		sysUser.true_name AS sysUserTrueName,
+            		
+        		sysUser.mobile AS sysUserMobile,
+            		
+        		sysUser.created_time AS sysUserCreatedTime,
+            		
+        		sysUser.updated_time AS sysUserUpdatedTime
+    	FROM
+    		sys_user sysUser
+        	,sys_role	sysRole
+    	WHERE 1=1
+    	
+				and sysUser.role_id = sysRole.id
+        	<if test="param.sysUserRoleId != null and param.sysUserRoleId != '' ">
+				and role_id =#(param.sysUserRoleId) 
+			</if>
+    </select>
+    
+    
+</mapper>

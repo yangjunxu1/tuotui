@@ -1,0 +1,153 @@
+<?Mapper version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zycw.tuotui.readdao.sysroleresource.SysRoleResourceMapper">
+
+
+        <!-- 通用查询映射结果 -->
+        <resultMap id="BaseResultMap" type="com.zycw.tuotui.entity.sysroleresource.SysRoleResource">
+                    <id column="id" />
+                    <result column="role_id" />
+                    <result column="resource_id" />
+        </resultMap>
+
+    
+    		        <!-- 通用查询结果列 -->
+        <sql id="Base_Column_List">
+        </sql>
+
+
+    
+    <delete id="deleteById">
+        DELETE FROM sys_role_resource WHERE 
+        id=#{sysRoleResourceId}
+    </delete>
+    
+    
+    <update id="deleteByIdLogic">
+        UPDATE sys_role_resource SET delFlag = 1' 
+        WHERE 
+        id=#{sysRoleResourceId}
+    </update>
+    
+ 
+ 
+ 	<update id="updateObjById"  parameterType="com.zycw.tuotui.entity.sysroleresource.SysRoleResource">
+        UPDATE sys_role_resource SET 
+		            role_id=sysRoleResourceRoleId,
+		            resource_id=#{sysRoleResourceResourceId}
+        WHERE 
+        id=#{sysRoleResourceId}
+    </update>
+ 
+    
+    <insert id='insertObj' parameterType="com.zycw.tuotui.entity.sysroleresource.SysRoleResource">
+    	INSERT INTO sys_role_resource(
+    			role_id,
+    			resource_id
+    	)
+        VALUES(
+		           #{sysRoleResourceRoleId},
+		           #{sysRoleResourceResourceId}
+        )
+    </insert>
+    <insert id='batchInsertObj' parameterType="java.util.List">
+    	INSERT INTO sys_role_resource(
+    			role_id,
+    			resource_id
+    	)
+        VALUES(
+        <foreach collection="list" item="item"  separator=",">
+		           #{item.sysRoleResourceRoleId},
+		           #{item.sysRoleResourceResourceId}
+        </foreach>
+        )
+    </insert>
+    
+    
+    <select id="selectObjById" parameterType="java.util.Map" resultType="java.util.HashMap">
+    	SELECT  
+        		sysRoleResource.id AS sysRoleResourceId,
+            		
+        		sysRoleResource.role_id AS sysRoleResourceRoleId,
+        		sysRole.name AS sysRoleName,
+            		
+        		sysRoleResource.resource_id AS sysRoleResourceResourceId
+        		sysResource.${viewColumn.columnName} AS 
+		 FROM 
+		 	sys_role_resource sysRoleResource
+        	,sys_role	sysRole
+        	,sys_resource	sysResource
+    	WHERE 1=1
+				and sysRoleResource.role_id = sysRole.id
+				and sysRoleResource.resource_id = sysResource.id
+		  id=#{sysRoleResourceId}
+    </select>
+    
+    <select id="countNum" parameterType="java.util.Map" resultType="Integer">
+    	SELECT 	
+    		COUNT(1)
+    	FROM
+    		sys_role_resource sysRoleResource
+        	,sys_role	sysRole
+        	,sys_resource	sysResource
+    	WHERE 1=1
+    	
+				and sysRoleResource.role_id = sysRole.id
+				and sysRoleResource.resource_id = sysResource.id
+        	<if test="param.sysRoleResourceRoleId != null and param.sysRoleResourceRoleId != '' ">
+				and role_id =#(param.sysRoleResourceRoleId) 
+			</if>
+        	<if test="param.sysRoleResourceResourceId != null and param.sysRoleResourceResourceId != '' ">
+				and resource_id =#(param.sysRoleResourceResourceId) 
+			</if>
+    </select>
+    <select id="pageList" parameterType="java.util.Map" resultType="java.util.Map">
+    	SELECT 	
+        		sysRoleResource.id AS sysRoleResourceId,
+            		
+        		sysRole.name AS sysRoleName,
+            		
+        		sysResource.${viewColumn.columnName} AS 
+    	FROM
+    		sys_role_resource sysRoleResource
+        	,sys_role	sysRole
+        	,sys_resource	sysResource
+    	WHERE 1=1
+    	
+				and sysRoleResource.role_id = sysRole.id
+				and sysRoleResource.resource_id = sysResource.id
+        	<if test="param.sysRoleResourceRoleId != null and param.sysRoleResourceRoleId != '' ">
+				and role_id =#(param.sysRoleResourceRoleId) 
+			</if>
+        	<if test="param.sysRoleResourceResourceId != null and param.sysRoleResourceResourceId != '' ">
+				and resource_id =#(param.sysRoleResourceResourceId) 
+			</if>
+    		LIMIT #{param.pageStart},#{param.pageNum}
+    </select>
+    
+    
+    <select id="allList" parameterType="java.util.Map" resultType="java.util.Map">
+    	    	SELECT 	
+        		sysRoleResource.id AS sysRoleResourceId,
+            		
+        		sysRole.name AS sysRoleName,
+            		
+        		sysResource.${viewColumn.columnName} AS 
+    	FROM
+    		sys_role_resource sysRoleResource
+        	,sys_role	sysRole
+        	,sys_resource	sysResource
+    	WHERE 1=1
+    	
+				and sysRoleResource.role_id = sysRole.id
+				and sysRoleResource.resource_id = sysResource.id
+        	<if test="param.sysRoleResourceRoleId != null and param.sysRoleResourceRoleId != '' ">
+				and role_id =#(param.sysRoleResourceRoleId) 
+			</if>
+        	<if test="param.sysRoleResourceResourceId != null and param.sysRoleResourceResourceId != '' ">
+				and resource_id =#(param.sysRoleResourceResourceId) 
+			</if>
+    </select>
+    
+    
+</mapper>

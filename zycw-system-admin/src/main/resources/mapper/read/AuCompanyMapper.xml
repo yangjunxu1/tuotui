@@ -1,0 +1,309 @@
+<?Mapper version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zycw.tuotui.readdao.aucompany.AuCompanyMapper">
+
+
+        <!-- 通用查询映射结果 -->
+        <resultMap id="BaseResultMap" type="com.zycw.tuotui.entity.aucompany.AuCompany">
+                    <id column="id" />
+                    <result column="name" />
+                    <result column="credit_code" />
+                    <result column="business_license" />
+                    <result column="corporation" />
+                    <result column="contactor" />
+                    <result column="contacts_phone" />
+                    <result column="contacts_proxy_statement" />
+                    <result column="address" />
+                    <result column="account_price" />
+                    <result column="user_id" />
+                    <result column="verify_status" />
+                    <result column="verify_refuse" />
+                    <result column="verify_time" />
+                    <result column="review_status" />
+                    <result column="review_refuse" />
+                    <result column="review_time" />
+                    <result column="created_time" />
+                    <result column="updated_time" />
+        </resultMap>
+
+    
+    		        <!-- 通用查询结果列 -->
+        <sql id="Base_Column_List">
+        </sql>
+
+
+    
+    <delete id="deleteById">
+        DELETE FROM au_company WHERE 
+        id=#{auCompanyId}
+    </delete>
+    
+    
+    <update id="deleteByIdLogic">
+        UPDATE au_company SET delFlag = 1' 
+        WHERE 
+        id=#{auCompanyId}
+    </update>
+    
+ 
+ 
+ 	<update id="updateObjById"  parameterType="com.zycw.tuotui.entity.aucompany.AuCompany">
+        UPDATE au_company SET 
+		            name=auCompanyName,
+		            credit_code=auCompanyCreditCode,
+		            business_license=auCompanyBusinessLicense,
+		            corporation=auCompanyCorporation,
+		            contactor=auCompanyContactor,
+		            contacts_phone=auCompanyContactsPhone,
+		            contacts_proxy_statement=auCompanyContactsProxyStatement,
+		            address=auCompanyAddress,
+		            account_price=auCompanyAccountPrice,
+		            user_id=auCompanyUserId,
+		            verify_status=auCompanyVerifyStatus,
+		            verify_refuse=auCompanyVerifyRefuse,
+		            verify_time=auCompanyVerifyTime,
+		            review_status=auCompanyReviewStatus,
+		            review_refuse=auCompanyReviewRefuse,
+		            review_time=auCompanyReviewTime,
+		            created_time=auCompanyCreatedTime,
+		            updated_time=#{auCompanyUpdatedTime}
+        WHERE 
+        id=#{auCompanyId}
+    </update>
+ 
+    
+    <insert id='insertObj' parameterType="com.zycw.tuotui.entity.aucompany.AuCompany">
+    	INSERT INTO au_company(
+    			name,
+    			credit_code,
+    			business_license,
+    			corporation,
+    			contactor,
+    			contacts_phone,
+    			contacts_proxy_statement,
+    			address,
+    			account_price,
+    			user_id,
+    			verify_status,
+    			verify_refuse,
+    			verify_time,
+    			review_status,
+    			review_refuse,
+    			review_time,
+    			created_time,
+    			updated_time
+    	)
+        VALUES(
+		           #{auCompanyName},
+		           #{auCompanyCreditCode},
+		           #{auCompanyBusinessLicense},
+		           #{auCompanyCorporation},
+		           #{auCompanyContactor},
+		           #{auCompanyContactsPhone},
+		           #{auCompanyContactsProxyStatement},
+		           #{auCompanyAddress},
+		           #{auCompanyAccountPrice},
+		           #{auCompanyUserId},
+		           #{auCompanyVerifyStatus},
+		           #{auCompanyVerifyRefuse},
+		           #{auCompanyVerifyTime},
+		           #{auCompanyReviewStatus},
+		           #{auCompanyReviewRefuse},
+		           #{auCompanyReviewTime},
+		           #{auCompanyCreatedTime},
+		           #{auCompanyUpdatedTime}
+        )
+    </insert>
+    <insert id='batchInsertObj' parameterType="java.util.List">
+    	INSERT INTO au_company(
+    			name,
+    			credit_code,
+    			business_license,
+    			corporation,
+    			contactor,
+    			contacts_phone,
+    			contacts_proxy_statement,
+    			address,
+    			account_price,
+    			user_id,
+    			verify_status,
+    			verify_refuse,
+    			verify_time,
+    			review_status,
+    			review_refuse,
+    			review_time,
+    			created_time,
+    			updated_time
+    	)
+        VALUES(
+        <foreach collection="list" item="item"  separator=",">
+		           #{item.auCompanyName},
+		           #{item.auCompanyCreditCode},
+		           #{item.auCompanyBusinessLicense},
+		           #{item.auCompanyCorporation},
+		           #{item.auCompanyContactor},
+		           #{item.auCompanyContactsPhone},
+		           #{item.auCompanyContactsProxyStatement},
+		           #{item.auCompanyAddress},
+		           #{item.auCompanyAccountPrice},
+		           #{item.auCompanyUserId},
+		           #{item.auCompanyVerifyStatus},
+		           #{item.auCompanyVerifyRefuse},
+		           #{item.auCompanyVerifyTime},
+		           #{item.auCompanyReviewStatus},
+		           #{item.auCompanyReviewRefuse},
+		           #{item.auCompanyReviewTime},
+		           #{item.auCompanyCreatedTime},
+		           #{item.auCompanyUpdatedTime}
+        </foreach>
+        )
+    </insert>
+    
+    
+    <select id="selectObjById" parameterType="java.util.Map" resultType="java.util.HashMap">
+    	SELECT  
+        		auCompany.id AS auCompanyId,
+            		
+        		auCompany.name AS auCompanyName,
+            		
+        		auCompany.credit_code AS auCompanyCreditCode,
+            		
+        		auCompany.business_license AS auCompanyBusinessLicense,
+            		
+        		auCompany.corporation AS auCompanyCorporation,
+            		
+        		auCompany.contactor AS auCompanyContactor,
+            		
+        		auCompany.contacts_phone AS auCompanyContactsPhone,
+            		
+        		auCompany.contacts_proxy_statement AS auCompanyContactsProxyStatement,
+            		
+        		auCompany.address AS auCompanyAddress,
+            		
+        		auCompany.account_price AS auCompanyAccountPrice,
+            		
+        		auCompany.user_id AS auCompanyUserId,
+            		
+        		auCompany.verify_status AS auCompanyVerifyStatus,
+            		
+        		auCompany.verify_refuse AS auCompanyVerifyRefuse,
+            		
+        		auCompany.verify_time AS auCompanyVerifyTime,
+            		
+        		auCompany.review_status AS auCompanyReviewStatus,
+            		
+        		auCompany.review_refuse AS auCompanyReviewRefuse,
+            		
+        		auCompany.review_time AS auCompanyReviewTime,
+            		
+        		auCompany.created_time AS auCompanyCreatedTime,
+            		
+        		auCompany.updated_time AS auCompanyUpdatedTime
+		 FROM 
+		 	au_company auCompany
+    	WHERE 1=1
+		  id=#{auCompanyId}
+    </select>
+    
+    <select id="countNum" parameterType="java.util.Map" resultType="Integer">
+    	SELECT 	
+    		COUNT(1)
+    	FROM
+    		au_company auCompany
+    	WHERE 1=1
+    	
+    </select>
+    <select id="pageList" parameterType="java.util.Map" resultType="java.util.Map">
+    	SELECT 	
+        		auCompany.id AS auCompanyId,
+            		
+        		auCompany.name AS auCompanyName,
+            		
+        		auCompany.credit_code AS auCompanyCreditCode,
+            		
+        		auCompany.business_license AS auCompanyBusinessLicense,
+            		
+        		auCompany.corporation AS auCompanyCorporation,
+            		
+        		auCompany.contactor AS auCompanyContactor,
+            		
+        		auCompany.contacts_phone AS auCompanyContactsPhone,
+            		
+        		auCompany.contacts_proxy_statement AS auCompanyContactsProxyStatement,
+            		
+        		auCompany.address AS auCompanyAddress,
+            		
+        		auCompany.account_price AS auCompanyAccountPrice,
+            		
+        		auCompany.user_id AS auCompanyUserId,
+            		
+        		auCompany.verify_status AS auCompanyVerifyStatus,
+            		
+        		auCompany.verify_refuse AS auCompanyVerifyRefuse,
+            		
+        		auCompany.verify_time AS auCompanyVerifyTime,
+            		
+        		auCompany.review_status AS auCompanyReviewStatus,
+            		
+        		auCompany.review_refuse AS auCompanyReviewRefuse,
+            		
+        		auCompany.review_time AS auCompanyReviewTime,
+            		
+        		auCompany.created_time AS auCompanyCreatedTime,
+            		
+        		auCompany.updated_time AS auCompanyUpdatedTime
+    	FROM
+    		au_company auCompany
+    	WHERE 1=1
+    	
+    		LIMIT #{param.pageStart},#{param.pageNum}
+    </select>
+    
+    
+    <select id="allList" parameterType="java.util.Map" resultType="java.util.Map">
+    	    	SELECT 	
+        		auCompany.id AS auCompanyId,
+            		
+        		auCompany.name AS auCompanyName,
+            		
+        		auCompany.credit_code AS auCompanyCreditCode,
+            		
+        		auCompany.business_license AS auCompanyBusinessLicense,
+            		
+        		auCompany.corporation AS auCompanyCorporation,
+            		
+        		auCompany.contactor AS auCompanyContactor,
+            		
+        		auCompany.contacts_phone AS auCompanyContactsPhone,
+            		
+        		auCompany.contacts_proxy_statement AS auCompanyContactsProxyStatement,
+            		
+        		auCompany.address AS auCompanyAddress,
+            		
+        		auCompany.account_price AS auCompanyAccountPrice,
+            		
+        		auCompany.user_id AS auCompanyUserId,
+            		
+        		auCompany.verify_status AS auCompanyVerifyStatus,
+            		
+        		auCompany.verify_refuse AS auCompanyVerifyRefuse,
+            		
+        		auCompany.verify_time AS auCompanyVerifyTime,
+            		
+        		auCompany.review_status AS auCompanyReviewStatus,
+            		
+        		auCompany.review_refuse AS auCompanyReviewRefuse,
+            		
+        		auCompany.review_time AS auCompanyReviewTime,
+            		
+        		auCompany.created_time AS auCompanyCreatedTime,
+            		
+        		auCompany.updated_time AS auCompanyUpdatedTime
+    	FROM
+    		au_company auCompany
+    	WHERE 1=1
+    	
+    </select>
+    
+    
+</mapper>

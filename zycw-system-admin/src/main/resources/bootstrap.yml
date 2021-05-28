@@ -1,0 +1,125 @@
+spring:
+  application:
+    name: zycw-admin
+  cloud:
+    bus:
+      enabled: true
+      trace:
+        enabled: true
+      refresh:
+        enabled: true
+
+  redis:
+    database: 0
+    host: 106.12.42.170
+    port: 6379
+    jedis:
+      pool:
+        max-idle: 8
+        max-wait: -1
+    password: 123qwe
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://106.12.42.170:3306/tuotui?useUnicode=true&characterEncoding=UTF8&useSSL=false&autoReconnectForPools=true
+    username: root
+    password: $RFV5tgb
+
+read:
+  jdbc:
+    url: jdbc:mysql://106.12.42.170:3306/tuotui?useUnicode=true&characterEncoding=UTF8&useSSL=false
+    username: root
+    password: $RFV5tgb
+  MaxTotal: 50
+  InitialSize: 20
+  MinIdle: 6
+  MaxWaitMillis: 60000
+  RemoveAbandonedTimeou: 1800
+  ValidationQueryTimeout: 1200
+  TimeBetweenEvictionRunsMillis: 30000
+  NumTestsPerEvictionRun: 20
+
+feign:
+  httpclient:
+    enabled: false
+  okhttp:
+    enabled: true
+
+ribbon:
+  eureka:
+    enabled: true
+  ReadTimeout: 100000
+  ConnectTimeout: 100000
+  MaxAutoRetries: 0
+  MaxAutoRetriesNextServer: 1
+  OkToRetryOnAllOperations: false
+        
+eureka:
+  instance:
+    leaseRenewalIntervalInSeconds: 10
+    status-page-url-path: /actuator/info
+    health-check-url-path: /actuator/health
+    # docker 部署开启
+    prefer-ip-address: true
+    ip-address: 127.0.0.1
+  client:
+    serviceUrl:
+      defaultZone: http://127.0.0.1:8751/eureka/
+      
+server:
+  port: 8752 #启动端口
+  
+
+#jta相关参数配置
+jta:
+  log-dir: classpath:tx-logs
+  transaction-manager-id: xatx
+  
+#banner图片上传路径
+image:
+  #path: /static/stiss
+  path: /opt/apache-tomcat-8.0.48/webapps/webconfig/static/stiss
+  readpath: /webconfig/static/stiss
+#产品图片上传路径
+#css上传路径
+css:
+  #path: /static/stiss/css
+  path: /opt/apache-tomcat-8.0.48/webapps/webconfig/static/stiss/css
+  readpath: /webconfig/static/stiss/css
+#产品图片上传路径
+prodImage:
+  #path: /upload/product
+  path: /upload/product
+#产品图片返回路径
+returnImage:
+  #path: /product
+  path: /product
+  #页面模板配置json文件路径
+template:
+  path: /opt/apache-tomcat-8.0.48/webapps/webconfig/static/stiss/pageconf 
+#页面组件配置json文件路径 
+component:
+  path: /opt/apache-tomcat-8.0.48/webapps/webconfig/static/stiss/componentconf
+#公司json文件路径 
+store:
+  path: /opt/apache-tomcat-8.0.48/webapps/webconfig/static/stiss/store
+column:
+  path: /opt/apache-tomcat-8.0.48/webapps/webconfig/static/stiss/column
+logging:
+  level:
+    com.zycw.system.admin.readdao: debug
+    tk.mybatis: DEBUG
+    com.newtouch.system.admin: DEBUG
+
+    
+info:
+  version: "@project.version@"
+  
+  
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"  
+  endpoint:
+    health:
+      show-details: ALWAYS

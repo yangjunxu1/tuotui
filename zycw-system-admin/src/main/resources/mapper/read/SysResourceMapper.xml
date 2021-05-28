@@ -1,0 +1,165 @@
+<?Mapper version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zycw.tuotui.readdao.sysresource.SysResourceMapper">
+
+
+        <!-- 通用查询映射结果 -->
+        <resultMap id="BaseResultMap" type="com.zycw.tuotui.entity.sysresource.SysResource">
+                    <id column="id" />
+                    <result column="name" />
+                    <result column="router" />
+                    <result column="path" />
+                    <result column="icon" />
+                    <result column="ishidden" />
+                    <result column="roles" />
+        </resultMap>
+
+    
+    		        <!-- 通用查询结果列 -->
+        <sql id="Base_Column_List">
+        </sql>
+
+
+    
+    <delete id="deleteById">
+        DELETE FROM sys_resource WHERE 
+        id=#{sysResourceId}
+    </delete>
+    
+    
+    <update id="deleteByIdLogic">
+        UPDATE sys_resource SET delFlag = 1' 
+        WHERE 
+        id=#{sysResourceId}
+    </update>
+    
+ 
+ 
+ 	<update id="updateObjById"  parameterType="com.zycw.tuotui.entity.sysresource.SysResource">
+        UPDATE sys_resource SET 
+		            name=sysResourceName,
+		            router=sysResourceRouter,
+		            path=sysResourcePath,
+		            icon=sysResourceIcon,
+		            ishidden=sysResourceIshidden,
+		            roles=#{sysResourceRoles}
+        WHERE 
+        id=#{sysResourceId}
+    </update>
+ 
+    
+    <insert id='insertObj' parameterType="com.zycw.tuotui.entity.sysresource.SysResource">
+    	INSERT INTO sys_resource(
+    			name,
+    			router,
+    			path,
+    			icon,
+    			ishidden,
+    			roles
+    	)
+        VALUES(
+		           #{sysResourceName},
+		           #{sysResourceRouter},
+		           #{sysResourcePath},
+		           #{sysResourceIcon},
+		           #{sysResourceIshidden},
+		           #{sysResourceRoles}
+        )
+    </insert>
+    <insert id='batchInsertObj' parameterType="java.util.List">
+    	INSERT INTO sys_resource(
+    			name,
+    			router,
+    			path,
+    			icon,
+    			ishidden,
+    			roles
+    	)
+        VALUES(
+        <foreach collection="list" item="item"  separator=",">
+		           #{item.sysResourceName},
+		           #{item.sysResourceRouter},
+		           #{item.sysResourcePath},
+		           #{item.sysResourceIcon},
+		           #{item.sysResourceIshidden},
+		           #{item.sysResourceRoles}
+        </foreach>
+        )
+    </insert>
+    
+    
+    <select id="selectObjById" parameterType="java.util.Map" resultType="java.util.HashMap">
+    	SELECT  
+        		sysResource.id AS sysResourceId,
+            		
+        		sysResource.name AS sysResourceName,
+            		
+        		sysResource.router AS sysResourceRouter,
+            		
+        		sysResource.path AS sysResourcePath,
+            		
+        		sysResource.icon AS sysResourceIcon,
+            		
+        		sysResource.ishidden AS sysResourceIshidden,
+            		
+        		sysResource.roles AS sysResourceRoles
+		 FROM 
+		 	sys_resource sysResource
+    	WHERE 1=1
+		  id=#{sysResourceId}
+    </select>
+    
+    <select id="countNum" parameterType="java.util.Map" resultType="Integer">
+    	SELECT 	
+    		COUNT(1)
+    	FROM
+    		sys_resource sysResource
+    	WHERE 1=1
+    	
+    </select>
+    <select id="pageList" parameterType="java.util.Map" resultType="java.util.Map">
+    	SELECT 	
+        		sysResource.id AS sysResourceId,
+            		
+        		sysResource.name AS sysResourceName,
+            		
+        		sysResource.router AS sysResourceRouter,
+            		
+        		sysResource.path AS sysResourcePath,
+            		
+        		sysResource.icon AS sysResourceIcon,
+            		
+        		sysResource.ishidden AS sysResourceIshidden,
+            		
+        		sysResource.roles AS sysResourceRoles
+    	FROM
+    		sys_resource sysResource
+    	WHERE 1=1
+    	
+    		LIMIT #{param.pageStart},#{param.pageNum}
+    </select>
+    
+    
+    <select id="allList" parameterType="java.util.Map" resultType="java.util.Map">
+    	    	SELECT 	
+        		sysResource.id AS sysResourceId,
+            		
+        		sysResource.name AS sysResourceName,
+            		
+        		sysResource.router AS sysResourceRouter,
+            		
+        		sysResource.path AS sysResourcePath,
+            		
+        		sysResource.icon AS sysResourceIcon,
+            		
+        		sysResource.ishidden AS sysResourceIshidden,
+            		
+        		sysResource.roles AS sysResourceRoles
+    	FROM
+    		sys_resource sysResource
+    	WHERE 1=1
+    	
+    </select>
+    
+    
+</mapper>

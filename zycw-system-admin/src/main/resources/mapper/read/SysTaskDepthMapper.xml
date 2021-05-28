@@ -1,0 +1,129 @@
+<?Mapper version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zycw.tuotui.readdao.systaskdepth.SysTaskDepthMapper">
+
+
+        <!-- 通用查询映射结果 -->
+        <resultMap id="BaseResultMap" type="com.zycw.tuotui.entity.systaskdepth.SysTaskDepth">
+                    <id column="id" />
+                    <result column="depth_title" />
+                    <result column="depth_price" />
+                    <result column="depth_content" />
+        </resultMap>
+
+    
+    		        <!-- 通用查询结果列 -->
+        <sql id="Base_Column_List">
+        </sql>
+
+
+    
+    <delete id="deleteById">
+        DELETE FROM sys_task_depth WHERE 
+        id=#{sysTaskDepthId}
+    </delete>
+    
+    
+    <update id="deleteByIdLogic">
+        UPDATE sys_task_depth SET delFlag = 1' 
+        WHERE 
+        id=#{sysTaskDepthId}
+    </update>
+    
+ 
+ 
+ 	<update id="updateObjById"  parameterType="com.zycw.tuotui.entity.systaskdepth.SysTaskDepth">
+        UPDATE sys_task_depth SET 
+		            depth_title=sysTaskDepthDepthTitle,
+		            depth_price=sysTaskDepthDepthPrice,
+		            depth_content=#{sysTaskDepthDepthContent}
+        WHERE 
+        id=#{sysTaskDepthId}
+    </update>
+ 
+    
+    <insert id='insertObj' parameterType="com.zycw.tuotui.entity.systaskdepth.SysTaskDepth">
+    	INSERT INTO sys_task_depth(
+    			depth_title,
+    			depth_price,
+    			depth_content
+    	)
+        VALUES(
+		           #{sysTaskDepthDepthTitle},
+		           #{sysTaskDepthDepthPrice},
+		           #{sysTaskDepthDepthContent}
+        )
+    </insert>
+    <insert id='batchInsertObj' parameterType="java.util.List">
+    	INSERT INTO sys_task_depth(
+    			depth_title,
+    			depth_price,
+    			depth_content
+    	)
+        VALUES(
+        <foreach collection="list" item="item"  separator=",">
+		           #{item.sysTaskDepthDepthTitle},
+		           #{item.sysTaskDepthDepthPrice},
+		           #{item.sysTaskDepthDepthContent}
+        </foreach>
+        )
+    </insert>
+    
+    
+    <select id="selectObjById" parameterType="java.util.Map" resultType="java.util.HashMap">
+    	SELECT  
+        		sysTaskDepth.id AS sysTaskDepthId,
+            		
+        		sysTaskDepth.depth_title AS sysTaskDepthDepthTitle,
+            		
+        		sysTaskDepth.depth_price AS sysTaskDepthDepthPrice,
+            		
+        		sysTaskDepth.depth_content AS sysTaskDepthDepthContent
+		 FROM 
+		 	sys_task_depth sysTaskDepth
+    	WHERE 1=1
+		  id=#{sysTaskDepthId}
+    </select>
+    
+    <select id="countNum" parameterType="java.util.Map" resultType="Integer">
+    	SELECT 	
+    		COUNT(1)
+    	FROM
+    		sys_task_depth sysTaskDepth
+    	WHERE 1=1
+    	
+    </select>
+    <select id="pageList" parameterType="java.util.Map" resultType="java.util.Map">
+    	SELECT 	
+        		sysTaskDepth.id AS sysTaskDepthId,
+            		
+        		sysTaskDepth.depth_title AS sysTaskDepthDepthTitle,
+            		
+        		sysTaskDepth.depth_price AS sysTaskDepthDepthPrice,
+            		
+        		sysTaskDepth.depth_content AS sysTaskDepthDepthContent
+    	FROM
+    		sys_task_depth sysTaskDepth
+    	WHERE 1=1
+    	
+    		LIMIT #{param.pageStart},#{param.pageNum}
+    </select>
+    
+    
+    <select id="allList" parameterType="java.util.Map" resultType="java.util.Map">
+    	    	SELECT 	
+        		sysTaskDepth.id AS sysTaskDepthId,
+            		
+        		sysTaskDepth.depth_title AS sysTaskDepthDepthTitle,
+            		
+        		sysTaskDepth.depth_price AS sysTaskDepthDepthPrice,
+            		
+        		sysTaskDepth.depth_content AS sysTaskDepthDepthContent
+    	FROM
+    		sys_task_depth sysTaskDepth
+    	WHERE 1=1
+    	
+    </select>
+    
+    
+</mapper>

@@ -1,0 +1,135 @@
+<?Mapper version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zycw.tuotui.readdao.syscity.SysCityMapper">
+
+
+        <!-- 通用查询映射结果 -->
+        <resultMap id="BaseResultMap" type="com.zycw.tuotui.entity.syscity.SysCity">
+                    <id column="id" />
+                    <result column="name" />
+                    <result column="province_id" />
+        </resultMap>
+
+    
+    		        <!-- 通用查询结果列 -->
+        <sql id="Base_Column_List">
+        </sql>
+
+
+    
+    <delete id="deleteById">
+        DELETE FROM sys_city WHERE 
+        id=#{sysCityId}
+    </delete>
+    
+    
+    <update id="deleteByIdLogic">
+        UPDATE sys_city SET delFlag = 1' 
+        WHERE 
+        id=#{sysCityId}
+    </update>
+    
+ 
+ 
+ 	<update id="updateObjById"  parameterType="com.zycw.tuotui.entity.syscity.SysCity">
+        UPDATE sys_city SET 
+		            name=sysCityName,
+		            province_id=#{sysCityProvinceId}
+        WHERE 
+        id=#{sysCityId}
+    </update>
+ 
+    
+    <insert id='insertObj' parameterType="com.zycw.tuotui.entity.syscity.SysCity">
+    	INSERT INTO sys_city(
+    			name,
+    			province_id
+    	)
+        VALUES(
+		           #{sysCityName},
+		           #{sysCityProvinceId}
+        )
+    </insert>
+    <insert id='batchInsertObj' parameterType="java.util.List">
+    	INSERT INTO sys_city(
+    			name,
+    			province_id
+    	)
+        VALUES(
+        <foreach collection="list" item="item"  separator=",">
+		           #{item.sysCityName},
+		           #{item.sysCityProvinceId}
+        </foreach>
+        )
+    </insert>
+    
+    
+    <select id="selectObjById" parameterType="java.util.Map" resultType="java.util.HashMap">
+    	SELECT  
+        		sysCity.id AS sysCityId,
+            		
+        		sysCity.name AS sysCityName,
+            		
+        		sysCity.province_id AS sysCityProvinceId
+        		sysProvince.name AS sysProvinceName
+		 FROM 
+		 	sys_city sysCity
+        	,sys_province	sysProvince
+    	WHERE 1=1
+				and sysCity.province_id = sysProvince.id
+		  id=#{sysCityId}
+    </select>
+    
+    <select id="countNum" parameterType="java.util.Map" resultType="Integer">
+    	SELECT 	
+    		COUNT(1)
+    	FROM
+    		sys_city sysCity
+        	,sys_province	sysProvince
+    	WHERE 1=1
+    	
+				and sysCity.province_id = sysProvince.id
+        	<if test="param.sysCityProvinceId != null and param.sysCityProvinceId != '' ">
+				and province_id =#(param.sysCityProvinceId) 
+			</if>
+    </select>
+    <select id="pageList" parameterType="java.util.Map" resultType="java.util.Map">
+    	SELECT 	
+        		sysCity.id AS sysCityId,
+            		
+        		sysCity.name AS sysCityName,
+            		
+        		sysProvince.name AS sysProvinceName
+    	FROM
+    		sys_city sysCity
+        	,sys_province	sysProvince
+    	WHERE 1=1
+    	
+				and sysCity.province_id = sysProvince.id
+        	<if test="param.sysCityProvinceId != null and param.sysCityProvinceId != '' ">
+				and province_id =#(param.sysCityProvinceId) 
+			</if>
+    		LIMIT #{param.pageStart},#{param.pageNum}
+    </select>
+    
+    
+    <select id="allList" parameterType="java.util.Map" resultType="java.util.Map">
+    	    	SELECT 	
+        		sysCity.id AS sysCityId,
+            		
+        		sysCity.name AS sysCityName,
+            		
+        		sysProvince.name AS sysProvinceName
+    	FROM
+    		sys_city sysCity
+        	,sys_province	sysProvince
+    	WHERE 1=1
+    	
+				and sysCity.province_id = sysProvince.id
+        	<if test="param.sysCityProvinceId != null and param.sysCityProvinceId != '' ">
+				and province_id =#(param.sysCityProvinceId) 
+			</if>
+    </select>
+    
+    
+</mapper>

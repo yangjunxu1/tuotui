@@ -1,0 +1,219 @@
+<?Mapper version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zycw.tuotui.readdao.sysadvert.SysAdvertMapper">
+
+
+        <!-- 通用查询映射结果 -->
+        <resultMap id="BaseResultMap" type="com.zycw.tuotui.entity.sysadvert.SysAdvert">
+                    <id column="id" />
+                    <result column="title" />
+                    <result column="postition_id" />
+                    <result column="pic_addr" />
+                    <result column="url" />
+                    <result column="router" />
+                    <result column="type" />
+                    <result column="content" />
+                    <result column="created_time" />
+                    <result column="updated_time" />
+        </resultMap>
+
+    
+    		        <!-- 通用查询结果列 -->
+        <sql id="Base_Column_List">
+        </sql>
+
+
+    
+    <delete id="deleteById">
+        DELETE FROM sys_advert WHERE 
+        id=#{sysAdvertId}
+    </delete>
+    
+    
+    <update id="deleteByIdLogic">
+        UPDATE sys_advert SET delFlag = 1' 
+        WHERE 
+        id=#{sysAdvertId}
+    </update>
+    
+ 
+ 
+ 	<update id="updateObjById"  parameterType="com.zycw.tuotui.entity.sysadvert.SysAdvert">
+        UPDATE sys_advert SET 
+		            title=sysAdvertTitle,
+		            postition_id=sysAdvertPostitionId,
+		            pic_addr=sysAdvertPicAddr,
+		            url=sysAdvertUrl,
+		            router=sysAdvertRouter,
+		            type=sysAdvertType,
+		            content=sysAdvertContent,
+		            created_time=sysAdvertCreatedTime,
+		            updated_time=#{sysAdvertUpdatedTime}
+        WHERE 
+        id=#{sysAdvertId}
+    </update>
+ 
+    
+    <insert id='insertObj' parameterType="com.zycw.tuotui.entity.sysadvert.SysAdvert">
+    	INSERT INTO sys_advert(
+    			title,
+    			postition_id,
+    			pic_addr,
+    			url,
+    			router,
+    			type,
+    			content,
+    			created_time,
+    			updated_time
+    	)
+        VALUES(
+		           #{sysAdvertTitle},
+		           #{sysAdvertPostitionId},
+		           #{sysAdvertPicAddr},
+		           #{sysAdvertUrl},
+		           #{sysAdvertRouter},
+		           #{sysAdvertType},
+		           #{sysAdvertContent},
+		           #{sysAdvertCreatedTime},
+		           #{sysAdvertUpdatedTime}
+        )
+    </insert>
+    <insert id='batchInsertObj' parameterType="java.util.List">
+    	INSERT INTO sys_advert(
+    			title,
+    			postition_id,
+    			pic_addr,
+    			url,
+    			router,
+    			type,
+    			content,
+    			created_time,
+    			updated_time
+    	)
+        VALUES(
+        <foreach collection="list" item="item"  separator=",">
+		           #{item.sysAdvertTitle},
+		           #{item.sysAdvertPostitionId},
+		           #{item.sysAdvertPicAddr},
+		           #{item.sysAdvertUrl},
+		           #{item.sysAdvertRouter},
+		           #{item.sysAdvertType},
+		           #{item.sysAdvertContent},
+		           #{item.sysAdvertCreatedTime},
+		           #{item.sysAdvertUpdatedTime}
+        </foreach>
+        )
+    </insert>
+    
+    
+    <select id="selectObjById" parameterType="java.util.Map" resultType="java.util.HashMap">
+    	SELECT  
+        		sysAdvert.id AS sysAdvertId,
+            		
+        		sysAdvert.title AS sysAdvertTitle,
+            		
+        		sysAdvert.postition_id AS sysAdvertPostitionId,
+        		sysAdvertPostition.name AS sysAdvertPostitionName,
+            		
+        		sysAdvert.pic_addr AS sysAdvertPicAddr,
+            		
+        		sysAdvert.url AS sysAdvertUrl,
+            		
+        		sysAdvert.router AS sysAdvertRouter,
+            		
+        		sysAdvert.type AS sysAdvertType,
+            		
+        		sysAdvert.content AS sysAdvertContent,
+            		
+        		sysAdvert.created_time AS sysAdvertCreatedTime,
+            		
+        		sysAdvert.updated_time AS sysAdvertUpdatedTime
+		 FROM 
+		 	sys_advert sysAdvert
+        	,sys_advert_postition	sysAdvertPostition
+    	WHERE 1=1
+				and sysAdvert.postition_id = sysAdvertPostition.id
+		  id=#{sysAdvertId}
+    </select>
+    
+    <select id="countNum" parameterType="java.util.Map" resultType="Integer">
+    	SELECT 	
+    		COUNT(1)
+    	FROM
+    		sys_advert sysAdvert
+        	,sys_advert_postition	sysAdvertPostition
+    	WHERE 1=1
+    	
+				and sysAdvert.postition_id = sysAdvertPostition.id
+        	<if test="param.sysAdvertPostitionId != null and param.sysAdvertPostitionId != '' ">
+				and postition_id =#(param.sysAdvertPostitionId) 
+			</if>
+    </select>
+    <select id="pageList" parameterType="java.util.Map" resultType="java.util.Map">
+    	SELECT 	
+        		sysAdvert.id AS sysAdvertId,
+            		
+        		sysAdvert.title AS sysAdvertTitle,
+            		
+        		sysAdvertPostition.name AS sysAdvertPostitionName,
+            		
+        		sysAdvert.pic_addr AS sysAdvertPicAddr,
+            		
+        		sysAdvert.url AS sysAdvertUrl,
+            		
+        		sysAdvert.router AS sysAdvertRouter,
+            		
+        		sysAdvert.type AS sysAdvertType,
+            		
+        		sysAdvert.content AS sysAdvertContent,
+            		
+        		sysAdvert.created_time AS sysAdvertCreatedTime,
+            		
+        		sysAdvert.updated_time AS sysAdvertUpdatedTime
+    	FROM
+    		sys_advert sysAdvert
+        	,sys_advert_postition	sysAdvertPostition
+    	WHERE 1=1
+    	
+				and sysAdvert.postition_id = sysAdvertPostition.id
+        	<if test="param.sysAdvertPostitionId != null and param.sysAdvertPostitionId != '' ">
+				and postition_id =#(param.sysAdvertPostitionId) 
+			</if>
+    		LIMIT #{param.pageStart},#{param.pageNum}
+    </select>
+    
+    
+    <select id="allList" parameterType="java.util.Map" resultType="java.util.Map">
+    	    	SELECT 	
+        		sysAdvert.id AS sysAdvertId,
+            		
+        		sysAdvert.title AS sysAdvertTitle,
+            		
+        		sysAdvertPostition.name AS sysAdvertPostitionName,
+            		
+        		sysAdvert.pic_addr AS sysAdvertPicAddr,
+            		
+        		sysAdvert.url AS sysAdvertUrl,
+            		
+        		sysAdvert.router AS sysAdvertRouter,
+            		
+        		sysAdvert.type AS sysAdvertType,
+            		
+        		sysAdvert.content AS sysAdvertContent,
+            		
+        		sysAdvert.created_time AS sysAdvertCreatedTime,
+            		
+        		sysAdvert.updated_time AS sysAdvertUpdatedTime
+    	FROM
+    		sys_advert sysAdvert
+        	,sys_advert_postition	sysAdvertPostition
+    	WHERE 1=1
+    	
+				and sysAdvert.postition_id = sysAdvertPostition.id
+        	<if test="param.sysAdvertPostitionId != null and param.sysAdvertPostitionId != '' ">
+				and postition_id =#(param.sysAdvertPostitionId) 
+			</if>
+    </select>
+    
+    
+</mapper>

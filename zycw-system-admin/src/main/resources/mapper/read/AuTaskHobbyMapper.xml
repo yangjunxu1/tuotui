@@ -1,0 +1,153 @@
+<?Mapper version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zycw.tuotui.readdao.autaskhobby.AuTaskHobbyMapper">
+
+
+        <!-- 通用查询映射结果 -->
+        <resultMap id="BaseResultMap" type="com.zycw.tuotui.entity.autaskhobby.AuTaskHobby">
+                    <id column="id" />
+                    <result column="task_id" />
+                    <result column="hobby_id" />
+        </resultMap>
+
+    
+    		        <!-- 通用查询结果列 -->
+        <sql id="Base_Column_List">
+        </sql>
+
+
+    
+    <delete id="deleteById">
+        DELETE FROM au_task_hobby WHERE 
+        id=#{auTaskHobbyId}
+    </delete>
+    
+    
+    <update id="deleteByIdLogic">
+        UPDATE au_task_hobby SET delFlag = 1' 
+        WHERE 
+        id=#{auTaskHobbyId}
+    </update>
+    
+ 
+ 
+ 	<update id="updateObjById"  parameterType="com.zycw.tuotui.entity.autaskhobby.AuTaskHobby">
+        UPDATE au_task_hobby SET 
+		            task_id=auTaskHobbyTaskId,
+		            hobby_id=#{auTaskHobbyHobbyId}
+        WHERE 
+        id=#{auTaskHobbyId}
+    </update>
+ 
+    
+    <insert id='insertObj' parameterType="com.zycw.tuotui.entity.autaskhobby.AuTaskHobby">
+    	INSERT INTO au_task_hobby(
+    			task_id,
+    			hobby_id
+    	)
+        VALUES(
+		           #{auTaskHobbyTaskId},
+		           #{auTaskHobbyHobbyId}
+        )
+    </insert>
+    <insert id='batchInsertObj' parameterType="java.util.List">
+    	INSERT INTO au_task_hobby(
+    			task_id,
+    			hobby_id
+    	)
+        VALUES(
+        <foreach collection="list" item="item"  separator=",">
+		           #{item.auTaskHobbyTaskId},
+		           #{item.auTaskHobbyHobbyId}
+        </foreach>
+        )
+    </insert>
+    
+    
+    <select id="selectObjById" parameterType="java.util.Map" resultType="java.util.HashMap">
+    	SELECT  
+        		auTaskHobby.id AS auTaskHobbyId,
+            		
+        		auTaskHobby.task_id AS auTaskHobbyTaskId,
+        		auCustomTask.task_title AS auCustomTaskTaskTitle,
+            		
+        		auTaskHobby.hobby_id AS auTaskHobbyHobbyId
+        		sysHobby.hobby_title AS sysHobbyHobbyTitle
+		 FROM 
+		 	au_task_hobby auTaskHobby
+        	,au_custom_task	auCustomTask
+        	,sys_hobby	sysHobby
+    	WHERE 1=1
+				and auTaskHobby.task_id = auCustomTask.id
+				and auTaskHobby.hobby_id = sysHobby.id
+		  id=#{auTaskHobbyId}
+    </select>
+    
+    <select id="countNum" parameterType="java.util.Map" resultType="Integer">
+    	SELECT 	
+    		COUNT(1)
+    	FROM
+    		au_task_hobby auTaskHobby
+        	,au_custom_task	auCustomTask
+        	,sys_hobby	sysHobby
+    	WHERE 1=1
+    	
+				and auTaskHobby.task_id = auCustomTask.id
+				and auTaskHobby.hobby_id = sysHobby.id
+        	<if test="param.auTaskHobbyTaskId != null and param.auTaskHobbyTaskId != '' ">
+				and task_id =#(param.auTaskHobbyTaskId) 
+			</if>
+        	<if test="param.auTaskHobbyHobbyId != null and param.auTaskHobbyHobbyId != '' ">
+				and hobby_id =#(param.auTaskHobbyHobbyId) 
+			</if>
+    </select>
+    <select id="pageList" parameterType="java.util.Map" resultType="java.util.Map">
+    	SELECT 	
+        		auTaskHobby.id AS auTaskHobbyId,
+            		
+        		auCustomTask.task_title AS auCustomTaskTaskTitle,
+            		
+        		sysHobby.hobby_title AS sysHobbyHobbyTitle
+    	FROM
+    		au_task_hobby auTaskHobby
+        	,au_custom_task	auCustomTask
+        	,sys_hobby	sysHobby
+    	WHERE 1=1
+    	
+				and auTaskHobby.task_id = auCustomTask.id
+				and auTaskHobby.hobby_id = sysHobby.id
+        	<if test="param.auTaskHobbyTaskId != null and param.auTaskHobbyTaskId != '' ">
+				and task_id =#(param.auTaskHobbyTaskId) 
+			</if>
+        	<if test="param.auTaskHobbyHobbyId != null and param.auTaskHobbyHobbyId != '' ">
+				and hobby_id =#(param.auTaskHobbyHobbyId) 
+			</if>
+    		LIMIT #{param.pageStart},#{param.pageNum}
+    </select>
+    
+    
+    <select id="allList" parameterType="java.util.Map" resultType="java.util.Map">
+    	    	SELECT 	
+        		auTaskHobby.id AS auTaskHobbyId,
+            		
+        		auCustomTask.task_title AS auCustomTaskTaskTitle,
+            		
+        		sysHobby.hobby_title AS sysHobbyHobbyTitle
+    	FROM
+    		au_task_hobby auTaskHobby
+        	,au_custom_task	auCustomTask
+        	,sys_hobby	sysHobby
+    	WHERE 1=1
+    	
+				and auTaskHobby.task_id = auCustomTask.id
+				and auTaskHobby.hobby_id = sysHobby.id
+        	<if test="param.auTaskHobbyTaskId != null and param.auTaskHobbyTaskId != '' ">
+				and task_id =#(param.auTaskHobbyTaskId) 
+			</if>
+        	<if test="param.auTaskHobbyHobbyId != null and param.auTaskHobbyHobbyId != '' ">
+				and hobby_id =#(param.auTaskHobbyHobbyId) 
+			</if>
+    </select>
+    
+    
+</mapper>

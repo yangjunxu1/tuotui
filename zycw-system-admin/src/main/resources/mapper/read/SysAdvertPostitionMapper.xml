@@ -1,0 +1,117 @@
+<?Mapper version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zycw.tuotui.readdao.sysadvertpostition.SysAdvertPostitionMapper">
+
+
+        <!-- 通用查询映射结果 -->
+        <resultMap id="BaseResultMap" type="com.zycw.tuotui.entity.sysadvertpostition.SysAdvertPostition">
+                    <id column="id" />
+                    <result column="name" />
+                    <result column="code" />
+        </resultMap>
+
+    
+    		        <!-- 通用查询结果列 -->
+        <sql id="Base_Column_List">
+        </sql>
+
+
+    
+    <delete id="deleteById">
+        DELETE FROM sys_advert_postition WHERE 
+        id=#{sysAdvertPostitionId}
+    </delete>
+    
+    
+    <update id="deleteByIdLogic">
+        UPDATE sys_advert_postition SET delFlag = 1' 
+        WHERE 
+        id=#{sysAdvertPostitionId}
+    </update>
+    
+ 
+ 
+ 	<update id="updateObjById"  parameterType="com.zycw.tuotui.entity.sysadvertpostition.SysAdvertPostition">
+        UPDATE sys_advert_postition SET 
+		            name=sysAdvertPostitionName,
+		            code=#{sysAdvertPostitionCode}
+        WHERE 
+        id=#{sysAdvertPostitionId}
+    </update>
+ 
+    
+    <insert id='insertObj' parameterType="com.zycw.tuotui.entity.sysadvertpostition.SysAdvertPostition">
+    	INSERT INTO sys_advert_postition(
+    			name,
+    			code
+    	)
+        VALUES(
+		           #{sysAdvertPostitionName},
+		           #{sysAdvertPostitionCode}
+        )
+    </insert>
+    <insert id='batchInsertObj' parameterType="java.util.List">
+    	INSERT INTO sys_advert_postition(
+    			name,
+    			code
+    	)
+        VALUES(
+        <foreach collection="list" item="item"  separator=",">
+		           #{item.sysAdvertPostitionName},
+		           #{item.sysAdvertPostitionCode}
+        </foreach>
+        )
+    </insert>
+    
+    
+    <select id="selectObjById" parameterType="java.util.Map" resultType="java.util.HashMap">
+    	SELECT  
+        		sysAdvertPostition.id AS sysAdvertPostitionId,
+            		
+        		sysAdvertPostition.name AS sysAdvertPostitionName,
+            		
+        		sysAdvertPostition.code AS sysAdvertPostitionCode
+		 FROM 
+		 	sys_advert_postition sysAdvertPostition
+    	WHERE 1=1
+		  id=#{sysAdvertPostitionId}
+    </select>
+    
+    <select id="countNum" parameterType="java.util.Map" resultType="Integer">
+    	SELECT 	
+    		COUNT(1)
+    	FROM
+    		sys_advert_postition sysAdvertPostition
+    	WHERE 1=1
+    	
+    </select>
+    <select id="pageList" parameterType="java.util.Map" resultType="java.util.Map">
+    	SELECT 	
+        		sysAdvertPostition.id AS sysAdvertPostitionId,
+            		
+        		sysAdvertPostition.name AS sysAdvertPostitionName,
+            		
+        		sysAdvertPostition.code AS sysAdvertPostitionCode
+    	FROM
+    		sys_advert_postition sysAdvertPostition
+    	WHERE 1=1
+    	
+    		LIMIT #{param.pageStart},#{param.pageNum}
+    </select>
+    
+    
+    <select id="allList" parameterType="java.util.Map" resultType="java.util.Map">
+    	    	SELECT 	
+        		sysAdvertPostition.id AS sysAdvertPostitionId,
+            		
+        		sysAdvertPostition.name AS sysAdvertPostitionName,
+            		
+        		sysAdvertPostition.code AS sysAdvertPostitionCode
+    	FROM
+    		sys_advert_postition sysAdvertPostition
+    	WHERE 1=1
+    	
+    </select>
+    
+    
+</mapper>

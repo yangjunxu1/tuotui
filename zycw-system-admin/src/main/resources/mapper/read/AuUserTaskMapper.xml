@@ -1,0 +1,189 @@
+<?Mapper version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zycw.tuotui.readdao.auusertask.AuUserTaskMapper">
+
+
+        <!-- 通用查询映射结果 -->
+        <resultMap id="BaseResultMap" type="com.zycw.tuotui.entity.auusertask.AuUserTask">
+                    <id column="id" />
+                    <result column="user_id" />
+                    <result column="task_id" />
+                    <result column="task_status" />
+                    <result column="start_time" />
+                    <result column="end_time" />
+        </resultMap>
+
+    
+    		        <!-- 通用查询结果列 -->
+        <sql id="Base_Column_List">
+        </sql>
+
+
+    
+    <delete id="deleteById">
+        DELETE FROM au_user_task WHERE 
+        id=#{auUserTaskId}
+    </delete>
+    
+    
+    <update id="deleteByIdLogic">
+        UPDATE au_user_task SET delFlag = 1' 
+        WHERE 
+        id=#{auUserTaskId}
+    </update>
+    
+ 
+ 
+ 	<update id="updateObjById"  parameterType="com.zycw.tuotui.entity.auusertask.AuUserTask">
+        UPDATE au_user_task SET 
+		            user_id=auUserTaskUserId,
+		            task_id=auUserTaskTaskId,
+		            task_status=auUserTaskTaskStatus,
+		            start_time=auUserTaskStartTime,
+		            end_time=#{auUserTaskEndTime}
+        WHERE 
+        id=#{auUserTaskId}
+    </update>
+ 
+    
+    <insert id='insertObj' parameterType="com.zycw.tuotui.entity.auusertask.AuUserTask">
+    	INSERT INTO au_user_task(
+    			user_id,
+    			task_id,
+    			task_status,
+    			start_time,
+    			end_time
+    	)
+        VALUES(
+		           #{auUserTaskUserId},
+		           #{auUserTaskTaskId},
+		           #{auUserTaskTaskStatus},
+		           #{auUserTaskStartTime},
+		           #{auUserTaskEndTime}
+        )
+    </insert>
+    <insert id='batchInsertObj' parameterType="java.util.List">
+    	INSERT INTO au_user_task(
+    			user_id,
+    			task_id,
+    			task_status,
+    			start_time,
+    			end_time
+    	)
+        VALUES(
+        <foreach collection="list" item="item"  separator=",">
+		           #{item.auUserTaskUserId},
+		           #{item.auUserTaskTaskId},
+		           #{item.auUserTaskTaskStatus},
+		           #{item.auUserTaskStartTime},
+		           #{item.auUserTaskEndTime}
+        </foreach>
+        )
+    </insert>
+    
+    
+    <select id="selectObjById" parameterType="java.util.Map" resultType="java.util.HashMap">
+    	SELECT  
+        		auUserTask.id AS auUserTaskId,
+            		
+        		auUserTask.user_id AS auUserTaskUserId,
+        		auUser.mobile AS auUserMobile,
+            		
+        		auUserTask.task_id AS auUserTaskTaskId,
+        		auCustomTask.task_title AS auCustomTaskTaskTitle,
+            		
+        		auUserTask.task_status AS auUserTaskTaskStatus,
+            		
+        		auUserTask.start_time AS auUserTaskStartTime,
+            		
+        		auUserTask.end_time AS auUserTaskEndTime
+		 FROM 
+		 	au_user_task auUserTask
+        	,au_user	auUser
+        	,au_custom_task	auCustomTask
+    	WHERE 1=1
+				and auUserTask.user_id = auUser.id
+				and auUserTask.task_id = auCustomTask.id
+		  id=#{auUserTaskId}
+    </select>
+    
+    <select id="countNum" parameterType="java.util.Map" resultType="Integer">
+    	SELECT 	
+    		COUNT(1)
+    	FROM
+    		au_user_task auUserTask
+        	,au_user	auUser
+        	,au_custom_task	auCustomTask
+    	WHERE 1=1
+    	
+				and auUserTask.user_id = auUser.id
+				and auUserTask.task_id = auCustomTask.id
+        	<if test="param.auUserTaskUserId != null and param.auUserTaskUserId != '' ">
+				and user_id =#(param.auUserTaskUserId) 
+			</if>
+        	<if test="param.auUserTaskTaskId != null and param.auUserTaskTaskId != '' ">
+				and task_id =#(param.auUserTaskTaskId) 
+			</if>
+    </select>
+    <select id="pageList" parameterType="java.util.Map" resultType="java.util.Map">
+    	SELECT 	
+        		auUserTask.id AS auUserTaskId,
+            		
+        		auUser.mobile AS auUserMobile,
+            		
+        		auCustomTask.task_title AS auCustomTaskTaskTitle,
+            		
+        		auUserTask.task_status AS auUserTaskTaskStatus,
+            		
+        		auUserTask.start_time AS auUserTaskStartTime,
+            		
+        		auUserTask.end_time AS auUserTaskEndTime
+    	FROM
+    		au_user_task auUserTask
+        	,au_user	auUser
+        	,au_custom_task	auCustomTask
+    	WHERE 1=1
+    	
+				and auUserTask.user_id = auUser.id
+				and auUserTask.task_id = auCustomTask.id
+        	<if test="param.auUserTaskUserId != null and param.auUserTaskUserId != '' ">
+				and user_id =#(param.auUserTaskUserId) 
+			</if>
+        	<if test="param.auUserTaskTaskId != null and param.auUserTaskTaskId != '' ">
+				and task_id =#(param.auUserTaskTaskId) 
+			</if>
+    		LIMIT #{param.pageStart},#{param.pageNum}
+    </select>
+    
+    
+    <select id="allList" parameterType="java.util.Map" resultType="java.util.Map">
+    	    	SELECT 	
+        		auUserTask.id AS auUserTaskId,
+            		
+        		auUser.mobile AS auUserMobile,
+            		
+        		auCustomTask.task_title AS auCustomTaskTaskTitle,
+            		
+        		auUserTask.task_status AS auUserTaskTaskStatus,
+            		
+        		auUserTask.start_time AS auUserTaskStartTime,
+            		
+        		auUserTask.end_time AS auUserTaskEndTime
+    	FROM
+    		au_user_task auUserTask
+        	,au_user	auUser
+        	,au_custom_task	auCustomTask
+    	WHERE 1=1
+    	
+				and auUserTask.user_id = auUser.id
+				and auUserTask.task_id = auCustomTask.id
+        	<if test="param.auUserTaskUserId != null and param.auUserTaskUserId != '' ">
+				and user_id =#(param.auUserTaskUserId) 
+			</if>
+        	<if test="param.auUserTaskTaskId != null and param.auUserTaskTaskId != '' ">
+				and task_id =#(param.auUserTaskTaskId) 
+			</if>
+    </select>
+    
+    
+</mapper>
