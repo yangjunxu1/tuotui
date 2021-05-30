@@ -1,0 +1,165 @@
+<?Mapper version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zycw.tuotui.readdao.auchatfriends.AuChatFriendsMapper">
+
+
+        <!-- 通用查询映射结果 -->
+        <resultMap id="BaseResultMap" type="com.zycw.tuotui.entity.auchatfriends.AuChatFriends">
+                    <id column="id" />
+                    <result column="user_id" />
+                    <result column="fuser_id" />
+                    <result column="addtime" />
+        </resultMap>
+
+    
+    		        <!-- 通用查询结果列 -->
+        <sql id="Base_Column_List">
+        </sql>
+
+
+    
+    <delete id="deleteById">
+        DELETE FROM au_chat_friends WHERE 
+        id=#{auChatFriendsId}
+    </delete>
+    
+    
+    <update id="deleteByIdLogic">
+        UPDATE au_chat_friends SET delFlag = 1' 
+        WHERE 
+        id=#{auChatFriendsId}
+    </update>
+    
+ 
+ 
+ 	<update id="updateObjById"  parameterType="com.zycw.tuotui.entity.auchatfriends.AuChatFriends">
+        UPDATE au_chat_friends SET 
+		            user_id=auChatFriendsUserId,
+		            fuser_id=auChatFriendsFuserId,
+		            addtime=#{auChatFriendsAddtime}
+        WHERE 
+        id=#{auChatFriendsId}
+    </update>
+ 
+    
+    <insert id='insertObj' parameterType="com.zycw.tuotui.entity.auchatfriends.AuChatFriends">
+    	INSERT INTO au_chat_friends(
+    			user_id,
+    			fuser_id,
+    			addtime
+    	)
+        VALUES(
+		           #{auChatFriendsUserId},
+		           #{auChatFriendsFuserId},
+		           #{auChatFriendsAddtime}
+        )
+    </insert>
+    <insert id='batchInsertObj' parameterType="java.util.List">
+    	INSERT INTO au_chat_friends(
+    			user_id,
+    			fuser_id,
+    			addtime
+    	)
+        VALUES(
+        <foreach collection="list" item="item"  separator=",">
+		           #{item.auChatFriendsUserId},
+		           #{item.auChatFriendsFuserId},
+		           #{item.auChatFriendsAddtime}
+        </foreach>
+        )
+    </insert>
+    
+    
+    <select id="selectObjById" parameterType="java.util.Map" resultType="java.util.HashMap">
+    	SELECT  
+        		auChatFriends.id AS auChatFriendsId,
+            		
+        		auChatFriends.user_id AS auChatFriendsUserId,
+        		auUser.mobile AS auUserMobile,
+            		
+        		auChatFriends.fuser_id AS auChatFriendsFuserId,
+        		sysUser.username AS sysUserUsername,
+            		
+        		auChatFriends.addtime AS auChatFriendsAddtime
+		 FROM 
+		 	au_chat_friends auChatFriends
+        	,au_user	auUser
+        	,sys_user	sysUser
+    	WHERE 1=1
+				and auChatFriends.user_id = auUser.id
+				and auChatFriends.fuser_id = sysUser.id
+		 and sysUser.id=#{auChatFriendsId}
+    </select>
+    
+    <select id="countNum" parameterType="java.util.Map" resultType="Integer">
+    	SELECT 	
+    		COUNT(1)
+    	FROM
+    		au_chat_friends auChatFriends
+        	,au_user	auUser
+        	,sys_user	sysUser
+    	WHERE 1=1
+    	
+				and auChatFriends.user_id = auUser.id
+				and auChatFriends.fuser_id = sysUser.id
+        	<if test="param.auChatFriendsUserId != null and param.auChatFriendsUserId != '' ">
+				and user_id =#(param.auChatFriendsUserId) 
+			</if>
+        	<if test="param.auChatFriendsFuserId != null and param.auChatFriendsFuserId != '' ">
+				and fuser_id =#(param.auChatFriendsFuserId) 
+			</if>
+    </select>
+    <select id="pageList" parameterType="java.util.Map" resultType="java.util.Map">
+    	SELECT 	
+        		auChatFriends.id AS auChatFriendsId,
+            		
+        		auUser.mobile AS auUserMobile,
+            		
+        		sysUser.username AS sysUserUsername,
+            		
+        		auChatFriends.addtime AS auChatFriendsAddtime
+    	FROM
+    		au_chat_friends auChatFriends
+        	,au_user	auUser
+        	,sys_user	sysUser
+    	WHERE 1=1
+    	
+				and auChatFriends.user_id = auUser.id
+				and auChatFriends.fuser_id = sysUser.id
+        	<if test="param.auChatFriendsUserId != null and param.auChatFriendsUserId != '' ">
+				and user_id =#(param.auChatFriendsUserId) 
+			</if>
+        	<if test="param.auChatFriendsFuserId != null and param.auChatFriendsFuserId != '' ">
+				and fuser_id =#(param.auChatFriendsFuserId) 
+			</if>
+    		LIMIT #{param.pageStart},#{param.pageNum}
+    </select>
+    
+    
+    <select id="allList" parameterType="java.util.Map" resultType="java.util.Map">
+    	    	SELECT 	
+        		auChatFriends.id AS auChatFriendsId,
+            		
+        		auUser.mobile AS auUserMobile,
+            		
+        		sysUser.username AS sysUserUsername,
+            		
+        		auChatFriends.addtime AS auChatFriendsAddtime
+    	FROM
+    		au_chat_friends auChatFriends
+        	,au_user	auUser
+        	,sys_user	sysUser
+    	WHERE 1=1
+    	
+				and auChatFriends.user_id = auUser.id
+				and auChatFriends.fuser_id = sysUser.id
+        	<if test="param.auChatFriendsUserId != null and param.auChatFriendsUserId != '' ">
+				and user_id =#(param.auChatFriendsUserId) 
+			</if>
+        	<if test="param.auChatFriendsFuserId != null and param.auChatFriendsFuserId != '' ">
+				and fuser_id =#(param.auChatFriendsFuserId) 
+			</if>
+    </select>
+    
+    
+</mapper>

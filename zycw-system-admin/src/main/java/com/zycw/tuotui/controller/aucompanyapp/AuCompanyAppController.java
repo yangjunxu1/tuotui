@@ -81,6 +81,9 @@ public class AuCompanyAppController extends BaseController <IAuCompanyAppService
          logger.info("auCompanyApp.updateObjById页面请求参数："+auCompanyApp);
 		try {
 			auCompanyApp.setAuCompanyAppVerifyTime(new Date());
+			auCompanyApp.setAuCompanyAppReviewTime(new Date());
+			auCompanyApp.setAuCompanyAppCreatedTime(new Date());
+			auCompanyApp.setAuCompanyAppUpdatedTime(new Date());
 			logger.info("auCompanyApp.update页面请求参数："+auCompanyApp);
 			baseService.updateObjById(auCompanyApp);
 			return resultBeanFactory.getBean("修改成功");
@@ -98,6 +101,8 @@ public class AuCompanyAppController extends BaseController <IAuCompanyAppService
      public ResultBean<String> insertObj(@RequestBody AuCompanyApp auCompanyApp) {
 		try {
 			logger.info("auCompanyApp.insertObj页面请求参数："+auCompanyApp);
+			auCompanyApp.setAuCompanyAppVerifyTime(new Date());
+			auCompanyApp.setAuCompanyAppReviewTime(new Date());
 			auCompanyApp.setAuCompanyAppCreatedTime(new Date());
 			auCompanyApp.setAuCompanyAppUpdatedTime(new Date());
 	        baseService.insert(auCompanyApp);

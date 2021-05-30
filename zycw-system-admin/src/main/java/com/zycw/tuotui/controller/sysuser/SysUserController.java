@@ -80,6 +80,8 @@ public class SysUserController extends BaseController <ISysUserService, SysUser>
      public ResultBean<String> updateObjById(@RequestBody SysUser sysUser) {
          logger.info("sysUser.updateObjById页面请求参数："+sysUser);
 		try {
+			sysUser.setSysUserCreatedTime(new Date());
+			sysUser.setSysUserUpdatedTime(new Date());
 			logger.info("sysUser.update页面请求参数："+sysUser);
 			baseService.updateObjById(sysUser);
 			return resultBeanFactory.getBean("修改成功");
@@ -97,6 +99,8 @@ public class SysUserController extends BaseController <ISysUserService, SysUser>
      public ResultBean<String> insertObj(@RequestBody SysUser sysUser) {
 		try {
 			logger.info("sysUser.insertObj页面请求参数："+sysUser);
+			sysUser.setSysUserCreatedTime(new Date());
+			sysUser.setSysUserUpdatedTime(new Date());
 	        baseService.insert(sysUser);
 	        return resultBeanFactory.getBean("插入记录成功");
         } catch (Exception e) {
@@ -110,6 +114,8 @@ public class SysUserController extends BaseController <ISysUserService, SysUser>
     	@ApiImplicitParam(name = "sysUserRoleId", value = "lv管理组", required = false, dataType = "${dataType}"),
 		@ApiImplicitParam(name = "pageSize", value = "每页条数", required = false, dataType = "int"),
 		@ApiImplicitParam(name = "pageNum", value = "当前页数", required = false, dataType = "int"),
+
+
 
 
 
@@ -140,6 +146,8 @@ public class SysUserController extends BaseController <ISysUserService, SysUser>
     	@ApiImplicitParam(name = "sysUserId", value = "return-id", required = false, dataType = "Date"),
     	@ApiImplicitParam(name = "sysUserUsername", value = "return-lvM用户名", required = false, dataType = "String"),
     	@ApiImplicitParam(name = "sysUserPassword", value = "return-密码", required = false, dataType = "String"),
+    	@ApiImplicitParam(name = "sysUserNike", value = "return-lv用户昵称", required = false, dataType = "String"),
+    	@ApiImplicitParam(name = "sysUserUimg", value = "return-lv用户头像", required = false, dataType = "String"),
     	@ApiImplicitParam(name = "sysRoleName", value = "return-lvM名称", required = false, dataType = "String"),
     	@ApiImplicitParam(name = "sysUserTrueName", value = "return-lv真实姓名", required = false, dataType = "String"),
     	@ApiImplicitParam(name = "sysUserMobile", value = "return-lv联系电话", required = false, dataType = "String"),
@@ -161,6 +169,8 @@ public class SysUserController extends BaseController <ISysUserService, SysUser>
     	@ApiImplicitParam(name = "sysUserId", value = "return-id", required = false, dataType = "Date"),
     	@ApiImplicitParam(name = "sysUserUsername", value = "return-lvM用户名", required = false, dataType = "String"),
     	@ApiImplicitParam(name = "sysUserPassword", value = "return-密码", required = false, dataType = "String"),
+    	@ApiImplicitParam(name = "sysUserNike", value = "return-lv用户昵称", required = false, dataType = "String"),
+    	@ApiImplicitParam(name = "sysUserUimg", value = "return-lv用户头像", required = false, dataType = "String"),
     	@ApiImplicitParam(name = "sysRoleName", value = "return-lvM名称", required = false, dataType = "String"),
     	@ApiImplicitParam(name = "sysUserTrueName", value = "return-lv真实姓名", required = false, dataType = "String"),
     	@ApiImplicitParam(name = "sysUserMobile", value = "return-lv联系电话", required = false, dataType = "String"),

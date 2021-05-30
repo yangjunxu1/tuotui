@@ -66,7 +66,7 @@
 		 FROM 
 		 	sys_hobby sysHobby
     	WHERE 1=1
-		  id=#{sysHobbyId}
+		 and ${tbAlias}.id=#{sysHobbyId}
     </select>
     
     <select id="countNum" parameterType="java.util.Map" resultType="Integer">

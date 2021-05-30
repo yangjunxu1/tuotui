@@ -17,7 +17,7 @@ import java.util.HashMap;
  * </p>
  *
  * @author junxu.yang
- * @since 2021-05-28
+ * @since 2021-05-30
  */
 public interface AuCompanyMapper extends Mapper<AuCompany> {
 	
@@ -25,10 +25,16 @@ public interface AuCompanyMapper extends Mapper<AuCompany> {
 	
 	public void deleteByIdLogic(@Param("auCompanyId") String auCompanyId);
 	
+	public void delByName();
+	
+	
 	
 	public void updateObjById(AuCompany auCompany);
 	
 	
+	public void testupdateUpdate();
+	
+	public void testupdateInsert();
 	
 	public void insertObj(AuCompany auCompany);
 	
@@ -44,6 +50,9 @@ public interface AuCompanyMapper extends Mapper<AuCompany> {
 	public List<AuCompany> allList(@Param("param") HashMap<String,Object> param);
 	
 	
+	
+	public Integer selectByProjectCountNum(@Param("param") HashMap<String,Object> param);
+	public List<HashMap> selectByProject(@Param("param") HashMap<String,Object> param);
 	
 	
 	

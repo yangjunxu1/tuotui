@@ -21,7 +21,7 @@ import lombok.experimental.Accessors;
  * </p>
  *
  * @author junxu.yang
- * @since 2021-05-28
+ * @since 2021-05-30
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
@@ -45,6 +45,14 @@ public class SysUser implements Serializable {
     @ApiModelProperty(name="sysUserPassword",value = "密码")
     	@Column(name = "password")
 	private String sysUserPassword;
+
+    @ApiModelProperty(name="sysUserNike",value = "lv用户昵称")
+    	@Column(name = "nike")
+	private String sysUserNike;
+
+    @ApiModelProperty(name="sysUserUimg",value = "lv用户头像")
+    	@Column(name = "uimg")
+	private String sysUserUimg;
 
     @ApiModelProperty(name="sysUserRoleId",value = "lv管理组")
     	@Column(name = "role_id")

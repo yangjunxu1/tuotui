@@ -37,7 +37,7 @@ public class ISysAdvertService extends BaseService<SysAdvertMapper,SysAdvert> {
     * @param String 主键ID
     * @return 返回结果
 	* @author junxu.yang
-	* @since 2021-05-28
+	* @since 2021-05-30
     */
 	public void deleteById(String sysAdvertId){
 		mapper.deleteById(sysAdvertId);
@@ -48,7 +48,7 @@ public class ISysAdvertService extends BaseService<SysAdvertMapper,SysAdvert> {
     * @param String 主键ID
     * @return 返回结果
 	* @author junxu.yang
-	* @since 2021-05-28
+	* @since 2021-05-30
     */
 	public void deleteByIdLogic(String sysAdvertId){
 		mapper.deleteByIdLogic(sysAdvertId);
@@ -66,7 +66,7 @@ public class ISysAdvertService extends BaseService<SysAdvertMapper,SysAdvert> {
     * @param SysAdvert 对象
     * @return 返回结果 void
 	* @author junxu.yang
-	* @since 2021-05-28
+	* @since 2021-05-30
     */
 	public void insertObj(SysAdvert sysAdvert){
 		mapper.insertObj(sysAdvert);
@@ -78,7 +78,7 @@ public class ISysAdvertService extends BaseService<SysAdvertMapper,SysAdvert> {
     * @param List<SysAdvert> 对象
     * @return 返回结果
 	* @author junxu.yang
-	* @since 2021-05-28
+	* @since 2021-05-30
     */
 	public void batchInsertObj(List<SysAdvert> list){
 		mapper.batchInsertObj(list);
@@ -89,7 +89,7 @@ public class ISysAdvertService extends BaseService<SysAdvertMapper,SysAdvert> {
     * @param String 主键ID
     * @return 返回结果
 	* @author junxu.yang
-	* @since 2021-05-28
+	* @since 2021-05-30
     */
 	public HashMap<String,Object> selectObjById(String sysAdvertId){
 		return mapper.selectObjById(sysAdvertId);
@@ -101,7 +101,7 @@ public class ISysAdvertService extends BaseService<SysAdvertMapper,SysAdvert> {
     * @param HashMap<String,Object> 对象
     * @return 返回结果
 	* @author junxu.yang
-	* @since 2021-05-28
+	* @since 2021-05-30
     */
 	public Integer countNum(HashMap<String,Object> params) {
 		return mapper.countNum(params);
@@ -113,7 +113,7 @@ public class ISysAdvertService extends BaseService<SysAdvertMapper,SysAdvert> {
 	* @param HashMap<String,Object> 对象
 	* @return 返回结果 PageInfo
 	* @author junxu.yang
-	* @since 2021-05-28
+	* @since 2021-05-30
 	 */
 	public PageInfo<SysAdvert> pageList(HashMap<String,Object> params) throws Exception {
 		Integer pageNum = (Integer)params.get("pageNum");

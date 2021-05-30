@@ -17,7 +17,7 @@ import java.util.HashMap;
  * </p>
  *
  * @author junxu.yang
- * @since 2021-05-28
+ * @since 2021-05-30
  */
 public interface SysRoleResourceMapper extends Mapper<SysRoleResource> {
 	

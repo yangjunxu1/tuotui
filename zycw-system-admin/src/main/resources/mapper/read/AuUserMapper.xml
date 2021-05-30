@@ -7,6 +7,8 @@
         <resultMap id="BaseResultMap" type="com.zycw.tuotui.entity.auuser.AuUser">
                     <id column="id" />
                     <result column="mobile" />
+                    <result column="nick" />
+                    <result column="uimg" />
                     <result column="type" />
                     <result column="password" />
                     <result column="true_name" />
@@ -47,6 +49,8 @@
  	<update id="updateObjById"  parameterType="com.zycw.tuotui.entity.auuser.AuUser">
         UPDATE au_user SET 
 		            mobile=auUserMobile,
+		            nick=auUserNick,
+		            uimg=auUserUimg,
 		            type=auUserType,
 		            password=auUserPassword,
 		            true_name=auUserTrueName,
@@ -69,6 +73,8 @@
     <insert id='insertObj' parameterType="com.zycw.tuotui.entity.auuser.AuUser">
     	INSERT INTO au_user(
     			mobile,
+    			nick,
+    			uimg,
     			type,
     			password,
     			true_name,
@@ -86,6 +92,8 @@
     	)
         VALUES(
 		           #{auUserMobile},
+		           #{auUserNick},
+		           #{auUserUimg},
 		           #{auUserType},
 		           #{auUserPassword},
 		           #{auUserTrueName},
@@ -105,6 +113,8 @@
     <insert id='batchInsertObj' parameterType="java.util.List">
     	INSERT INTO au_user(
     			mobile,
+    			nick,
+    			uimg,
     			type,
     			password,
     			true_name,
@@ -123,6 +133,8 @@
         VALUES(
         <foreach collection="list" item="item"  separator=",">
 		           #{item.auUserMobile},
+		           #{item.auUserNick},
+		           #{item.auUserUimg},
 		           #{item.auUserType},
 		           #{item.auUserPassword},
 		           #{item.auUserTrueName},
@@ -147,6 +159,10 @@
         		auUser.id AS auUserId,
             		
         		auUser.mobile AS auUserMobile,
+            		
+        		auUser.nick AS auUserNick,
+            		
+        		auUser.uimg AS auUserUimg,
             		
         		auUser.type AS auUserType,
             		
@@ -181,16 +197,16 @@
         		auUser.updated_time AS auUserUpdatedTime
 		 FROM 
 		 	au_user auUser
-        	,sys_city	sysCity
         	,sys_province	sysProvince
         	,sys_area	sysArea
+        	,sys_city	sysCity
         	,au_occupation	auOccupation
     	WHERE 1=1
-				and auUser.city_id = sysCity.id
 				and auUser.province_id = sysProvince.id
 				and auUser.area_id = sysArea.id
+				and auUser.city_id = sysCity.id
 				and auUser.occupation_id = auOccupation.id
-		  id=#{auUserId}
+		 and auOccupation.id=#{auUserId}
     </select>
     
     <select id="countNum" parameterType="java.util.Map" resultType="Integer">
@@ -198,24 +214,24 @@
     		COUNT(1)
     	FROM
     		au_user auUser
-        	,sys_city	sysCity
         	,sys_province	sysProvince
         	,sys_area	sysArea
+        	,sys_city	sysCity
         	,au_occupation	auOccupation
     	WHERE 1=1
     	
-				and auUser.city_id = sysCity.id
 				and auUser.province_id = sysProvince.id
 				and auUser.area_id = sysArea.id
+				and auUser.city_id = sysCity.id
 				and auUser.occupation_id = auOccupation.id
-        	<if test="param.auUserCityId != null and param.auUserCityId != '' ">
-				and city_id =#(param.auUserCityId) 
-			</if>
         	<if test="param.auUserProvinceId != null and param.auUserProvinceId != '' ">
 				and province_id =#(param.auUserProvinceId) 
 			</if>
         	<if test="param.auUserAreaId != null and param.auUserAreaId != '' ">
 				and area_id =#(param.auUserAreaId) 
+			</if>
+        	<if test="param.auUserCityId != null and param.auUserCityId != '' ">
+				and city_id =#(param.auUserCityId) 
 			</if>
         	<if test="param.auUserOccupationId != null and param.auUserOccupationId != '' ">
 				and occupation_id =#(param.auUserOccupationId) 
@@ -226,6 +242,10 @@
         		auUser.id AS auUserId,
             		
         		auUser.mobile AS auUserMobile,
+            		
+        		auUser.nick AS auUserNick,
+            		
+        		auUser.uimg AS auUserUimg,
             		
         		auUser.type AS auUserType,
             		
@@ -256,24 +276,24 @@
         		auUser.updated_time AS auUserUpdatedTime
     	FROM
     		au_user auUser
-        	,sys_city	sysCity
         	,sys_province	sysProvince
         	,sys_area	sysArea
+        	,sys_city	sysCity
         	,au_occupation	auOccupation
     	WHERE 1=1
     	
-				and auUser.city_id = sysCity.id
 				and auUser.province_id = sysProvince.id
 				and auUser.area_id = sysArea.id
+				and auUser.city_id = sysCity.id
 				and auUser.occupation_id = auOccupation.id
-        	<if test="param.auUserCityId != null and param.auUserCityId != '' ">
-				and city_id =#(param.auUserCityId) 
-			</if>
         	<if test="param.auUserProvinceId != null and param.auUserProvinceId != '' ">
 				and province_id =#(param.auUserProvinceId) 
 			</if>
         	<if test="param.auUserAreaId != null and param.auUserAreaId != '' ">
 				and area_id =#(param.auUserAreaId) 
+			</if>
+        	<if test="param.auUserCityId != null and param.auUserCityId != '' ">
+				and city_id =#(param.auUserCityId) 
 			</if>
         	<if test="param.auUserOccupationId != null and param.auUserOccupationId != '' ">
 				and occupation_id =#(param.auUserOccupationId) 
@@ -288,6 +308,10 @@
             		
         		auUser.mobile AS auUserMobile,
             		
+        		auUser.nick AS auUserNick,
+            		
+        		auUser.uimg AS auUserUimg,
+            		
         		auUser.type AS auUserType,
             		
         		auUser.password AS auUserPassword,
@@ -317,24 +341,24 @@
         		auUser.updated_time AS auUserUpdatedTime
     	FROM
     		au_user auUser
-        	,sys_city	sysCity
         	,sys_province	sysProvince
         	,sys_area	sysArea
+        	,sys_city	sysCity
         	,au_occupation	auOccupation
     	WHERE 1=1
     	
-				and auUser.city_id = sysCity.id
 				and auUser.province_id = sysProvince.id
 				and auUser.area_id = sysArea.id
+				and auUser.city_id = sysCity.id
 				and auUser.occupation_id = auOccupation.id
-        	<if test="param.auUserCityId != null and param.auUserCityId != '' ">
-				and city_id =#(param.auUserCityId) 
-			</if>
         	<if test="param.auUserProvinceId != null and param.auUserProvinceId != '' ">
 				and province_id =#(param.auUserProvinceId) 
 			</if>
         	<if test="param.auUserAreaId != null and param.auUserAreaId != '' ">
 				and area_id =#(param.auUserAreaId) 
+			</if>
+        	<if test="param.auUserCityId != null and param.auUserCityId != '' ">
+				and city_id =#(param.auUserCityId) 
 			</if>
         	<if test="param.auUserOccupationId != null and param.auUserOccupationId != '' ">
 				and occupation_id =#(param.auUserOccupationId) 

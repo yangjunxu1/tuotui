@@ -37,7 +37,7 @@ public class IAuUserHobbyService extends BaseService<AuUserHobbyMapper,AuUserHob
     * @param String 主键ID
     * @return 返回结果
 	* @author junxu.yang
-	* @since 2021-05-28
+	* @since 2021-05-30
     */
 	public void deleteById(String auUserHobbyId){
 		mapper.deleteById(auUserHobbyId);
@@ -48,7 +48,7 @@ public class IAuUserHobbyService extends BaseService<AuUserHobbyMapper,AuUserHob
     * @param String 主键ID
     * @return 返回结果
 	* @author junxu.yang
-	* @since 2021-05-28
+	* @since 2021-05-30
     */
 	public void deleteByIdLogic(String auUserHobbyId){
 		mapper.deleteByIdLogic(auUserHobbyId);
@@ -66,7 +66,7 @@ public class IAuUserHobbyService extends BaseService<AuUserHobbyMapper,AuUserHob
     * @param AuUserHobby 对象
     * @return 返回结果 void
 	* @author junxu.yang
-	* @since 2021-05-28
+	* @since 2021-05-30
     */
 	public void insertObj(AuUserHobby auUserHobby){
 		mapper.insertObj(auUserHobby);
@@ -78,7 +78,7 @@ public class IAuUserHobbyService extends BaseService<AuUserHobbyMapper,AuUserHob
     * @param List<AuUserHobby> 对象
     * @return 返回结果
 	* @author junxu.yang
-	* @since 2021-05-28
+	* @since 2021-05-30
     */
 	public void batchInsertObj(List<AuUserHobby> list){
 		mapper.batchInsertObj(list);
@@ -89,7 +89,7 @@ public class IAuUserHobbyService extends BaseService<AuUserHobbyMapper,AuUserHob
     * @param String 主键ID
     * @return 返回结果
 	* @author junxu.yang
-	* @since 2021-05-28
+	* @since 2021-05-30
     */
 	public HashMap<String,Object> selectObjById(String auUserHobbyId){
 		return mapper.selectObjById(auUserHobbyId);
@@ -101,7 +101,7 @@ public class IAuUserHobbyService extends BaseService<AuUserHobbyMapper,AuUserHob
     * @param HashMap<String,Object> 对象
     * @return 返回结果
 	* @author junxu.yang
-	* @since 2021-05-28
+	* @since 2021-05-30
     */
 	public Integer countNum(HashMap<String,Object> params) {
 		return mapper.countNum(params);
@@ -113,7 +113,7 @@ public class IAuUserHobbyService extends BaseService<AuUserHobbyMapper,AuUserHob
 	* @param HashMap<String,Object> 对象
 	* @return 返回结果 PageInfo
 	* @author junxu.yang
-	* @since 2021-05-28
+	* @since 2021-05-30
 	 */
 	public PageInfo<AuUserHobby> pageList(HashMap<String,Object> params) throws Exception {
 		Integer pageNum = (Integer)params.get("pageNum");

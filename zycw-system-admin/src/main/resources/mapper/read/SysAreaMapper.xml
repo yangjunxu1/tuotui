@@ -88,7 +88,7 @@
     	WHERE 1=1
 				and sysArea.city_id = sysCity.id
 				and sysArea.province_id = sysProvince.id
-		  id=#{sysAreaId}
+		 and sysProvince.id=#{sysAreaId}
     </select>
     
     <select id="countNum" parameterType="java.util.Map" resultType="Integer">

@@ -104,7 +104,7 @@
     	WHERE 1=1
 				and auUserTask.user_id = auUser.id
 				and auUserTask.task_id = auCustomTask.id
-		  id=#{auUserTaskId}
+		 and auCustomTask.id=#{auUserTaskId}
     </select>
     
     <select id="countNum" parameterType="java.util.Map" resultType="Integer">

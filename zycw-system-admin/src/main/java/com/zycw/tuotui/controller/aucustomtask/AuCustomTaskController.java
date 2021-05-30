@@ -80,7 +80,11 @@ public class AuCustomTaskController extends BaseController <IAuCustomTaskService
      public ResultBean<String> updateObjById(@RequestBody AuCustomTask auCustomTask) {
          logger.info("auCustomTask.updateObjById页面请求参数："+auCustomTask);
 		try {
+			auCustomTask.setAuCustomTaskStartTime(new Date());
+			auCustomTask.setAuCustomTaskEndTime(new Date());
 			auCustomTask.setAuCustomTaskVerifyTime(new Date());
+			auCustomTask.setAuCustomTaskReviewTime(new Date());
+			auCustomTask.setAuCustomTaskCreatedTime(new Date());
 			auCustomTask.setAuCustomTaskUpdatedTime(new Date());
 			logger.info("auCustomTask.update页面请求参数："+auCustomTask);
 			baseService.updateObjById(auCustomTask);
@@ -99,7 +103,12 @@ public class AuCustomTaskController extends BaseController <IAuCustomTaskService
      public ResultBean<String> insertObj(@RequestBody AuCustomTask auCustomTask) {
 		try {
 			logger.info("auCustomTask.insertObj页面请求参数："+auCustomTask);
+			auCustomTask.setAuCustomTaskStartTime(new Date());
+			auCustomTask.setAuCustomTaskEndTime(new Date());
+			auCustomTask.setAuCustomTaskVerifyTime(new Date());
+			auCustomTask.setAuCustomTaskReviewTime(new Date());
 			auCustomTask.setAuCustomTaskCreatedTime(new Date());
+			auCustomTask.setAuCustomTaskUpdatedTime(new Date());
 	        baseService.insert(auCustomTask);
 	        return resultBeanFactory.getBean("插入记录成功");
         } catch (Exception e) {
@@ -110,15 +119,15 @@ public class AuCustomTaskController extends BaseController <IAuCustomTaskService
      
      @ApiOperation(value = "分页查询")
      @ApiImplicitParams({
-    	@ApiImplicitParam(name = "auCustomTaskAppId", value = "lvapp", required = false, dataType = "${dataType}"),
     	@ApiImplicitParam(name = "auCustomTaskCompaynId", value = "lv公司", required = false, dataType = "${dataType}"),
+    	@ApiImplicitParam(name = "auCustomTaskAppId", value = "lvapp", required = false, dataType = "${dataType}"),
     	@ApiImplicitParam(name = "auCustomTaskUserId", value = "lv用户", required = false, dataType = "${dataType}"),
     	@ApiImplicitParam(name = "auCustomTaskTaskType", value = "lvS任务类型", required = false, dataType = "${dataType}"),
-    	@ApiImplicitParam(name = "auCustomTaskProvinceId", value = "lvS任务要求省", required = false, dataType = "${dataType}"),
     	@ApiImplicitParam(name = "auCustomTaskTaskDepth", value = "lvS任务深度", required = false, dataType = "${dataType}"),
     	@ApiImplicitParam(name = "auCustomTaskAreaId", value = "lvS任务要求区", required = false, dataType = "${dataType}"),
     	@ApiImplicitParam(name = "auCustomTaskCityId", value = "lvS任务要求市", required = false, dataType = "${dataType}"),
     	@ApiImplicitParam(name = "auCustomTaskOccupationId", value = "lvS职业", required = false, dataType = "${dataType}"),
+    	@ApiImplicitParam(name = "auCustomTaskProvinceId", value = "lvS任务要求省", required = false, dataType = "${dataType}"),
 		@ApiImplicitParam(name = "pageSize", value = "每页条数", required = false, dataType = "int"),
 		@ApiImplicitParam(name = "pageNum", value = "当前页数", required = false, dataType = "int"),
 
@@ -218,15 +227,15 @@ public class AuCustomTaskController extends BaseController <IAuCustomTaskService
 	
      @ApiOperation(value = "allList")
      @ApiImplicitParams({
-    	@ApiImplicitParam(name = "auCustomTaskAppId", value = "lvapp", required = false, dataType = "Date"),
     	@ApiImplicitParam(name = "auCustomTaskCompaynId", value = "lv公司", required = false, dataType = "Date"),
+    	@ApiImplicitParam(name = "auCustomTaskAppId", value = "lvapp", required = false, dataType = "Date"),
     	@ApiImplicitParam(name = "auCustomTaskUserId", value = "lv用户", required = false, dataType = "Date"),
     	@ApiImplicitParam(name = "auCustomTaskTaskType", value = "lvS任务类型", required = false, dataType = "Date"),
-    	@ApiImplicitParam(name = "auCustomTaskProvinceId", value = "lvS任务要求省", required = false, dataType = "Date"),
     	@ApiImplicitParam(name = "auCustomTaskTaskDepth", value = "lvS任务深度", required = false, dataType = "Date"),
     	@ApiImplicitParam(name = "auCustomTaskAreaId", value = "lvS任务要求区", required = false, dataType = "Date"),
     	@ApiImplicitParam(name = "auCustomTaskCityId", value = "lvS任务要求市", required = false, dataType = "Date"),
     	@ApiImplicitParam(name = "auCustomTaskOccupationId", value = "lvS职业", required = false, dataType = "Date"),
+    	@ApiImplicitParam(name = "auCustomTaskProvinceId", value = "lvS任务要求省", required = false, dataType = "Date"),
     	@ApiImplicitParam(name = "auCustomTaskId", value = "return-ID", required = false, dataType = "Date"),
     	@ApiImplicitParam(name = "auCompanyAppName", value = "return-lvMapp名称", required = false, dataType = "String"),
     	@ApiImplicitParam(name = "auUserMobile", value = "return-lvM手机号", required = false, dataType = "String"),

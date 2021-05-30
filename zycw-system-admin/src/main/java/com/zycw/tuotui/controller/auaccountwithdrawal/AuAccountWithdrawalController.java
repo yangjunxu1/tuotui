@@ -80,6 +80,7 @@ public class AuAccountWithdrawalController extends BaseController <IAuAccountWit
      public ResultBean<String> updateObjById(@RequestBody AuAccountWithdrawal auAccountWithdrawal) {
          logger.info("auAccountWithdrawal.updateObjById页面请求参数："+auAccountWithdrawal);
 		try {
+			auAccountWithdrawal.setAuAccountWithdrawalWithdrawalTime(new Date());
 			logger.info("auAccountWithdrawal.update页面请求参数："+auAccountWithdrawal);
 			baseService.updateObjById(auAccountWithdrawal);
 			return resultBeanFactory.getBean("修改成功");
@@ -97,6 +98,7 @@ public class AuAccountWithdrawalController extends BaseController <IAuAccountWit
      public ResultBean<String> insertObj(@RequestBody AuAccountWithdrawal auAccountWithdrawal) {
 		try {
 			logger.info("auAccountWithdrawal.insertObj页面请求参数："+auAccountWithdrawal);
+			auAccountWithdrawal.setAuAccountWithdrawalWithdrawalTime(new Date());
 	        baseService.insert(auAccountWithdrawal);
 	        return resultBeanFactory.getBean("插入记录成功");
         } catch (Exception e) {

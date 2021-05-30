@@ -37,7 +37,7 @@ public class ISysCityService extends BaseService<SysCityMapper,SysCity> {
     * @param String 主键ID
     * @return 返回结果
 	* @author junxu.yang
-	* @since 2021-05-28
+	* @since 2021-05-30
     */
 	public void deleteById(String sysCityId){
 		mapper.deleteById(sysCityId);
@@ -48,7 +48,7 @@ public class ISysCityService extends BaseService<SysCityMapper,SysCity> {
     * @param String 主键ID
     * @return 返回结果
 	* @author junxu.yang
-	* @since 2021-05-28
+	* @since 2021-05-30
     */
 	public void deleteByIdLogic(String sysCityId){
 		mapper.deleteByIdLogic(sysCityId);
@@ -66,7 +66,7 @@ public class ISysCityService extends BaseService<SysCityMapper,SysCity> {
     * @param SysCity 对象
     * @return 返回结果 void
 	* @author junxu.yang
-	* @since 2021-05-28
+	* @since 2021-05-30
     */
 	public void insertObj(SysCity sysCity){
 		mapper.insertObj(sysCity);
@@ -78,7 +78,7 @@ public class ISysCityService extends BaseService<SysCityMapper,SysCity> {
     * @param List<SysCity> 对象
     * @return 返回结果
 	* @author junxu.yang
-	* @since 2021-05-28
+	* @since 2021-05-30
     */
 	public void batchInsertObj(List<SysCity> list){
 		mapper.batchInsertObj(list);
@@ -89,7 +89,7 @@ public class ISysCityService extends BaseService<SysCityMapper,SysCity> {
     * @param String 主键ID
     * @return 返回结果
 	* @author junxu.yang
-	* @since 2021-05-28
+	* @since 2021-05-30
     */
 	public HashMap<String,Object> selectObjById(String sysCityId){
 		return mapper.selectObjById(sysCityId);
@@ -101,7 +101,7 @@ public class ISysCityService extends BaseService<SysCityMapper,SysCity> {
     * @param HashMap<String,Object> 对象
     * @return 返回结果
 	* @author junxu.yang
-	* @since 2021-05-28
+	* @since 2021-05-30
     */
 	public Integer countNum(HashMap<String,Object> params) {
 		return mapper.countNum(params);
@@ -113,7 +113,7 @@ public class ISysCityService extends BaseService<SysCityMapper,SysCity> {
 	* @param HashMap<String,Object> 对象
 	* @return 返回结果 PageInfo
 	* @author junxu.yang
-	* @since 2021-05-28
+	* @since 2021-05-30
 	 */
 	public PageInfo<SysCity> pageList(HashMap<String,Object> params) throws Exception {
 		Integer pageNum = (Integer)params.get("pageNum");

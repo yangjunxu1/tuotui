@@ -80,6 +80,7 @@ public class AuAccountConsumeController extends BaseController <IAuAccountConsum
      public ResultBean<String> updateObjById(@RequestBody AuAccountConsume auAccountConsume) {
          logger.info("auAccountConsume.updateObjById页面请求参数："+auAccountConsume);
 		try {
+			auAccountConsume.setAuAccountConsumeConsumeTime(new Date());
 			logger.info("auAccountConsume.update页面请求参数："+auAccountConsume);
 			baseService.updateObjById(auAccountConsume);
 			return resultBeanFactory.getBean("修改成功");
@@ -97,6 +98,7 @@ public class AuAccountConsumeController extends BaseController <IAuAccountConsum
      public ResultBean<String> insertObj(@RequestBody AuAccountConsume auAccountConsume) {
 		try {
 			logger.info("auAccountConsume.insertObj页面请求参数："+auAccountConsume);
+			auAccountConsume.setAuAccountConsumeConsumeTime(new Date());
 	        baseService.insert(auAccountConsume);
 	        return resultBeanFactory.getBean("插入记录成功");
         } catch (Exception e) {

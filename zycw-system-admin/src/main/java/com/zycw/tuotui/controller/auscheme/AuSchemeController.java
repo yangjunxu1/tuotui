@@ -80,6 +80,8 @@ public class AuSchemeController extends BaseController <IAuSchemeService, AuSche
      public ResultBean<String> updateObjById(@RequestBody AuScheme auScheme) {
          logger.info("auScheme.updateObjById页面请求参数："+auScheme);
 		try {
+			auScheme.setAuSchemeCreatedTime(new Date());
+			auScheme.setAuSchemeUpdatedTime(new Date());
 			logger.info("auScheme.update页面请求参数："+auScheme);
 			baseService.updateObjById(auScheme);
 			return resultBeanFactory.getBean("修改成功");
@@ -97,6 +99,7 @@ public class AuSchemeController extends BaseController <IAuSchemeService, AuSche
      public ResultBean<String> insertObj(@RequestBody AuScheme auScheme) {
 		try {
 			logger.info("auScheme.insertObj页面请求参数："+auScheme);
+			auScheme.setAuSchemeCreatedTime(new Date());
 			auScheme.setAuSchemeUpdatedTime(new Date());
 	        baseService.insert(auScheme);
 	        return resultBeanFactory.getBean("插入记录成功");

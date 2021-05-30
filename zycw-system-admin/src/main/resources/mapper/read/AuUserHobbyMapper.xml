@@ -78,9 +78,9 @@
         	,sys_hobby	sysHobby
         	,sys_hobby	sysHobby
     	WHERE 1=1
-				and auUserHobby.hobby_id = sysHobby.id
 				and auUserHobby.user_id = sysHobby.id
-		  id=#{auUserHobbyId}
+				and auUserHobby.hobby_id = sysHobby.id
+		 and sysHobby.id=#{auUserHobbyId}
     </select>
     
     <select id="countNum" parameterType="java.util.Map" resultType="Integer">
@@ -92,13 +92,13 @@
         	,sys_hobby	sysHobby
     	WHERE 1=1
     	
-				and auUserHobby.hobby_id = sysHobby.id
 				and auUserHobby.user_id = sysHobby.id
-        	<if test="param.auUserHobbyHobbyId != null and param.auUserHobbyHobbyId != '' ">
-				and hobby_id =#(param.auUserHobbyHobbyId) 
-			</if>
+				and auUserHobby.hobby_id = sysHobby.id
         	<if test="param.auUserHobbyUserId != null and param.auUserHobbyUserId != '' ">
 				and user_id =#(param.auUserHobbyUserId) 
+			</if>
+        	<if test="param.auUserHobbyHobbyId != null and param.auUserHobbyHobbyId != '' ">
+				and hobby_id =#(param.auUserHobbyHobbyId) 
 			</if>
     </select>
     <select id="pageList" parameterType="java.util.Map" resultType="java.util.Map">
@@ -114,13 +114,13 @@
         	,sys_hobby	sysHobby
     	WHERE 1=1
     	
-				and auUserHobby.hobby_id = sysHobby.id
 				and auUserHobby.user_id = sysHobby.id
-        	<if test="param.auUserHobbyHobbyId != null and param.auUserHobbyHobbyId != '' ">
-				and hobby_id =#(param.auUserHobbyHobbyId) 
-			</if>
+				and auUserHobby.hobby_id = sysHobby.id
         	<if test="param.auUserHobbyUserId != null and param.auUserHobbyUserId != '' ">
 				and user_id =#(param.auUserHobbyUserId) 
+			</if>
+        	<if test="param.auUserHobbyHobbyId != null and param.auUserHobbyHobbyId != '' ">
+				and hobby_id =#(param.auUserHobbyHobbyId) 
 			</if>
     		LIMIT #{param.pageStart},#{param.pageNum}
     </select>
@@ -139,13 +139,13 @@
         	,sys_hobby	sysHobby
     	WHERE 1=1
     	
-				and auUserHobby.hobby_id = sysHobby.id
 				and auUserHobby.user_id = sysHobby.id
-        	<if test="param.auUserHobbyHobbyId != null and param.auUserHobbyHobbyId != '' ">
-				and hobby_id =#(param.auUserHobbyHobbyId) 
-			</if>
+				and auUserHobby.hobby_id = sysHobby.id
         	<if test="param.auUserHobbyUserId != null and param.auUserHobbyUserId != '' ">
 				and user_id =#(param.auUserHobbyUserId) 
+			</if>
+        	<if test="param.auUserHobbyHobbyId != null and param.auUserHobbyHobbyId != '' ">
+				and hobby_id =#(param.auUserHobbyHobbyId) 
 			</if>
     </select>
     

@@ -80,7 +80,7 @@
     	WHERE 1=1
 				and sysRoleResource.role_id = sysRole.id
 				and sysRoleResource.resource_id = sysResource.id
-		  id=#{sysRoleResourceId}
+		 and sysResource.id=#{sysRoleResourceId}
     </select>
     
     <select id="countNum" parameterType="java.util.Map" resultType="Integer">

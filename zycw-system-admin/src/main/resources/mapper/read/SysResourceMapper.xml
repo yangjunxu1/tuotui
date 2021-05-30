@@ -106,7 +106,7 @@
 		 FROM 
 		 	sys_resource sysResource
     	WHERE 1=1
-		  id=#{sysResourceId}
+		 and ${tbAlias}.id=#{sysResourceId}
     </select>
     
     <select id="countNum" parameterType="java.util.Map" resultType="Integer">

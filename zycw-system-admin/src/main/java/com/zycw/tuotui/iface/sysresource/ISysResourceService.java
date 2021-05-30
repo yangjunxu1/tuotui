@@ -37,7 +37,7 @@ public class ISysResourceService extends BaseService<SysResourceMapper,SysResour
     * @param String 主键ID
     * @return 返回结果
 	* @author junxu.yang
-	* @since 2021-05-28
+	* @since 2021-05-30
     */
 	public void deleteById(String sysResourceId){
 		mapper.deleteById(sysResourceId);
@@ -48,7 +48,7 @@ public class ISysResourceService extends BaseService<SysResourceMapper,SysResour
     * @param String 主键ID
     * @return 返回结果
 	* @author junxu.yang
-	* @since 2021-05-28
+	* @since 2021-05-30
     */
 	public void deleteByIdLogic(String sysResourceId){
 		mapper.deleteByIdLogic(sysResourceId);
@@ -66,7 +66,7 @@ public class ISysResourceService extends BaseService<SysResourceMapper,SysResour
     * @param SysResource 对象
     * @return 返回结果 void
 	* @author junxu.yang
-	* @since 2021-05-28
+	* @since 2021-05-30
     */
 	public void insertObj(SysResource sysResource){
 		mapper.insertObj(sysResource);
@@ -78,7 +78,7 @@ public class ISysResourceService extends BaseService<SysResourceMapper,SysResour
     * @param List<SysResource> 对象
     * @return 返回结果
 	* @author junxu.yang
-	* @since 2021-05-28
+	* @since 2021-05-30
     */
 	public void batchInsertObj(List<SysResource> list){
 		mapper.batchInsertObj(list);
@@ -89,7 +89,7 @@ public class ISysResourceService extends BaseService<SysResourceMapper,SysResour
     * @param String 主键ID
     * @return 返回结果
 	* @author junxu.yang
-	* @since 2021-05-28
+	* @since 2021-05-30
     */
 	public HashMap<String,Object> selectObjById(String sysResourceId){
 		return mapper.selectObjById(sysResourceId);
@@ -101,7 +101,7 @@ public class ISysResourceService extends BaseService<SysResourceMapper,SysResour
     * @param HashMap<String,Object> 对象
     * @return 返回结果
 	* @author junxu.yang
-	* @since 2021-05-28
+	* @since 2021-05-30
     */
 	public Integer countNum(HashMap<String,Object> params) {
 		return mapper.countNum(params);
@@ -113,7 +113,7 @@ public class ISysResourceService extends BaseService<SysResourceMapper,SysResour
 	* @param HashMap<String,Object> 对象
 	* @return 返回结果 PageInfo
 	* @author junxu.yang
-	* @since 2021-05-28
+	* @since 2021-05-30
 	 */
 	public PageInfo<SysResource> pageList(HashMap<String,Object> params) throws Exception {
 		Integer pageNum = (Integer)params.get("pageNum");

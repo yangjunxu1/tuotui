@@ -130,7 +130,7 @@
 		 FROM 
 		 	au_scheme auScheme
     	WHERE 1=1
-		  id=#{auSchemeId}
+		 and ${tbAlias}.id=#{auSchemeId}
     </select>
     
     <select id="countNum" parameterType="java.util.Map" resultType="Integer">

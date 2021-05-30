@@ -133,7 +133,7 @@
         	,sys_advert_postition	sysAdvertPostition
     	WHERE 1=1
 				and sysAdvert.postition_id = sysAdvertPostition.id
-		  id=#{sysAdvertId}
+		 and sysAdvertPostition.id=#{sysAdvertId}
     </select>
     
     <select id="countNum" parameterType="java.util.Map" resultType="Integer">

@@ -80,6 +80,7 @@ public class SysAdvertController extends BaseController <ISysAdvertService, SysA
      public ResultBean<String> updateObjById(@RequestBody SysAdvert sysAdvert) {
          logger.info("sysAdvert.updateObjById页面请求参数："+sysAdvert);
 		try {
+			sysAdvert.setSysAdvertCreatedTime(new Date());
 			sysAdvert.setSysAdvertUpdatedTime(new Date());
 			logger.info("sysAdvert.update页面请求参数："+sysAdvert);
 			baseService.updateObjById(sysAdvert);
@@ -99,6 +100,7 @@ public class SysAdvertController extends BaseController <ISysAdvertService, SysA
 		try {
 			logger.info("sysAdvert.insertObj页面请求参数："+sysAdvert);
 			sysAdvert.setSysAdvertCreatedTime(new Date());
+			sysAdvert.setSysAdvertUpdatedTime(new Date());
 	        baseService.insert(sysAdvert);
 	        return resultBeanFactory.getBean("插入记录成功");
         } catch (Exception e) {

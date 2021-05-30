@@ -77,7 +77,7 @@
         	,sys_province	sysProvince
     	WHERE 1=1
 				and sysCity.province_id = sysProvince.id
-		  id=#{sysCityId}
+		 and sysProvince.id=#{sysCityId}
     </select>
     
     <select id="countNum" parameterType="java.util.Map" resultType="Integer">

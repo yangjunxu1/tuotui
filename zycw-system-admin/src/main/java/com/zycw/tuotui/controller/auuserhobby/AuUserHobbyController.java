@@ -107,8 +107,8 @@ public class AuUserHobbyController extends BaseController <IAuUserHobbyService, 
      
      @ApiOperation(value = "分页查询")
      @ApiImplicitParams({
-    	@ApiImplicitParam(name = "auUserHobbyHobbyId", value = "爱好id", required = false, dataType = "${dataType}"),
     	@ApiImplicitParam(name = "auUserHobbyUserId", value = "用户id", required = false, dataType = "${dataType}"),
+    	@ApiImplicitParam(name = "auUserHobbyHobbyId", value = "爱好id", required = false, dataType = "${dataType}"),
 		@ApiImplicitParam(name = "pageSize", value = "每页条数", required = false, dataType = "int"),
 		@ApiImplicitParam(name = "pageNum", value = "当前页数", required = false, dataType = "int"),
 
@@ -148,8 +148,8 @@ public class AuUserHobbyController extends BaseController <IAuUserHobbyService, 
 	
      @ApiOperation(value = "allList")
      @ApiImplicitParams({
-    	@ApiImplicitParam(name = "auUserHobbyHobbyId", value = "爱好id", required = false, dataType = "String"),
     	@ApiImplicitParam(name = "auUserHobbyUserId", value = "用户id", required = false, dataType = "String"),
+    	@ApiImplicitParam(name = "auUserHobbyHobbyId", value = "爱好id", required = false, dataType = "String"),
     	@ApiImplicitParam(name = "auUserHobbyId", value = "return-id", required = false, dataType = "String"),
     	@ApiImplicitParam(name = "sysHobbyHobbyTitle", value = "return-lvM爱好", required = false, dataType = "String"),
     	@ApiImplicitParam(name = "sysHobbyHobbyTitle", value = "return-lvM爱好", required = false, dataType = "String")

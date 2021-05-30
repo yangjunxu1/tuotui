@@ -104,7 +104,7 @@
     	WHERE 1=1
 				and auAccountConsume.company_id = auCompany.id
 				and auAccountConsume.user_id = auUser.id
-		  id=#{auAccountConsumeId}
+		 and auUser.id=#{auAccountConsumeId}
     </select>
     
     <select id="countNum" parameterType="java.util.Map" resultType="Integer">

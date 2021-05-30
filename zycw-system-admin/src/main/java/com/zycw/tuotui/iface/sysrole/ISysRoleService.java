@@ -37,7 +37,7 @@ public class ISysRoleService extends BaseService<SysRoleMapper,SysRole> {
     * @param String 主键ID
     * @return 返回结果
 	* @author junxu.yang
-	* @since 2021-05-28
+	* @since 2021-05-30
     */
 	public void deleteById(String sysRoleId){
 		mapper.deleteById(sysRoleId);
@@ -48,7 +48,7 @@ public class ISysRoleService extends BaseService<SysRoleMapper,SysRole> {
     * @param String 主键ID
     * @return 返回结果
 	* @author junxu.yang
-	* @since 2021-05-28
+	* @since 2021-05-30
     */
 	public void deleteByIdLogic(String sysRoleId){
 		mapper.deleteByIdLogic(sysRoleId);
@@ -66,7 +66,7 @@ public class ISysRoleService extends BaseService<SysRoleMapper,SysRole> {
     * @param SysRole 对象
     * @return 返回结果 void
 	* @author junxu.yang
-	* @since 2021-05-28
+	* @since 2021-05-30
     */
 	public void insertObj(SysRole sysRole){
 		mapper.insertObj(sysRole);
@@ -78,7 +78,7 @@ public class ISysRoleService extends BaseService<SysRoleMapper,SysRole> {
     * @param List<SysRole> 对象
     * @return 返回结果
 	* @author junxu.yang
-	* @since 2021-05-28
+	* @since 2021-05-30
     */
 	public void batchInsertObj(List<SysRole> list){
 		mapper.batchInsertObj(list);
@@ -89,7 +89,7 @@ public class ISysRoleService extends BaseService<SysRoleMapper,SysRole> {
     * @param String 主键ID
     * @return 返回结果
 	* @author junxu.yang
-	* @since 2021-05-28
+	* @since 2021-05-30
     */
 	public HashMap<String,Object> selectObjById(String sysRoleId){
 		return mapper.selectObjById(sysRoleId);
@@ -101,7 +101,7 @@ public class ISysRoleService extends BaseService<SysRoleMapper,SysRole> {
     * @param HashMap<String,Object> 对象
     * @return 返回结果
 	* @author junxu.yang
-	* @since 2021-05-28
+	* @since 2021-05-30
     */
 	public Integer countNum(HashMap<String,Object> params) {
 		return mapper.countNum(params);
@@ -113,7 +113,7 @@ public class ISysRoleService extends BaseService<SysRoleMapper,SysRole> {
 	* @param HashMap<String,Object> 对象
 	* @return 返回结果 PageInfo
 	* @author junxu.yang
-	* @since 2021-05-28
+	* @since 2021-05-30
 	 */
 	public PageInfo<SysRole> pageList(HashMap<String,Object> params) throws Exception {
 		Integer pageNum = (Integer)params.get("pageNum");

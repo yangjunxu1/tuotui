@@ -1,0 +1,129 @@
+<?Mapper version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zycw.tuotui.readdao.chatfriends.ChatFriendsMapper">
+
+
+        <!-- 通用查询映射结果 -->
+        <resultMap id="BaseResultMap" type="com.zycw.tuotui.entity.chatfriends.ChatFriends">
+                    <id column="id" />
+                    <result column="userid" />
+                    <result column="fuserid" />
+                    <result column="addtime" />
+        </resultMap>
+
+    
+    		        <!-- 通用查询结果列 -->
+        <sql id="Base_Column_List">
+        </sql>
+
+
+    
+    <delete id="deleteById">
+        DELETE FROM chat_friends WHERE 
+        id=#{chatFriendsId}
+    </delete>
+    
+    
+    <update id="deleteByIdLogic">
+        UPDATE chat_friends SET delFlag = 1' 
+        WHERE 
+        id=#{chatFriendsId}
+    </update>
+    
+ 
+ 
+ 	<update id="updateObjById"  parameterType="com.zycw.tuotui.entity.chatfriends.ChatFriends">
+        UPDATE chat_friends SET 
+		            userid=chatFriendsUserid,
+		            fuserid=chatFriendsFuserid,
+		            addtime=#{chatFriendsAddtime}
+        WHERE 
+        id=#{chatFriendsId}
+    </update>
+ 
+    
+    <insert id='insertObj' parameterType="com.zycw.tuotui.entity.chatfriends.ChatFriends">
+    	INSERT INTO chat_friends(
+    			userid,
+    			fuserid,
+    			addtime
+    	)
+        VALUES(
+		           #{chatFriendsUserid},
+		           #{chatFriendsFuserid},
+		           #{chatFriendsAddtime}
+        )
+    </insert>
+    <insert id='batchInsertObj' parameterType="java.util.List">
+    	INSERT INTO chat_friends(
+    			userid,
+    			fuserid,
+    			addtime
+    	)
+        VALUES(
+        <foreach collection="list" item="item"  separator=",">
+		           #{item.chatFriendsUserid},
+		           #{item.chatFriendsFuserid},
+		           #{item.chatFriendsAddtime}
+        </foreach>
+        )
+    </insert>
+    
+    
+    <select id="selectObjById" parameterType="java.util.Map" resultType="java.util.HashMap">
+    	SELECT  
+        		chatFriends.id AS chatFriendsId,
+            		
+        		chatFriends.userid AS chatFriendsUserid,
+            		
+        		chatFriends.fuserid AS chatFriendsFuserid,
+            		
+        		chatFriends.addtime AS chatFriendsAddtime
+		 FROM 
+		 	chat_friends chatFriends
+    	WHERE 1=1
+		 and ${tbAlias}.id=#{chatFriendsId}
+    </select>
+    
+    <select id="countNum" parameterType="java.util.Map" resultType="Integer">
+    	SELECT 	
+    		COUNT(1)
+    	FROM
+    		chat_friends chatFriends
+    	WHERE 1=1
+    	
+    </select>
+    <select id="pageList" parameterType="java.util.Map" resultType="java.util.Map">
+    	SELECT 	
+        		chatFriends.id AS chatFriendsId,
+            		
+        		chatFriends.userid AS chatFriendsUserid,
+            		
+        		chatFriends.fuserid AS chatFriendsFuserid,
+            		
+        		chatFriends.addtime AS chatFriendsAddtime
+    	FROM
+    		chat_friends chatFriends
+    	WHERE 1=1
+    	
+    		LIMIT #{param.pageStart},#{param.pageNum}
+    </select>
+    
+    
+    <select id="allList" parameterType="java.util.Map" resultType="java.util.Map">
+    	    	SELECT 	
+        		chatFriends.id AS chatFriendsId,
+            		
+        		chatFriends.userid AS chatFriendsUserid,
+            		
+        		chatFriends.fuserid AS chatFriendsFuserid,
+            		
+        		chatFriends.addtime AS chatFriendsAddtime
+    	FROM
+    		chat_friends chatFriends
+    	WHERE 1=1
+    	
+    </select>
+    
+    
+</mapper>

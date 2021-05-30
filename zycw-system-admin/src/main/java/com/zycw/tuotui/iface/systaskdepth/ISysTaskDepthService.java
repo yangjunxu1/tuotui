@@ -37,7 +37,7 @@ public class ISysTaskDepthService extends BaseService<SysTaskDepthMapper,SysTask
     * @param String 主键ID
     * @return 返回结果
 	* @author junxu.yang
-	* @since 2021-05-28
+	* @since 2021-05-30
     */
 	public void deleteById(String sysTaskDepthId){
 		mapper.deleteById(sysTaskDepthId);
@@ -48,7 +48,7 @@ public class ISysTaskDepthService extends BaseService<SysTaskDepthMapper,SysTask
     * @param String 主键ID
     * @return 返回结果
 	* @author junxu.yang
-	* @since 2021-05-28
+	* @since 2021-05-30
     */
 	public void deleteByIdLogic(String sysTaskDepthId){
 		mapper.deleteByIdLogic(sysTaskDepthId);
@@ -66,7 +66,7 @@ public class ISysTaskDepthService extends BaseService<SysTaskDepthMapper,SysTask
     * @param SysTaskDepth 对象
     * @return 返回结果 void
 	* @author junxu.yang
-	* @since 2021-05-28
+	* @since 2021-05-30
     */
 	public void insertObj(SysTaskDepth sysTaskDepth){
 		mapper.insertObj(sysTaskDepth);
@@ -78,7 +78,7 @@ public class ISysTaskDepthService extends BaseService<SysTaskDepthMapper,SysTask
     * @param List<SysTaskDepth> 对象
     * @return 返回结果
 	* @author junxu.yang
-	* @since 2021-05-28
+	* @since 2021-05-30
     */
 	public void batchInsertObj(List<SysTaskDepth> list){
 		mapper.batchInsertObj(list);
@@ -89,7 +89,7 @@ public class ISysTaskDepthService extends BaseService<SysTaskDepthMapper,SysTask
     * @param String 主键ID
     * @return 返回结果
 	* @author junxu.yang
-	* @since 2021-05-28
+	* @since 2021-05-30
     */
 	public HashMap<String,Object> selectObjById(String sysTaskDepthId){
 		return mapper.selectObjById(sysTaskDepthId);
@@ -101,7 +101,7 @@ public class ISysTaskDepthService extends BaseService<SysTaskDepthMapper,SysTask
     * @param HashMap<String,Object> 对象
     * @return 返回结果
 	* @author junxu.yang
-	* @since 2021-05-28
+	* @since 2021-05-30
     */
 	public Integer countNum(HashMap<String,Object> params) {
 		return mapper.countNum(params);
@@ -113,7 +113,7 @@ public class ISysTaskDepthService extends BaseService<SysTaskDepthMapper,SysTask
 	* @param HashMap<String,Object> 对象
 	* @return 返回结果 PageInfo
 	* @author junxu.yang
-	* @since 2021-05-28
+	* @since 2021-05-30
 	 */
 	public PageInfo<SysTaskDepth> pageList(HashMap<String,Object> params) throws Exception {
 		Integer pageNum = (Integer)params.get("pageNum");

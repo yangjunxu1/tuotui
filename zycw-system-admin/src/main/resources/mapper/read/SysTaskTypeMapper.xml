@@ -82,7 +82,7 @@
 		 FROM 
 		 	sys_task_type sysTaskType
     	WHERE 1=1
-		  id=#{sysTaskTypeId}
+		 and ${tbAlias}.id=#{sysTaskTypeId}
     </select>
     
     <select id="countNum" parameterType="java.util.Map" resultType="Integer">

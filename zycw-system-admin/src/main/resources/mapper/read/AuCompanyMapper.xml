@@ -45,6 +45,13 @@
         id=#{auCompanyId}
     </update>
     
+	
+    
+    <delete id="delByName">
+        DELETE FROM au_company WHERE 1=1
+    </delete>
+    
+    
  
  
  	<update id="updateObjById"  parameterType="com.zycw.tuotui.entity.aucompany.AuCompany">
@@ -71,6 +78,16 @@
         id=#{auCompanyId}
     </update>
  
+    <update id="testupdateUpdate"  parameterType="com.zycw.tuotui.entity.aucompany.AuCompany">
+        UPDATE au_company SET 
+        WHERE 1=1
+    </update>
+    <update id="testupdateInsert"  parameterType="com.zycw.tuotui.entity.aucompany.AuCompany">
+        INSERT INTO au_company(
+        )
+        VALUES(
+        )
+    </update>
     
     <insert id='insertObj' parameterType="com.zycw.tuotui.entity.aucompany.AuCompany">
     	INSERT INTO au_company(
@@ -202,7 +219,7 @@
 		 FROM 
 		 	au_company auCompany
     	WHERE 1=1
-		  id=#{auCompanyId}
+		 and ${tbAlias}.id=#{auCompanyId}
     </select>
     
     <select id="countNum" parameterType="java.util.Map" resultType="Integer">
@@ -303,6 +320,23 @@
     		au_company auCompany
     	WHERE 1=1
     	
+    </select>
+    
+	
+	<select id="selectByProject"   parameterType="java.util.Map" resultType="java.util.HashMap">
+        select 
+		           auProject.auProjectProjectName as auProjectName,
+		           auProject.auProjectCode as auProjectCode,
+		           auCompany.auCompanyNAME as auCompanyNAME,
+		           auCompany.auCompanyId as auCompanyId 
+        FROM au_company au_company
+        WHERE 1=1
+        	<if test="param.${where.tableColumnvalue} != null and param.${where.tableColumnvalue} != '' ">
+				and auProject.companyId" = #{param.${where.tableColumnvalue}} 
+        	</if>
+			
+		    
+        
     </select>
     
     

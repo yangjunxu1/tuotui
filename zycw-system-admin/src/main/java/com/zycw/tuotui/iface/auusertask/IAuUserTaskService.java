@@ -37,7 +37,7 @@ public class IAuUserTaskService extends BaseService<AuUserTaskMapper,AuUserTask>
     * @param String 主键ID
     * @return 返回结果
 	* @author junxu.yang
-	* @since 2021-05-28
+	* @since 2021-05-30
     */
 	public void deleteById(String auUserTaskId){
 		mapper.deleteById(auUserTaskId);
@@ -48,7 +48,7 @@ public class IAuUserTaskService extends BaseService<AuUserTaskMapper,AuUserTask>
     * @param String 主键ID
     * @return 返回结果
 	* @author junxu.yang
-	* @since 2021-05-28
+	* @since 2021-05-30
     */
 	public void deleteByIdLogic(String auUserTaskId){
 		mapper.deleteByIdLogic(auUserTaskId);
@@ -66,7 +66,7 @@ public class IAuUserTaskService extends BaseService<AuUserTaskMapper,AuUserTask>
     * @param AuUserTask 对象
     * @return 返回结果 void
 	* @author junxu.yang
-	* @since 2021-05-28
+	* @since 2021-05-30
     */
 	public void insertObj(AuUserTask auUserTask){
 		mapper.insertObj(auUserTask);
@@ -78,7 +78,7 @@ public class IAuUserTaskService extends BaseService<AuUserTaskMapper,AuUserTask>
     * @param List<AuUserTask> 对象
     * @return 返回结果
 	* @author junxu.yang
-	* @since 2021-05-28
+	* @since 2021-05-30
     */
 	public void batchInsertObj(List<AuUserTask> list){
 		mapper.batchInsertObj(list);
@@ -89,7 +89,7 @@ public class IAuUserTaskService extends BaseService<AuUserTaskMapper,AuUserTask>
     * @param String 主键ID
     * @return 返回结果
 	* @author junxu.yang
-	* @since 2021-05-28
+	* @since 2021-05-30
     */
 	public HashMap<String,Object> selectObjById(String auUserTaskId){
 		return mapper.selectObjById(auUserTaskId);
@@ -101,7 +101,7 @@ public class IAuUserTaskService extends BaseService<AuUserTaskMapper,AuUserTask>
     * @param HashMap<String,Object> 对象
     * @return 返回结果
 	* @author junxu.yang
-	* @since 2021-05-28
+	* @since 2021-05-30
     */
 	public Integer countNum(HashMap<String,Object> params) {
 		return mapper.countNum(params);
@@ -113,7 +113,7 @@ public class IAuUserTaskService extends BaseService<AuUserTaskMapper,AuUserTask>
 	* @param HashMap<String,Object> 对象
 	* @return 返回结果 PageInfo
 	* @author junxu.yang
-	* @since 2021-05-28
+	* @since 2021-05-30
 	 */
 	public PageInfo<AuUserTask> pageList(HashMap<String,Object> params) throws Exception {
 		Integer pageNum = (Integer)params.get("pageNum");

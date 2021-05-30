@@ -173,7 +173,7 @@
         	,au_company	auCompany
     	WHERE 1=1
 				and auCompanyApp.company_id = auCompany.id
-		  id=#{auCompanyAppId}
+		 and auCompany.id=#{auCompanyAppId}
     </select>
     
     <select id="countNum" parameterType="java.util.Map" resultType="Integer">

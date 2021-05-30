@@ -66,7 +66,7 @@
 		 FROM 
 		 	sys_role sysRole
     	WHERE 1=1
-		  id=#{sysRoleId}
+		 and ${tbAlias}.id=#{sysRoleId}
     </select>
     
     <select id="countNum" parameterType="java.util.Map" resultType="Integer">

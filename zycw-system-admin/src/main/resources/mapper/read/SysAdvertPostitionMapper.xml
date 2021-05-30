@@ -74,7 +74,7 @@
 		 FROM 
 		 	sys_advert_postition sysAdvertPostition
     	WHERE 1=1
-		  id=#{sysAdvertPostitionId}
+		 and ${tbAlias}.id=#{sysAdvertPostitionId}
     </select>
     
     <select id="countNum" parameterType="java.util.Map" resultType="Integer">

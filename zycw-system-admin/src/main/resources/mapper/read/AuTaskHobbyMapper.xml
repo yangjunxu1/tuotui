@@ -75,12 +75,12 @@
         		sysHobby.hobby_title AS sysHobbyHobbyTitle
 		 FROM 
 		 	au_task_hobby auTaskHobby
-        	,au_custom_task	auCustomTask
         	,sys_hobby	sysHobby
+        	,au_custom_task	auCustomTask
     	WHERE 1=1
-				and auTaskHobby.task_id = auCustomTask.id
 				and auTaskHobby.hobby_id = sysHobby.id
-		  id=#{auTaskHobbyId}
+				and auTaskHobby.task_id = auCustomTask.id
+		 and sysHobby.id=#{auTaskHobbyId}
     </select>
     
     <select id="countNum" parameterType="java.util.Map" resultType="Integer">
@@ -88,17 +88,17 @@
     		COUNT(1)
     	FROM
     		au_task_hobby auTaskHobby
-        	,au_custom_task	auCustomTask
         	,sys_hobby	sysHobby
+        	,au_custom_task	auCustomTask
     	WHERE 1=1
     	
-				and auTaskHobby.task_id = auCustomTask.id
 				and auTaskHobby.hobby_id = sysHobby.id
-        	<if test="param.auTaskHobbyTaskId != null and param.auTaskHobbyTaskId != '' ">
-				and task_id =#(param.auTaskHobbyTaskId) 
-			</if>
+				and auTaskHobby.task_id = auCustomTask.id
         	<if test="param.auTaskHobbyHobbyId != null and param.auTaskHobbyHobbyId != '' ">
 				and hobby_id =#(param.auTaskHobbyHobbyId) 
+			</if>
+        	<if test="param.auTaskHobbyTaskId != null and param.auTaskHobbyTaskId != '' ">
+				and task_id =#(param.auTaskHobbyTaskId) 
 			</if>
     </select>
     <select id="pageList" parameterType="java.util.Map" resultType="java.util.Map">
@@ -110,17 +110,17 @@
         		sysHobby.hobby_title AS sysHobbyHobbyTitle
     	FROM
     		au_task_hobby auTaskHobby
-        	,au_custom_task	auCustomTask
         	,sys_hobby	sysHobby
+        	,au_custom_task	auCustomTask
     	WHERE 1=1
     	
-				and auTaskHobby.task_id = auCustomTask.id
 				and auTaskHobby.hobby_id = sysHobby.id
-        	<if test="param.auTaskHobbyTaskId != null and param.auTaskHobbyTaskId != '' ">
-				and task_id =#(param.auTaskHobbyTaskId) 
-			</if>
+				and auTaskHobby.task_id = auCustomTask.id
         	<if test="param.auTaskHobbyHobbyId != null and param.auTaskHobbyHobbyId != '' ">
 				and hobby_id =#(param.auTaskHobbyHobbyId) 
+			</if>
+        	<if test="param.auTaskHobbyTaskId != null and param.auTaskHobbyTaskId != '' ">
+				and task_id =#(param.auTaskHobbyTaskId) 
 			</if>
     		LIMIT #{param.pageStart},#{param.pageNum}
     </select>
@@ -135,17 +135,17 @@
         		sysHobby.hobby_title AS sysHobbyHobbyTitle
     	FROM
     		au_task_hobby auTaskHobby
-        	,au_custom_task	auCustomTask
         	,sys_hobby	sysHobby
+        	,au_custom_task	auCustomTask
     	WHERE 1=1
     	
-				and auTaskHobby.task_id = auCustomTask.id
 				and auTaskHobby.hobby_id = sysHobby.id
-        	<if test="param.auTaskHobbyTaskId != null and param.auTaskHobbyTaskId != '' ">
-				and task_id =#(param.auTaskHobbyTaskId) 
-			</if>
+				and auTaskHobby.task_id = auCustomTask.id
         	<if test="param.auTaskHobbyHobbyId != null and param.auTaskHobbyHobbyId != '' ">
 				and hobby_id =#(param.auTaskHobbyHobbyId) 
+			</if>
+        	<if test="param.auTaskHobbyTaskId != null and param.auTaskHobbyTaskId != '' ">
+				and task_id =#(param.auTaskHobbyTaskId) 
 			</if>
     </select>
     

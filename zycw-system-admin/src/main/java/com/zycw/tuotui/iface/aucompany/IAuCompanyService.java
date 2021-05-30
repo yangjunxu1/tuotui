@@ -37,7 +37,7 @@ public class IAuCompanyService extends BaseService<AuCompanyMapper,AuCompany> {
     * @param String 主键ID
     * @return 返回结果
 	* @author junxu.yang
-	* @since 2021-05-28
+	* @since 2021-05-30
     */
 	public void deleteById(String auCompanyId){
 		mapper.deleteById(auCompanyId);
@@ -48,11 +48,25 @@ public class IAuCompanyService extends BaseService<AuCompanyMapper,AuCompany> {
     * @param String 主键ID
     * @return 返回结果
 	* @author junxu.yang
-	* @since 2021-05-28
+	* @since 2021-05-30
     */
 	public void deleteByIdLogic(String auCompanyId){
 		mapper.deleteByIdLogic(auCompanyId);
 	}
+	
+	
+	/**
+	 * <p>
+	 * delByName 根据公司名称删除
+	 * </p>
+	 *
+	 * @author junxu.yang
+	 * @since 2021-05-30
+	 */
+	public void delByName(){
+		mapper.delByName();
+	}
+	
 	
 	
 	public void updateObjById(AuCompany auCompany){
@@ -61,12 +75,35 @@ public class IAuCompanyService extends BaseService<AuCompanyMapper,AuCompany> {
 	
 	
 	
+	/**
+	 * <p>
+	 * testupdate 更新公司名称
+	 * </p>
+	 *
+	 * @author junxu.yang
+	 * @since 2021-05-30
+	 */
+	public void testupdateUpdate(){
+		mapper.testupdateUpdate();
+	}
+	/**
+	 * <p>
+	 * testupdate 更新公司名称
+	 * </p>
+	 *
+	 * @author junxu.yang
+	 * @since 2021-05-30
+	 */
+	public void testupdateInsert(){
+		mapper.testupdateInsert();
+	}
+	
    /**
     * 添加
     * @param AuCompany 对象
     * @return 返回结果 void
 	* @author junxu.yang
-	* @since 2021-05-28
+	* @since 2021-05-30
     */
 	public void insertObj(AuCompany auCompany){
 		mapper.insertObj(auCompany);
@@ -78,7 +115,7 @@ public class IAuCompanyService extends BaseService<AuCompanyMapper,AuCompany> {
     * @param List<AuCompany> 对象
     * @return 返回结果
 	* @author junxu.yang
-	* @since 2021-05-28
+	* @since 2021-05-30
     */
 	public void batchInsertObj(List<AuCompany> list){
 		mapper.batchInsertObj(list);
@@ -89,7 +126,7 @@ public class IAuCompanyService extends BaseService<AuCompanyMapper,AuCompany> {
     * @param String 主键ID
     * @return 返回结果
 	* @author junxu.yang
-	* @since 2021-05-28
+	* @since 2021-05-30
     */
 	public HashMap<String,Object> selectObjById(String auCompanyId){
 		return mapper.selectObjById(auCompanyId);
@@ -101,7 +138,7 @@ public class IAuCompanyService extends BaseService<AuCompanyMapper,AuCompany> {
     * @param HashMap<String,Object> 对象
     * @return 返回结果
 	* @author junxu.yang
-	* @since 2021-05-28
+	* @since 2021-05-30
     */
 	public Integer countNum(HashMap<String,Object> params) {
 		return mapper.countNum(params);
@@ -113,7 +150,7 @@ public class IAuCompanyService extends BaseService<AuCompanyMapper,AuCompany> {
 	* @param HashMap<String,Object> 对象
 	* @return 返回结果 PageInfo
 	* @author junxu.yang
-	* @since 2021-05-28
+	* @since 2021-05-30
 	 */
 	public PageInfo<AuCompany> pageList(HashMap<String,Object> params) throws Exception {
 		Integer pageNum = (Integer)params.get("pageNum");
@@ -126,6 +163,20 @@ public class IAuCompanyService extends BaseService<AuCompanyMapper,AuCompany> {
 		pagelist.setPageNum(pageNum);
 		return new PageInfo(list);
 
+	}
+   
+	/**
+	 * <p>
+	 * selectByProject 自定义查询
+	 * </p>
+	 *
+	 * @author junxu.yang
+	 * @since 2021-05-30
+	 */
+	
+	public List<HashMap> selectByProject( HashMap<String,Object> param){
+		List<HashMap> result = mapper.selectByProject( param);
+		return result;
 	}
 	
 	

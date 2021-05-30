@@ -37,7 +37,7 @@ public class IAuSchemeService extends BaseService<AuSchemeMapper,AuScheme> {
     * @param String 主键ID
     * @return 返回结果
 	* @author junxu.yang
-	* @since 2021-05-28
+	* @since 2021-05-30
     */
 	public void deleteById(String auSchemeId){
 		mapper.deleteById(auSchemeId);
@@ -48,7 +48,7 @@ public class IAuSchemeService extends BaseService<AuSchemeMapper,AuScheme> {
     * @param String 主键ID
     * @return 返回结果
 	* @author junxu.yang
-	* @since 2021-05-28
+	* @since 2021-05-30
     */
 	public void deleteByIdLogic(String auSchemeId){
 		mapper.deleteByIdLogic(auSchemeId);
@@ -66,7 +66,7 @@ public class IAuSchemeService extends BaseService<AuSchemeMapper,AuScheme> {
     * @param AuScheme 对象
     * @return 返回结果 void
 	* @author junxu.yang
-	* @since 2021-05-28
+	* @since 2021-05-30
     */
 	public void insertObj(AuScheme auScheme){
 		mapper.insertObj(auScheme);
@@ -78,7 +78,7 @@ public class IAuSchemeService extends BaseService<AuSchemeMapper,AuScheme> {
     * @param List<AuScheme> 对象
     * @return 返回结果
 	* @author junxu.yang
-	* @since 2021-05-28
+	* @since 2021-05-30
     */
 	public void batchInsertObj(List<AuScheme> list){
 		mapper.batchInsertObj(list);
@@ -89,7 +89,7 @@ public class IAuSchemeService extends BaseService<AuSchemeMapper,AuScheme> {
     * @param String 主键ID
     * @return 返回结果
 	* @author junxu.yang
-	* @since 2021-05-28
+	* @since 2021-05-30
     */
 	public HashMap<String,Object> selectObjById(String auSchemeId){
 		return mapper.selectObjById(auSchemeId);
@@ -101,7 +101,7 @@ public class IAuSchemeService extends BaseService<AuSchemeMapper,AuScheme> {
     * @param HashMap<String,Object> 对象
     * @return 返回结果
 	* @author junxu.yang
-	* @since 2021-05-28
+	* @since 2021-05-30
     */
 	public Integer countNum(HashMap<String,Object> params) {
 		return mapper.countNum(params);
@@ -113,7 +113,7 @@ public class IAuSchemeService extends BaseService<AuSchemeMapper,AuScheme> {
 	* @param HashMap<String,Object> 对象
 	* @return 返回结果 PageInfo
 	* @author junxu.yang
-	* @since 2021-05-28
+	* @since 2021-05-30
 	 */
 	public PageInfo<AuScheme> pageList(HashMap<String,Object> params) throws Exception {
 		Integer pageNum = (Integer)params.get("pageNum");

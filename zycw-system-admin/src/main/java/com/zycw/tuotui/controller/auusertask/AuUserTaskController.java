@@ -80,6 +80,8 @@ public class AuUserTaskController extends BaseController <IAuUserTaskService, Au
      public ResultBean<String> updateObjById(@RequestBody AuUserTask auUserTask) {
          logger.info("auUserTask.updateObjById页面请求参数："+auUserTask);
 		try {
+			auUserTask.setAuUserTaskStartTime(new Date());
+			auUserTask.setAuUserTaskEndTime(new Date());
 			logger.info("auUserTask.update页面请求参数："+auUserTask);
 			baseService.updateObjById(auUserTask);
 			return resultBeanFactory.getBean("修改成功");
@@ -97,6 +99,8 @@ public class AuUserTaskController extends BaseController <IAuUserTaskService, Au
      public ResultBean<String> insertObj(@RequestBody AuUserTask auUserTask) {
 		try {
 			logger.info("auUserTask.insertObj页面请求参数："+auUserTask);
+			auUserTask.setAuUserTaskStartTime(new Date());
+			auUserTask.setAuUserTaskEndTime(new Date());
 	        baseService.insert(auUserTask);
 	        return resultBeanFactory.getBean("插入记录成功");
         } catch (Exception e) {

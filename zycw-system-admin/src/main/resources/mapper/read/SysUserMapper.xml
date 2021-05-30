@@ -8,6 +8,8 @@
                     <id column="id" />
                     <result column="username" />
                     <result column="password" />
+                    <result column="nike" />
+                    <result column="uimg" />
                     <result column="role_id" />
                     <result column="true_name" />
                     <result column="mobile" />
@@ -40,6 +42,8 @@
         UPDATE sys_user SET 
 		            username=sysUserUsername,
 		            password=sysUserPassword,
+		            nike=sysUserNike,
+		            uimg=sysUserUimg,
 		            role_id=sysUserRoleId,
 		            true_name=sysUserTrueName,
 		            mobile=sysUserMobile,
@@ -54,6 +58,8 @@
     	INSERT INTO sys_user(
     			username,
     			password,
+    			nike,
+    			uimg,
     			role_id,
     			true_name,
     			mobile,
@@ -63,6 +69,8 @@
         VALUES(
 		           #{sysUserUsername},
 		           #{sysUserPassword},
+		           #{sysUserNike},
+		           #{sysUserUimg},
 		           #{sysUserRoleId},
 		           #{sysUserTrueName},
 		           #{sysUserMobile},
@@ -74,6 +82,8 @@
     	INSERT INTO sys_user(
     			username,
     			password,
+    			nike,
+    			uimg,
     			role_id,
     			true_name,
     			mobile,
@@ -84,6 +94,8 @@
         <foreach collection="list" item="item"  separator=",">
 		           #{item.sysUserUsername},
 		           #{item.sysUserPassword},
+		           #{item.sysUserNike},
+		           #{item.sysUserUimg},
 		           #{item.sysUserRoleId},
 		           #{item.sysUserTrueName},
 		           #{item.sysUserMobile},
@@ -102,6 +114,10 @@
             		
         		sysUser.password AS sysUserPassword,
             		
+        		sysUser.nike AS sysUserNike,
+            		
+        		sysUser.uimg AS sysUserUimg,
+            		
         		sysUser.role_id AS sysUserRoleId,
         		sysRole.name AS sysRoleName,
             		
@@ -117,7 +133,7 @@
         	,sys_role	sysRole
     	WHERE 1=1
 				and sysUser.role_id = sysRole.id
-		  id=#{sysUserId}
+		 and sysRole.id=#{sysUserId}
     </select>
     
     <select id="countNum" parameterType="java.util.Map" resultType="Integer">
@@ -140,6 +156,10 @@
         		sysUser.username AS sysUserUsername,
             		
         		sysUser.password AS sysUserPassword,
+            		
+        		sysUser.nike AS sysUserNike,
+            		
+        		sysUser.uimg AS sysUserUimg,
             		
         		sysRole.name AS sysRoleName,
             		
@@ -170,6 +190,10 @@
         		sysUser.username AS sysUserUsername,
             		
         		sysUser.password AS sysUserPassword,
+            		
+        		sysUser.nike AS sysUserNike,
+            		
+        		sysUser.uimg AS sysUserUimg,
             		
         		sysRole.name AS sysRoleName,
             		

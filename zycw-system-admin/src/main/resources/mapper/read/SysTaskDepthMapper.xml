@@ -82,7 +82,7 @@
 		 FROM 
 		 	sys_task_depth sysTaskDepth
     	WHERE 1=1
-		  id=#{sysTaskDepthId}
+		 and ${tbAlias}.id=#{sysTaskDepthId}
     </select>
     
     <select id="countNum" parameterType="java.util.Map" resultType="Integer">
