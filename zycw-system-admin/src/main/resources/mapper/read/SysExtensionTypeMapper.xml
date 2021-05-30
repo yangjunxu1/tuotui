@@ -72,12 +72,16 @@
     
     <select id="selectObjById" parameterType="java.util.Map" resultType="java.util.HashMap">
     	SELECT  
+com.baomidou.mybatisplus.generator.config.po.TableField@41bd8a46
         		sysExtensionType.id AS sysExtensionTypeId,
             		
+com.baomidou.mybatisplus.generator.config.po.TableField@5f9c3992
         		sysExtensionType.titel AS sysExtensionTypeTitel,
             		
+com.baomidou.mybatisplus.generator.config.po.TableField@49942a7f
         		sysExtensionType.price AS sysExtensionTypePrice,
             		
+com.baomidou.mybatisplus.generator.config.po.TableField@46a7fdb9
         		sysExtensionType.content AS sysExtensionTypeContent
 		 FROM 
 		 	sys_extension_type sysExtensionType

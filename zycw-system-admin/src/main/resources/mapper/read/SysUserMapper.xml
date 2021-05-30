@@ -108,25 +108,35 @@
     
     <select id="selectObjById" parameterType="java.util.Map" resultType="java.util.HashMap">
     	SELECT  
+com.baomidou.mybatisplus.generator.config.po.TableField@16017497
         		sysUser.id AS sysUserId,
             		
+com.baomidou.mybatisplus.generator.config.po.TableField@fcbe910
         		sysUser.username AS sysUserUsername,
             		
+com.baomidou.mybatisplus.generator.config.po.TableField@483ddd7d
         		sysUser.password AS sysUserPassword,
             		
+com.baomidou.mybatisplus.generator.config.po.TableField@61622bea
         		sysUser.nike AS sysUserNike,
             		
+com.baomidou.mybatisplus.generator.config.po.TableField@45a8e50a
         		sysUser.uimg AS sysUserUimg,
             		
+com.baomidou.mybatisplus.generator.config.po.TableField@15fb07c6
         		sysUser.role_id AS sysUserRoleId,
         		sysRole.name AS sysRoleName,
             		
+com.baomidou.mybatisplus.generator.config.po.TableField@70009d4d
         		sysUser.true_name AS sysUserTrueName,
             		
+com.baomidou.mybatisplus.generator.config.po.TableField@2bd5888b
         		sysUser.mobile AS sysUserMobile,
             		
+com.baomidou.mybatisplus.generator.config.po.TableField@19f9586a
         		sysUser.created_time AS sysUserCreatedTime,
             		
+com.baomidou.mybatisplus.generator.config.po.TableField@645a7b33
         		sysUser.updated_time AS sysUserUpdatedTime
 		 FROM 
 		 	sys_user sysUser

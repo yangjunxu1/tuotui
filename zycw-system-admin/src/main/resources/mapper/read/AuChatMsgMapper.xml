@@ -84,16 +84,22 @@
     
     <select id="selectObjById" parameterType="java.util.Map" resultType="java.util.HashMap">
     	SELECT  
+com.baomidou.mybatisplus.generator.config.po.TableField@2a270dbf
         		auChatMsg.id AS auChatMsgId,
             		
+com.baomidou.mybatisplus.generator.config.po.TableField@2de87915
         		auChatMsg.senduserid AS auChatMsgSenduserid,
             		
+com.baomidou.mybatisplus.generator.config.po.TableField@72c2e846
         		auChatMsg.reciveuserid AS auChatMsgReciveuserid,
             		
+com.baomidou.mybatisplus.generator.config.po.TableField@4585d272
         		auChatMsg.sendtime AS auChatMsgSendtime,
             		
+com.baomidou.mybatisplus.generator.config.po.TableField@229f5c59
         		auChatMsg.sendtext AS auChatMsgSendtext,
             		
+com.baomidou.mybatisplus.generator.config.po.TableField@4cd1a9ce
         		auChatMsg.msgtype AS auChatMsgMsgtype
 		 FROM 
 		 	au_chat_msg auChatMsg

@@ -60,8 +60,10 @@
     
     <select id="selectObjById" parameterType="java.util.Map" resultType="java.util.HashMap">
     	SELECT  
+com.baomidou.mybatisplus.generator.config.po.TableField@21de4de1
         		sysHobby.id AS sysHobbyId,
             		
+com.baomidou.mybatisplus.generator.config.po.TableField@d6c2bb3
         		sysHobby.hobby_title AS sysHobbyHobbyTitle
 		 FROM 
 		 	sys_hobby sysHobby

@@ -163,7 +163,7 @@ public class AuAccountConsumeController extends BaseController <IAuAccountConsum
     	@ApiImplicitParam(name = "auUserMobile", value = "return-lvM手机号", required = false, dataType = "String"),
     	@ApiImplicitParam(name = "auAccountConsumePrice", value = "return-消费金额", required = false, dataType = "String"),
     	@ApiImplicitParam(name = "auAccountConsumeTaskId", value = "return-任务", required = false, dataType = "String"),
-    	@ApiImplicitParam(name = "auAccountConsumeConsumeTime", value = "return-消费时间", required = false, dataType = "Date"),
+    	@ApiImplicitParam(name = "auAccountConsumeConsumeTime", value = "return-消费时间", required = false, dataType = "Date")
      })
      @RequestMapping(value = "/allList", method = RequestMethod.POST)
 	public ResultBean<List<AuAccountConsume>> allList(@RequestBody HashMap<String,Object> param){

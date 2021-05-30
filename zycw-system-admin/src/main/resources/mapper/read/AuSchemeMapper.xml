@@ -108,24 +108,34 @@
     
     <select id="selectObjById" parameterType="java.util.Map" resultType="java.util.HashMap">
     	SELECT  
+com.baomidou.mybatisplus.generator.config.po.TableField@4c0f1cd5
         		auScheme.id AS auSchemeId,
             		
+com.baomidou.mybatisplus.generator.config.po.TableField@5fc7008d
         		auScheme.name AS auSchemeName,
             		
+com.baomidou.mybatisplus.generator.config.po.TableField@3b099df8
         		auScheme.price AS auSchemePrice,
             		
+com.baomidou.mybatisplus.generator.config.po.TableField@15e4dfa8
         		auScheme.content AS auSchemeContent,
             		
+com.baomidou.mybatisplus.generator.config.po.TableField@3775133
         		auScheme.status AS auSchemeStatus,
             		
+com.baomidou.mybatisplus.generator.config.po.TableField@6453eab8
         		auScheme.extension_type AS auSchemeExtensionType,
             		
+com.baomidou.mybatisplus.generator.config.po.TableField@13425d97
         		auScheme.task_type AS auSchemeTaskType,
             		
+com.baomidou.mybatisplus.generator.config.po.TableField@2068c9c8
         		auScheme.task_depth AS auSchemeTaskDepth,
             		
+com.baomidou.mybatisplus.generator.config.po.TableField@19afea3f
         		auScheme.created_time AS auSchemeCreatedTime,
             		
+com.baomidou.mybatisplus.generator.config.po.TableField@6252d598
         		auScheme.updated_time AS auSchemeUpdatedTime
 		 FROM 
 		 	au_scheme auScheme

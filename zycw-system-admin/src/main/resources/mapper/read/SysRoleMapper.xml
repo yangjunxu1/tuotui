@@ -60,8 +60,10 @@
     
     <select id="selectObjById" parameterType="java.util.Map" resultType="java.util.HashMap">
     	SELECT  
+com.baomidou.mybatisplus.generator.config.po.TableField@3743ac8e
         		sysRole.id AS sysRoleId,
             		
+com.baomidou.mybatisplus.generator.config.po.TableField@56c9ed37
         		sysRole.name AS sysRoleName
 		 FROM 
 		 	sys_role sysRole

@@ -72,12 +72,16 @@
     
     <select id="selectObjById" parameterType="java.util.Map" resultType="java.util.HashMap">
     	SELECT  
+com.baomidou.mybatisplus.generator.config.po.TableField@752ada14
         		chatFriends.id AS chatFriendsId,
             		
+com.baomidou.mybatisplus.generator.config.po.TableField@15000d5c
         		chatFriends.userid AS chatFriendsUserid,
             		
+com.baomidou.mybatisplus.generator.config.po.TableField@43d8b22c
         		chatFriends.fuserid AS chatFriendsFuserid,
             		
+com.baomidou.mybatisplus.generator.config.po.TableField@f2f5d45
         		chatFriends.addtime AS chatFriendsAddtime
 		 FROM 
 		 	chat_friends chatFriends

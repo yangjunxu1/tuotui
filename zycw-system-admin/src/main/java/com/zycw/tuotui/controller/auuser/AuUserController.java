@@ -205,7 +205,7 @@ public class AuUserController extends BaseController <IAuUserService, AuUser>{
     	@ApiImplicitParam(name = "auUserWxid", value = "return-lv微信id", required = false, dataType = "String"),
     	@ApiImplicitParam(name = "auUserZfbid", value = "return-lv支付宝id", required = false, dataType = "String"),
     	@ApiImplicitParam(name = "auUserCreatedTime", value = "return-l创建时间", required = false, dataType = "Date"),
-    	@ApiImplicitParam(name = "auUserUpdatedTime", value = "return-修改时间", required = false, dataType = "Date"),
+    	@ApiImplicitParam(name = "auUserUpdatedTime", value = "return-修改时间", required = false, dataType = "Date")
      })
      @RequestMapping(value = "/allList", method = RequestMethod.POST)
 	public ResultBean<List<AuUser>> allList(@RequestBody HashMap<String,Object> param){

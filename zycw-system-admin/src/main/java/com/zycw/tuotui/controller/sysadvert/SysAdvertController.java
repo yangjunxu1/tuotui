@@ -175,7 +175,7 @@ public class SysAdvertController extends BaseController <ISysAdvertService, SysA
     	@ApiImplicitParam(name = "sysAdvertType", value = "return-lvS广告类型:0-协议,1-站内广告，2-外链广告", required = false, dataType = "String"),
     	@ApiImplicitParam(name = "sysAdvertContent", value = "return-文字介绍", required = false, dataType = "String"),
     	@ApiImplicitParam(name = "sysAdvertCreatedTime", value = "return-il创建时间", required = false, dataType = "Date"),
-    	@ApiImplicitParam(name = "sysAdvertUpdatedTime", value = "return-u修改时间", required = false, dataType = "Date"),
+    	@ApiImplicitParam(name = "sysAdvertUpdatedTime", value = "return-u修改时间", required = false, dataType = "Date")
      })
      @RequestMapping(value = "/allList", method = RequestMethod.POST)
 	public ResultBean<List<SysAdvert>> allList(@RequestBody HashMap<String,Object> param){

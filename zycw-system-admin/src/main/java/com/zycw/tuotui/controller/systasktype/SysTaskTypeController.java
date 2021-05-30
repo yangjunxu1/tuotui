@@ -151,7 +151,7 @@ public class SysTaskTypeController extends BaseController <ISysTaskTypeService, 
     	@ApiImplicitParam(name = "sysTaskTypeId", value = "return-ID", required = false, dataType = "String"),
     	@ApiImplicitParam(name = "sysTaskTypeTypeTitle", value = "return-lvM分类名称", required = false, dataType = "String"),
     	@ApiImplicitParam(name = "sysTaskTypeTypePrice", value = "return-lv任务分类价格", required = false, dataType = "String"),
-    	@ApiImplicitParam(name = "sysTaskTypeTypeContent", value = "return-简介", required = false, dataType = "String"),
+    	@ApiImplicitParam(name = "sysTaskTypeTypeContent", value = "return-简介", required = false, dataType = "String")
      })
      @RequestMapping(value = "/allList", method = RequestMethod.POST)
 	public ResultBean<List<SysTaskType>> allList(@RequestBody HashMap<String,Object> param){

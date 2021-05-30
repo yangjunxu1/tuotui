@@ -159,7 +159,7 @@ public class AuChatMsgController extends BaseController <IAuChatMsgService, AuCh
     	@ApiImplicitParam(name = "auChatMsgReciveuserid", value = "return-lv客服", required = false, dataType = "String"),
     	@ApiImplicitParam(name = "auChatMsgSendtime", value = "return-lvi聊天时间", required = false, dataType = "Date"),
     	@ApiImplicitParam(name = "auChatMsgSendtext", value = "return-vl聊天内容", required = false, dataType = "String"),
-    	@ApiImplicitParam(name = "auChatMsgMsgtype", value = "return-消息类型", required = false, dataType = "String"),
+    	@ApiImplicitParam(name = "auChatMsgMsgtype", value = "return-消息类型", required = false, dataType = "String")
      })
      @RequestMapping(value = "/allList", method = RequestMethod.POST)
 	public ResultBean<List<AuChatMsg>> allList(@RequestBody HashMap<String,Object> param){

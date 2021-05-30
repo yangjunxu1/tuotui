@@ -72,22 +72,26 @@
     
     <select id="selectObjById" parameterType="java.util.Map" resultType="java.util.HashMap">
     	SELECT  
+com.baomidou.mybatisplus.generator.config.po.TableField@2cf9e662
         		auChatFriends.id AS auChatFriendsId,
             		
+com.baomidou.mybatisplus.generator.config.po.TableField@7cfe1489
         		auChatFriends.user_id AS auChatFriendsUserId,
         		auUser.mobile AS auUserMobile,
             		
+com.baomidou.mybatisplus.generator.config.po.TableField@2ca5ca17
         		auChatFriends.fuser_id AS auChatFriendsFuserId,
         		sysUser.username AS sysUserUsername,
             		
+com.baomidou.mybatisplus.generator.config.po.TableField@1fba066
         		auChatFriends.addtime AS auChatFriendsAddtime
 		 FROM 
 		 	au_chat_friends auChatFriends
-        	,au_user	auUser
         	,sys_user	sysUser
+        	,au_user	auUser
     	WHERE 1=1
-				and auChatFriends.user_id = auUser.id
 				and auChatFriends.fuser_id = sysUser.id
+				and auChatFriends.user_id = auUser.id
 		 and sysUser.id=#{auChatFriendsId}
     </select>
     
@@ -96,17 +100,17 @@
     		COUNT(1)
     	FROM
     		au_chat_friends auChatFriends
-        	,au_user	auUser
         	,sys_user	sysUser
+        	,au_user	auUser
     	WHERE 1=1
     	
-				and auChatFriends.user_id = auUser.id
 				and auChatFriends.fuser_id = sysUser.id
-        	<if test="param.auChatFriendsUserId != null and param.auChatFriendsUserId != '' ">
-				and user_id =#(param.auChatFriendsUserId) 
-			</if>
+				and auChatFriends.user_id = auUser.id
         	<if test="param.auChatFriendsFuserId != null and param.auChatFriendsFuserId != '' ">
 				and fuser_id =#(param.auChatFriendsFuserId) 
+			</if>
+        	<if test="param.auChatFriendsUserId != null and param.auChatFriendsUserId != '' ">
+				and user_id =#(param.auChatFriendsUserId) 
 			</if>
     </select>
     <select id="pageList" parameterType="java.util.Map" resultType="java.util.Map">
@@ -120,17 +124,17 @@
         		auChatFriends.addtime AS auChatFriendsAddtime
     	FROM
     		au_chat_friends auChatFriends
-        	,au_user	auUser
         	,sys_user	sysUser
+        	,au_user	auUser
     	WHERE 1=1
     	
-				and auChatFriends.user_id = auUser.id
 				and auChatFriends.fuser_id = sysUser.id
-        	<if test="param.auChatFriendsUserId != null and param.auChatFriendsUserId != '' ">
-				and user_id =#(param.auChatFriendsUserId) 
-			</if>
+				and auChatFriends.user_id = auUser.id
         	<if test="param.auChatFriendsFuserId != null and param.auChatFriendsFuserId != '' ">
 				and fuser_id =#(param.auChatFriendsFuserId) 
+			</if>
+        	<if test="param.auChatFriendsUserId != null and param.auChatFriendsUserId != '' ">
+				and user_id =#(param.auChatFriendsUserId) 
 			</if>
     		LIMIT #{param.pageStart},#{param.pageNum}
     </select>
@@ -147,17 +151,17 @@
         		auChatFriends.addtime AS auChatFriendsAddtime
     	FROM
     		au_chat_friends auChatFriends
-        	,au_user	auUser
         	,sys_user	sysUser
+        	,au_user	auUser
     	WHERE 1=1
     	
-				and auChatFriends.user_id = auUser.id
 				and auChatFriends.fuser_id = sysUser.id
-        	<if test="param.auChatFriendsUserId != null and param.auChatFriendsUserId != '' ">
-				and user_id =#(param.auChatFriendsUserId) 
-			</if>
+				and auChatFriends.user_id = auUser.id
         	<if test="param.auChatFriendsFuserId != null and param.auChatFriendsFuserId != '' ">
 				and fuser_id =#(param.auChatFriendsFuserId) 
+			</if>
+        	<if test="param.auChatFriendsUserId != null and param.auChatFriendsUserId != '' ">
+				and user_id =#(param.auChatFriendsUserId) 
 			</if>
     </select>
     

@@ -151,7 +151,7 @@ public class ChatFriendsController extends BaseController <IChatFriendsService, 
     	@ApiImplicitParam(name = "chatFriendsId", value = "return-", required = false, dataType = "String"),
     	@ApiImplicitParam(name = "chatFriendsUserid", value = "return-用户id", required = false, dataType = "String"),
     	@ApiImplicitParam(name = "chatFriendsFuserid", value = "return-好友id", required = false, dataType = "String"),
-    	@ApiImplicitParam(name = "chatFriendsAddtime", value = "return-", required = false, dataType = "String"),
+    	@ApiImplicitParam(name = "chatFriendsAddtime", value = "return-", required = false, dataType = "String")
      })
      @RequestMapping(value = "/allList", method = RequestMethod.POST)
 	public ResultBean<List<ChatFriends>> allList(@RequestBody HashMap<String,Object> param){

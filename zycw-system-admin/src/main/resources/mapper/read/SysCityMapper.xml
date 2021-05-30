@@ -66,10 +66,13 @@
     
     <select id="selectObjById" parameterType="java.util.Map" resultType="java.util.HashMap">
     	SELECT  
+com.baomidou.mybatisplus.generator.config.po.TableField@35aafc35
         		sysCity.id AS sysCityId,
             		
+com.baomidou.mybatisplus.generator.config.po.TableField@ac5c9cc
         		sysCity.name AS sysCityName,
             		
+com.baomidou.mybatisplus.generator.config.po.TableField@4f4b397c
         		sysCity.province_id AS sysCityProvinceId
         		sysProvince.name AS sysProvinceName
 		 FROM 

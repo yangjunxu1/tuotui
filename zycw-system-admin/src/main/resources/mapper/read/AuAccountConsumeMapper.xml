@@ -84,18 +84,24 @@
     
     <select id="selectObjById" parameterType="java.util.Map" resultType="java.util.HashMap">
     	SELECT  
+com.baomidou.mybatisplus.generator.config.po.TableField@31ab346c
         		auAccountConsume.id AS auAccountConsumeId,
             		
+com.baomidou.mybatisplus.generator.config.po.TableField@321228ef
         		auAccountConsume.company_id AS auAccountConsumeCompanyId,
         		auCompany.name AS auCompanyName,
             		
+com.baomidou.mybatisplus.generator.config.po.TableField@5c4b29d9
         		auAccountConsume.user_id AS auAccountConsumeUserId,
         		auUser.mobile AS auUserMobile,
             		
+com.baomidou.mybatisplus.generator.config.po.TableField@41185b19
         		auAccountConsume.price AS auAccountConsumePrice,
             		
+com.baomidou.mybatisplus.generator.config.po.TableField@8fab4ce
         		auAccountConsume.task_id AS auAccountConsumeTaskId,
             		
+com.baomidou.mybatisplus.generator.config.po.TableField@37570402
         		auAccountConsume.consume_time AS auAccountConsumeConsumeTime
 		 FROM 
 		 	au_account_consume auAccountConsume

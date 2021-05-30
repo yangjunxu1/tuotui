@@ -145,7 +145,7 @@ public class SysProvinceController extends BaseController <ISysProvinceService, 
      @ApiOperation(value = "allList")
      @ApiImplicitParams({
     	@ApiImplicitParam(name = "sysProvinceId", value = "return-ID", required = false, dataType = "String"),
-    	@ApiImplicitParam(name = "sysProvinceName", value = "return-lvM省名称", required = false, dataType = "String"),
+    	@ApiImplicitParam(name = "sysProvinceName", value = "return-lvM省名称", required = false, dataType = "String")
      })
      @RequestMapping(value = "/allList", method = RequestMethod.POST)
 	public ResultBean<List<SysProvince>> allList(@RequestBody HashMap<String,Object> param){

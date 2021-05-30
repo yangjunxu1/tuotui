@@ -145,7 +145,7 @@ public class SysHobbyController extends BaseController <ISysHobbyService, SysHob
      @ApiOperation(value = "allList")
      @ApiImplicitParams({
     	@ApiImplicitParam(name = "sysHobbyId", value = "return-id", required = false, dataType = "String"),
-    	@ApiImplicitParam(name = "sysHobbyHobbyTitle", value = "return-lvM爱好", required = false, dataType = "String"),
+    	@ApiImplicitParam(name = "sysHobbyHobbyTitle", value = "return-lvM爱好", required = false, dataType = "String")
      })
      @RequestMapping(value = "/allList", method = RequestMethod.POST)
 	public ResultBean<List<SysHobby>> allList(@RequestBody HashMap<String,Object> param){

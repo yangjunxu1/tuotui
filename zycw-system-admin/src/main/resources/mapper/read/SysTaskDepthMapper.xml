@@ -72,12 +72,16 @@
     
     <select id="selectObjById" parameterType="java.util.Map" resultType="java.util.HashMap">
     	SELECT  
+com.baomidou.mybatisplus.generator.config.po.TableField@25de368d
         		sysTaskDepth.id AS sysTaskDepthId,
             		
+com.baomidou.mybatisplus.generator.config.po.TableField@2938e6ee
         		sysTaskDepth.depth_title AS sysTaskDepthDepthTitle,
             		
+com.baomidou.mybatisplus.generator.config.po.TableField@ea9ea7d
         		sysTaskDepth.depth_price AS sysTaskDepthDepthPrice,
             		
+com.baomidou.mybatisplus.generator.config.po.TableField@4143ea23
         		sysTaskDepth.depth_content AS sysTaskDepthDepthContent
 		 FROM 
 		 	sys_task_depth sysTaskDepth

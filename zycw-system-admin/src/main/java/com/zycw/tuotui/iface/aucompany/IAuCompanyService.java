@@ -55,11 +55,48 @@ public class IAuCompanyService extends BaseService<AuCompanyMapper,AuCompany> {
 	}
 	
 	
+	/**
+	 * <p>
+	 * byCompanyName 根据名称删除
+	 * </p>
+	 *
+	 * @author junxu.yang
+	 * @since 2021-05-30
+	 */
+	public void byCompanyName( AuCompany auCompany){
+		mapper.byCompanyName( auCompany);
+	}
+	
+	
+	
 	public void updateObjById(AuCompany auCompany){
 		mapper.updateObjById(auCompany);
 	}
 	
 	
+	
+	/**
+	 * <p>
+	 * testUpdate 测试更新
+	 * </p>
+	 *
+	 * @author junxu.yang
+	 * @since 2021-05-30
+	 */
+	public void testUpdateUpdate( HashMap<String,Object> param){
+		mapper.testUpdateUpdate( param);
+	}
+	/**
+	 * <p>
+	 * testUpdate 测试更新
+	 * </p>
+	 *
+	 * @author junxu.yang
+	 * @since 2021-05-30
+	 */
+	public void testUpdateInsert( HashMap<String,Object> param){
+		mapper.testUpdateInsert( param);
+	}
 	
    /**
     * 添加
@@ -126,6 +163,20 @@ public class IAuCompanyService extends BaseService<AuCompanyMapper,AuCompany> {
 		pagelist.setPageNum(pageNum);
 		return new PageInfo(list);
 
+	}
+   
+	/**
+	 * <p>
+	 * getCompanyByProject 根据项目查询公司
+	 * </p>
+	 *
+	 * @author junxu.yang
+	 * @since 2021-05-30
+	 */
+	
+	public List<HashMap> getCompanyByProject( HashMap<String,Object> param){
+		List<HashMap> result = mapper.getCompanyByProject( param);
+		return result;
 	}
 	
 	

@@ -148,7 +148,7 @@ public class SysAdvertPostitionController extends BaseController <ISysAdvertPost
      @ApiImplicitParams({
     	@ApiImplicitParam(name = "sysAdvertPostitionId", value = "return-ID", required = false, dataType = "String"),
     	@ApiImplicitParam(name = "sysAdvertPostitionName", value = "return-lnM位置名称", required = false, dataType = "String"),
-    	@ApiImplicitParam(name = "sysAdvertPostitionCode", value = "return-位置编码", required = false, dataType = "String"),
+    	@ApiImplicitParam(name = "sysAdvertPostitionCode", value = "return-位置编码", required = false, dataType = "String")
      })
      @RequestMapping(value = "/allList", method = RequestMethod.POST)
 	public ResultBean<List<SysAdvertPostition>> allList(@RequestBody HashMap<String,Object> param){

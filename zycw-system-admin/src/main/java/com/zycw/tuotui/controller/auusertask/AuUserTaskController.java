@@ -165,7 +165,7 @@ public class AuUserTaskController extends BaseController <IAuUserTaskService, Au
     	@ApiImplicitParam(name = "auCustomTaskTaskTitle", value = "return-lvM任务标题", required = false, dataType = "String"),
     	@ApiImplicitParam(name = "auUserTaskTaskStatus", value = "return-lv完成状态:0-已完成，1-未开始，2-进行中，3-已完成，未结算，4-已结算", required = false, dataType = "String"),
     	@ApiImplicitParam(name = "auUserTaskStartTime", value = "return-lv开始时间", required = false, dataType = "Date"),
-    	@ApiImplicitParam(name = "auUserTaskEndTime", value = "return-lv结束时间", required = false, dataType = "Date"),
+    	@ApiImplicitParam(name = "auUserTaskEndTime", value = "return-lv结束时间", required = false, dataType = "Date")
      })
      @RequestMapping(value = "/allList", method = RequestMethod.POST)
 	public ResultBean<List<AuUserTask>> allList(@RequestBody HashMap<String,Object> param){

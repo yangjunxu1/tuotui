@@ -84,18 +84,24 @@
     
     <select id="selectObjById" parameterType="java.util.Map" resultType="java.util.HashMap">
     	SELECT  
+com.baomidou.mybatisplus.generator.config.po.TableField@4f168f8d
         		auUserTask.id AS auUserTaskId,
             		
+com.baomidou.mybatisplus.generator.config.po.TableField@66fa0650
         		auUserTask.user_id AS auUserTaskUserId,
         		auUser.mobile AS auUserMobile,
             		
+com.baomidou.mybatisplus.generator.config.po.TableField@50a3843e
         		auUserTask.task_id AS auUserTaskTaskId,
         		auCustomTask.task_title AS auCustomTaskTaskTitle,
             		
+com.baomidou.mybatisplus.generator.config.po.TableField@1e4e015
         		auUserTask.task_status AS auUserTaskTaskStatus,
             		
+com.baomidou.mybatisplus.generator.config.po.TableField@682caf2e
         		auUserTask.start_time AS auUserTaskStartTime,
             		
+com.baomidou.mybatisplus.generator.config.po.TableField@4ab3d127
         		auUserTask.end_time AS auUserTaskEndTime
 		 FROM 
 		 	au_user_task auUserTask

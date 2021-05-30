@@ -84,18 +84,24 @@
     
     <select id="selectObjById" parameterType="java.util.Map" resultType="java.util.HashMap">
     	SELECT  
+com.baomidou.mybatisplus.generator.config.po.TableField@22f03302
         		auAccountWithdrawal.id AS auAccountWithdrawalId,
             		
+com.baomidou.mybatisplus.generator.config.po.TableField@8794938
         		auAccountWithdrawal.user_id AS auAccountWithdrawalUserId,
         		auUser.mobile AS auUserMobile,
             		
+com.baomidou.mybatisplus.generator.config.po.TableField@38ea6d09
         		auAccountWithdrawal.task_id AS auAccountWithdrawalTaskId,
         		auCustomTask.task_title AS auCustomTaskTaskTitle,
             		
+com.baomidou.mybatisplus.generator.config.po.TableField@3c7b2a3a
         		auAccountWithdrawal.withdrawal_time AS auAccountWithdrawalWithdrawalTime,
             		
+com.baomidou.mybatisplus.generator.config.po.TableField@4801355
         		auAccountWithdrawal.withdrawal_status AS auAccountWithdrawalWithdrawalStatus,
             		
+com.baomidou.mybatisplus.generator.config.po.TableField@5cc73020
         		auAccountWithdrawal.withdrawal_path AS auAccountWithdrawalWithdrawalPath
 		 FROM 
 		 	au_account_withdrawal auAccountWithdrawal

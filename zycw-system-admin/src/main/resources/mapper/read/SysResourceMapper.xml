@@ -90,18 +90,25 @@
     
     <select id="selectObjById" parameterType="java.util.Map" resultType="java.util.HashMap">
     	SELECT  
+com.baomidou.mybatisplus.generator.config.po.TableField@439159c6
         		sysResource.id AS sysResourceId,
             		
+com.baomidou.mybatisplus.generator.config.po.TableField@214ea2d
         		sysResource.name AS sysResourceName,
             		
+com.baomidou.mybatisplus.generator.config.po.TableField@67cec9cc
         		sysResource.router AS sysResourceRouter,
             		
+com.baomidou.mybatisplus.generator.config.po.TableField@7cb421c3
         		sysResource.path AS sysResourcePath,
             		
+com.baomidou.mybatisplus.generator.config.po.TableField@762f7d70
         		sysResource.icon AS sysResourceIcon,
             		
+com.baomidou.mybatisplus.generator.config.po.TableField@534fb41a
         		sysResource.ishidden AS sysResourceIshidden,
             		
+com.baomidou.mybatisplus.generator.config.po.TableField@42de9716
         		sysResource.roles AS sysResourceRoles
 		 FROM 
 		 	sys_resource sysResource

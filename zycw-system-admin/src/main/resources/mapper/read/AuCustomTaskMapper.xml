@@ -246,101 +246,134 @@
     
     <select id="selectObjById" parameterType="java.util.Map" resultType="java.util.HashMap">
     	SELECT  
+com.baomidou.mybatisplus.generator.config.po.TableField@10745039
         		auCustomTask.id AS auCustomTaskId,
             		
+com.baomidou.mybatisplus.generator.config.po.TableField@1aa2fe7c
         		auCustomTask.compayn_id AS auCustomTaskCompaynId,
         		auCompany.name AS auCompanyAppName,
             		
+com.baomidou.mybatisplus.generator.config.po.TableField@1b6832a
         		auCustomTask.user_id AS auCustomTaskUserId,
         		auUser.mobile AS auUserMobile,
             		
+com.baomidou.mybatisplus.generator.config.po.TableField@62aa512a
         		auCustomTask.app_id AS auCustomTaskAppId,
         		auCompanyApp.name AS auCompanyAppName,
             		
+com.baomidou.mybatisplus.generator.config.po.TableField@30af34e8
         		auCustomTask.task_title AS auCustomTaskTaskTitle,
             		
+com.baomidou.mybatisplus.generator.config.po.TableField@783179dc
         		auCustomTask.extension_type AS auCustomTaskExtensionType,
             		
+com.baomidou.mybatisplus.generator.config.po.TableField@4d2b0a23
         		auCustomTask.scheme_id AS auCustomTaskSchemeId,
             		
+com.baomidou.mybatisplus.generator.config.po.TableField@7db831ad
         		auCustomTask.task_type AS auCustomTaskTaskType,
         		sysTaskType.type_title AS sysTaskTypeTypeTitle,
             		
+com.baomidou.mybatisplus.generator.config.po.TableField@34f94286
         		auCustomTask.task_depth AS auCustomTaskTaskDepth,
         		sysTaskDepth.depth_title AS sysTaskDepthDepthTitle,
             		
+com.baomidou.mybatisplus.generator.config.po.TableField@47f5225c
         		auCustomTask.province_id AS auCustomTaskProvinceId,
         		sysProvince.name AS sysProvinceName,
             		
+com.baomidou.mybatisplus.generator.config.po.TableField@521a5293
         		auCustomTask.city_id AS auCustomTaskCityId,
         		sysCity.name AS sysCityName,
             		
+com.baomidou.mybatisplus.generator.config.po.TableField@6e933424
         		auCustomTask.area_id AS auCustomTaskAreaId,
         		sysArea.name AS sysAreaName,
             		
+com.baomidou.mybatisplus.generator.config.po.TableField@1080b602
         		auCustomTask.occupation_id AS auCustomTaskOccupationId,
         		auOccupation.occupation_name AS auOccupationOccupationName,
             		
+com.baomidou.mybatisplus.generator.config.po.TableField@7e09918c
         		auCustomTask.start_time AS auCustomTaskStartTime,
             		
+com.baomidou.mybatisplus.generator.config.po.TableField@7e07da14
         		auCustomTask.end_time AS auCustomTaskEndTime,
             		
+com.baomidou.mybatisplus.generator.config.po.TableField@942e3e4
         		auCustomTask.user_sex AS auCustomTaskUserSex,
             		
+com.baomidou.mybatisplus.generator.config.po.TableField@1c676468
         		auCustomTask.user_age_min AS auCustomTaskUserAgeMin,
             		
+com.baomidou.mybatisplus.generator.config.po.TableField@2ed00399
         		auCustomTask.user_age_max AS auCustomTaskUserAgeMax,
             		
+com.baomidou.mybatisplus.generator.config.po.TableField@6ec7bb2d
         		auCustomTask.hobby_type AS auCustomTaskHobbyType,
             		
+com.baomidou.mybatisplus.generator.config.po.TableField@700428d2
         		auCustomTask.extension_item AS auCustomTaskExtensionItem,
             		
+com.baomidou.mybatisplus.generator.config.po.TableField@57e7569e
         		auCustomTask.extension_nums_item AS auCustomTaskExtensionNumsItem,
             		
+com.baomidou.mybatisplus.generator.config.po.TableField@79055b30
         		auCustomTask.custom_price AS auCustomTaskCustomPrice,
             		
+com.baomidou.mybatisplus.generator.config.po.TableField@2a4899ee
         		auCustomTask.verify_status AS auCustomTaskVerifyStatus,
             		
+com.baomidou.mybatisplus.generator.config.po.TableField@7bdb66cd
         		auCustomTask.task_content AS auCustomTaskTaskContent,
             		
+com.baomidou.mybatisplus.generator.config.po.TableField@16e58c8e
         		auCustomTask.veruft_refuse AS auCustomTaskVeruftRefuse,
             		
+com.baomidou.mybatisplus.generator.config.po.TableField@456a99b9
         		auCustomTask.verify_time AS auCustomTaskVerifyTime,
             		
+com.baomidou.mybatisplus.generator.config.po.TableField@2b83ef13
         		auCustomTask.review_status AS auCustomTaskReviewStatus,
             		
+com.baomidou.mybatisplus.generator.config.po.TableField@b4e19a0
         		auCustomTask.review_refuse AS auCustomTaskReviewRefuse,
             		
+com.baomidou.mybatisplus.generator.config.po.TableField@317575bb
         		auCustomTask.review_time AS auCustomTaskReviewTime,
             		
+com.baomidou.mybatisplus.generator.config.po.TableField@2043857d
         		auCustomTask.task_reward AS auCustomTaskTaskReward,
             		
+com.baomidou.mybatisplus.generator.config.po.TableField@140c1d11
         		auCustomTask.task_status AS auCustomTaskTaskStatus,
             		
+com.baomidou.mybatisplus.generator.config.po.TableField@6f748529
         		auCustomTask.created_time AS auCustomTaskCreatedTime,
             		
+com.baomidou.mybatisplus.generator.config.po.TableField@7536edd1
         		auCustomTask.updated_time AS auCustomTaskUpdatedTime
 		 FROM 
 		 	au_custom_task auCustomTask
         	,au_company	auCompany
-        	,au_company_app	auCompanyApp
         	,au_user	auUser
+        	,au_company_app	auCompanyApp
         	,sys_task_type	sysTaskType
+        	,sys_city	sysCity
+        	,sys_province	sysProvince
         	,sys_task_depth	sysTaskDepth
         	,sys_area	sysArea
-        	,sys_city	sysCity
         	,au_occupation	auOccupation
-        	,sys_province	sysProvince
     	WHERE 1=1
 				and auCustomTask.compayn_id = auCompany.id
-				and auCustomTask.app_id = auCompanyApp.id
 				and auCustomTask.user_id = auUser.id
+				and auCustomTask.app_id = auCompanyApp.id
 				and auCustomTask.task_type = sysTaskType.id
+				and auCustomTask.city_id = sysCity.id
+				and auCustomTask.province_id = sysProvince.id
 				and auCustomTask.task_depth = sysTaskDepth.id
 				and auCustomTask.area_id = sysArea.id
-				and auCustomTask.city_id = sysCity.id
 				and auCustomTask.occupation_id = auOccupation.id
-				and auCustomTask.province_id = sysProvince.id
 		 and auOccupation.id=#{auCustomTaskId}
     </select>
     
@@ -350,36 +383,42 @@
     	FROM
     		au_custom_task auCustomTask
         	,au_company	auCompany
-        	,au_company_app	auCompanyApp
         	,au_user	auUser
+        	,au_company_app	auCompanyApp
         	,sys_task_type	sysTaskType
+        	,sys_city	sysCity
+        	,sys_province	sysProvince
         	,sys_task_depth	sysTaskDepth
         	,sys_area	sysArea
-        	,sys_city	sysCity
         	,au_occupation	auOccupation
-        	,sys_province	sysProvince
     	WHERE 1=1
     	
 				and auCustomTask.compayn_id = auCompany.id
-				and auCustomTask.app_id = auCompanyApp.id
 				and auCustomTask.user_id = auUser.id
+				and auCustomTask.app_id = auCompanyApp.id
 				and auCustomTask.task_type = sysTaskType.id
+				and auCustomTask.city_id = sysCity.id
+				and auCustomTask.province_id = sysProvince.id
 				and auCustomTask.task_depth = sysTaskDepth.id
 				and auCustomTask.area_id = sysArea.id
-				and auCustomTask.city_id = sysCity.id
 				and auCustomTask.occupation_id = auOccupation.id
-				and auCustomTask.province_id = sysProvince.id
         	<if test="param.auCustomTaskCompaynId != null and param.auCustomTaskCompaynId != '' ">
 				and compayn_id =#(param.auCustomTaskCompaynId) 
-			</if>
-        	<if test="param.auCustomTaskAppId != null and param.auCustomTaskAppId != '' ">
-				and app_id =#(param.auCustomTaskAppId) 
 			</if>
         	<if test="param.auCustomTaskUserId != null and param.auCustomTaskUserId != '' ">
 				and user_id =#(param.auCustomTaskUserId) 
 			</if>
+        	<if test="param.auCustomTaskAppId != null and param.auCustomTaskAppId != '' ">
+				and app_id =#(param.auCustomTaskAppId) 
+			</if>
         	<if test="param.auCustomTaskTaskType != null and param.auCustomTaskTaskType != '' ">
 				and task_type =#(param.auCustomTaskTaskType) 
+			</if>
+        	<if test="param.auCustomTaskCityId != null and param.auCustomTaskCityId != '' ">
+				and city_id =#(param.auCustomTaskCityId) 
+			</if>
+        	<if test="param.auCustomTaskProvinceId != null and param.auCustomTaskProvinceId != '' ">
+				and province_id =#(param.auCustomTaskProvinceId) 
 			</if>
         	<if test="param.auCustomTaskTaskDepth != null and param.auCustomTaskTaskDepth != '' ">
 				and task_depth =#(param.auCustomTaskTaskDepth) 
@@ -387,14 +426,8 @@
         	<if test="param.auCustomTaskAreaId != null and param.auCustomTaskAreaId != '' ">
 				and area_id =#(param.auCustomTaskAreaId) 
 			</if>
-        	<if test="param.auCustomTaskCityId != null and param.auCustomTaskCityId != '' ">
-				and city_id =#(param.auCustomTaskCityId) 
-			</if>
         	<if test="param.auCustomTaskOccupationId != null and param.auCustomTaskOccupationId != '' ">
 				and occupation_id =#(param.auCustomTaskOccupationId) 
-			</if>
-        	<if test="param.auCustomTaskProvinceId != null and param.auCustomTaskProvinceId != '' ">
-				and province_id =#(param.auCustomTaskProvinceId) 
 			</if>
     </select>
     <select id="pageList" parameterType="java.util.Map" resultType="java.util.Map">
@@ -467,36 +500,42 @@
     	FROM
     		au_custom_task auCustomTask
         	,au_company	auCompany
-        	,au_company_app	auCompanyApp
         	,au_user	auUser
+        	,au_company_app	auCompanyApp
         	,sys_task_type	sysTaskType
+        	,sys_city	sysCity
+        	,sys_province	sysProvince
         	,sys_task_depth	sysTaskDepth
         	,sys_area	sysArea
-        	,sys_city	sysCity
         	,au_occupation	auOccupation
-        	,sys_province	sysProvince
     	WHERE 1=1
     	
 				and auCustomTask.compayn_id = auCompany.id
-				and auCustomTask.app_id = auCompanyApp.id
 				and auCustomTask.user_id = auUser.id
+				and auCustomTask.app_id = auCompanyApp.id
 				and auCustomTask.task_type = sysTaskType.id
+				and auCustomTask.city_id = sysCity.id
+				and auCustomTask.province_id = sysProvince.id
 				and auCustomTask.task_depth = sysTaskDepth.id
 				and auCustomTask.area_id = sysArea.id
-				and auCustomTask.city_id = sysCity.id
 				and auCustomTask.occupation_id = auOccupation.id
-				and auCustomTask.province_id = sysProvince.id
         	<if test="param.auCustomTaskCompaynId != null and param.auCustomTaskCompaynId != '' ">
 				and compayn_id =#(param.auCustomTaskCompaynId) 
-			</if>
-        	<if test="param.auCustomTaskAppId != null and param.auCustomTaskAppId != '' ">
-				and app_id =#(param.auCustomTaskAppId) 
 			</if>
         	<if test="param.auCustomTaskUserId != null and param.auCustomTaskUserId != '' ">
 				and user_id =#(param.auCustomTaskUserId) 
 			</if>
+        	<if test="param.auCustomTaskAppId != null and param.auCustomTaskAppId != '' ">
+				and app_id =#(param.auCustomTaskAppId) 
+			</if>
         	<if test="param.auCustomTaskTaskType != null and param.auCustomTaskTaskType != '' ">
 				and task_type =#(param.auCustomTaskTaskType) 
+			</if>
+        	<if test="param.auCustomTaskCityId != null and param.auCustomTaskCityId != '' ">
+				and city_id =#(param.auCustomTaskCityId) 
+			</if>
+        	<if test="param.auCustomTaskProvinceId != null and param.auCustomTaskProvinceId != '' ">
+				and province_id =#(param.auCustomTaskProvinceId) 
 			</if>
         	<if test="param.auCustomTaskTaskDepth != null and param.auCustomTaskTaskDepth != '' ">
 				and task_depth =#(param.auCustomTaskTaskDepth) 
@@ -504,14 +543,8 @@
         	<if test="param.auCustomTaskAreaId != null and param.auCustomTaskAreaId != '' ">
 				and area_id =#(param.auCustomTaskAreaId) 
 			</if>
-        	<if test="param.auCustomTaskCityId != null and param.auCustomTaskCityId != '' ">
-				and city_id =#(param.auCustomTaskCityId) 
-			</if>
         	<if test="param.auCustomTaskOccupationId != null and param.auCustomTaskOccupationId != '' ">
 				and occupation_id =#(param.auCustomTaskOccupationId) 
-			</if>
-        	<if test="param.auCustomTaskProvinceId != null and param.auCustomTaskProvinceId != '' ">
-				and province_id =#(param.auCustomTaskProvinceId) 
 			</if>
     		LIMIT #{param.pageStart},#{param.pageNum}
     </select>
@@ -587,36 +620,42 @@
     	FROM
     		au_custom_task auCustomTask
         	,au_company	auCompany
-        	,au_company_app	auCompanyApp
         	,au_user	auUser
+        	,au_company_app	auCompanyApp
         	,sys_task_type	sysTaskType
+        	,sys_city	sysCity
+        	,sys_province	sysProvince
         	,sys_task_depth	sysTaskDepth
         	,sys_area	sysArea
-        	,sys_city	sysCity
         	,au_occupation	auOccupation
-        	,sys_province	sysProvince
     	WHERE 1=1
     	
 				and auCustomTask.compayn_id = auCompany.id
-				and auCustomTask.app_id = auCompanyApp.id
 				and auCustomTask.user_id = auUser.id
+				and auCustomTask.app_id = auCompanyApp.id
 				and auCustomTask.task_type = sysTaskType.id
+				and auCustomTask.city_id = sysCity.id
+				and auCustomTask.province_id = sysProvince.id
 				and auCustomTask.task_depth = sysTaskDepth.id
 				and auCustomTask.area_id = sysArea.id
-				and auCustomTask.city_id = sysCity.id
 				and auCustomTask.occupation_id = auOccupation.id
-				and auCustomTask.province_id = sysProvince.id
         	<if test="param.auCustomTaskCompaynId != null and param.auCustomTaskCompaynId != '' ">
 				and compayn_id =#(param.auCustomTaskCompaynId) 
-			</if>
-        	<if test="param.auCustomTaskAppId != null and param.auCustomTaskAppId != '' ">
-				and app_id =#(param.auCustomTaskAppId) 
 			</if>
         	<if test="param.auCustomTaskUserId != null and param.auCustomTaskUserId != '' ">
 				and user_id =#(param.auCustomTaskUserId) 
 			</if>
+        	<if test="param.auCustomTaskAppId != null and param.auCustomTaskAppId != '' ">
+				and app_id =#(param.auCustomTaskAppId) 
+			</if>
         	<if test="param.auCustomTaskTaskType != null and param.auCustomTaskTaskType != '' ">
 				and task_type =#(param.auCustomTaskTaskType) 
+			</if>
+        	<if test="param.auCustomTaskCityId != null and param.auCustomTaskCityId != '' ">
+				and city_id =#(param.auCustomTaskCityId) 
+			</if>
+        	<if test="param.auCustomTaskProvinceId != null and param.auCustomTaskProvinceId != '' ">
+				and province_id =#(param.auCustomTaskProvinceId) 
 			</if>
         	<if test="param.auCustomTaskTaskDepth != null and param.auCustomTaskTaskDepth != '' ">
 				and task_depth =#(param.auCustomTaskTaskDepth) 
@@ -624,14 +663,8 @@
         	<if test="param.auCustomTaskAreaId != null and param.auCustomTaskAreaId != '' ">
 				and area_id =#(param.auCustomTaskAreaId) 
 			</if>
-        	<if test="param.auCustomTaskCityId != null and param.auCustomTaskCityId != '' ">
-				and city_id =#(param.auCustomTaskCityId) 
-			</if>
         	<if test="param.auCustomTaskOccupationId != null and param.auCustomTaskOccupationId != '' ">
 				and occupation_id =#(param.auCustomTaskOccupationId) 
-			</if>
-        	<if test="param.auCustomTaskProvinceId != null and param.auCustomTaskProvinceId != '' ">
-				and province_id =#(param.auCustomTaskProvinceId) 
 			</if>
     </select>
     

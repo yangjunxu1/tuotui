@@ -173,7 +173,7 @@ public class AuSchemeController extends BaseController <IAuSchemeService, AuSche
     	@ApiImplicitParam(name = "auSchemeTaskType", value = "return-lv任务类型", required = false, dataType = "int"),
     	@ApiImplicitParam(name = "auSchemeTaskDepth", value = "return-lv任务深度", required = false, dataType = "int"),
     	@ApiImplicitParam(name = "auSchemeCreatedTime", value = "return-创建时间", required = false, dataType = "Date"),
-    	@ApiImplicitParam(name = "auSchemeUpdatedTime", value = "return-i-更新时间", required = false, dataType = "Date"),
+    	@ApiImplicitParam(name = "auSchemeUpdatedTime", value = "return-i-更新时间", required = false, dataType = "Date")
      })
      @RequestMapping(value = "/allList", method = RequestMethod.POST)
 	public ResultBean<List<AuScheme>> allList(@RequestBody HashMap<String,Object> param){

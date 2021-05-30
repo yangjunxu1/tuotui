@@ -109,8 +109,8 @@ public class AuChatFriendsController extends BaseController <IAuChatFriendsServi
      
      @ApiOperation(value = "分页查询")
      @ApiImplicitParams({
-    	@ApiImplicitParam(name = "auChatFriendsUserId", value = "用户", required = false, dataType = "${dataType}"),
     	@ApiImplicitParam(name = "auChatFriendsFuserId", value = "好友", required = false, dataType = "${dataType}"),
+    	@ApiImplicitParam(name = "auChatFriendsUserId", value = "用户", required = false, dataType = "${dataType}"),
 		@ApiImplicitParam(name = "pageSize", value = "每页条数", required = false, dataType = "int"),
 		@ApiImplicitParam(name = "pageNum", value = "当前页数", required = false, dataType = "int"),
 
@@ -152,12 +152,12 @@ public class AuChatFriendsController extends BaseController <IAuChatFriendsServi
 	
      @ApiOperation(value = "allList")
      @ApiImplicitParams({
-    	@ApiImplicitParam(name = "auChatFriendsUserId", value = "用户", required = false, dataType = "Date"),
     	@ApiImplicitParam(name = "auChatFriendsFuserId", value = "好友", required = false, dataType = "Date"),
+    	@ApiImplicitParam(name = "auChatFriendsUserId", value = "用户", required = false, dataType = "Date"),
     	@ApiImplicitParam(name = "auChatFriendsId", value = "return-ID", required = false, dataType = "Date"),
     	@ApiImplicitParam(name = "auUserMobile", value = "return-lvM手机号", required = false, dataType = "String"),
     	@ApiImplicitParam(name = "sysUserUsername", value = "return-lvM用户名", required = false, dataType = "String"),
-    	@ApiImplicitParam(name = "auChatFriendsAddtime", value = "return-i添加时间", required = false, dataType = "Date"),
+    	@ApiImplicitParam(name = "auChatFriendsAddtime", value = "return-i添加时间", required = false, dataType = "Date")
      })
      @RequestMapping(value = "/allList", method = RequestMethod.POST)
 	public ResultBean<List<AuChatFriends>> allList(@RequestBody HashMap<String,Object> param){

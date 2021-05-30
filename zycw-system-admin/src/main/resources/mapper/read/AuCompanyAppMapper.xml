@@ -138,35 +138,50 @@
     
     <select id="selectObjById" parameterType="java.util.Map" resultType="java.util.HashMap">
     	SELECT  
+com.baomidou.mybatisplus.generator.config.po.TableField@366c28d7
         		auCompanyApp.id AS auCompanyAppId,
             		
+com.baomidou.mybatisplus.generator.config.po.TableField@10f27078
         		auCompanyApp.company_id AS auCompanyAppCompanyId,
-        		auCompany.name AS auCompanyName,
+        		auCompany.name AS auCompanyAppName,
             		
+com.baomidou.mybatisplus.generator.config.po.TableField@744862fa
         		auCompanyApp.name AS auCompanyAppName,
             		
+com.baomidou.mybatisplus.generator.config.po.TableField@7214c44b
         		auCompanyApp.remark AS auCompanyAppRemark,
             		
+com.baomidou.mybatisplus.generator.config.po.TableField@35bd0b4d
         		auCompanyApp.icon_path AS auCompanyAppIconPath,
             		
+com.baomidou.mybatisplus.generator.config.po.TableField@1033173c
         		auCompanyApp.app_size AS auCompanyAppAppSize,
             		
+com.baomidou.mybatisplus.generator.config.po.TableField@27dbe872
         		auCompanyApp.down_url AS auCompanyAppDownUrl,
             		
+com.baomidou.mybatisplus.generator.config.po.TableField@73b9465e
         		auCompanyApp.verify_status AS auCompanyAppVerifyStatus,
             		
+com.baomidou.mybatisplus.generator.config.po.TableField@2e83cc07
         		auCompanyApp.veruft_refuse AS auCompanyAppVeruftRefuse,
             		
+com.baomidou.mybatisplus.generator.config.po.TableField@2601a41c
         		auCompanyApp.verify_time AS auCompanyAppVerifyTime,
             		
+com.baomidou.mybatisplus.generator.config.po.TableField@5e6150d6
         		auCompanyApp.review_status AS auCompanyAppReviewStatus,
             		
+com.baomidou.mybatisplus.generator.config.po.TableField@675366f2
         		auCompanyApp.review_refuse AS auCompanyAppReviewRefuse,
             		
+com.baomidou.mybatisplus.generator.config.po.TableField@57006deb
         		auCompanyApp.review_time AS auCompanyAppReviewTime,
             		
+com.baomidou.mybatisplus.generator.config.po.TableField@7c8a0253
         		auCompanyApp.created_time AS auCompanyAppCreatedTime,
             		
+com.baomidou.mybatisplus.generator.config.po.TableField@28391af4
         		auCompanyApp.updated_time AS auCompanyAppUpdatedTime
 		 FROM 
 		 	au_company_app auCompanyApp
@@ -193,7 +208,7 @@
     	SELECT 	
         		auCompanyApp.id AS auCompanyAppId,
             		
-        		auCompany.name AS auCompanyName,
+        		auCompany.name AS auCompanyAppName,
             		
         		auCompanyApp.name AS auCompanyAppName,
             		
@@ -237,7 +252,7 @@
     	    	SELECT 	
         		auCompanyApp.id AS auCompanyAppId,
             		
-        		auCompany.name AS auCompanyName,
+        		auCompany.name AS auCompanyAppName,
             		
         		auCompanyApp.name AS auCompanyAppName,
             		

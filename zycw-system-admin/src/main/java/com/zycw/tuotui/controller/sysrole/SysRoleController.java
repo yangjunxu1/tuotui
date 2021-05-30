@@ -145,7 +145,7 @@ public class SysRoleController extends BaseController <ISysRoleService, SysRole>
      @ApiOperation(value = "allList")
      @ApiImplicitParams({
     	@ApiImplicitParam(name = "sysRoleId", value = "return-ID", required = false, dataType = "String"),
-    	@ApiImplicitParam(name = "sysRoleName", value = "return-lvM名称", required = false, dataType = "String"),
+    	@ApiImplicitParam(name = "sysRoleName", value = "return-lvM名称", required = false, dataType = "String")
      })
      @RequestMapping(value = "/allList", method = RequestMethod.POST)
 	public ResultBean<List<SysRole>> allList(@RequestBody HashMap<String,Object> param){

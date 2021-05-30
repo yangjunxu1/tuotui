@@ -66,10 +66,13 @@
     
     <select id="selectObjById" parameterType="java.util.Map" resultType="java.util.HashMap">
     	SELECT  
+com.baomidou.mybatisplus.generator.config.po.TableField@e15eb3
         		sysAdvertPostition.id AS sysAdvertPostitionId,
             		
+com.baomidou.mybatisplus.generator.config.po.TableField@39c16207
         		sysAdvertPostition.name AS sysAdvertPostitionName,
             		
+com.baomidou.mybatisplus.generator.config.po.TableField@59448c69
         		sysAdvertPostition.code AS sysAdvertPostitionCode
 		 FROM 
 		 	sys_advert_postition sysAdvertPostition

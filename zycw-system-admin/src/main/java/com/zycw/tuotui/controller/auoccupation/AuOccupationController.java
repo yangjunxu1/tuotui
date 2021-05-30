@@ -145,7 +145,7 @@ public class AuOccupationController extends BaseController <IAuOccupationService
      @ApiOperation(value = "allList")
      @ApiImplicitParams({
     	@ApiImplicitParam(name = "auOccupationId", value = "return-id", required = false, dataType = "String"),
-    	@ApiImplicitParam(name = "auOccupationOccupationName", value = "return-Mlv职业", required = false, dataType = "String"),
+    	@ApiImplicitParam(name = "auOccupationOccupationName", value = "return-Mlv职业", required = false, dataType = "String")
      })
      @RequestMapping(value = "/allList", method = RequestMethod.POST)
 	public ResultBean<List<AuOccupation>> allList(@RequestBody HashMap<String,Object> param){

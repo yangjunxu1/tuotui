@@ -160,7 +160,7 @@ public class SysResourceController extends BaseController <ISysResourceService, 
     	@ApiImplicitParam(name = "sysResourcePath", value = "return-lv文件路径", required = false, dataType = "String"),
     	@ApiImplicitParam(name = "sysResourceIcon", value = "return-图标", required = false, dataType = "String"),
     	@ApiImplicitParam(name = "sysResourceIshidden", value = "return-lv默认是否隐藏:0-隐藏,1-显示", required = false, dataType = "int"),
-    	@ApiImplicitParam(name = "sysResourceRoles", value = "return-管理组", required = false, dataType = "String"),
+    	@ApiImplicitParam(name = "sysResourceRoles", value = "return-管理组", required = false, dataType = "String")
      })
      @RequestMapping(value = "/allList", method = RequestMethod.POST)
 	public ResultBean<List<SysResource>> allList(@RequestBody HashMap<String,Object> param){

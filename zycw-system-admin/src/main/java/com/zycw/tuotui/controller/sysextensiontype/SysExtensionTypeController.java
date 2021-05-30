@@ -151,7 +151,7 @@ public class SysExtensionTypeController extends BaseController <ISysExtensionTyp
     	@ApiImplicitParam(name = "sysExtensionTypeId", value = "return-ID", required = false, dataType = "String"),
     	@ApiImplicitParam(name = "sysExtensionTypeTitel", value = "return-lvM标题·", required = false, dataType = "String"),
     	@ApiImplicitParam(name = "sysExtensionTypePrice", value = "return-lv价格", required = false, dataType = "String"),
-    	@ApiImplicitParam(name = "sysExtensionTypeContent", value = "return-", required = false, dataType = "String"),
+    	@ApiImplicitParam(name = "sysExtensionTypeContent", value = "return-", required = false, dataType = "String")
      })
      @RequestMapping(value = "/allList", method = RequestMethod.POST)
 	public ResultBean<List<SysExtensionType>> allList(@RequestBody HashMap<String,Object> param){

@@ -60,8 +60,10 @@
     
     <select id="selectObjById" parameterType="java.util.Map" resultType="java.util.HashMap">
     	SELECT  
+com.baomidou.mybatisplus.generator.config.po.TableField@2076e12a
         		auOccupation.id AS auOccupationId,
             		
+com.baomidou.mybatisplus.generator.config.po.TableField@2ef94b7a
         		auOccupation.occupation_name AS auOccupationOccupationName
 		 FROM 
 		 	au_occupation auOccupation

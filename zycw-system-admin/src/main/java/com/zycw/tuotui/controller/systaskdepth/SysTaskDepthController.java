@@ -151,7 +151,7 @@ public class SysTaskDepthController extends BaseController <ISysTaskDepthService
     	@ApiImplicitParam(name = "sysTaskDepthId", value = "return-ID", required = false, dataType = "String"),
     	@ApiImplicitParam(name = "sysTaskDepthDepthTitle", value = "return-lvM任务深度标题", required = false, dataType = "String"),
     	@ApiImplicitParam(name = "sysTaskDepthDepthPrice", value = "return-lv价格", required = false, dataType = "String"),
-    	@ApiImplicitParam(name = "sysTaskDepthDepthContent", value = "return-v简介", required = false, dataType = "String"),
+    	@ApiImplicitParam(name = "sysTaskDepthDepthContent", value = "return-v简介", required = false, dataType = "String")
      })
      @RequestMapping(value = "/allList", method = RequestMethod.POST)
 	public ResultBean<List<SysTaskDepth>> allList(@RequestBody HashMap<String,Object> param){

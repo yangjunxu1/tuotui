@@ -175,7 +175,7 @@ public class SysUserController extends BaseController <ISysUserService, SysUser>
     	@ApiImplicitParam(name = "sysUserTrueName", value = "return-lv真实姓名", required = false, dataType = "String"),
     	@ApiImplicitParam(name = "sysUserMobile", value = "return-lv联系电话", required = false, dataType = "String"),
     	@ApiImplicitParam(name = "sysUserCreatedTime", value = "return-lv添加日期", required = false, dataType = "Date"),
-    	@ApiImplicitParam(name = "sysUserUpdatedTime", value = "return-修改日期", required = false, dataType = "Date"),
+    	@ApiImplicitParam(name = "sysUserUpdatedTime", value = "return-修改日期", required = false, dataType = "Date")
      })
      @RequestMapping(value = "/allList", method = RequestMethod.POST)
 	public ResultBean<List<SysUser>> allList(@RequestBody HashMap<String,Object> param){

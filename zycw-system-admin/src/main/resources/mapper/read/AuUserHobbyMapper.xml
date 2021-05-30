@@ -66,11 +66,14 @@
     
     <select id="selectObjById" parameterType="java.util.Map" resultType="java.util.HashMap">
     	SELECT  
+com.baomidou.mybatisplus.generator.config.po.TableField@31522707
         		auUserHobby.id AS auUserHobbyId,
             		
+com.baomidou.mybatisplus.generator.config.po.TableField@773441bb
         		auUserHobby.user_id AS auUserHobbyUserId,
         		sysHobby.hobby_title AS sysHobbyHobbyTitle,
             		
+com.baomidou.mybatisplus.generator.config.po.TableField@52afb86b
         		auUserHobby.hobby_id AS auUserHobbyHobbyId
         		sysHobby.hobby_title AS sysHobbyHobbyTitle
 		 FROM 

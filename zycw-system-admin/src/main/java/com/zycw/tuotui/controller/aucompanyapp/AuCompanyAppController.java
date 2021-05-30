@@ -153,7 +153,7 @@ public class AuCompanyAppController extends BaseController <IAuCompanyAppService
      @ApiImplicitParam(name = "auCompanyAppId", value = "ID", required = true, dataType = "String")
      @ApiImplicitParams({
     	@ApiImplicitParam(name = "auCompanyAppId", value = "return-id", required = false, dataType = "Date"),
-    	@ApiImplicitParam(name = "auCompanyName", value = "return-lvM企业名称", required = false, dataType = "String"),
+    	@ApiImplicitParam(name = "auCompanyAppName", value = "return-lvMapp名称", required = false, dataType = "String"),
     	@ApiImplicitParam(name = "auCompanyAppName", value = "return-lvMapp名称", required = false, dataType = "String"),
     	@ApiImplicitParam(name = "auCompanyAppRemark", value = "return-lvapp介绍", required = false, dataType = "String"),
     	@ApiImplicitParam(name = "auCompanyAppIconPath", value = "return-lvapp图标", required = false, dataType = "String"),
@@ -181,7 +181,7 @@ public class AuCompanyAppController extends BaseController <IAuCompanyAppService
      @ApiImplicitParams({
     	@ApiImplicitParam(name = "auCompanyAppCompanyId", value = "lv公司", required = false, dataType = "Date"),
     	@ApiImplicitParam(name = "auCompanyAppId", value = "return-id", required = false, dataType = "Date"),
-    	@ApiImplicitParam(name = "auCompanyName", value = "return-lvM企业名称", required = false, dataType = "String"),
+    	@ApiImplicitParam(name = "auCompanyAppName", value = "return-lvMapp名称", required = false, dataType = "String"),
     	@ApiImplicitParam(name = "auCompanyAppName", value = "return-lvMapp名称", required = false, dataType = "String"),
     	@ApiImplicitParam(name = "auCompanyAppRemark", value = "return-lvapp介绍", required = false, dataType = "String"),
     	@ApiImplicitParam(name = "auCompanyAppIconPath", value = "return-lvapp图标", required = false, dataType = "String"),
@@ -194,7 +194,7 @@ public class AuCompanyAppController extends BaseController <IAuCompanyAppService
     	@ApiImplicitParam(name = "auCompanyAppReviewRefuse", value = "return-v复审拒绝理由", required = false, dataType = "String"),
     	@ApiImplicitParam(name = "auCompanyAppReviewTime", value = "return-lv复审时间", required = false, dataType = "Date"),
     	@ApiImplicitParam(name = "auCompanyAppCreatedTime", value = "return-i-创建时间", required = false, dataType = "Date"),
-    	@ApiImplicitParam(name = "auCompanyAppUpdatedTime", value = "return-i-修改时间", required = false, dataType = "Date"),
+    	@ApiImplicitParam(name = "auCompanyAppUpdatedTime", value = "return-i-修改时间", required = false, dataType = "Date")
      })
      @RequestMapping(value = "/allList", method = RequestMethod.POST)
 	public ResultBean<List<AuCompanyApp>> allList(@RequestBody HashMap<String,Object> param){

@@ -72,12 +72,16 @@
     
     <select id="selectObjById" parameterType="java.util.Map" resultType="java.util.HashMap">
     	SELECT  
+com.baomidou.mybatisplus.generator.config.po.TableField@6ae757f9
         		sysTaskType.id AS sysTaskTypeId,
             		
+com.baomidou.mybatisplus.generator.config.po.TableField@5e5c6ff0
         		sysTaskType.type_title AS sysTaskTypeTypeTitle,
             		
+com.baomidou.mybatisplus.generator.config.po.TableField@21c1871b
         		sysTaskType.type_price AS sysTaskTypeTypePrice,
             		
+com.baomidou.mybatisplus.generator.config.po.TableField@483f6de2
         		sysTaskType.type_content AS sysTaskTypeTypeContent
 		 FROM 
 		 	sys_task_type sysTaskType

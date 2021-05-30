@@ -66,11 +66,14 @@
     
     <select id="selectObjById" parameterType="java.util.Map" resultType="java.util.HashMap">
     	SELECT  
+com.baomidou.mybatisplus.generator.config.po.TableField@73c0a444
         		sysRoleResource.id AS sysRoleResourceId,
             		
+com.baomidou.mybatisplus.generator.config.po.TableField@227b9d83
         		sysRoleResource.role_id AS sysRoleResourceRoleId,
         		sysRole.name AS sysRoleName,
             		
+com.baomidou.mybatisplus.generator.config.po.TableField@46f2785
         		sysRoleResource.resource_id AS sysRoleResourceResourceId
         		sysResource.${viewColumn.columnName} AS 
 		 FROM 
