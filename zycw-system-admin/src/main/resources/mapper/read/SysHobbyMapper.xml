@@ -3,10 +3,13 @@
 <mapper namespace="com.zycw.tuotui.readdao.syshobby.SysHobbyMapper">
 
 
+
+
         <!-- 通用查询映射结果 -->
         <resultMap id="BaseResultMap" type="com.zycw.tuotui.entity.syshobby.SysHobby">
                     <id column="id" />
                     <result column="hobby_title" />
+                    <result column="delFlag" />
         </resultMap>
 
     
@@ -23,16 +26,21 @@
     
     
     <update id="deleteByIdLogic">
-        UPDATE sys_hobby SET delFlag = 1' 
+        UPDATE sys_hobby SET delFlag = 1 
         WHERE 
         id=#{sysHobbyId}
     </update>
+    
+    
+    
+    
     
  
  
  	<update id="updateObjById"  parameterType="com.zycw.tuotui.entity.syshobby.SysHobby">
         UPDATE sys_hobby SET 
-		            hobby_title=#{sysHobbyHobbyTitle}
+		            hobby_title=sysHobbyHobbyTitle,
+		            delFlag=#{sysHobbyDelFlag}
         WHERE 
         id=#{sysHobbyId}
     </update>
@@ -40,19 +48,23 @@
     
     <insert id='insertObj' parameterType="com.zycw.tuotui.entity.syshobby.SysHobby">
     	INSERT INTO sys_hobby(
-    			hobby_title
+    			hobby_title,
+    			delFlag
     	)
         VALUES(
-		           #{sysHobbyHobbyTitle}
+		           #{sysHobbyHobbyTitle},
+		           #{sysHobbyDelFlag}
         )
     </insert>
     <insert id='batchInsertObj' parameterType="java.util.List">
     	INSERT INTO sys_hobby(
-    			hobby_title
+    			hobby_title,
+    			delFlag
     	)
         VALUES(
         <foreach collection="list" item="item"  separator=",">
-		           #{item.sysHobbyHobbyTitle}
+		           #{item.sysHobbyHobbyTitle},
+		           #{item.sysHobbyDelFlag}
         </foreach>
         )
     </insert>
@@ -60,14 +72,18 @@
     
     <select id="selectObjById" parameterType="java.util.Map" resultType="java.util.HashMap">
     	SELECT  
-com.baomidou.mybatisplus.generator.config.po.TableField@21de4de1
+com.baomidou.mybatisplus.generator.config.po.TableField@16f85966
         		sysHobby.id AS sysHobbyId,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@d6c2bb3
-        		sysHobby.hobby_title AS sysHobbyHobbyTitle
+com.baomidou.mybatisplus.generator.config.po.TableField@6ec01411
+        		sysHobby.hobby_title AS sysHobbyHobbyTitle,
+            		
+com.baomidou.mybatisplus.generator.config.po.TableField@27f99848
+        		sysHobby.delFlag AS sysHobbyDelFlag
 		 FROM 
 		 	sys_hobby sysHobby
     	WHERE 1=1
+    	and sysHobby.delFlag = 0
 		 and ${tbAlias}.id=#{sysHobbyId}
     </select>
     
@@ -77,16 +93,20 @@ com.baomidou.mybatisplus.generator.config.po.TableField@d6c2bb3
     	FROM
     		sys_hobby sysHobby
     	WHERE 1=1
+    	and sysHobby.delFlag = 0
     	
     </select>
     <select id="pageList" parameterType="java.util.Map" resultType="java.util.Map">
     	SELECT 	
         		sysHobby.id AS sysHobbyId,
             		
-        		sysHobby.hobby_title AS sysHobbyHobbyTitle
+        		sysHobby.hobby_title AS sysHobbyHobbyTitle,
+            		
+        		sysHobby.delFlag AS sysHobbyDelFlag
     	FROM
     		sys_hobby sysHobby
     	WHERE 1=1
+    	and sysHobby.delFlag = 0
     	
     		LIMIT #{param.pageStart},#{param.pageNum}
     </select>
@@ -96,7 +116,9 @@ com.baomidou.mybatisplus.generator.config.po.TableField@d6c2bb3
     	    	SELECT 	
         		sysHobby.id AS sysHobbyId,
             		
-        		sysHobby.hobby_title AS sysHobbyHobbyTitle
+        		sysHobby.hobby_title AS sysHobbyHobbyTitle,
+            		
+        		sysHobby.delFlag AS sysHobbyDelFlag
     	FROM
     		sys_hobby sysHobby
     	WHERE 1=1

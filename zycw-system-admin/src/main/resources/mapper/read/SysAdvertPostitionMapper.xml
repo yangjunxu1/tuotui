@@ -3,11 +3,14 @@
 <mapper namespace="com.zycw.tuotui.readdao.sysadvertpostition.SysAdvertPostitionMapper">
 
 
+
+
         <!-- 通用查询映射结果 -->
         <resultMap id="BaseResultMap" type="com.zycw.tuotui.entity.sysadvertpostition.SysAdvertPostition">
                     <id column="id" />
                     <result column="name" />
                     <result column="code" />
+                    <result column="delFlag" />
         </resultMap>
 
     
@@ -24,17 +27,22 @@
     
     
     <update id="deleteByIdLogic">
-        UPDATE sys_advert_postition SET delFlag = 1' 
+        UPDATE sys_advert_postition SET delFlag = 1 
         WHERE 
         id=#{sysAdvertPostitionId}
     </update>
+    
+    
+    
+    
     
  
  
  	<update id="updateObjById"  parameterType="com.zycw.tuotui.entity.sysadvertpostition.SysAdvertPostition">
         UPDATE sys_advert_postition SET 
 		            name=sysAdvertPostitionName,
-		            code=#{sysAdvertPostitionCode}
+		            code=sysAdvertPostitionCode,
+		            delFlag=#{sysAdvertPostitionDelFlag}
         WHERE 
         id=#{sysAdvertPostitionId}
     </update>
@@ -43,22 +51,26 @@
     <insert id='insertObj' parameterType="com.zycw.tuotui.entity.sysadvertpostition.SysAdvertPostition">
     	INSERT INTO sys_advert_postition(
     			name,
-    			code
+    			code,
+    			delFlag
     	)
         VALUES(
 		           #{sysAdvertPostitionName},
-		           #{sysAdvertPostitionCode}
+		           #{sysAdvertPostitionCode},
+		           #{sysAdvertPostitionDelFlag}
         )
     </insert>
     <insert id='batchInsertObj' parameterType="java.util.List">
     	INSERT INTO sys_advert_postition(
     			name,
-    			code
+    			code,
+    			delFlag
     	)
         VALUES(
         <foreach collection="list" item="item"  separator=",">
 		           #{item.sysAdvertPostitionName},
-		           #{item.sysAdvertPostitionCode}
+		           #{item.sysAdvertPostitionCode},
+		           #{item.sysAdvertPostitionDelFlag}
         </foreach>
         )
     </insert>
@@ -66,17 +78,21 @@
     
     <select id="selectObjById" parameterType="java.util.Map" resultType="java.util.HashMap">
     	SELECT  
-com.baomidou.mybatisplus.generator.config.po.TableField@e15eb3
+com.baomidou.mybatisplus.generator.config.po.TableField@1dd401f1
         		sysAdvertPostition.id AS sysAdvertPostitionId,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@39c16207
+com.baomidou.mybatisplus.generator.config.po.TableField@7114f66f
         		sysAdvertPostition.name AS sysAdvertPostitionName,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@59448c69
-        		sysAdvertPostition.code AS sysAdvertPostitionCode
+com.baomidou.mybatisplus.generator.config.po.TableField@1d2663dd
+        		sysAdvertPostition.code AS sysAdvertPostitionCode,
+            		
+com.baomidou.mybatisplus.generator.config.po.TableField@5f5c3437
+        		sysAdvertPostition.delFlag AS sysAdvertPostitionDelFlag
 		 FROM 
 		 	sys_advert_postition sysAdvertPostition
     	WHERE 1=1
+    	and sysAdvertPostition.delFlag = 0
 		 and ${tbAlias}.id=#{sysAdvertPostitionId}
     </select>
     
@@ -86,6 +102,7 @@ com.baomidou.mybatisplus.generator.config.po.TableField@59448c69
     	FROM
     		sys_advert_postition sysAdvertPostition
     	WHERE 1=1
+    	and sysAdvertPostition.delFlag = 0
     	
     </select>
     <select id="pageList" parameterType="java.util.Map" resultType="java.util.Map">
@@ -94,10 +111,13 @@ com.baomidou.mybatisplus.generator.config.po.TableField@59448c69
             		
         		sysAdvertPostition.name AS sysAdvertPostitionName,
             		
-        		sysAdvertPostition.code AS sysAdvertPostitionCode
+        		sysAdvertPostition.code AS sysAdvertPostitionCode,
+            		
+        		sysAdvertPostition.delFlag AS sysAdvertPostitionDelFlag
     	FROM
     		sys_advert_postition sysAdvertPostition
     	WHERE 1=1
+    	and sysAdvertPostition.delFlag = 0
     	
     		LIMIT #{param.pageStart},#{param.pageNum}
     </select>
@@ -109,7 +129,9 @@ com.baomidou.mybatisplus.generator.config.po.TableField@59448c69
             		
         		sysAdvertPostition.name AS sysAdvertPostitionName,
             		
-        		sysAdvertPostition.code AS sysAdvertPostitionCode
+        		sysAdvertPostition.code AS sysAdvertPostitionCode,
+            		
+        		sysAdvertPostition.delFlag AS sysAdvertPostitionDelFlag
     	FROM
     		sys_advert_postition sysAdvertPostition
     	WHERE 1=1

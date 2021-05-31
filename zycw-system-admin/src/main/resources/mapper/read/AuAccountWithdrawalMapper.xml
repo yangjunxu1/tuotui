@@ -3,6 +3,8 @@
 <mapper namespace="com.zycw.tuotui.readdao.auaccountwithdrawal.AuAccountWithdrawalMapper">
 
 
+
+
         <!-- 通用查询映射结果 -->
         <resultMap id="BaseResultMap" type="com.zycw.tuotui.entity.auaccountwithdrawal.AuAccountWithdrawal">
                     <id column="id" />
@@ -11,6 +13,7 @@
                     <result column="withdrawal_time" />
                     <result column="withdrawal_status" />
                     <result column="withdrawal_path" />
+                    <result column="deFlag" />
         </resultMap>
 
     
@@ -27,10 +30,24 @@
     
     
     <update id="deleteByIdLogic">
-        UPDATE au_account_withdrawal SET delFlag = 1' 
+        UPDATE au_account_withdrawal SET deFlag = 1 
         WHERE 
         id=#{auAccountWithdrawalId}
     </update>
+    
+    
+	 
+    <delete id="deleteByauAccountWithdrawalUserId">
+        DELETE FROM au_account_withdrawal WHERE 
+        user_id=id
+    </delete>
+	 
+    <delete id="deleteByauAccountWithdrawalTaskId">
+        DELETE FROM au_account_withdrawal WHERE 
+        task_id=id
+    </delete>
+    
+    
     
  
  
@@ -40,7 +57,8 @@
 		            task_id=auAccountWithdrawalTaskId,
 		            withdrawal_time=auAccountWithdrawalWithdrawalTime,
 		            withdrawal_status=auAccountWithdrawalWithdrawalStatus,
-		            withdrawal_path=#{auAccountWithdrawalWithdrawalPath}
+		            withdrawal_path=auAccountWithdrawalWithdrawalPath,
+		            deFlag=#{auAccountWithdrawalDeFlag}
         WHERE 
         id=#{auAccountWithdrawalId}
     </update>
@@ -52,14 +70,16 @@
     			task_id,
     			withdrawal_time,
     			withdrawal_status,
-    			withdrawal_path
+    			withdrawal_path,
+    			deFlag
     	)
         VALUES(
 		           #{auAccountWithdrawalUserId},
 		           #{auAccountWithdrawalTaskId},
 		           #{auAccountWithdrawalWithdrawalTime},
 		           #{auAccountWithdrawalWithdrawalStatus},
-		           #{auAccountWithdrawalWithdrawalPath}
+		           #{auAccountWithdrawalWithdrawalPath},
+		           #{auAccountWithdrawalDeFlag}
         )
     </insert>
     <insert id='batchInsertObj' parameterType="java.util.List">
@@ -68,7 +88,8 @@
     			task_id,
     			withdrawal_time,
     			withdrawal_status,
-    			withdrawal_path
+    			withdrawal_path,
+    			deFlag
     	)
         VALUES(
         <foreach collection="list" item="item"  separator=",">
@@ -76,7 +97,8 @@
 		           #{item.auAccountWithdrawalTaskId},
 		           #{item.auAccountWithdrawalWithdrawalTime},
 		           #{item.auAccountWithdrawalWithdrawalStatus},
-		           #{item.auAccountWithdrawalWithdrawalPath}
+		           #{item.auAccountWithdrawalWithdrawalPath},
+		           #{item.auAccountWithdrawalDeFlag}
         </foreach>
         )
     </insert>
@@ -84,30 +106,34 @@
     
     <select id="selectObjById" parameterType="java.util.Map" resultType="java.util.HashMap">
     	SELECT  
-com.baomidou.mybatisplus.generator.config.po.TableField@22f03302
+com.baomidou.mybatisplus.generator.config.po.TableField@1131d585
         		auAccountWithdrawal.id AS auAccountWithdrawalId,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@8794938
+com.baomidou.mybatisplus.generator.config.po.TableField@2375140f
         		auAccountWithdrawal.user_id AS auAccountWithdrawalUserId,
         		auUser.mobile AS auUserMobile,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@38ea6d09
+com.baomidou.mybatisplus.generator.config.po.TableField@6a896776
         		auAccountWithdrawal.task_id AS auAccountWithdrawalTaskId,
         		auCustomTask.task_title AS auCustomTaskTaskTitle,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@3c7b2a3a
+com.baomidou.mybatisplus.generator.config.po.TableField@67066541
         		auAccountWithdrawal.withdrawal_time AS auAccountWithdrawalWithdrawalTime,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@4801355
+com.baomidou.mybatisplus.generator.config.po.TableField@1ddee74
         		auAccountWithdrawal.withdrawal_status AS auAccountWithdrawalWithdrawalStatus,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@5cc73020
-        		auAccountWithdrawal.withdrawal_path AS auAccountWithdrawalWithdrawalPath
+com.baomidou.mybatisplus.generator.config.po.TableField@30a8e48d
+        		auAccountWithdrawal.withdrawal_path AS auAccountWithdrawalWithdrawalPath,
+            		
+com.baomidou.mybatisplus.generator.config.po.TableField@113b9739
+        		auAccountWithdrawal.deFlag AS auAccountWithdrawalDeFlag
 		 FROM 
 		 	au_account_withdrawal auAccountWithdrawal
         	,au_user	auUser
         	,au_custom_task	auCustomTask
     	WHERE 1=1
+    	and auAccountWithdrawal.deFlag = 0
 				and auAccountWithdrawal.user_id = auUser.id
 				and auAccountWithdrawal.task_id = auCustomTask.id
 		 and auCustomTask.id=#{auAccountWithdrawalId}
@@ -121,6 +147,7 @@ com.baomidou.mybatisplus.generator.config.po.TableField@5cc73020
         	,au_user	auUser
         	,au_custom_task	auCustomTask
     	WHERE 1=1
+    	and auAccountWithdrawal.deFlag = 0
     	
 				and auAccountWithdrawal.user_id = auUser.id
 				and auAccountWithdrawal.task_id = auCustomTask.id
@@ -143,12 +170,15 @@ com.baomidou.mybatisplus.generator.config.po.TableField@5cc73020
             		
         		auAccountWithdrawal.withdrawal_status AS auAccountWithdrawalWithdrawalStatus,
             		
-        		auAccountWithdrawal.withdrawal_path AS auAccountWithdrawalWithdrawalPath
+        		auAccountWithdrawal.withdrawal_path AS auAccountWithdrawalWithdrawalPath,
+            		
+        		auAccountWithdrawal.deFlag AS auAccountWithdrawalDeFlag
     	FROM
     		au_account_withdrawal auAccountWithdrawal
         	,au_user	auUser
         	,au_custom_task	auCustomTask
     	WHERE 1=1
+    	and auAccountWithdrawal.deFlag = 0
     	
 				and auAccountWithdrawal.user_id = auUser.id
 				and auAccountWithdrawal.task_id = auCustomTask.id
@@ -174,7 +204,9 @@ com.baomidou.mybatisplus.generator.config.po.TableField@5cc73020
             		
         		auAccountWithdrawal.withdrawal_status AS auAccountWithdrawalWithdrawalStatus,
             		
-        		auAccountWithdrawal.withdrawal_path AS auAccountWithdrawalWithdrawalPath
+        		auAccountWithdrawal.withdrawal_path AS auAccountWithdrawalWithdrawalPath,
+            		
+        		auAccountWithdrawal.deFlag AS auAccountWithdrawalDeFlag
     	FROM
     		au_account_withdrawal auAccountWithdrawal
         	,au_user	auUser

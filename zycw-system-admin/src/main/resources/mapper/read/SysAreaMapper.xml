@@ -3,12 +3,15 @@
 <mapper namespace="com.zycw.tuotui.readdao.sysarea.SysAreaMapper">
 
 
+
+
         <!-- 通用查询映射结果 -->
         <resultMap id="BaseResultMap" type="com.zycw.tuotui.entity.sysarea.SysArea">
                     <id column="id" />
                     <result column="name" />
                     <result column="city_id" />
                     <result column="province_id" />
+                    <result column="defFlag" />
         </resultMap>
 
     
@@ -25,10 +28,24 @@
     
     
     <update id="deleteByIdLogic">
-        UPDATE sys_area SET delFlag = 1' 
+        UPDATE sys_area SET defFlag = 1 
         WHERE 
         id=#{sysAreaId}
     </update>
+    
+    
+	 
+    <delete id="deleteBysysAreaCityId">
+        DELETE FROM sys_area WHERE 
+        city_id=id
+    </delete>
+	 
+    <delete id="deleteBysysAreaProvinceId">
+        DELETE FROM sys_area WHERE 
+        province_id=id
+    </delete>
+    
+    
     
  
  
@@ -36,7 +53,8 @@
         UPDATE sys_area SET 
 		            name=sysAreaName,
 		            city_id=sysAreaCityId,
-		            province_id=#{sysAreaProvinceId}
+		            province_id=sysAreaProvinceId,
+		            defFlag=#{sysAreaDefFlag}
         WHERE 
         id=#{sysAreaId}
     </update>
@@ -46,25 +64,29 @@
     	INSERT INTO sys_area(
     			name,
     			city_id,
-    			province_id
+    			province_id,
+    			defFlag
     	)
         VALUES(
 		           #{sysAreaName},
 		           #{sysAreaCityId},
-		           #{sysAreaProvinceId}
+		           #{sysAreaProvinceId},
+		           #{sysAreaDefFlag}
         )
     </insert>
     <insert id='batchInsertObj' parameterType="java.util.List">
     	INSERT INTO sys_area(
     			name,
     			city_id,
-    			province_id
+    			province_id,
+    			defFlag
     	)
         VALUES(
         <foreach collection="list" item="item"  separator=",">
 		           #{item.sysAreaName},
 		           #{item.sysAreaCityId},
-		           #{item.sysAreaProvinceId}
+		           #{item.sysAreaProvinceId},
+		           #{item.sysAreaDefFlag}
         </foreach>
         )
     </insert>
@@ -72,24 +94,28 @@
     
     <select id="selectObjById" parameterType="java.util.Map" resultType="java.util.HashMap">
     	SELECT  
-com.baomidou.mybatisplus.generator.config.po.TableField@32f48397
+com.baomidou.mybatisplus.generator.config.po.TableField@6953df72
         		sysArea.id AS sysAreaId,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@76948c85
+com.baomidou.mybatisplus.generator.config.po.TableField@552f230d
         		sysArea.name AS sysAreaName,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@5e7a6b76
+com.baomidou.mybatisplus.generator.config.po.TableField@347114ce
         		sysArea.city_id AS sysAreaCityId,
         		sysCity.name AS sysCityName,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@3165a4c1
-        		sysArea.province_id AS sysAreaProvinceId
-        		sysProvince.name AS sysProvinceName
+com.baomidou.mybatisplus.generator.config.po.TableField@210b9fe0
+        		sysArea.province_id AS sysAreaProvinceId,
+        		sysProvince.name AS sysProvinceName,
+            		
+com.baomidou.mybatisplus.generator.config.po.TableField@673b539f
+        		sysArea.defFlag AS sysAreaDefFlag
 		 FROM 
 		 	sys_area sysArea
         	,sys_city	sysCity
         	,sys_province	sysProvince
     	WHERE 1=1
+    	and sysArea.defFlag = 0
 				and sysArea.city_id = sysCity.id
 				and sysArea.province_id = sysProvince.id
 		 and sysProvince.id=#{sysAreaId}
@@ -103,6 +129,7 @@ com.baomidou.mybatisplus.generator.config.po.TableField@3165a4c1
         	,sys_city	sysCity
         	,sys_province	sysProvince
     	WHERE 1=1
+    	and sysArea.defFlag = 0
     	
 				and sysArea.city_id = sysCity.id
 				and sysArea.province_id = sysProvince.id
@@ -121,12 +148,15 @@ com.baomidou.mybatisplus.generator.config.po.TableField@3165a4c1
             		
         		sysCity.name AS sysCityName,
             		
-        		sysProvince.name AS sysProvinceName
+        		sysProvince.name AS sysProvinceName,
+            		
+        		sysArea.defFlag AS sysAreaDefFlag
     	FROM
     		sys_area sysArea
         	,sys_city	sysCity
         	,sys_province	sysProvince
     	WHERE 1=1
+    	and sysArea.defFlag = 0
     	
 				and sysArea.city_id = sysCity.id
 				and sysArea.province_id = sysProvince.id
@@ -148,7 +178,9 @@ com.baomidou.mybatisplus.generator.config.po.TableField@3165a4c1
             		
         		sysCity.name AS sysCityName,
             		
-        		sysProvince.name AS sysProvinceName
+        		sysProvince.name AS sysProvinceName,
+            		
+        		sysArea.defFlag AS sysAreaDefFlag
     	FROM
     		sys_area sysArea
         	,sys_city	sysCity

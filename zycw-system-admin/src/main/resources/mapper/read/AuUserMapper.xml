@@ -3,6 +3,8 @@
 <mapper namespace="com.zycw.tuotui.readdao.auuser.AuUserMapper">
 
 
+
+
         <!-- 通用查询映射结果 -->
         <resultMap id="BaseResultMap" type="com.zycw.tuotui.entity.auuser.AuUser">
                     <id column="id" />
@@ -12,6 +14,7 @@
                     <result column="type" />
                     <result column="password" />
                     <result column="true_name" />
+                    <result column="useruuid" />
                     <result column="sex" />
                     <result column="province_id" />
                     <result column="city_id" />
@@ -39,10 +42,34 @@
     
     
     <update id="deleteByIdLogic">
-        UPDATE au_user SET delFlag = 1' 
+        UPDATE au_user SET $logicColumn.columnName = $logicTrueValue 
         WHERE 
         id=#{auUserId}
     </update>
+    
+    
+	 
+    <delete id="deleteByauUserProvinceId">
+        DELETE FROM au_user WHERE 
+        province_id=id
+    </delete>
+	 
+    <delete id="deleteByauUserCityId">
+        DELETE FROM au_user WHERE 
+        city_id=id
+    </delete>
+	 
+    <delete id="deleteByauUserAreaId">
+        DELETE FROM au_user WHERE 
+        area_id=id
+    </delete>
+	 
+    <delete id="deleteByauUserOccupationId">
+        DELETE FROM au_user WHERE 
+        occupation_id=id
+    </delete>
+    
+    
     
  
  
@@ -54,6 +81,7 @@
 		            type=auUserType,
 		            password=auUserPassword,
 		            true_name=auUserTrueName,
+		            useruuid=auUserUseruuid,
 		            sex=auUserSex,
 		            province_id=auUserProvinceId,
 		            city_id=auUserCityId,
@@ -78,6 +106,7 @@
     			type,
     			password,
     			true_name,
+    			useruuid,
     			sex,
     			province_id,
     			city_id,
@@ -97,6 +126,7 @@
 		           #{auUserType},
 		           #{auUserPassword},
 		           #{auUserTrueName},
+		           #{auUserUseruuid},
 		           #{auUserSex},
 		           #{auUserProvinceId},
 		           #{auUserCityId},
@@ -118,6 +148,7 @@
     			type,
     			password,
     			true_name,
+    			useruuid,
     			sex,
     			province_id,
     			city_id,
@@ -138,6 +169,7 @@
 		           #{item.auUserType},
 		           #{item.auUserPassword},
 		           #{item.auUserTrueName},
+		           #{item.auUserUseruuid},
 		           #{item.auUserSex},
 		           #{item.auUserProvinceId},
 		           #{item.auUserCityId},
@@ -156,73 +188,76 @@
     
     <select id="selectObjById" parameterType="java.util.Map" resultType="java.util.HashMap">
     	SELECT  
-com.baomidou.mybatisplus.generator.config.po.TableField@7a1964a
+com.baomidou.mybatisplus.generator.config.po.TableField@2bfda6b7
         		auUser.id AS auUserId,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@673e47c9
+com.baomidou.mybatisplus.generator.config.po.TableField@1f7ea57a
         		auUser.mobile AS auUserMobile,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@21a3c22e
+com.baomidou.mybatisplus.generator.config.po.TableField@622b9b2
         		auUser.nick AS auUserNick,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@59756ba2
+com.baomidou.mybatisplus.generator.config.po.TableField@acb3c31
         		auUser.uimg AS auUserUimg,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@758b36cf
+com.baomidou.mybatisplus.generator.config.po.TableField@41100d72
         		auUser.type AS auUserType,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@601e37b8
+com.baomidou.mybatisplus.generator.config.po.TableField@2b2f255f
         		auUser.password AS auUserPassword,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@5f132b27
+com.baomidou.mybatisplus.generator.config.po.TableField@38d3e6a1
         		auUser.true_name AS auUserTrueName,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@2d49731c
+com.baomidou.mybatisplus.generator.config.po.TableField@6baa7f3e
+        		auUser.useruuid AS auUserUseruuid,
+            		
+com.baomidou.mybatisplus.generator.config.po.TableField@2a1094a4
         		auUser.sex AS auUserSex,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@1580534
+com.baomidou.mybatisplus.generator.config.po.TableField@78475964
         		auUser.province_id AS auUserProvinceId,
         		sysProvince.name AS sysProvinceName,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@69732478
+com.baomidou.mybatisplus.generator.config.po.TableField@7ee2e5b4
         		auUser.city_id AS auUserCityId,
         		sysCity.name AS sysCityName,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@664163a3
+com.baomidou.mybatisplus.generator.config.po.TableField@76ee9dbc
         		auUser.area_id AS auUserAreaId,
         		sysArea.name AS sysAreaName,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@684c9591
+com.baomidou.mybatisplus.generator.config.po.TableField@3a2c70a5
         		auUser.occupation_id AS auUserOccupationId,
         		auOccupation.occupation_name AS auOccupationOccupationName,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@14299b23
+com.baomidou.mybatisplus.generator.config.po.TableField@2c73f67e
         		auUser.agentCode AS auUserAgentCode,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@64093d3a
+com.baomidou.mybatisplus.generator.config.po.TableField@45d57901
         		auUser.status AS auUserStatus,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@9380663
+com.baomidou.mybatisplus.generator.config.po.TableField@47540f7a
         		auUser.wxid AS auUserWxid,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@5d4eac8
+com.baomidou.mybatisplus.generator.config.po.TableField@1ea4e66d
         		auUser.zfbid AS auUserZfbid,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@5dfc89d2
+com.baomidou.mybatisplus.generator.config.po.TableField@2dd733c1
         		auUser.created_time AS auUserCreatedTime,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@70b18fba
+com.baomidou.mybatisplus.generator.config.po.TableField@43245a0b
         		auUser.updated_time AS auUserUpdatedTime
 		 FROM 
 		 	au_user auUser
+        	,sys_city	sysCity
         	,sys_province	sysProvince
         	,sys_area	sysArea
-        	,sys_city	sysCity
         	,au_occupation	auOccupation
     	WHERE 1=1
+				and auUser.city_id = sysCity.id
 				and auUser.province_id = sysProvince.id
 				and auUser.area_id = sysArea.id
-				and auUser.city_id = sysCity.id
 				and auUser.occupation_id = auOccupation.id
 		 and auOccupation.id=#{auUserId}
     </select>
@@ -232,24 +267,24 @@ com.baomidou.mybatisplus.generator.config.po.TableField@70b18fba
     		COUNT(1)
     	FROM
     		au_user auUser
+        	,sys_city	sysCity
         	,sys_province	sysProvince
         	,sys_area	sysArea
-        	,sys_city	sysCity
         	,au_occupation	auOccupation
     	WHERE 1=1
     	
+				and auUser.city_id = sysCity.id
 				and auUser.province_id = sysProvince.id
 				and auUser.area_id = sysArea.id
-				and auUser.city_id = sysCity.id
 				and auUser.occupation_id = auOccupation.id
+        	<if test="param.auUserCityId != null and param.auUserCityId != '' ">
+				and city_id =#(param.auUserCityId) 
+			</if>
         	<if test="param.auUserProvinceId != null and param.auUserProvinceId != '' ">
 				and province_id =#(param.auUserProvinceId) 
 			</if>
         	<if test="param.auUserAreaId != null and param.auUserAreaId != '' ">
 				and area_id =#(param.auUserAreaId) 
-			</if>
-        	<if test="param.auUserCityId != null and param.auUserCityId != '' ">
-				and city_id =#(param.auUserCityId) 
 			</if>
         	<if test="param.auUserOccupationId != null and param.auUserOccupationId != '' ">
 				and occupation_id =#(param.auUserOccupationId) 
@@ -271,6 +306,8 @@ com.baomidou.mybatisplus.generator.config.po.TableField@70b18fba
             		
         		auUser.true_name AS auUserTrueName,
             		
+        		auUser.useruuid AS auUserUseruuid,
+            		
         		auUser.sex AS auUserSex,
             		
         		sysProvince.name AS sysProvinceName,
@@ -294,24 +331,25 @@ com.baomidou.mybatisplus.generator.config.po.TableField@70b18fba
         		auUser.updated_time AS auUserUpdatedTime
     	FROM
     		au_user auUser
+        	,sys_city	sysCity
         	,sys_province	sysProvince
         	,sys_area	sysArea
-        	,sys_city	sysCity
         	,au_occupation	auOccupation
     	WHERE 1=1
+    	and auUser.$logicColumn.columnName = $logicFalseValue
     	
+				and auUser.city_id = sysCity.id
 				and auUser.province_id = sysProvince.id
 				and auUser.area_id = sysArea.id
-				and auUser.city_id = sysCity.id
 				and auUser.occupation_id = auOccupation.id
+        	<if test="param.auUserCityId != null and param.auUserCityId != '' ">
+				and city_id =#(param.auUserCityId) 
+			</if>
         	<if test="param.auUserProvinceId != null and param.auUserProvinceId != '' ">
 				and province_id =#(param.auUserProvinceId) 
 			</if>
         	<if test="param.auUserAreaId != null and param.auUserAreaId != '' ">
 				and area_id =#(param.auUserAreaId) 
-			</if>
-        	<if test="param.auUserCityId != null and param.auUserCityId != '' ">
-				and city_id =#(param.auUserCityId) 
 			</if>
         	<if test="param.auUserOccupationId != null and param.auUserOccupationId != '' ">
 				and occupation_id =#(param.auUserOccupationId) 
@@ -336,6 +374,8 @@ com.baomidou.mybatisplus.generator.config.po.TableField@70b18fba
             		
         		auUser.true_name AS auUserTrueName,
             		
+        		auUser.useruuid AS auUserUseruuid,
+            		
         		auUser.sex AS auUserSex,
             		
         		sysProvince.name AS sysProvinceName,
@@ -359,24 +399,24 @@ com.baomidou.mybatisplus.generator.config.po.TableField@70b18fba
         		auUser.updated_time AS auUserUpdatedTime
     	FROM
     		au_user auUser
+        	,sys_city	sysCity
         	,sys_province	sysProvince
         	,sys_area	sysArea
-        	,sys_city	sysCity
         	,au_occupation	auOccupation
     	WHERE 1=1
     	
+				and auUser.city_id = sysCity.id
 				and auUser.province_id = sysProvince.id
 				and auUser.area_id = sysArea.id
-				and auUser.city_id = sysCity.id
 				and auUser.occupation_id = auOccupation.id
+        	<if test="param.auUserCityId != null and param.auUserCityId != '' ">
+				and city_id =#(param.auUserCityId) 
+			</if>
         	<if test="param.auUserProvinceId != null and param.auUserProvinceId != '' ">
 				and province_id =#(param.auUserProvinceId) 
 			</if>
         	<if test="param.auUserAreaId != null and param.auUserAreaId != '' ">
 				and area_id =#(param.auUserAreaId) 
-			</if>
-        	<if test="param.auUserCityId != null and param.auUserCityId != '' ">
-				and city_id =#(param.auUserCityId) 
 			</if>
         	<if test="param.auUserOccupationId != null and param.auUserOccupationId != '' ">
 				and occupation_id =#(param.auUserOccupationId) 

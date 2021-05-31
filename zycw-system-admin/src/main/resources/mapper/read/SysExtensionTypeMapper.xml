@@ -3,12 +3,15 @@
 <mapper namespace="com.zycw.tuotui.readdao.sysextensiontype.SysExtensionTypeMapper">
 
 
+
+
         <!-- 通用查询映射结果 -->
         <resultMap id="BaseResultMap" type="com.zycw.tuotui.entity.sysextensiontype.SysExtensionType">
                     <id column="id" />
                     <result column="titel" />
                     <result column="price" />
                     <result column="content" />
+                    <result column="delFlag" />
         </resultMap>
 
     
@@ -25,10 +28,14 @@
     
     
     <update id="deleteByIdLogic">
-        UPDATE sys_extension_type SET delFlag = 1' 
+        UPDATE sys_extension_type SET delFlag = 1 
         WHERE 
         id=#{sysExtensionTypeId}
     </update>
+    
+    
+    
+    
     
  
  
@@ -36,7 +43,8 @@
         UPDATE sys_extension_type SET 
 		            titel=sysExtensionTypeTitel,
 		            price=sysExtensionTypePrice,
-		            content=#{sysExtensionTypeContent}
+		            content=sysExtensionTypeContent,
+		            delFlag=#{sysExtensionTypeDelFlag}
         WHERE 
         id=#{sysExtensionTypeId}
     </update>
@@ -46,25 +54,29 @@
     	INSERT INTO sys_extension_type(
     			titel,
     			price,
-    			content
+    			content,
+    			delFlag
     	)
         VALUES(
 		           #{sysExtensionTypeTitel},
 		           #{sysExtensionTypePrice},
-		           #{sysExtensionTypeContent}
+		           #{sysExtensionTypeContent},
+		           #{sysExtensionTypeDelFlag}
         )
     </insert>
     <insert id='batchInsertObj' parameterType="java.util.List">
     	INSERT INTO sys_extension_type(
     			titel,
     			price,
-    			content
+    			content,
+    			delFlag
     	)
         VALUES(
         <foreach collection="list" item="item"  separator=",">
 		           #{item.sysExtensionTypeTitel},
 		           #{item.sysExtensionTypePrice},
-		           #{item.sysExtensionTypeContent}
+		           #{item.sysExtensionTypeContent},
+		           #{item.sysExtensionTypeDelFlag}
         </foreach>
         )
     </insert>
@@ -72,20 +84,24 @@
     
     <select id="selectObjById" parameterType="java.util.Map" resultType="java.util.HashMap">
     	SELECT  
-com.baomidou.mybatisplus.generator.config.po.TableField@41bd8a46
+com.baomidou.mybatisplus.generator.config.po.TableField@50ecdd2f
         		sysExtensionType.id AS sysExtensionTypeId,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@5f9c3992
+com.baomidou.mybatisplus.generator.config.po.TableField@596f43f3
         		sysExtensionType.titel AS sysExtensionTypeTitel,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@49942a7f
+com.baomidou.mybatisplus.generator.config.po.TableField@7460c9e2
         		sysExtensionType.price AS sysExtensionTypePrice,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@46a7fdb9
-        		sysExtensionType.content AS sysExtensionTypeContent
+com.baomidou.mybatisplus.generator.config.po.TableField@204b318a
+        		sysExtensionType.content AS sysExtensionTypeContent,
+            		
+com.baomidou.mybatisplus.generator.config.po.TableField@3814aafb
+        		sysExtensionType.delFlag AS sysExtensionTypeDelFlag
 		 FROM 
 		 	sys_extension_type sysExtensionType
     	WHERE 1=1
+    	and sysExtensionType.delFlag = 0
 		 and ${tbAlias}.id=#{sysExtensionTypeId}
     </select>
     
@@ -95,6 +111,7 @@ com.baomidou.mybatisplus.generator.config.po.TableField@46a7fdb9
     	FROM
     		sys_extension_type sysExtensionType
     	WHERE 1=1
+    	and sysExtensionType.delFlag = 0
     	
     </select>
     <select id="pageList" parameterType="java.util.Map" resultType="java.util.Map">
@@ -105,10 +122,13 @@ com.baomidou.mybatisplus.generator.config.po.TableField@46a7fdb9
             		
         		sysExtensionType.price AS sysExtensionTypePrice,
             		
-        		sysExtensionType.content AS sysExtensionTypeContent
+        		sysExtensionType.content AS sysExtensionTypeContent,
+            		
+        		sysExtensionType.delFlag AS sysExtensionTypeDelFlag
     	FROM
     		sys_extension_type sysExtensionType
     	WHERE 1=1
+    	and sysExtensionType.delFlag = 0
     	
     		LIMIT #{param.pageStart},#{param.pageNum}
     </select>
@@ -122,7 +142,9 @@ com.baomidou.mybatisplus.generator.config.po.TableField@46a7fdb9
             		
         		sysExtensionType.price AS sysExtensionTypePrice,
             		
-        		sysExtensionType.content AS sysExtensionTypeContent
+        		sysExtensionType.content AS sysExtensionTypeContent,
+            		
+        		sysExtensionType.delFlag AS sysExtensionTypeDelFlag
     	FROM
     		sys_extension_type sysExtensionType
     	WHERE 1=1

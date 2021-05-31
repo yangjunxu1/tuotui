@@ -3,12 +3,15 @@
 <mapper namespace="com.zycw.tuotui.readdao.chatfriends.ChatFriendsMapper">
 
 
+
+
         <!-- 通用查询映射结果 -->
         <resultMap id="BaseResultMap" type="com.zycw.tuotui.entity.chatfriends.ChatFriends">
                     <id column="id" />
                     <result column="userid" />
                     <result column="fuserid" />
                     <result column="addtime" />
+                    <result column="delFlaf" />
         </resultMap>
 
     
@@ -25,10 +28,14 @@
     
     
     <update id="deleteByIdLogic">
-        UPDATE chat_friends SET delFlag = 1' 
+        UPDATE chat_friends SET delFlaf = 1 
         WHERE 
         id=#{chatFriendsId}
     </update>
+    
+    
+    
+    
     
  
  
@@ -36,7 +43,8 @@
         UPDATE chat_friends SET 
 		            userid=chatFriendsUserid,
 		            fuserid=chatFriendsFuserid,
-		            addtime=#{chatFriendsAddtime}
+		            addtime=chatFriendsAddtime,
+		            delFlaf=#{chatFriendsDelFlaf}
         WHERE 
         id=#{chatFriendsId}
     </update>
@@ -46,25 +54,29 @@
     	INSERT INTO chat_friends(
     			userid,
     			fuserid,
-    			addtime
+    			addtime,
+    			delFlaf
     	)
         VALUES(
 		           #{chatFriendsUserid},
 		           #{chatFriendsFuserid},
-		           #{chatFriendsAddtime}
+		           #{chatFriendsAddtime},
+		           #{chatFriendsDelFlaf}
         )
     </insert>
     <insert id='batchInsertObj' parameterType="java.util.List">
     	INSERT INTO chat_friends(
     			userid,
     			fuserid,
-    			addtime
+    			addtime,
+    			delFlaf
     	)
         VALUES(
         <foreach collection="list" item="item"  separator=",">
 		           #{item.chatFriendsUserid},
 		           #{item.chatFriendsFuserid},
-		           #{item.chatFriendsAddtime}
+		           #{item.chatFriendsAddtime},
+		           #{item.chatFriendsDelFlaf}
         </foreach>
         )
     </insert>
@@ -72,20 +84,24 @@
     
     <select id="selectObjById" parameterType="java.util.Map" resultType="java.util.HashMap">
     	SELECT  
-com.baomidou.mybatisplus.generator.config.po.TableField@752ada14
+com.baomidou.mybatisplus.generator.config.po.TableField@57073dc0
         		chatFriends.id AS chatFriendsId,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@15000d5c
+com.baomidou.mybatisplus.generator.config.po.TableField@ba4e955
         		chatFriends.userid AS chatFriendsUserid,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@43d8b22c
+com.baomidou.mybatisplus.generator.config.po.TableField@7eff5f7a
         		chatFriends.fuserid AS chatFriendsFuserid,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@f2f5d45
-        		chatFriends.addtime AS chatFriendsAddtime
+com.baomidou.mybatisplus.generator.config.po.TableField@1248f6cf
+        		chatFriends.addtime AS chatFriendsAddtime,
+            		
+com.baomidou.mybatisplus.generator.config.po.TableField@15bdfc8b
+        		chatFriends.delFlaf AS chatFriendsDelFlaf
 		 FROM 
 		 	chat_friends chatFriends
     	WHERE 1=1
+    	and chatFriends.delFlaf = 0
 		 and ${tbAlias}.id=#{chatFriendsId}
     </select>
     
@@ -95,6 +111,7 @@ com.baomidou.mybatisplus.generator.config.po.TableField@f2f5d45
     	FROM
     		chat_friends chatFriends
     	WHERE 1=1
+    	and chatFriends.delFlaf = 0
     	
     </select>
     <select id="pageList" parameterType="java.util.Map" resultType="java.util.Map">
@@ -105,10 +122,13 @@ com.baomidou.mybatisplus.generator.config.po.TableField@f2f5d45
             		
         		chatFriends.fuserid AS chatFriendsFuserid,
             		
-        		chatFriends.addtime AS chatFriendsAddtime
+        		chatFriends.addtime AS chatFriendsAddtime,
+            		
+        		chatFriends.delFlaf AS chatFriendsDelFlaf
     	FROM
     		chat_friends chatFriends
     	WHERE 1=1
+    	and chatFriends.delFlaf = 0
     	
     		LIMIT #{param.pageStart},#{param.pageNum}
     </select>
@@ -122,7 +142,9 @@ com.baomidou.mybatisplus.generator.config.po.TableField@f2f5d45
             		
         		chatFriends.fuserid AS chatFriendsFuserid,
             		
-        		chatFriends.addtime AS chatFriendsAddtime
+        		chatFriends.addtime AS chatFriendsAddtime,
+            		
+        		chatFriends.delFlaf AS chatFriendsDelFlaf
     	FROM
     		chat_friends chatFriends
     	WHERE 1=1

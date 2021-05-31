@@ -3,6 +3,8 @@
 <mapper namespace="com.zycw.tuotui.readdao.sysuser.SysUserMapper">
 
 
+
+
         <!-- 通用查询映射结果 -->
         <resultMap id="BaseResultMap" type="com.zycw.tuotui.entity.sysuser.SysUser">
                     <id column="id" />
@@ -15,6 +17,7 @@
                     <result column="mobile" />
                     <result column="created_time" />
                     <result column="updated_time" />
+                    <result column="delFlag" />
         </resultMap>
 
     
@@ -31,10 +34,19 @@
     
     
     <update id="deleteByIdLogic">
-        UPDATE sys_user SET delFlag = 1' 
+        UPDATE sys_user SET delFlag = 1 
         WHERE 
         id=#{sysUserId}
     </update>
+    
+    
+	 
+    <delete id="deleteBysysUserRoleId">
+        DELETE FROM sys_user WHERE 
+        role_id=id
+    </delete>
+    
+    
     
  
  
@@ -48,7 +60,8 @@
 		            true_name=sysUserTrueName,
 		            mobile=sysUserMobile,
 		            created_time=sysUserCreatedTime,
-		            updated_time=#{sysUserUpdatedTime}
+		            updated_time=sysUserUpdatedTime,
+		            delFlag=#{sysUserDelFlag}
         WHERE 
         id=#{sysUserId}
     </update>
@@ -64,7 +77,8 @@
     			true_name,
     			mobile,
     			created_time,
-    			updated_time
+    			updated_time,
+    			delFlag
     	)
         VALUES(
 		           #{sysUserUsername},
@@ -75,7 +89,8 @@
 		           #{sysUserTrueName},
 		           #{sysUserMobile},
 		           #{sysUserCreatedTime},
-		           #{sysUserUpdatedTime}
+		           #{sysUserUpdatedTime},
+		           #{sysUserDelFlag}
         )
     </insert>
     <insert id='batchInsertObj' parameterType="java.util.List">
@@ -88,7 +103,8 @@
     			true_name,
     			mobile,
     			created_time,
-    			updated_time
+    			updated_time,
+    			delFlag
     	)
         VALUES(
         <foreach collection="list" item="item"  separator=",">
@@ -100,7 +116,8 @@
 		           #{item.sysUserTrueName},
 		           #{item.sysUserMobile},
 		           #{item.sysUserCreatedTime},
-		           #{item.sysUserUpdatedTime}
+		           #{item.sysUserUpdatedTime},
+		           #{item.sysUserDelFlag}
         </foreach>
         )
     </insert>
@@ -108,40 +125,44 @@
     
     <select id="selectObjById" parameterType="java.util.Map" resultType="java.util.HashMap">
     	SELECT  
-com.baomidou.mybatisplus.generator.config.po.TableField@16017497
+com.baomidou.mybatisplus.generator.config.po.TableField@2b41f2b1
         		sysUser.id AS sysUserId,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@fcbe910
+com.baomidou.mybatisplus.generator.config.po.TableField@580dff21
         		sysUser.username AS sysUserUsername,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@483ddd7d
+com.baomidou.mybatisplus.generator.config.po.TableField@1c6b0fdb
         		sysUser.password AS sysUserPassword,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@61622bea
+com.baomidou.mybatisplus.generator.config.po.TableField@547efeb8
         		sysUser.nike AS sysUserNike,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@45a8e50a
+com.baomidou.mybatisplus.generator.config.po.TableField@6358becb
         		sysUser.uimg AS sysUserUimg,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@15fb07c6
+com.baomidou.mybatisplus.generator.config.po.TableField@541bb176
         		sysUser.role_id AS sysUserRoleId,
         		sysRole.name AS sysRoleName,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@70009d4d
+com.baomidou.mybatisplus.generator.config.po.TableField@15c12283
         		sysUser.true_name AS sysUserTrueName,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@2bd5888b
+com.baomidou.mybatisplus.generator.config.po.TableField@2ad6cb55
         		sysUser.mobile AS sysUserMobile,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@19f9586a
+com.baomidou.mybatisplus.generator.config.po.TableField@713f735d
         		sysUser.created_time AS sysUserCreatedTime,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@645a7b33
-        		sysUser.updated_time AS sysUserUpdatedTime
+com.baomidou.mybatisplus.generator.config.po.TableField@77e7f6d4
+        		sysUser.updated_time AS sysUserUpdatedTime,
+            		
+com.baomidou.mybatisplus.generator.config.po.TableField@6b2e0791
+        		sysUser.delFlag AS sysUserDelFlag
 		 FROM 
 		 	sys_user sysUser
         	,sys_role	sysRole
     	WHERE 1=1
+    	and sysUser.delFlag = 0
 				and sysUser.role_id = sysRole.id
 		 and sysRole.id=#{sysUserId}
     </select>
@@ -153,6 +174,7 @@ com.baomidou.mybatisplus.generator.config.po.TableField@645a7b33
     		sys_user sysUser
         	,sys_role	sysRole
     	WHERE 1=1
+    	and sysUser.delFlag = 0
     	
 				and sysUser.role_id = sysRole.id
         	<if test="param.sysUserRoleId != null and param.sysUserRoleId != '' ">
@@ -179,11 +201,14 @@ com.baomidou.mybatisplus.generator.config.po.TableField@645a7b33
             		
         		sysUser.created_time AS sysUserCreatedTime,
             		
-        		sysUser.updated_time AS sysUserUpdatedTime
+        		sysUser.updated_time AS sysUserUpdatedTime,
+            		
+        		sysUser.delFlag AS sysUserDelFlag
     	FROM
     		sys_user sysUser
         	,sys_role	sysRole
     	WHERE 1=1
+    	and sysUser.delFlag = 0
     	
 				and sysUser.role_id = sysRole.id
         	<if test="param.sysUserRoleId != null and param.sysUserRoleId != '' ">
@@ -213,7 +238,9 @@ com.baomidou.mybatisplus.generator.config.po.TableField@645a7b33
             		
         		sysUser.created_time AS sysUserCreatedTime,
             		
-        		sysUser.updated_time AS sysUserUpdatedTime
+        		sysUser.updated_time AS sysUserUpdatedTime,
+            		
+        		sysUser.delFlag AS sysUserDelFlag
     	FROM
     		sys_user sysUser
         	,sys_role	sysRole

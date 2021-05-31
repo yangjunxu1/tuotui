@@ -3,12 +3,15 @@
 <mapper namespace="com.zycw.tuotui.readdao.systaskdepth.SysTaskDepthMapper">
 
 
+
+
         <!-- 通用查询映射结果 -->
         <resultMap id="BaseResultMap" type="com.zycw.tuotui.entity.systaskdepth.SysTaskDepth">
                     <id column="id" />
                     <result column="depth_title" />
                     <result column="depth_price" />
                     <result column="depth_content" />
+                    <result column="delFlag" />
         </resultMap>
 
     
@@ -25,10 +28,14 @@
     
     
     <update id="deleteByIdLogic">
-        UPDATE sys_task_depth SET delFlag = 1' 
+        UPDATE sys_task_depth SET delFlag = 1 
         WHERE 
         id=#{sysTaskDepthId}
     </update>
+    
+    
+    
+    
     
  
  
@@ -36,7 +43,8 @@
         UPDATE sys_task_depth SET 
 		            depth_title=sysTaskDepthDepthTitle,
 		            depth_price=sysTaskDepthDepthPrice,
-		            depth_content=#{sysTaskDepthDepthContent}
+		            depth_content=sysTaskDepthDepthContent,
+		            delFlag=#{sysTaskDepthDelFlag}
         WHERE 
         id=#{sysTaskDepthId}
     </update>
@@ -46,25 +54,29 @@
     	INSERT INTO sys_task_depth(
     			depth_title,
     			depth_price,
-    			depth_content
+    			depth_content,
+    			delFlag
     	)
         VALUES(
 		           #{sysTaskDepthDepthTitle},
 		           #{sysTaskDepthDepthPrice},
-		           #{sysTaskDepthDepthContent}
+		           #{sysTaskDepthDepthContent},
+		           #{sysTaskDepthDelFlag}
         )
     </insert>
     <insert id='batchInsertObj' parameterType="java.util.List">
     	INSERT INTO sys_task_depth(
     			depth_title,
     			depth_price,
-    			depth_content
+    			depth_content,
+    			delFlag
     	)
         VALUES(
         <foreach collection="list" item="item"  separator=",">
 		           #{item.sysTaskDepthDepthTitle},
 		           #{item.sysTaskDepthDepthPrice},
-		           #{item.sysTaskDepthDepthContent}
+		           #{item.sysTaskDepthDepthContent},
+		           #{item.sysTaskDepthDelFlag}
         </foreach>
         )
     </insert>
@@ -72,20 +84,24 @@
     
     <select id="selectObjById" parameterType="java.util.Map" resultType="java.util.HashMap">
     	SELECT  
-com.baomidou.mybatisplus.generator.config.po.TableField@25de368d
+com.baomidou.mybatisplus.generator.config.po.TableField@ef24a0a
         		sysTaskDepth.id AS sysTaskDepthId,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@2938e6ee
+com.baomidou.mybatisplus.generator.config.po.TableField@f7bcfba
         		sysTaskDepth.depth_title AS sysTaskDepthDepthTitle,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@ea9ea7d
+com.baomidou.mybatisplus.generator.config.po.TableField@56eeee4a
         		sysTaskDepth.depth_price AS sysTaskDepthDepthPrice,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@4143ea23
-        		sysTaskDepth.depth_content AS sysTaskDepthDepthContent
+com.baomidou.mybatisplus.generator.config.po.TableField@248262e4
+        		sysTaskDepth.depth_content AS sysTaskDepthDepthContent,
+            		
+com.baomidou.mybatisplus.generator.config.po.TableField@722239cd
+        		sysTaskDepth.delFlag AS sysTaskDepthDelFlag
 		 FROM 
 		 	sys_task_depth sysTaskDepth
     	WHERE 1=1
+    	and sysTaskDepth.delFlag = 0
 		 and ${tbAlias}.id=#{sysTaskDepthId}
     </select>
     
@@ -95,6 +111,7 @@ com.baomidou.mybatisplus.generator.config.po.TableField@4143ea23
     	FROM
     		sys_task_depth sysTaskDepth
     	WHERE 1=1
+    	and sysTaskDepth.delFlag = 0
     	
     </select>
     <select id="pageList" parameterType="java.util.Map" resultType="java.util.Map">
@@ -105,10 +122,13 @@ com.baomidou.mybatisplus.generator.config.po.TableField@4143ea23
             		
         		sysTaskDepth.depth_price AS sysTaskDepthDepthPrice,
             		
-        		sysTaskDepth.depth_content AS sysTaskDepthDepthContent
+        		sysTaskDepth.depth_content AS sysTaskDepthDepthContent,
+            		
+        		sysTaskDepth.delFlag AS sysTaskDepthDelFlag
     	FROM
     		sys_task_depth sysTaskDepth
     	WHERE 1=1
+    	and sysTaskDepth.delFlag = 0
     	
     		LIMIT #{param.pageStart},#{param.pageNum}
     </select>
@@ -122,7 +142,9 @@ com.baomidou.mybatisplus.generator.config.po.TableField@4143ea23
             		
         		sysTaskDepth.depth_price AS sysTaskDepthDepthPrice,
             		
-        		sysTaskDepth.depth_content AS sysTaskDepthDepthContent
+        		sysTaskDepth.depth_content AS sysTaskDepthDepthContent,
+            		
+        		sysTaskDepth.delFlag AS sysTaskDepthDelFlag
     	FROM
     		sys_task_depth sysTaskDepth
     	WHERE 1=1

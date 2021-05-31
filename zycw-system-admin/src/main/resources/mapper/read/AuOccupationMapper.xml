@@ -3,10 +3,13 @@
 <mapper namespace="com.zycw.tuotui.readdao.auoccupation.AuOccupationMapper">
 
 
+
+
         <!-- 通用查询映射结果 -->
         <resultMap id="BaseResultMap" type="com.zycw.tuotui.entity.auoccupation.AuOccupation">
                     <id column="id" />
                     <result column="occupation_name" />
+                    <result column="delFlag" />
         </resultMap>
 
     
@@ -23,16 +26,21 @@
     
     
     <update id="deleteByIdLogic">
-        UPDATE au_occupation SET delFlag = 1' 
+        UPDATE au_occupation SET delFlag = 1 
         WHERE 
         id=#{auOccupationId}
     </update>
+    
+    
+    
+    
     
  
  
  	<update id="updateObjById"  parameterType="com.zycw.tuotui.entity.auoccupation.AuOccupation">
         UPDATE au_occupation SET 
-		            occupation_name=#{auOccupationOccupationName}
+		            occupation_name=auOccupationOccupationName,
+		            delFlag=#{auOccupationDelFlag}
         WHERE 
         id=#{auOccupationId}
     </update>
@@ -40,19 +48,23 @@
     
     <insert id='insertObj' parameterType="com.zycw.tuotui.entity.auoccupation.AuOccupation">
     	INSERT INTO au_occupation(
-    			occupation_name
+    			occupation_name,
+    			delFlag
     	)
         VALUES(
-		           #{auOccupationOccupationName}
+		           #{auOccupationOccupationName},
+		           #{auOccupationDelFlag}
         )
     </insert>
     <insert id='batchInsertObj' parameterType="java.util.List">
     	INSERT INTO au_occupation(
-    			occupation_name
+    			occupation_name,
+    			delFlag
     	)
         VALUES(
         <foreach collection="list" item="item"  separator=",">
-		           #{item.auOccupationOccupationName}
+		           #{item.auOccupationOccupationName},
+		           #{item.auOccupationDelFlag}
         </foreach>
         )
     </insert>
@@ -60,14 +72,18 @@
     
     <select id="selectObjById" parameterType="java.util.Map" resultType="java.util.HashMap">
     	SELECT  
-com.baomidou.mybatisplus.generator.config.po.TableField@2076e12a
+com.baomidou.mybatisplus.generator.config.po.TableField@32fc4e85
         		auOccupation.id AS auOccupationId,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@2ef94b7a
-        		auOccupation.occupation_name AS auOccupationOccupationName
+com.baomidou.mybatisplus.generator.config.po.TableField@5c716bf1
+        		auOccupation.occupation_name AS auOccupationOccupationName,
+            		
+com.baomidou.mybatisplus.generator.config.po.TableField@37637e52
+        		auOccupation.delFlag AS auOccupationDelFlag
 		 FROM 
 		 	au_occupation auOccupation
     	WHERE 1=1
+    	and auOccupation.delFlag = 0
 		 and ${tbAlias}.id=#{auOccupationId}
     </select>
     
@@ -77,16 +93,20 @@ com.baomidou.mybatisplus.generator.config.po.TableField@2ef94b7a
     	FROM
     		au_occupation auOccupation
     	WHERE 1=1
+    	and auOccupation.delFlag = 0
     	
     </select>
     <select id="pageList" parameterType="java.util.Map" resultType="java.util.Map">
     	SELECT 	
         		auOccupation.id AS auOccupationId,
             		
-        		auOccupation.occupation_name AS auOccupationOccupationName
+        		auOccupation.occupation_name AS auOccupationOccupationName,
+            		
+        		auOccupation.delFlag AS auOccupationDelFlag
     	FROM
     		au_occupation auOccupation
     	WHERE 1=1
+    	and auOccupation.delFlag = 0
     	
     		LIMIT #{param.pageStart},#{param.pageNum}
     </select>
@@ -96,7 +116,9 @@ com.baomidou.mybatisplus.generator.config.po.TableField@2ef94b7a
     	    	SELECT 	
         		auOccupation.id AS auOccupationId,
             		
-        		auOccupation.occupation_name AS auOccupationOccupationName
+        		auOccupation.occupation_name AS auOccupationOccupationName,
+            		
+        		auOccupation.delFlag AS auOccupationDelFlag
     	FROM
     		au_occupation auOccupation
     	WHERE 1=1

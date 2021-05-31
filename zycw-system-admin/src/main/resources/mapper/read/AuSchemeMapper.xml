@@ -3,6 +3,8 @@
 <mapper namespace="com.zycw.tuotui.readdao.auscheme.AuSchemeMapper">
 
 
+
+
         <!-- 通用查询映射结果 -->
         <resultMap id="BaseResultMap" type="com.zycw.tuotui.entity.auscheme.AuScheme">
                     <id column="id" />
@@ -15,6 +17,7 @@
                     <result column="task_depth" />
                     <result column="created_time" />
                     <result column="updated_time" />
+                    <result column="delFlag" />
         </resultMap>
 
     
@@ -31,10 +34,14 @@
     
     
     <update id="deleteByIdLogic">
-        UPDATE au_scheme SET delFlag = 1' 
+        UPDATE au_scheme SET delFlag = 1 
         WHERE 
         id=#{auSchemeId}
     </update>
+    
+    
+    
+    
     
  
  
@@ -48,7 +55,8 @@
 		            task_type=auSchemeTaskType,
 		            task_depth=auSchemeTaskDepth,
 		            created_time=auSchemeCreatedTime,
-		            updated_time=#{auSchemeUpdatedTime}
+		            updated_time=auSchemeUpdatedTime,
+		            delFlag=#{auSchemeDelFlag}
         WHERE 
         id=#{auSchemeId}
     </update>
@@ -64,7 +72,8 @@
     			task_type,
     			task_depth,
     			created_time,
-    			updated_time
+    			updated_time,
+    			delFlag
     	)
         VALUES(
 		           #{auSchemeName},
@@ -75,7 +84,8 @@
 		           #{auSchemeTaskType},
 		           #{auSchemeTaskDepth},
 		           #{auSchemeCreatedTime},
-		           #{auSchemeUpdatedTime}
+		           #{auSchemeUpdatedTime},
+		           #{auSchemeDelFlag}
         )
     </insert>
     <insert id='batchInsertObj' parameterType="java.util.List">
@@ -88,7 +98,8 @@
     			task_type,
     			task_depth,
     			created_time,
-    			updated_time
+    			updated_time,
+    			delFlag
     	)
         VALUES(
         <foreach collection="list" item="item"  separator=",">
@@ -100,7 +111,8 @@
 		           #{item.auSchemeTaskType},
 		           #{item.auSchemeTaskDepth},
 		           #{item.auSchemeCreatedTime},
-		           #{item.auSchemeUpdatedTime}
+		           #{item.auSchemeUpdatedTime},
+		           #{item.auSchemeDelFlag}
         </foreach>
         )
     </insert>
@@ -108,38 +120,42 @@
     
     <select id="selectObjById" parameterType="java.util.Map" resultType="java.util.HashMap">
     	SELECT  
-com.baomidou.mybatisplus.generator.config.po.TableField@4c0f1cd5
+com.baomidou.mybatisplus.generator.config.po.TableField@6ce9c0e2
         		auScheme.id AS auSchemeId,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@5fc7008d
+com.baomidou.mybatisplus.generator.config.po.TableField@2fb8d486
         		auScheme.name AS auSchemeName,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@3b099df8
+com.baomidou.mybatisplus.generator.config.po.TableField@420b9e1c
         		auScheme.price AS auSchemePrice,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@15e4dfa8
+com.baomidou.mybatisplus.generator.config.po.TableField@353e4174
         		auScheme.content AS auSchemeContent,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@3775133
+com.baomidou.mybatisplus.generator.config.po.TableField@4e5471c9
         		auScheme.status AS auSchemeStatus,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@6453eab8
+com.baomidou.mybatisplus.generator.config.po.TableField@27a18061
         		auScheme.extension_type AS auSchemeExtensionType,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@13425d97
+com.baomidou.mybatisplus.generator.config.po.TableField@39c411f7
         		auScheme.task_type AS auSchemeTaskType,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@2068c9c8
+com.baomidou.mybatisplus.generator.config.po.TableField@7e36c25a
         		auScheme.task_depth AS auSchemeTaskDepth,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@19afea3f
+com.baomidou.mybatisplus.generator.config.po.TableField@13013e6c
         		auScheme.created_time AS auSchemeCreatedTime,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@6252d598
-        		auScheme.updated_time AS auSchemeUpdatedTime
+com.baomidou.mybatisplus.generator.config.po.TableField@380816e5
+        		auScheme.updated_time AS auSchemeUpdatedTime,
+            		
+com.baomidou.mybatisplus.generator.config.po.TableField@215ae3ba
+        		auScheme.delFlag AS auSchemeDelFlag
 		 FROM 
 		 	au_scheme auScheme
     	WHERE 1=1
+    	and auScheme.delFlag = 0
 		 and ${tbAlias}.id=#{auSchemeId}
     </select>
     
@@ -149,6 +165,7 @@ com.baomidou.mybatisplus.generator.config.po.TableField@6252d598
     	FROM
     		au_scheme auScheme
     	WHERE 1=1
+    	and auScheme.delFlag = 0
     	
     </select>
     <select id="pageList" parameterType="java.util.Map" resultType="java.util.Map">
@@ -171,10 +188,13 @@ com.baomidou.mybatisplus.generator.config.po.TableField@6252d598
             		
         		auScheme.created_time AS auSchemeCreatedTime,
             		
-        		auScheme.updated_time AS auSchemeUpdatedTime
+        		auScheme.updated_time AS auSchemeUpdatedTime,
+            		
+        		auScheme.delFlag AS auSchemeDelFlag
     	FROM
     		au_scheme auScheme
     	WHERE 1=1
+    	and auScheme.delFlag = 0
     	
     		LIMIT #{param.pageStart},#{param.pageNum}
     </select>
@@ -200,7 +220,9 @@ com.baomidou.mybatisplus.generator.config.po.TableField@6252d598
             		
         		auScheme.created_time AS auSchemeCreatedTime,
             		
-        		auScheme.updated_time AS auSchemeUpdatedTime
+        		auScheme.updated_time AS auSchemeUpdatedTime,
+            		
+        		auScheme.delFlag AS auSchemeDelFlag
     	FROM
     		au_scheme auScheme
     	WHERE 1=1

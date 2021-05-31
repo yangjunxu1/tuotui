@@ -3,11 +3,14 @@
 <mapper namespace="com.zycw.tuotui.readdao.sysadvert.SysAdvertMapper">
 
 
+
+
         <!-- 通用查询映射结果 -->
         <resultMap id="BaseResultMap" type="com.zycw.tuotui.entity.sysadvert.SysAdvert">
                     <id column="id" />
                     <result column="title" />
                     <result column="postition_id" />
+                    <result column="type_id" />
                     <result column="pic_addr" />
                     <result column="url" />
                     <result column="router" />
@@ -15,6 +18,7 @@
                     <result column="content" />
                     <result column="created_time" />
                     <result column="updated_time" />
+                    <result column="deflFlag" />
         </resultMap>
 
     
@@ -31,10 +35,24 @@
     
     
     <update id="deleteByIdLogic">
-        UPDATE sys_advert SET delFlag = 1' 
+        UPDATE sys_advert SET deflFlag = 1 
         WHERE 
         id=#{sysAdvertId}
     </update>
+    
+    
+	 
+    <delete id="deleteBysysAdvertPostitionId">
+        DELETE FROM sys_advert WHERE 
+        postition_id=id
+    </delete>
+	 
+    <delete id="deleteBysysAdvertTypeId">
+        DELETE FROM sys_advert WHERE 
+        type_id=id
+    </delete>
+    
+    
     
  
  
@@ -42,13 +60,15 @@
         UPDATE sys_advert SET 
 		            title=sysAdvertTitle,
 		            postition_id=sysAdvertPostitionId,
+		            type_id=sysAdvertTypeId,
 		            pic_addr=sysAdvertPicAddr,
 		            url=sysAdvertUrl,
 		            router=sysAdvertRouter,
 		            type=sysAdvertType,
 		            content=sysAdvertContent,
 		            created_time=sysAdvertCreatedTime,
-		            updated_time=#{sysAdvertUpdatedTime}
+		            updated_time=sysAdvertUpdatedTime,
+		            deflFlag=#{sysAdvertDeflFlag}
         WHERE 
         id=#{sysAdvertId}
     </update>
@@ -58,49 +78,57 @@
     	INSERT INTO sys_advert(
     			title,
     			postition_id,
+    			type_id,
     			pic_addr,
     			url,
     			router,
     			type,
     			content,
     			created_time,
-    			updated_time
+    			updated_time,
+    			deflFlag
     	)
         VALUES(
 		           #{sysAdvertTitle},
 		           #{sysAdvertPostitionId},
+		           #{sysAdvertTypeId},
 		           #{sysAdvertPicAddr},
 		           #{sysAdvertUrl},
 		           #{sysAdvertRouter},
 		           #{sysAdvertType},
 		           #{sysAdvertContent},
 		           #{sysAdvertCreatedTime},
-		           #{sysAdvertUpdatedTime}
+		           #{sysAdvertUpdatedTime},
+		           #{sysAdvertDeflFlag}
         )
     </insert>
     <insert id='batchInsertObj' parameterType="java.util.List">
     	INSERT INTO sys_advert(
     			title,
     			postition_id,
+    			type_id,
     			pic_addr,
     			url,
     			router,
     			type,
     			content,
     			created_time,
-    			updated_time
+    			updated_time,
+    			deflFlag
     	)
         VALUES(
         <foreach collection="list" item="item"  separator=",">
 		           #{item.sysAdvertTitle},
 		           #{item.sysAdvertPostitionId},
+		           #{item.sysAdvertTypeId},
 		           #{item.sysAdvertPicAddr},
 		           #{item.sysAdvertUrl},
 		           #{item.sysAdvertRouter},
 		           #{item.sysAdvertType},
 		           #{item.sysAdvertContent},
 		           #{item.sysAdvertCreatedTime},
-		           #{item.sysAdvertUpdatedTime}
+		           #{item.sysAdvertUpdatedTime},
+		           #{item.sysAdvertDeflFlag}
         </foreach>
         )
     </insert>
@@ -108,42 +136,52 @@
     
     <select id="selectObjById" parameterType="java.util.Map" resultType="java.util.HashMap">
     	SELECT  
-com.baomidou.mybatisplus.generator.config.po.TableField@6e1eb4ab
+com.baomidou.mybatisplus.generator.config.po.TableField@b13d4c0
         		sysAdvert.id AS sysAdvertId,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@2f1fd382
+com.baomidou.mybatisplus.generator.config.po.TableField@6a9d16c2
         		sysAdvert.title AS sysAdvertTitle,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@3f7ec91b
+com.baomidou.mybatisplus.generator.config.po.TableField@252100f5
         		sysAdvert.postition_id AS sysAdvertPostitionId,
         		sysAdvertPostition.name AS sysAdvertPostitionName,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@28b29d4d
+com.baomidou.mybatisplus.generator.config.po.TableField@6cb17293
+        		sysAdvert.type_id AS sysAdvertTypeId,
+        		sysAdvertType.type_name AS sysAdvertTypeTypeName,
+            		
+com.baomidou.mybatisplus.generator.config.po.TableField@796675ec
         		sysAdvert.pic_addr AS sysAdvertPicAddr,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@43daec5c
+com.baomidou.mybatisplus.generator.config.po.TableField@64c230d1
         		sysAdvert.url AS sysAdvertUrl,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@4c037b9e
+com.baomidou.mybatisplus.generator.config.po.TableField@32eb51b6
         		sysAdvert.router AS sysAdvertRouter,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@7777d414
+com.baomidou.mybatisplus.generator.config.po.TableField@55a98892
         		sysAdvert.type AS sysAdvertType,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@4b937742
+com.baomidou.mybatisplus.generator.config.po.TableField@1f2a4ede
         		sysAdvert.content AS sysAdvertContent,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@5f3fda60
+com.baomidou.mybatisplus.generator.config.po.TableField@6a9ba152
         		sysAdvert.created_time AS sysAdvertCreatedTime,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@8379592
-        		sysAdvert.updated_time AS sysAdvertUpdatedTime
+com.baomidou.mybatisplus.generator.config.po.TableField@2152b56
+        		sysAdvert.updated_time AS sysAdvertUpdatedTime,
+            		
+com.baomidou.mybatisplus.generator.config.po.TableField@1b61ce9e
+        		sysAdvert.deflFlag AS sysAdvertDeflFlag
 		 FROM 
 		 	sys_advert sysAdvert
+        	,sys_advert_type	sysAdvertType
         	,sys_advert_postition	sysAdvertPostition
     	WHERE 1=1
+    	and sysAdvert.deflFlag = 0
+				and sysAdvert.type_id = sysAdvertType.id
 				and sysAdvert.postition_id = sysAdvertPostition.id
-		 and sysAdvertPostition.id=#{sysAdvertId}
+		 and sysAdvertType.id=#{sysAdvertId}
     </select>
     
     <select id="countNum" parameterType="java.util.Map" resultType="Integer">
@@ -151,10 +189,16 @@ com.baomidou.mybatisplus.generator.config.po.TableField@8379592
     		COUNT(1)
     	FROM
     		sys_advert sysAdvert
+        	,sys_advert_type	sysAdvertType
         	,sys_advert_postition	sysAdvertPostition
     	WHERE 1=1
+    	and sysAdvert.deflFlag = 0
     	
+				and sysAdvert.type_id = sysAdvertType.id
 				and sysAdvert.postition_id = sysAdvertPostition.id
+        	<if test="param.sysAdvertTypeId != null and param.sysAdvertTypeId != '' ">
+				and type_id =#(param.sysAdvertTypeId) 
+			</if>
         	<if test="param.sysAdvertPostitionId != null and param.sysAdvertPostitionId != '' ">
 				and postition_id =#(param.sysAdvertPostitionId) 
 			</if>
@@ -167,6 +211,8 @@ com.baomidou.mybatisplus.generator.config.po.TableField@8379592
             		
         		sysAdvertPostition.name AS sysAdvertPostitionName,
             		
+        		sysAdvertType.type_name AS sysAdvertTypeTypeName,
+            		
         		sysAdvert.pic_addr AS sysAdvertPicAddr,
             		
         		sysAdvert.url AS sysAdvertUrl,
@@ -179,13 +225,21 @@ com.baomidou.mybatisplus.generator.config.po.TableField@8379592
             		
         		sysAdvert.created_time AS sysAdvertCreatedTime,
             		
-        		sysAdvert.updated_time AS sysAdvertUpdatedTime
+        		sysAdvert.updated_time AS sysAdvertUpdatedTime,
+            		
+        		sysAdvert.deflFlag AS sysAdvertDeflFlag
     	FROM
     		sys_advert sysAdvert
+        	,sys_advert_type	sysAdvertType
         	,sys_advert_postition	sysAdvertPostition
     	WHERE 1=1
+    	and sysAdvert.deflFlag = 0
     	
+				and sysAdvert.type_id = sysAdvertType.id
 				and sysAdvert.postition_id = sysAdvertPostition.id
+        	<if test="param.sysAdvertTypeId != null and param.sysAdvertTypeId != '' ">
+				and type_id =#(param.sysAdvertTypeId) 
+			</if>
         	<if test="param.sysAdvertPostitionId != null and param.sysAdvertPostitionId != '' ">
 				and postition_id =#(param.sysAdvertPostitionId) 
 			</if>
@@ -201,6 +255,8 @@ com.baomidou.mybatisplus.generator.config.po.TableField@8379592
             		
         		sysAdvertPostition.name AS sysAdvertPostitionName,
             		
+        		sysAdvertType.type_name AS sysAdvertTypeTypeName,
+            		
         		sysAdvert.pic_addr AS sysAdvertPicAddr,
             		
         		sysAdvert.url AS sysAdvertUrl,
@@ -213,16 +269,58 @@ com.baomidou.mybatisplus.generator.config.po.TableField@8379592
             		
         		sysAdvert.created_time AS sysAdvertCreatedTime,
             		
-        		sysAdvert.updated_time AS sysAdvertUpdatedTime
+        		sysAdvert.updated_time AS sysAdvertUpdatedTime,
+            		
+        		sysAdvert.deflFlag AS sysAdvertDeflFlag
     	FROM
     		sys_advert sysAdvert
+        	,sys_advert_type	sysAdvertType
         	,sys_advert_postition	sysAdvertPostition
     	WHERE 1=1
     	
+				and sysAdvert.type_id = sysAdvertType.id
 				and sysAdvert.postition_id = sysAdvertPostition.id
+        	<if test="param.sysAdvertTypeId != null and param.sysAdvertTypeId != '' ">
+				and type_id =#(param.sysAdvertTypeId) 
+			</if>
         	<if test="param.sysAdvertPostitionId != null and param.sysAdvertPostitionId != '' ">
 				and postition_id =#(param.sysAdvertPostitionId) 
 			</if>
+    </select>
+    
+	
+	<select id="getAdvertBypositonAndType"   parameterType="java.util.Map,java.util.Map" resultType="java.util.HashMap">
+        select 
+		           SysAdvert.sysAdvertId as sysAdvertId,
+		           SysAdvert.title as sysAdvertTitle,
+		           SysAdvert.postition_id as sysAdvertPostitionId,
+		           SysAdvert.type_id as sysAdvertTypeId,
+		           SysAdvert.pic_addr as sysAdvertPicAddr,
+		           SysAdvert.urlas sysAdvertUrl,
+		           SysAdvert.router as sysAdvertRouter,
+		           SysAdvert.content as sysAdvertContent
+        FROM sys_advert sys_advert
+				
+				, sys_advert_postition sysAdvertPostition
+				 sys_advert_type sysAdvertType on 1=1
+        WHERE 1=1
+        	sysAdvert.postition_id =  sysAdvertPostition.id			
+		    
+        	sysAdvert.type_id =  sysAdvertType.id			
+		    
+        	<if test="param.postitionCode != null and param.postitionCode != '' ">
+				and sysAdvertPostition.code = #{param.postitionCode} 
+        	</if>
+			
+		    
+        	<if test="param.typeCode != null and param.typeCode != '' ">
+				and sysAdvertType.code = #{param.typeCode} 
+        	</if>
+			
+		    
+        
+        	order by
+		           SysAdvert.sysAdvertUpdatedTime
     </select>
     
     

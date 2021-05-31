@@ -3,6 +3,8 @@
 <mapper namespace="com.zycw.tuotui.readdao.auuserhobby.AuUserHobbyMapper">
 
 
+
+
         <!-- 通用查询映射结果 -->
         <resultMap id="BaseResultMap" type="com.zycw.tuotui.entity.auuserhobby.AuUserHobby">
                     <id column="id" />
@@ -24,10 +26,24 @@
     
     
     <update id="deleteByIdLogic">
-        UPDATE au_user_hobby SET delFlag = 1' 
+        UPDATE au_user_hobby SET $logicColumn.columnName = $logicTrueValue 
         WHERE 
         id=#{auUserHobbyId}
     </update>
+    
+    
+	 
+    <delete id="deleteByauUserHobbyUserId">
+        DELETE FROM au_user_hobby WHERE 
+        user_id=id
+    </delete>
+	 
+    <delete id="deleteByauUserHobbyHobbyId">
+        DELETE FROM au_user_hobby WHERE 
+        hobby_id=id
+    </delete>
+    
+    
     
  
  
@@ -66,14 +82,14 @@
     
     <select id="selectObjById" parameterType="java.util.Map" resultType="java.util.HashMap">
     	SELECT  
-com.baomidou.mybatisplus.generator.config.po.TableField@31522707
+com.baomidou.mybatisplus.generator.config.po.TableField@2305975e
         		auUserHobby.id AS auUserHobbyId,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@773441bb
+com.baomidou.mybatisplus.generator.config.po.TableField@79810901
         		auUserHobby.user_id AS auUserHobbyUserId,
         		sysHobby.hobby_title AS sysHobbyHobbyTitle,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@52afb86b
+com.baomidou.mybatisplus.generator.config.po.TableField@45019006
         		auUserHobby.hobby_id AS auUserHobbyHobbyId
         		sysHobby.hobby_title AS sysHobbyHobbyTitle
 		 FROM 
@@ -116,6 +132,7 @@ com.baomidou.mybatisplus.generator.config.po.TableField@52afb86b
         	,sys_hobby	sysHobby
         	,sys_hobby	sysHobby
     	WHERE 1=1
+    	and auUserHobby.$logicColumn.columnName = $logicFalseValue
     	
 				and auUserHobby.user_id = sysHobby.id
 				and auUserHobby.hobby_id = sysHobby.id

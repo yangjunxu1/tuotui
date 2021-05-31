@@ -3,6 +3,8 @@
 <mapper namespace="com.zycw.tuotui.readdao.auaccountconsume.AuAccountConsumeMapper">
 
 
+
+
         <!-- 通用查询映射结果 -->
         <resultMap id="BaseResultMap" type="com.zycw.tuotui.entity.auaccountconsume.AuAccountConsume">
                     <id column="id" />
@@ -11,6 +13,7 @@
                     <result column="price" />
                     <result column="task_id" />
                     <result column="consume_time" />
+                    <result column="delFlag" />
         </resultMap>
 
     
@@ -27,10 +30,24 @@
     
     
     <update id="deleteByIdLogic">
-        UPDATE au_account_consume SET delFlag = 1' 
+        UPDATE au_account_consume SET delFlag = 1 
         WHERE 
         id=#{auAccountConsumeId}
     </update>
+    
+    
+	 
+    <delete id="deleteByauAccountConsumeCompanyId">
+        DELETE FROM au_account_consume WHERE 
+        company_id=id
+    </delete>
+	 
+    <delete id="deleteByauAccountConsumeUserId">
+        DELETE FROM au_account_consume WHERE 
+        user_id=id
+    </delete>
+    
+    
     
  
  
@@ -40,7 +57,8 @@
 		            user_id=auAccountConsumeUserId,
 		            price=auAccountConsumePrice,
 		            task_id=auAccountConsumeTaskId,
-		            consume_time=#{auAccountConsumeConsumeTime}
+		            consume_time=auAccountConsumeConsumeTime,
+		            delFlag=#{auAccountConsumeDelFlag}
         WHERE 
         id=#{auAccountConsumeId}
     </update>
@@ -52,14 +70,16 @@
     			user_id,
     			price,
     			task_id,
-    			consume_time
+    			consume_time,
+    			delFlag
     	)
         VALUES(
 		           #{auAccountConsumeCompanyId},
 		           #{auAccountConsumeUserId},
 		           #{auAccountConsumePrice},
 		           #{auAccountConsumeTaskId},
-		           #{auAccountConsumeConsumeTime}
+		           #{auAccountConsumeConsumeTime},
+		           #{auAccountConsumeDelFlag}
         )
     </insert>
     <insert id='batchInsertObj' parameterType="java.util.List">
@@ -68,7 +88,8 @@
     			user_id,
     			price,
     			task_id,
-    			consume_time
+    			consume_time,
+    			delFlag
     	)
         VALUES(
         <foreach collection="list" item="item"  separator=",">
@@ -76,7 +97,8 @@
 		           #{item.auAccountConsumeUserId},
 		           #{item.auAccountConsumePrice},
 		           #{item.auAccountConsumeTaskId},
-		           #{item.auAccountConsumeConsumeTime}
+		           #{item.auAccountConsumeConsumeTime},
+		           #{item.auAccountConsumeDelFlag}
         </foreach>
         )
     </insert>
@@ -84,30 +106,34 @@
     
     <select id="selectObjById" parameterType="java.util.Map" resultType="java.util.HashMap">
     	SELECT  
-com.baomidou.mybatisplus.generator.config.po.TableField@31ab346c
+com.baomidou.mybatisplus.generator.config.po.TableField@18ebbe3a
         		auAccountConsume.id AS auAccountConsumeId,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@321228ef
+com.baomidou.mybatisplus.generator.config.po.TableField@4f57b517
         		auAccountConsume.company_id AS auAccountConsumeCompanyId,
         		auCompany.name AS auCompanyName,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@5c4b29d9
+com.baomidou.mybatisplus.generator.config.po.TableField@5de1d715
         		auAccountConsume.user_id AS auAccountConsumeUserId,
         		auUser.mobile AS auUserMobile,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@41185b19
+com.baomidou.mybatisplus.generator.config.po.TableField@5f1e386c
         		auAccountConsume.price AS auAccountConsumePrice,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@8fab4ce
+com.baomidou.mybatisplus.generator.config.po.TableField@2b4a6be
         		auAccountConsume.task_id AS auAccountConsumeTaskId,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@37570402
-        		auAccountConsume.consume_time AS auAccountConsumeConsumeTime
+com.baomidou.mybatisplus.generator.config.po.TableField@533d22cd
+        		auAccountConsume.consume_time AS auAccountConsumeConsumeTime,
+            		
+com.baomidou.mybatisplus.generator.config.po.TableField@b70ec0
+        		auAccountConsume.delFlag AS auAccountConsumeDelFlag
 		 FROM 
 		 	au_account_consume auAccountConsume
         	,au_company	auCompany
         	,au_user	auUser
     	WHERE 1=1
+    	and auAccountConsume.delFlag = 0
 				and auAccountConsume.company_id = auCompany.id
 				and auAccountConsume.user_id = auUser.id
 		 and auUser.id=#{auAccountConsumeId}
@@ -121,6 +147,7 @@ com.baomidou.mybatisplus.generator.config.po.TableField@37570402
         	,au_company	auCompany
         	,au_user	auUser
     	WHERE 1=1
+    	and auAccountConsume.delFlag = 0
     	
 				and auAccountConsume.company_id = auCompany.id
 				and auAccountConsume.user_id = auUser.id
@@ -143,12 +170,15 @@ com.baomidou.mybatisplus.generator.config.po.TableField@37570402
             		
         		auAccountConsume.task_id AS auAccountConsumeTaskId,
             		
-        		auAccountConsume.consume_time AS auAccountConsumeConsumeTime
+        		auAccountConsume.consume_time AS auAccountConsumeConsumeTime,
+            		
+        		auAccountConsume.delFlag AS auAccountConsumeDelFlag
     	FROM
     		au_account_consume auAccountConsume
         	,au_company	auCompany
         	,au_user	auUser
     	WHERE 1=1
+    	and auAccountConsume.delFlag = 0
     	
 				and auAccountConsume.company_id = auCompany.id
 				and auAccountConsume.user_id = auUser.id
@@ -174,7 +204,9 @@ com.baomidou.mybatisplus.generator.config.po.TableField@37570402
             		
         		auAccountConsume.task_id AS auAccountConsumeTaskId,
             		
-        		auAccountConsume.consume_time AS auAccountConsumeConsumeTime
+        		auAccountConsume.consume_time AS auAccountConsumeConsumeTime,
+            		
+        		auAccountConsume.delFlag AS auAccountConsumeDelFlag
     	FROM
     		au_account_consume auAccountConsume
         	,au_company	auCompany
