@@ -32,12 +32,13 @@ import java.util.HashMap;
 @Service("ISysRoleResourceService")
 public class ISysRoleResourceService extends BaseService<SysRoleResourceMapper,SysRoleResource> {
 
+   
    /**
     * 根据主键物理删除
     * @param String 主键ID
     * @return 返回结果
 	* @author junxu.yang
-	* @since 2021-05-30
+	* @since 2021-06-01
     */
 	public void deleteById(String sysRoleResourceId){
 		mapper.deleteById(sysRoleResourceId);
@@ -48,12 +49,35 @@ public class ISysRoleResourceService extends BaseService<SysRoleResourceMapper,S
     * @param String 主键ID
     * @return 返回结果
 	* @author junxu.yang
-	* @since 2021-05-30
+	* @since 2021-06-01
     */
 	public void deleteByIdLogic(String sysRoleResourceId){
 		mapper.deleteByIdLogic(sysRoleResourceId);
 	}
 	
+	
+   /**
+    * 根据外键sysRoleResourceRoleId删除
+    * @param String 外键ID
+    * @return 返回结果
+	* @author junxu.yang
+	* @since 2021-06-01
+    */
+	public void deleteBysysRoleResourceRoleId(String id){
+		mapper.deleteBysysRoleResourceRoleId(id);
+	}
+	
+   /**
+    * 根据外键sysRoleResourceResourceId删除
+    * @param String 外键ID
+    * @return 返回结果
+	* @author junxu.yang
+	* @since 2021-06-01
+    */
+	public void deleteBysysRoleResourceResourceId(String id){
+		mapper.deleteBysysRoleResourceResourceId(id);
+	}
+
 	
 	public void updateObjById(SysRoleResource sysRoleResource){
 		mapper.updateObjById(sysRoleResource);
@@ -66,7 +90,7 @@ public class ISysRoleResourceService extends BaseService<SysRoleResourceMapper,S
     * @param SysRoleResource 对象
     * @return 返回结果 void
 	* @author junxu.yang
-	* @since 2021-05-30
+	* @since 2021-06-01
     */
 	public void insertObj(SysRoleResource sysRoleResource){
 		mapper.insertObj(sysRoleResource);
@@ -78,7 +102,7 @@ public class ISysRoleResourceService extends BaseService<SysRoleResourceMapper,S
     * @param List<SysRoleResource> 对象
     * @return 返回结果
 	* @author junxu.yang
-	* @since 2021-05-30
+	* @since 2021-06-01
     */
 	public void batchInsertObj(List<SysRoleResource> list){
 		mapper.batchInsertObj(list);
@@ -89,7 +113,7 @@ public class ISysRoleResourceService extends BaseService<SysRoleResourceMapper,S
     * @param String 主键ID
     * @return 返回结果
 	* @author junxu.yang
-	* @since 2021-05-30
+	* @since 2021-06-01
     */
 	public HashMap<String,Object> selectObjById(String sysRoleResourceId){
 		return mapper.selectObjById(sysRoleResourceId);
@@ -101,7 +125,7 @@ public class ISysRoleResourceService extends BaseService<SysRoleResourceMapper,S
     * @param HashMap<String,Object> 对象
     * @return 返回结果
 	* @author junxu.yang
-	* @since 2021-05-30
+	* @since 2021-06-01
     */
 	public Integer countNum(HashMap<String,Object> params) {
 		return mapper.countNum(params);
@@ -113,7 +137,7 @@ public class ISysRoleResourceService extends BaseService<SysRoleResourceMapper,S
 	* @param HashMap<String,Object> 对象
 	* @return 返回结果 PageInfo
 	* @author junxu.yang
-	* @since 2021-05-30
+	* @since 2021-06-01
 	 */
 	public PageInfo<SysRoleResource> pageList(HashMap<String,Object> params) throws Exception {
 		Integer pageNum = (Integer)params.get("pageNum");

@@ -17,13 +17,34 @@ import java.util.HashMap;
  * </p>
  *
  * @author junxu.yang
- * @since 2021-05-30
+ * @since 2021-06-01
  */
 public interface AuCustomTaskMapper extends Mapper<AuCustomTask> {
 	
 	public void deleteById(@Param("auCustomTaskId") String auCustomTaskId);
 	
 	public void deleteByIdLogic(@Param("auCustomTaskId") String auCustomTaskId);
+	
+	public void deleteByauCustomTaskCompaynId(@Param("id") String id);
+    
+	public void deleteByauCustomTaskUserId(@Param("id") String id);
+    
+	public void deleteByauCustomTaskAppId(@Param("id") String id);
+    
+	public void deleteByauCustomTaskTaskType(@Param("id") String id);
+    
+	public void deleteByauCustomTaskTaskDepth(@Param("id") String id);
+    
+	public void deleteByauCustomTaskTaskActivity(@Param("id") String id);
+    
+	public void deleteByauCustomTaskProvinceId(@Param("id") String id);
+    
+	public void deleteByauCustomTaskCityId(@Param("id") String id);
+    
+	public void deleteByauCustomTaskAreaId(@Param("id") String id);
+    
+	public void deleteByauCustomTaskOccupationId(@Param("id") String id);
+    
 	
 	
 	public void updateObjById(AuCustomTask auCustomTask);

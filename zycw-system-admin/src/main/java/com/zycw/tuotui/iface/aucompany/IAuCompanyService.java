@@ -17,6 +17,9 @@ import org.springframework.transaction.annotation.Transactional;
 import com.zycw.common.util.Page;
 import com.zycw.tuotui.readdao.aucompany.AuCompanyMapper;
 import com.zycw.tuotui.entity.aucompany.AuCompany;
+import com.zycw.tuotui.iface.auaccountconsume.IAuAccountConsumeService;
+import com.zycw.tuotui.iface.aucompanyapp.IAuCompanyAppService;
+import com.zycw.tuotui.iface.aucustomtask.IAuCustomTaskService;
 
 import java.lang.String;
 import java.lang.Integer;
@@ -32,15 +35,25 @@ import java.util.HashMap;
 @Service("IAuCompanyService")
 public class IAuCompanyService extends BaseService<AuCompanyMapper,AuCompany> {
 
+   
+    @Autowired
+    private IAuAccountConsumeService iAuAccountConsumeService;
+    @Autowired
+    private IAuCompanyAppService iAuCompanyAppService;
+    @Autowired
+    private IAuCustomTaskService iAuCustomTaskService;
    /**
     * 根据主键物理删除
     * @param String 主键ID
     * @return 返回结果
 	* @author junxu.yang
-	* @since 2021-05-30
+	* @since 2021-06-01
     */
 	public void deleteById(String auCompanyId){
 		mapper.deleteById(auCompanyId);
+     	iAuAccountConsumeService.deleteByauAccountConsumeCompanyId(auCompanyId);
+     	iAuCompanyAppService.deleteByauCompanyAppCompanyId(auCompanyId);
+     	iAuCustomTaskService.deleteByauCustomTaskCompaynId(auCompanyId);
 	}
 	
    /**
@@ -48,12 +61,13 @@ public class IAuCompanyService extends BaseService<AuCompanyMapper,AuCompany> {
     * @param String 主键ID
     * @return 返回结果
 	* @author junxu.yang
-	* @since 2021-05-30
+	* @since 2021-06-01
     */
 	public void deleteByIdLogic(String auCompanyId){
 		mapper.deleteByIdLogic(auCompanyId);
 	}
 	
+
 	
 	/**
 	 * <p>
@@ -61,10 +75,10 @@ public class IAuCompanyService extends BaseService<AuCompanyMapper,AuCompany> {
 	 * </p>
 	 *
 	 * @author junxu.yang
-	 * @since 2021-05-30
+	 * @since 2021-06-01
 	 */
-	public void byCompanyName( AuCompany auCompany){
-		mapper.byCompanyName( auCompany);
+	public void byCompanyName(){
+		mapper.byCompanyName();
 	}
 	
 	
@@ -81,10 +95,10 @@ public class IAuCompanyService extends BaseService<AuCompanyMapper,AuCompany> {
 	 * </p>
 	 *
 	 * @author junxu.yang
-	 * @since 2021-05-30
+	 * @since 2021-06-01
 	 */
-	public void testUpdateUpdate( HashMap<String,Object> param){
-		mapper.testUpdateUpdate( param);
+	public void testUpdateUpdate(){
+		mapper.testUpdateUpdate();
 	}
 	/**
 	 * <p>
@@ -92,10 +106,10 @@ public class IAuCompanyService extends BaseService<AuCompanyMapper,AuCompany> {
 	 * </p>
 	 *
 	 * @author junxu.yang
-	 * @since 2021-05-30
+	 * @since 2021-06-01
 	 */
-	public void testUpdateInsert( HashMap<String,Object> param){
-		mapper.testUpdateInsert( param);
+	public void testUpdateInsert(){
+		mapper.testUpdateInsert();
 	}
 	
    /**
@@ -103,7 +117,7 @@ public class IAuCompanyService extends BaseService<AuCompanyMapper,AuCompany> {
     * @param AuCompany 对象
     * @return 返回结果 void
 	* @author junxu.yang
-	* @since 2021-05-30
+	* @since 2021-06-01
     */
 	public void insertObj(AuCompany auCompany){
 		mapper.insertObj(auCompany);
@@ -115,7 +129,7 @@ public class IAuCompanyService extends BaseService<AuCompanyMapper,AuCompany> {
     * @param List<AuCompany> 对象
     * @return 返回结果
 	* @author junxu.yang
-	* @since 2021-05-30
+	* @since 2021-06-01
     */
 	public void batchInsertObj(List<AuCompany> list){
 		mapper.batchInsertObj(list);
@@ -126,7 +140,7 @@ public class IAuCompanyService extends BaseService<AuCompanyMapper,AuCompany> {
     * @param String 主键ID
     * @return 返回结果
 	* @author junxu.yang
-	* @since 2021-05-30
+	* @since 2021-06-01
     */
 	public HashMap<String,Object> selectObjById(String auCompanyId){
 		return mapper.selectObjById(auCompanyId);
@@ -138,7 +152,7 @@ public class IAuCompanyService extends BaseService<AuCompanyMapper,AuCompany> {
     * @param HashMap<String,Object> 对象
     * @return 返回结果
 	* @author junxu.yang
-	* @since 2021-05-30
+	* @since 2021-06-01
     */
 	public Integer countNum(HashMap<String,Object> params) {
 		return mapper.countNum(params);
@@ -150,7 +164,7 @@ public class IAuCompanyService extends BaseService<AuCompanyMapper,AuCompany> {
 	* @param HashMap<String,Object> 对象
 	* @return 返回结果 PageInfo
 	* @author junxu.yang
-	* @since 2021-05-30
+	* @since 2021-06-01
 	 */
 	public PageInfo<AuCompany> pageList(HashMap<String,Object> params) throws Exception {
 		Integer pageNum = (Integer)params.get("pageNum");
@@ -163,20 +177,6 @@ public class IAuCompanyService extends BaseService<AuCompanyMapper,AuCompany> {
 		pagelist.setPageNum(pageNum);
 		return new PageInfo(list);
 
-	}
-   
-	/**
-	 * <p>
-	 * getCompanyByProject 根据项目查询公司
-	 * </p>
-	 *
-	 * @author junxu.yang
-	 * @since 2021-05-30
-	 */
-	
-	public List<HashMap> getCompanyByProject( HashMap<String,Object> param){
-		List<HashMap> result = mapper.getCompanyByProject( param);
-		return result;
 	}
 	
 	

@@ -17,13 +17,14 @@ import java.util.HashMap;
  * </p>
  *
  * @author junxu.yang
- * @since 2021-05-30
+ * @since 2021-06-01
  */
 public interface SysProvinceMapper extends Mapper<SysProvince> {
 	
 	public void deleteById(@Param("sysProvinceId") String sysProvinceId);
 	
 	public void deleteByIdLogic(@Param("sysProvinceId") String sysProvinceId);
+	
 	
 	
 	public void updateObjById(SysProvince sysProvince);

@@ -120,7 +120,8 @@ public class AuUserTaskController extends BaseController <IAuUserTaskService, Au
 
 
 
-    	@ApiImplicitParam(name = "auUserTaskEndTime", value = "return-lv结束时间", required = false, dataType = "Date"),
+
+    	@ApiImplicitParam(name = "auUserTaskDelFlag", value = "return-逻辑删除:0-未删除,1-已删除", required = false, dataType = "${dataType}"),
      })
      @RequestMapping(value = "/pageList", method = RequestMethod.POST)
      public ResultBeanFactory.ResultBean<PageInfo<AuUserTask>> pageList(@RequestBody HashMap<String,Object> params) {
@@ -140,12 +141,13 @@ public class AuUserTaskController extends BaseController <IAuUserTaskService, Au
      @ApiOperation(value = "通过id查询")
      @ApiImplicitParam(name = "auUserTaskId", value = "ID", required = true, dataType = "String")
      @ApiImplicitParams({
-    	@ApiImplicitParam(name = "auUserTaskId", value = "return-id", required = false, dataType = "Date"),
+    	@ApiImplicitParam(name = "auUserTaskId", value = "return-id", required = false, dataType = "${dataType}"),
     	@ApiImplicitParam(name = "auUserMobile", value = "return-lvM手机号", required = false, dataType = "String"),
     	@ApiImplicitParam(name = "auCustomTaskTaskTitle", value = "return-lvM任务标题", required = false, dataType = "String"),
     	@ApiImplicitParam(name = "auUserTaskTaskStatus", value = "return-lv完成状态:0-已完成，1-未开始，2-进行中，3-已完成，未结算，4-已结算", required = false, dataType = "String"),
     	@ApiImplicitParam(name = "auUserTaskStartTime", value = "return-lv开始时间", required = false, dataType = "Date"),
     	@ApiImplicitParam(name = "auUserTaskEndTime", value = "return-lv结束时间", required = false, dataType = "Date"),
+    	@ApiImplicitParam(name = "auUserTaskDelFlag", value = "return-逻辑删除:0-未删除,1-已删除", required = false, dataType = "Date"),
 		})
      @RequestMapping(value = "/selectObjById", method = RequestMethod.GET)
      public ResultBean<HashMap<String,Object>> info(@RequestParam("auUserTaskId") String auUserTaskId) {
@@ -165,7 +167,8 @@ public class AuUserTaskController extends BaseController <IAuUserTaskService, Au
     	@ApiImplicitParam(name = "auCustomTaskTaskTitle", value = "return-lvM任务标题", required = false, dataType = "String"),
     	@ApiImplicitParam(name = "auUserTaskTaskStatus", value = "return-lv完成状态:0-已完成，1-未开始，2-进行中，3-已完成，未结算，4-已结算", required = false, dataType = "String"),
     	@ApiImplicitParam(name = "auUserTaskStartTime", value = "return-lv开始时间", required = false, dataType = "Date"),
-    	@ApiImplicitParam(name = "auUserTaskEndTime", value = "return-lv结束时间", required = false, dataType = "Date")
+    	@ApiImplicitParam(name = "auUserTaskEndTime", value = "return-lv结束时间", required = false, dataType = "Date"),
+    	@ApiImplicitParam(name = "auUserTaskDelFlag", value = "return-逻辑删除:0-未删除,1-已删除", required = false, dataType = "Date")
      })
      @RequestMapping(value = "/allList", method = RequestMethod.POST)
 	public ResultBean<List<AuUserTask>> allList(@RequestBody HashMap<String,Object> param){

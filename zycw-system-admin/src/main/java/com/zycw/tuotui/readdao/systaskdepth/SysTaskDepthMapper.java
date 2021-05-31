@@ -17,13 +17,14 @@ import java.util.HashMap;
  * </p>
  *
  * @author junxu.yang
- * @since 2021-05-30
+ * @since 2021-06-01
  */
 public interface SysTaskDepthMapper extends Mapper<SysTaskDepth> {
 	
 	public void deleteById(@Param("sysTaskDepthId") String sysTaskDepthId);
 	
 	public void deleteByIdLogic(@Param("sysTaskDepthId") String sysTaskDepthId);
+	
 	
 	
 	public void updateObjById(SysTaskDepth sysTaskDepth);

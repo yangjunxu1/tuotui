@@ -110,7 +110,8 @@ public class SysRoleController extends BaseController <ISysRoleService, SysRole>
 		@ApiImplicitParam(name = "pageSize", value = "每页条数", required = false, dataType = "int"),
 		@ApiImplicitParam(name = "pageNum", value = "当前页数", required = false, dataType = "int"),
 
-    	@ApiImplicitParam(name = "sysRoleName", value = "return-lvM名称", required = false, dataType = "String"),
+
+    	@ApiImplicitParam(name = "sysRoleDelFlag", value = "return-逻辑删除:0-未删除,1-已删除", required = false, dataType = "${dataType}"),
      })
      @RequestMapping(value = "/pageList", method = RequestMethod.POST)
      public ResultBeanFactory.ResultBean<PageInfo<SysRole>> pageList(@RequestBody HashMap<String,Object> params) {
@@ -130,8 +131,9 @@ public class SysRoleController extends BaseController <ISysRoleService, SysRole>
      @ApiOperation(value = "通过id查询")
      @ApiImplicitParam(name = "sysRoleId", value = "ID", required = true, dataType = "String")
      @ApiImplicitParams({
-    	@ApiImplicitParam(name = "sysRoleId", value = "return-ID", required = false, dataType = "String"),
+    	@ApiImplicitParam(name = "sysRoleId", value = "return-ID", required = false, dataType = "${dataType}"),
     	@ApiImplicitParam(name = "sysRoleName", value = "return-lvM名称", required = false, dataType = "String"),
+    	@ApiImplicitParam(name = "sysRoleDelFlag", value = "return-逻辑删除:0-未删除,1-已删除", required = false, dataType = "String"),
 		})
      @RequestMapping(value = "/selectObjById", method = RequestMethod.GET)
      public ResultBean<HashMap<String,Object>> info(@RequestParam("sysRoleId") String sysRoleId) {
@@ -145,7 +147,8 @@ public class SysRoleController extends BaseController <ISysRoleService, SysRole>
      @ApiOperation(value = "allList")
      @ApiImplicitParams({
     	@ApiImplicitParam(name = "sysRoleId", value = "return-ID", required = false, dataType = "String"),
-    	@ApiImplicitParam(name = "sysRoleName", value = "return-lvM名称", required = false, dataType = "String")
+    	@ApiImplicitParam(name = "sysRoleName", value = "return-lvM名称", required = false, dataType = "String"),
+    	@ApiImplicitParam(name = "sysRoleDelFlag", value = "return-逻辑删除:0-未删除,1-已删除", required = false, dataType = "String")
      })
      @RequestMapping(value = "/allList", method = RequestMethod.POST)
 	public ResultBean<List<SysRole>> allList(@RequestBody HashMap<String,Object> param){

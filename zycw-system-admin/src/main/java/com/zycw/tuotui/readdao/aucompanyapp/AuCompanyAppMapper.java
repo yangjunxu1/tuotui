@@ -17,13 +17,16 @@ import java.util.HashMap;
  * </p>
  *
  * @author junxu.yang
- * @since 2021-05-30
+ * @since 2021-06-01
  */
 public interface AuCompanyAppMapper extends Mapper<AuCompanyApp> {
 	
 	public void deleteById(@Param("auCompanyAppId") String auCompanyAppId);
 	
 	public void deleteByIdLogic(@Param("auCompanyAppId") String auCompanyAppId);
+	
+	public void deleteByauCompanyAppCompanyId(@Param("id") String id);
+    
 	
 	
 	public void updateObjById(AuCompanyApp auCompanyApp);

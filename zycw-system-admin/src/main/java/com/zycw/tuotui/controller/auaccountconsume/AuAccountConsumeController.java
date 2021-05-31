@@ -118,7 +118,8 @@ public class AuAccountConsumeController extends BaseController <IAuAccountConsum
 
 
 
-    	@ApiImplicitParam(name = "auAccountConsumeConsumeTime", value = "return-消费时间", required = false, dataType = "Date"),
+
+    	@ApiImplicitParam(name = "auAccountConsumeDelFlag", value = "return-逻辑删除:0-未删除,1-已删除", required = false, dataType = "${dataType}"),
      })
      @RequestMapping(value = "/pageList", method = RequestMethod.POST)
      public ResultBeanFactory.ResultBean<PageInfo<AuAccountConsume>> pageList(@RequestBody HashMap<String,Object> params) {
@@ -138,12 +139,13 @@ public class AuAccountConsumeController extends BaseController <IAuAccountConsum
      @ApiOperation(value = "通过id查询")
      @ApiImplicitParam(name = "auAccountConsumeId", value = "ID", required = true, dataType = "String")
      @ApiImplicitParams({
-    	@ApiImplicitParam(name = "auAccountConsumeId", value = "return-ID", required = false, dataType = "Date"),
+    	@ApiImplicitParam(name = "auAccountConsumeId", value = "return-ID", required = false, dataType = "${dataType}"),
     	@ApiImplicitParam(name = "auCompanyName", value = "return-lvM企业名称", required = false, dataType = "String"),
     	@ApiImplicitParam(name = "auUserMobile", value = "return-lvM手机号", required = false, dataType = "String"),
     	@ApiImplicitParam(name = "auAccountConsumePrice", value = "return-消费金额", required = false, dataType = "String"),
     	@ApiImplicitParam(name = "auAccountConsumeTaskId", value = "return-任务", required = false, dataType = "String"),
     	@ApiImplicitParam(name = "auAccountConsumeConsumeTime", value = "return-消费时间", required = false, dataType = "Date"),
+    	@ApiImplicitParam(name = "auAccountConsumeDelFlag", value = "return-逻辑删除:0-未删除,1-已删除", required = false, dataType = "Date"),
 		})
      @RequestMapping(value = "/selectObjById", method = RequestMethod.GET)
      public ResultBean<HashMap<String,Object>> info(@RequestParam("auAccountConsumeId") String auAccountConsumeId) {
@@ -163,7 +165,8 @@ public class AuAccountConsumeController extends BaseController <IAuAccountConsum
     	@ApiImplicitParam(name = "auUserMobile", value = "return-lvM手机号", required = false, dataType = "String"),
     	@ApiImplicitParam(name = "auAccountConsumePrice", value = "return-消费金额", required = false, dataType = "String"),
     	@ApiImplicitParam(name = "auAccountConsumeTaskId", value = "return-任务", required = false, dataType = "String"),
-    	@ApiImplicitParam(name = "auAccountConsumeConsumeTime", value = "return-消费时间", required = false, dataType = "Date")
+    	@ApiImplicitParam(name = "auAccountConsumeConsumeTime", value = "return-消费时间", required = false, dataType = "Date"),
+    	@ApiImplicitParam(name = "auAccountConsumeDelFlag", value = "return-逻辑删除:0-未删除,1-已删除", required = false, dataType = "Date")
      })
      @RequestMapping(value = "/allList", method = RequestMethod.POST)
 	public ResultBean<List<AuAccountConsume>> allList(@RequestBody HashMap<String,Object> param){

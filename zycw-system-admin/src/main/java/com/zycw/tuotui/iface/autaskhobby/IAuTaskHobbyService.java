@@ -32,12 +32,13 @@ import java.util.HashMap;
 @Service("IAuTaskHobbyService")
 public class IAuTaskHobbyService extends BaseService<AuTaskHobbyMapper,AuTaskHobby> {
 
+   
    /**
     * 根据主键物理删除
     * @param String 主键ID
     * @return 返回结果
 	* @author junxu.yang
-	* @since 2021-05-30
+	* @since 2021-06-01
     */
 	public void deleteById(String auTaskHobbyId){
 		mapper.deleteById(auTaskHobbyId);
@@ -48,12 +49,35 @@ public class IAuTaskHobbyService extends BaseService<AuTaskHobbyMapper,AuTaskHob
     * @param String 主键ID
     * @return 返回结果
 	* @author junxu.yang
-	* @since 2021-05-30
+	* @since 2021-06-01
     */
 	public void deleteByIdLogic(String auTaskHobbyId){
 		mapper.deleteByIdLogic(auTaskHobbyId);
 	}
 	
+	
+   /**
+    * 根据外键auTaskHobbyTaskId删除
+    * @param String 外键ID
+    * @return 返回结果
+	* @author junxu.yang
+	* @since 2021-06-01
+    */
+	public void deleteByauTaskHobbyTaskId(String id){
+		mapper.deleteByauTaskHobbyTaskId(id);
+	}
+	
+   /**
+    * 根据外键auTaskHobbyHobbyId删除
+    * @param String 外键ID
+    * @return 返回结果
+	* @author junxu.yang
+	* @since 2021-06-01
+    */
+	public void deleteByauTaskHobbyHobbyId(String id){
+		mapper.deleteByauTaskHobbyHobbyId(id);
+	}
+
 	
 	public void updateObjById(AuTaskHobby auTaskHobby){
 		mapper.updateObjById(auTaskHobby);
@@ -66,7 +90,7 @@ public class IAuTaskHobbyService extends BaseService<AuTaskHobbyMapper,AuTaskHob
     * @param AuTaskHobby 对象
     * @return 返回结果 void
 	* @author junxu.yang
-	* @since 2021-05-30
+	* @since 2021-06-01
     */
 	public void insertObj(AuTaskHobby auTaskHobby){
 		mapper.insertObj(auTaskHobby);
@@ -78,7 +102,7 @@ public class IAuTaskHobbyService extends BaseService<AuTaskHobbyMapper,AuTaskHob
     * @param List<AuTaskHobby> 对象
     * @return 返回结果
 	* @author junxu.yang
-	* @since 2021-05-30
+	* @since 2021-06-01
     */
 	public void batchInsertObj(List<AuTaskHobby> list){
 		mapper.batchInsertObj(list);
@@ -89,7 +113,7 @@ public class IAuTaskHobbyService extends BaseService<AuTaskHobbyMapper,AuTaskHob
     * @param String 主键ID
     * @return 返回结果
 	* @author junxu.yang
-	* @since 2021-05-30
+	* @since 2021-06-01
     */
 	public HashMap<String,Object> selectObjById(String auTaskHobbyId){
 		return mapper.selectObjById(auTaskHobbyId);
@@ -101,7 +125,7 @@ public class IAuTaskHobbyService extends BaseService<AuTaskHobbyMapper,AuTaskHob
     * @param HashMap<String,Object> 对象
     * @return 返回结果
 	* @author junxu.yang
-	* @since 2021-05-30
+	* @since 2021-06-01
     */
 	public Integer countNum(HashMap<String,Object> params) {
 		return mapper.countNum(params);
@@ -113,7 +137,7 @@ public class IAuTaskHobbyService extends BaseService<AuTaskHobbyMapper,AuTaskHob
 	* @param HashMap<String,Object> 对象
 	* @return 返回结果 PageInfo
 	* @author junxu.yang
-	* @since 2021-05-30
+	* @since 2021-06-01
 	 */
 	public PageInfo<AuTaskHobby> pageList(HashMap<String,Object> params) throws Exception {
 		Integer pageNum = (Integer)params.get("pageNum");

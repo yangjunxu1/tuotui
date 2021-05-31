@@ -115,7 +115,8 @@ public class SysResourceController extends BaseController <ISysResourceService, 
 
 
 
-    	@ApiImplicitParam(name = "sysResourceRoles", value = "return-管理组", required = false, dataType = "String"),
+
+    	@ApiImplicitParam(name = "sysResourceDelFlag", value = "return-逻辑删除:0-未删除,1-已删除", required = false, dataType = "${dataType}"),
      })
      @RequestMapping(value = "/pageList", method = RequestMethod.POST)
      public ResultBeanFactory.ResultBean<PageInfo<SysResource>> pageList(@RequestBody HashMap<String,Object> params) {
@@ -135,13 +136,14 @@ public class SysResourceController extends BaseController <ISysResourceService, 
      @ApiOperation(value = "通过id查询")
      @ApiImplicitParam(name = "sysResourceId", value = "ID", required = true, dataType = "String")
      @ApiImplicitParams({
-    	@ApiImplicitParam(name = "sysResourceId", value = "return-ID", required = false, dataType = "String"),
+    	@ApiImplicitParam(name = "sysResourceId", value = "return-ID", required = false, dataType = "${dataType}"),
     	@ApiImplicitParam(name = "sysResourceName", value = "return-lv菜单名称", required = false, dataType = "String"),
     	@ApiImplicitParam(name = "sysResourceRouter", value = "return-lv菜单路由", required = false, dataType = "String"),
     	@ApiImplicitParam(name = "sysResourcePath", value = "return-lv文件路径", required = false, dataType = "String"),
     	@ApiImplicitParam(name = "sysResourceIcon", value = "return-图标", required = false, dataType = "String"),
     	@ApiImplicitParam(name = "sysResourceIshidden", value = "return-lv默认是否隐藏:0-隐藏,1-显示", required = false, dataType = "int"),
     	@ApiImplicitParam(name = "sysResourceRoles", value = "return-管理组", required = false, dataType = "String"),
+    	@ApiImplicitParam(name = "sysResourceDelFlag", value = "return-逻辑删除:0-未删除,1-已删除", required = false, dataType = "String"),
 		})
      @RequestMapping(value = "/selectObjById", method = RequestMethod.GET)
      public ResultBean<HashMap<String,Object>> info(@RequestParam("sysResourceId") String sysResourceId) {
@@ -160,7 +162,8 @@ public class SysResourceController extends BaseController <ISysResourceService, 
     	@ApiImplicitParam(name = "sysResourcePath", value = "return-lv文件路径", required = false, dataType = "String"),
     	@ApiImplicitParam(name = "sysResourceIcon", value = "return-图标", required = false, dataType = "String"),
     	@ApiImplicitParam(name = "sysResourceIshidden", value = "return-lv默认是否隐藏:0-隐藏,1-显示", required = false, dataType = "int"),
-    	@ApiImplicitParam(name = "sysResourceRoles", value = "return-管理组", required = false, dataType = "String")
+    	@ApiImplicitParam(name = "sysResourceRoles", value = "return-管理组", required = false, dataType = "String"),
+    	@ApiImplicitParam(name = "sysResourceDelFlag", value = "return-逻辑删除:0-未删除,1-已删除", required = false, dataType = "String")
      })
      @RequestMapping(value = "/allList", method = RequestMethod.POST)
 	public ResultBean<List<SysResource>> allList(@RequestBody HashMap<String,Object> param){

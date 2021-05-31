@@ -17,6 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.zycw.common.util.Page;
 import com.zycw.tuotui.readdao.systasktype.SysTaskTypeMapper;
 import com.zycw.tuotui.entity.systasktype.SysTaskType;
+import com.zycw.tuotui.iface.aucustomtask.IAuCustomTaskService;
 
 import java.lang.String;
 import java.lang.Integer;
@@ -32,15 +33,19 @@ import java.util.HashMap;
 @Service("ISysTaskTypeService")
 public class ISysTaskTypeService extends BaseService<SysTaskTypeMapper,SysTaskType> {
 
+   
+    @Autowired
+    private IAuCustomTaskService iAuCustomTaskService;
    /**
     * 根据主键物理删除
     * @param String 主键ID
     * @return 返回结果
 	* @author junxu.yang
-	* @since 2021-05-30
+	* @since 2021-06-01
     */
 	public void deleteById(String sysTaskTypeId){
 		mapper.deleteById(sysTaskTypeId);
+     	iAuCustomTaskService.deleteByauCustomTaskTaskType(sysTaskTypeId);
 	}
 	
    /**
@@ -48,12 +53,13 @@ public class ISysTaskTypeService extends BaseService<SysTaskTypeMapper,SysTaskTy
     * @param String 主键ID
     * @return 返回结果
 	* @author junxu.yang
-	* @since 2021-05-30
+	* @since 2021-06-01
     */
 	public void deleteByIdLogic(String sysTaskTypeId){
 		mapper.deleteByIdLogic(sysTaskTypeId);
 	}
 	
+
 	
 	public void updateObjById(SysTaskType sysTaskType){
 		mapper.updateObjById(sysTaskType);
@@ -66,7 +72,7 @@ public class ISysTaskTypeService extends BaseService<SysTaskTypeMapper,SysTaskTy
     * @param SysTaskType 对象
     * @return 返回结果 void
 	* @author junxu.yang
-	* @since 2021-05-30
+	* @since 2021-06-01
     */
 	public void insertObj(SysTaskType sysTaskType){
 		mapper.insertObj(sysTaskType);
@@ -78,7 +84,7 @@ public class ISysTaskTypeService extends BaseService<SysTaskTypeMapper,SysTaskTy
     * @param List<SysTaskType> 对象
     * @return 返回结果
 	* @author junxu.yang
-	* @since 2021-05-30
+	* @since 2021-06-01
     */
 	public void batchInsertObj(List<SysTaskType> list){
 		mapper.batchInsertObj(list);
@@ -89,7 +95,7 @@ public class ISysTaskTypeService extends BaseService<SysTaskTypeMapper,SysTaskTy
     * @param String 主键ID
     * @return 返回结果
 	* @author junxu.yang
-	* @since 2021-05-30
+	* @since 2021-06-01
     */
 	public HashMap<String,Object> selectObjById(String sysTaskTypeId){
 		return mapper.selectObjById(sysTaskTypeId);
@@ -101,7 +107,7 @@ public class ISysTaskTypeService extends BaseService<SysTaskTypeMapper,SysTaskTy
     * @param HashMap<String,Object> 对象
     * @return 返回结果
 	* @author junxu.yang
-	* @since 2021-05-30
+	* @since 2021-06-01
     */
 	public Integer countNum(HashMap<String,Object> params) {
 		return mapper.countNum(params);
@@ -113,7 +119,7 @@ public class ISysTaskTypeService extends BaseService<SysTaskTypeMapper,SysTaskTy
 	* @param HashMap<String,Object> 对象
 	* @return 返回结果 PageInfo
 	* @author junxu.yang
-	* @since 2021-05-30
+	* @since 2021-06-01
 	 */
 	public PageInfo<SysTaskType> pageList(HashMap<String,Object> params) throws Exception {
 		Integer pageNum = (Integer)params.get("pageNum");

@@ -32,12 +32,13 @@ import java.util.HashMap;
 @Service("IAuAccountConsumeService")
 public class IAuAccountConsumeService extends BaseService<AuAccountConsumeMapper,AuAccountConsume> {
 
+   
    /**
     * 根据主键物理删除
     * @param String 主键ID
     * @return 返回结果
 	* @author junxu.yang
-	* @since 2021-05-30
+	* @since 2021-06-01
     */
 	public void deleteById(String auAccountConsumeId){
 		mapper.deleteById(auAccountConsumeId);
@@ -48,12 +49,35 @@ public class IAuAccountConsumeService extends BaseService<AuAccountConsumeMapper
     * @param String 主键ID
     * @return 返回结果
 	* @author junxu.yang
-	* @since 2021-05-30
+	* @since 2021-06-01
     */
 	public void deleteByIdLogic(String auAccountConsumeId){
 		mapper.deleteByIdLogic(auAccountConsumeId);
 	}
 	
+	
+   /**
+    * 根据外键auAccountConsumeCompanyId删除
+    * @param String 外键ID
+    * @return 返回结果
+	* @author junxu.yang
+	* @since 2021-06-01
+    */
+	public void deleteByauAccountConsumeCompanyId(String id){
+		mapper.deleteByauAccountConsumeCompanyId(id);
+	}
+	
+   /**
+    * 根据外键auAccountConsumeUserId删除
+    * @param String 外键ID
+    * @return 返回结果
+	* @author junxu.yang
+	* @since 2021-06-01
+    */
+	public void deleteByauAccountConsumeUserId(String id){
+		mapper.deleteByauAccountConsumeUserId(id);
+	}
+
 	
 	public void updateObjById(AuAccountConsume auAccountConsume){
 		mapper.updateObjById(auAccountConsume);
@@ -66,7 +90,7 @@ public class IAuAccountConsumeService extends BaseService<AuAccountConsumeMapper
     * @param AuAccountConsume 对象
     * @return 返回结果 void
 	* @author junxu.yang
-	* @since 2021-05-30
+	* @since 2021-06-01
     */
 	public void insertObj(AuAccountConsume auAccountConsume){
 		mapper.insertObj(auAccountConsume);
@@ -78,7 +102,7 @@ public class IAuAccountConsumeService extends BaseService<AuAccountConsumeMapper
     * @param List<AuAccountConsume> 对象
     * @return 返回结果
 	* @author junxu.yang
-	* @since 2021-05-30
+	* @since 2021-06-01
     */
 	public void batchInsertObj(List<AuAccountConsume> list){
 		mapper.batchInsertObj(list);
@@ -89,7 +113,7 @@ public class IAuAccountConsumeService extends BaseService<AuAccountConsumeMapper
     * @param String 主键ID
     * @return 返回结果
 	* @author junxu.yang
-	* @since 2021-05-30
+	* @since 2021-06-01
     */
 	public HashMap<String,Object> selectObjById(String auAccountConsumeId){
 		return mapper.selectObjById(auAccountConsumeId);
@@ -101,7 +125,7 @@ public class IAuAccountConsumeService extends BaseService<AuAccountConsumeMapper
     * @param HashMap<String,Object> 对象
     * @return 返回结果
 	* @author junxu.yang
-	* @since 2021-05-30
+	* @since 2021-06-01
     */
 	public Integer countNum(HashMap<String,Object> params) {
 		return mapper.countNum(params);
@@ -113,7 +137,7 @@ public class IAuAccountConsumeService extends BaseService<AuAccountConsumeMapper
 	* @param HashMap<String,Object> 对象
 	* @return 返回结果 PageInfo
 	* @author junxu.yang
-	* @since 2021-05-30
+	* @since 2021-06-01
 	 */
 	public PageInfo<AuAccountConsume> pageList(HashMap<String,Object> params) throws Exception {
 		Integer pageNum = (Integer)params.get("pageNum");

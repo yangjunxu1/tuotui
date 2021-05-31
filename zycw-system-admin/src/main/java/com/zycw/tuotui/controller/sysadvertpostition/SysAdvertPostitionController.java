@@ -111,7 +111,8 @@ public class SysAdvertPostitionController extends BaseController <ISysAdvertPost
 		@ApiImplicitParam(name = "pageNum", value = "当前页数", required = false, dataType = "int"),
 
 
-    	@ApiImplicitParam(name = "sysAdvertPostitionCode", value = "return-位置编码", required = false, dataType = "String"),
+
+    	@ApiImplicitParam(name = "sysAdvertPostitionDelFlag", value = "return-逻辑删除:0-未删除,1-已删除", required = false, dataType = "${dataType}"),
      })
      @RequestMapping(value = "/pageList", method = RequestMethod.POST)
      public ResultBeanFactory.ResultBean<PageInfo<SysAdvertPostition>> pageList(@RequestBody HashMap<String,Object> params) {
@@ -131,9 +132,10 @@ public class SysAdvertPostitionController extends BaseController <ISysAdvertPost
      @ApiOperation(value = "通过id查询")
      @ApiImplicitParam(name = "sysAdvertPostitionId", value = "ID", required = true, dataType = "String")
      @ApiImplicitParams({
-    	@ApiImplicitParam(name = "sysAdvertPostitionId", value = "return-ID", required = false, dataType = "String"),
+    	@ApiImplicitParam(name = "sysAdvertPostitionId", value = "return-ID", required = false, dataType = "${dataType}"),
     	@ApiImplicitParam(name = "sysAdvertPostitionName", value = "return-lnM位置名称", required = false, dataType = "String"),
     	@ApiImplicitParam(name = "sysAdvertPostitionCode", value = "return-位置编码", required = false, dataType = "String"),
+    	@ApiImplicitParam(name = "sysAdvertPostitionDelFlag", value = "return-逻辑删除:0-未删除,1-已删除", required = false, dataType = "String"),
 		})
      @RequestMapping(value = "/selectObjById", method = RequestMethod.GET)
      public ResultBean<HashMap<String,Object>> info(@RequestParam("sysAdvertPostitionId") String sysAdvertPostitionId) {
@@ -148,7 +150,8 @@ public class SysAdvertPostitionController extends BaseController <ISysAdvertPost
      @ApiImplicitParams({
     	@ApiImplicitParam(name = "sysAdvertPostitionId", value = "return-ID", required = false, dataType = "String"),
     	@ApiImplicitParam(name = "sysAdvertPostitionName", value = "return-lnM位置名称", required = false, dataType = "String"),
-    	@ApiImplicitParam(name = "sysAdvertPostitionCode", value = "return-位置编码", required = false, dataType = "String")
+    	@ApiImplicitParam(name = "sysAdvertPostitionCode", value = "return-位置编码", required = false, dataType = "String"),
+    	@ApiImplicitParam(name = "sysAdvertPostitionDelFlag", value = "return-逻辑删除:0-未删除,1-已删除", required = false, dataType = "String")
      })
      @RequestMapping(value = "/allList", method = RequestMethod.POST)
 	public ResultBean<List<SysAdvertPostition>> allList(@RequestBody HashMap<String,Object> param){

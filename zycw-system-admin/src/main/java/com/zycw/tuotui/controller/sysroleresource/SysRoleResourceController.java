@@ -113,7 +113,8 @@ public class SysRoleResourceController extends BaseController <ISysRoleResourceS
 		@ApiImplicitParam(name = "pageNum", value = "当前页数", required = false, dataType = "int"),
 
 
-    	@ApiImplicitParam(name = "${viewColumn.columnAlias}", value = "return-${viewColumn.comment}", required = false, dataType = "${dataType}")
+
+    	@ApiImplicitParam(name = "sysRoleResourceDelFlag", value = "return-逻辑删除:0-未删除,1-已删除", required = false, dataType = "${dataType}"),
      })
      @RequestMapping(value = "/pageList", method = RequestMethod.POST)
      public ResultBeanFactory.ResultBean<PageInfo<SysRoleResource>> pageList(@RequestBody HashMap<String,Object> params) {
@@ -135,7 +136,8 @@ public class SysRoleResourceController extends BaseController <ISysRoleResourceS
      @ApiImplicitParams({
     	@ApiImplicitParam(name = "sysRoleResourceId", value = "return-id", required = false, dataType = "${dataType}"),
     	@ApiImplicitParam(name = "sysRoleName", value = "return-lvM名称", required = false, dataType = "String"),
-    	@ApiImplicitParam(name = "${viewColumn.columnAlias}", value = "return-${viewColumn.comment}", required = false, dataType = "String")
+    	@ApiImplicitParam(name = "${viewColumn.columnAlias}", value = "return-${viewColumn.comment}", required = false, dataType = "String"),
+    	@ApiImplicitParam(name = "sysRoleResourceDelFlag", value = "return-逻辑删除:0-未删除,1-已删除", required = false, dataType = "String"),
 		})
      @RequestMapping(value = "/selectObjById", method = RequestMethod.GET)
      public ResultBean<HashMap<String,Object>> info(@RequestParam("sysRoleResourceId") String sysRoleResourceId) {
@@ -152,7 +154,8 @@ public class SysRoleResourceController extends BaseController <ISysRoleResourceS
     	@ApiImplicitParam(name = "sysRoleResourceResourceId", value = "", required = false, dataType = "String"),
     	@ApiImplicitParam(name = "sysRoleResourceId", value = "return-id", required = false, dataType = "String"),
     	@ApiImplicitParam(name = "sysRoleName", value = "return-lvM名称", required = false, dataType = "String"),
-    	@ApiImplicitParam(name = "${viewColumn.columnAlias}", value = "return-${viewColumn.comment}", required = false, dataType = "String")
+    	@ApiImplicitParam(name = "${viewColumn.columnAlias}", value = "return-${viewColumn.comment}", required = false, dataType = "String"),
+    	@ApiImplicitParam(name = "sysRoleResourceDelFlag", value = "return-逻辑删除:0-未删除,1-已删除", required = false, dataType = "String")
      })
      @RequestMapping(value = "/allList", method = RequestMethod.POST)
 	public ResultBean<List<SysRoleResource>> allList(@RequestBody HashMap<String,Object> param){

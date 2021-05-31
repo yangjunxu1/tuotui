@@ -123,7 +123,8 @@ public class SysUserController extends BaseController <ISysUserService, SysUser>
 
 
 
-    	@ApiImplicitParam(name = "sysUserUpdatedTime", value = "return-修改日期", required = false, dataType = "Date"),
+
+    	@ApiImplicitParam(name = "sysUserDelFlag", value = "return-逻辑删除:0-未删除,1-已删除", required = false, dataType = "${dataType}"),
      })
      @RequestMapping(value = "/pageList", method = RequestMethod.POST)
      public ResultBeanFactory.ResultBean<PageInfo<SysUser>> pageList(@RequestBody HashMap<String,Object> params) {
@@ -143,7 +144,7 @@ public class SysUserController extends BaseController <ISysUserService, SysUser>
      @ApiOperation(value = "通过id查询")
      @ApiImplicitParam(name = "sysUserId", value = "ID", required = true, dataType = "String")
      @ApiImplicitParams({
-    	@ApiImplicitParam(name = "sysUserId", value = "return-id", required = false, dataType = "Date"),
+    	@ApiImplicitParam(name = "sysUserId", value = "return-id", required = false, dataType = "${dataType}"),
     	@ApiImplicitParam(name = "sysUserUsername", value = "return-lvM用户名", required = false, dataType = "String"),
     	@ApiImplicitParam(name = "sysUserPassword", value = "return-密码", required = false, dataType = "String"),
     	@ApiImplicitParam(name = "sysUserNike", value = "return-lv用户昵称", required = false, dataType = "String"),
@@ -153,6 +154,7 @@ public class SysUserController extends BaseController <ISysUserService, SysUser>
     	@ApiImplicitParam(name = "sysUserMobile", value = "return-lv联系电话", required = false, dataType = "String"),
     	@ApiImplicitParam(name = "sysUserCreatedTime", value = "return-lv添加日期", required = false, dataType = "Date"),
     	@ApiImplicitParam(name = "sysUserUpdatedTime", value = "return-修改日期", required = false, dataType = "Date"),
+    	@ApiImplicitParam(name = "sysUserDelFlag", value = "return-逻辑删除:0-未删除,1-已删除", required = false, dataType = "Date"),
 		})
      @RequestMapping(value = "/selectObjById", method = RequestMethod.GET)
      public ResultBean<HashMap<String,Object>> info(@RequestParam("sysUserId") String sysUserId) {
@@ -175,7 +177,8 @@ public class SysUserController extends BaseController <ISysUserService, SysUser>
     	@ApiImplicitParam(name = "sysUserTrueName", value = "return-lv真实姓名", required = false, dataType = "String"),
     	@ApiImplicitParam(name = "sysUserMobile", value = "return-lv联系电话", required = false, dataType = "String"),
     	@ApiImplicitParam(name = "sysUserCreatedTime", value = "return-lv添加日期", required = false, dataType = "Date"),
-    	@ApiImplicitParam(name = "sysUserUpdatedTime", value = "return-修改日期", required = false, dataType = "Date")
+    	@ApiImplicitParam(name = "sysUserUpdatedTime", value = "return-修改日期", required = false, dataType = "Date"),
+    	@ApiImplicitParam(name = "sysUserDelFlag", value = "return-逻辑删除:0-未删除,1-已删除", required = false, dataType = "Date")
      })
      @RequestMapping(value = "/allList", method = RequestMethod.POST)
 	public ResultBean<List<SysUser>> allList(@RequestBody HashMap<String,Object> param){

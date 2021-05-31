@@ -112,7 +112,8 @@ public class SysCityController extends BaseController <ISysCityService, SysCity>
 		@ApiImplicitParam(name = "pageNum", value = "当前页数", required = false, dataType = "int"),
 
 
-    	@ApiImplicitParam(name = "sysProvinceName", value = "return-lvM省名称", required = false, dataType = "String")
+
+    	@ApiImplicitParam(name = "sysCityDelFlag", value = "return-逻辑删除:0-未删除,1-已删除", required = false, dataType = "${dataType}"),
      })
      @RequestMapping(value = "/pageList", method = RequestMethod.POST)
      public ResultBeanFactory.ResultBean<PageInfo<SysCity>> pageList(@RequestBody HashMap<String,Object> params) {
@@ -132,9 +133,10 @@ public class SysCityController extends BaseController <ISysCityService, SysCity>
      @ApiOperation(value = "通过id查询")
      @ApiImplicitParam(name = "sysCityId", value = "ID", required = true, dataType = "String")
      @ApiImplicitParams({
-    	@ApiImplicitParam(name = "sysCityId", value = "return-ID", required = false, dataType = "String"),
+    	@ApiImplicitParam(name = "sysCityId", value = "return-ID", required = false, dataType = "${dataType}"),
     	@ApiImplicitParam(name = "sysCityName", value = "return-lvM市名称", required = false, dataType = "String"),
-    	@ApiImplicitParam(name = "sysProvinceName", value = "return-lvM省名称", required = false, dataType = "String")
+    	@ApiImplicitParam(name = "sysProvinceName", value = "return-lvM省名称", required = false, dataType = "String"),
+    	@ApiImplicitParam(name = "sysCityDelFlag", value = "return-逻辑删除:0-未删除,1-已删除", required = false, dataType = "String"),
 		})
      @RequestMapping(value = "/selectObjById", method = RequestMethod.GET)
      public ResultBean<HashMap<String,Object>> info(@RequestParam("sysCityId") String sysCityId) {
@@ -150,7 +152,8 @@ public class SysCityController extends BaseController <ISysCityService, SysCity>
     	@ApiImplicitParam(name = "sysCityProvinceId", value = "省", required = false, dataType = "String"),
     	@ApiImplicitParam(name = "sysCityId", value = "return-ID", required = false, dataType = "String"),
     	@ApiImplicitParam(name = "sysCityName", value = "return-lvM市名称", required = false, dataType = "String"),
-    	@ApiImplicitParam(name = "sysProvinceName", value = "return-lvM省名称", required = false, dataType = "String")
+    	@ApiImplicitParam(name = "sysProvinceName", value = "return-lvM省名称", required = false, dataType = "String"),
+    	@ApiImplicitParam(name = "sysCityDelFlag", value = "return-逻辑删除:0-未删除,1-已删除", required = false, dataType = "String")
      })
      @RequestMapping(value = "/allList", method = RequestMethod.POST)
 	public ResultBean<List<SysCity>> allList(@RequestBody HashMap<String,Object> param){

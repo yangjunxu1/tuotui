@@ -17,6 +17,8 @@ import org.springframework.transaction.annotation.Transactional;
 import com.zycw.common.util.Page;
 import com.zycw.tuotui.readdao.sysarea.SysAreaMapper;
 import com.zycw.tuotui.entity.sysarea.SysArea;
+import com.zycw.tuotui.iface.aucustomtask.IAuCustomTaskService;
+import com.zycw.tuotui.iface.auuser.IAuUserService;
 
 import java.lang.String;
 import java.lang.Integer;
@@ -32,15 +34,22 @@ import java.util.HashMap;
 @Service("ISysAreaService")
 public class ISysAreaService extends BaseService<SysAreaMapper,SysArea> {
 
+   
+    @Autowired
+    private IAuCustomTaskService iAuCustomTaskService;
+    @Autowired
+    private IAuUserService iAuUserService;
    /**
     * 根据主键物理删除
     * @param String 主键ID
     * @return 返回结果
 	* @author junxu.yang
-	* @since 2021-05-30
+	* @since 2021-06-01
     */
 	public void deleteById(String sysAreaId){
 		mapper.deleteById(sysAreaId);
+     	iAuCustomTaskService.deleteByauCustomTaskAreaId(sysAreaId);
+     	iAuUserService.deleteByauUserAreaId(sysAreaId);
 	}
 	
    /**
@@ -48,12 +57,35 @@ public class ISysAreaService extends BaseService<SysAreaMapper,SysArea> {
     * @param String 主键ID
     * @return 返回结果
 	* @author junxu.yang
-	* @since 2021-05-30
+	* @since 2021-06-01
     */
 	public void deleteByIdLogic(String sysAreaId){
 		mapper.deleteByIdLogic(sysAreaId);
 	}
 	
+	
+   /**
+    * 根据外键sysAreaCityId删除
+    * @param String 外键ID
+    * @return 返回结果
+	* @author junxu.yang
+	* @since 2021-06-01
+    */
+	public void deleteBysysAreaCityId(String id){
+		mapper.deleteBysysAreaCityId(id);
+	}
+	
+   /**
+    * 根据外键sysAreaProvinceId删除
+    * @param String 外键ID
+    * @return 返回结果
+	* @author junxu.yang
+	* @since 2021-06-01
+    */
+	public void deleteBysysAreaProvinceId(String id){
+		mapper.deleteBysysAreaProvinceId(id);
+	}
+
 	
 	public void updateObjById(SysArea sysArea){
 		mapper.updateObjById(sysArea);
@@ -66,7 +98,7 @@ public class ISysAreaService extends BaseService<SysAreaMapper,SysArea> {
     * @param SysArea 对象
     * @return 返回结果 void
 	* @author junxu.yang
-	* @since 2021-05-30
+	* @since 2021-06-01
     */
 	public void insertObj(SysArea sysArea){
 		mapper.insertObj(sysArea);
@@ -78,7 +110,7 @@ public class ISysAreaService extends BaseService<SysAreaMapper,SysArea> {
     * @param List<SysArea> 对象
     * @return 返回结果
 	* @author junxu.yang
-	* @since 2021-05-30
+	* @since 2021-06-01
     */
 	public void batchInsertObj(List<SysArea> list){
 		mapper.batchInsertObj(list);
@@ -89,7 +121,7 @@ public class ISysAreaService extends BaseService<SysAreaMapper,SysArea> {
     * @param String 主键ID
     * @return 返回结果
 	* @author junxu.yang
-	* @since 2021-05-30
+	* @since 2021-06-01
     */
 	public HashMap<String,Object> selectObjById(String sysAreaId){
 		return mapper.selectObjById(sysAreaId);
@@ -101,7 +133,7 @@ public class ISysAreaService extends BaseService<SysAreaMapper,SysArea> {
     * @param HashMap<String,Object> 对象
     * @return 返回结果
 	* @author junxu.yang
-	* @since 2021-05-30
+	* @since 2021-06-01
     */
 	public Integer countNum(HashMap<String,Object> params) {
 		return mapper.countNum(params);
@@ -113,7 +145,7 @@ public class ISysAreaService extends BaseService<SysAreaMapper,SysArea> {
 	* @param HashMap<String,Object> 对象
 	* @return 返回结果 PageInfo
 	* @author junxu.yang
-	* @since 2021-05-30
+	* @since 2021-06-01
 	 */
 	public PageInfo<SysArea> pageList(HashMap<String,Object> params) throws Exception {
 		Integer pageNum = (Integer)params.get("pageNum");

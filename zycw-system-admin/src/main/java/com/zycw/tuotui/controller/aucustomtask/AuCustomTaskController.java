@@ -120,13 +120,14 @@ public class AuCustomTaskController extends BaseController <IAuCustomTaskService
      @ApiOperation(value = "分页查询")
      @ApiImplicitParams({
     	@ApiImplicitParam(name = "auCustomTaskCompaynId", value = "lv公司", required = false, dataType = "${dataType}"),
-    	@ApiImplicitParam(name = "auCustomTaskUserId", value = "lv用户", required = false, dataType = "${dataType}"),
     	@ApiImplicitParam(name = "auCustomTaskAppId", value = "lvapp", required = false, dataType = "${dataType}"),
+    	@ApiImplicitParam(name = "auCustomTaskUserId", value = "lv用户", required = false, dataType = "${dataType}"),
+    	@ApiImplicitParam(name = "auCustomTaskTaskActivity", value = "lvS任务活动", required = false, dataType = "${dataType}"),
     	@ApiImplicitParam(name = "auCustomTaskTaskType", value = "lvS任务类型", required = false, dataType = "${dataType}"),
-    	@ApiImplicitParam(name = "auCustomTaskCityId", value = "lvS任务要求市", required = false, dataType = "${dataType}"),
-    	@ApiImplicitParam(name = "auCustomTaskProvinceId", value = "lvS任务要求省", required = false, dataType = "${dataType}"),
     	@ApiImplicitParam(name = "auCustomTaskTaskDepth", value = "lvS任务深度", required = false, dataType = "${dataType}"),
     	@ApiImplicitParam(name = "auCustomTaskAreaId", value = "lvS任务要求区", required = false, dataType = "${dataType}"),
+    	@ApiImplicitParam(name = "auCustomTaskCityId", value = "lvS任务要求市", required = false, dataType = "${dataType}"),
+    	@ApiImplicitParam(name = "auCustomTaskProvinceId", value = "lvS任务要求省", required = false, dataType = "${dataType}"),
     	@ApiImplicitParam(name = "auCustomTaskOccupationId", value = "lvS职业", required = false, dataType = "${dataType}"),
 		@ApiImplicitParam(name = "pageSize", value = "每页条数", required = false, dataType = "int"),
 		@ApiImplicitParam(name = "pageNum", value = "当前页数", required = false, dataType = "int"),
@@ -162,7 +163,9 @@ public class AuCustomTaskController extends BaseController <IAuCustomTaskService
 
 
 
-    	@ApiImplicitParam(name = "auCustomTaskUpdatedTime", value = "return-u修改时间", required = false, dataType = "Date"),
+
+
+    	@ApiImplicitParam(name = "auCustomTaskDelFlag", value = "return-逻辑删除:0-未删除,1-已删除", required = false, dataType = "${dataType}"),
      })
      @RequestMapping(value = "/pageList", method = RequestMethod.POST)
      public ResultBeanFactory.ResultBean<PageInfo<AuCustomTask>> pageList(@RequestBody HashMap<String,Object> params) {
@@ -182,7 +185,7 @@ public class AuCustomTaskController extends BaseController <IAuCustomTaskService
      @ApiOperation(value = "通过id查询")
      @ApiImplicitParam(name = "auCustomTaskId", value = "ID", required = true, dataType = "String")
      @ApiImplicitParams({
-    	@ApiImplicitParam(name = "auCustomTaskId", value = "return-ID", required = false, dataType = "Date"),
+    	@ApiImplicitParam(name = "auCustomTaskId", value = "return-ID", required = false, dataType = "${dataType}"),
     	@ApiImplicitParam(name = "auCompanyAppName", value = "return-lvMapp名称", required = false, dataType = "String"),
     	@ApiImplicitParam(name = "auUserMobile", value = "return-lvM手机号", required = false, dataType = "String"),
     	@ApiImplicitParam(name = "auCompanyAppName", value = "return-lvMapp名称", required = false, dataType = "String"),
@@ -191,6 +194,7 @@ public class AuCustomTaskController extends BaseController <IAuCustomTaskService
     	@ApiImplicitParam(name = "auCustomTaskSchemeId", value = "return-lvS套餐id", required = false, dataType = "String"),
     	@ApiImplicitParam(name = "sysTaskTypeTypeTitle", value = "return-lvM分类名称", required = false, dataType = "String"),
     	@ApiImplicitParam(name = "sysTaskDepthDepthTitle", value = "return-lvM任务深度标题", required = false, dataType = "String"),
+    	@ApiImplicitParam(name = "sysTaskActivityActivityName", value = "return-lvM活动名称", required = false, dataType = "String"),
     	@ApiImplicitParam(name = "sysProvinceName", value = "return-lvM省名称", required = false, dataType = "String"),
     	@ApiImplicitParam(name = "sysCityName", value = "return-lvM市名称", required = false, dataType = "String"),
     	@ApiImplicitParam(name = "sysAreaName", value = "return-lvM区名称", required = false, dataType = "String"),
@@ -215,6 +219,7 @@ public class AuCustomTaskController extends BaseController <IAuCustomTaskService
     	@ApiImplicitParam(name = "auCustomTaskTaskStatus", value = "return-lvS任务状态:0-已审核,1-未审核,2-未通过,3-未开始,4-进行中,5-已结束", required = false, dataType = "Date"),
     	@ApiImplicitParam(name = "auCustomTaskCreatedTime", value = "return-il创建时间", required = false, dataType = "Date"),
     	@ApiImplicitParam(name = "auCustomTaskUpdatedTime", value = "return-u修改时间", required = false, dataType = "Date"),
+    	@ApiImplicitParam(name = "auCustomTaskDelFlag", value = "return-逻辑删除:0-未删除,1-已删除", required = false, dataType = "Date"),
 		})
      @RequestMapping(value = "/selectObjById", method = RequestMethod.GET)
      public ResultBean<HashMap<String,Object>> info(@RequestParam("auCustomTaskId") String auCustomTaskId) {
@@ -228,13 +233,14 @@ public class AuCustomTaskController extends BaseController <IAuCustomTaskService
      @ApiOperation(value = "allList")
      @ApiImplicitParams({
     	@ApiImplicitParam(name = "auCustomTaskCompaynId", value = "lv公司", required = false, dataType = "Date"),
-    	@ApiImplicitParam(name = "auCustomTaskUserId", value = "lv用户", required = false, dataType = "Date"),
     	@ApiImplicitParam(name = "auCustomTaskAppId", value = "lvapp", required = false, dataType = "Date"),
+    	@ApiImplicitParam(name = "auCustomTaskUserId", value = "lv用户", required = false, dataType = "Date"),
+    	@ApiImplicitParam(name = "auCustomTaskTaskActivity", value = "lvS任务活动", required = false, dataType = "Date"),
     	@ApiImplicitParam(name = "auCustomTaskTaskType", value = "lvS任务类型", required = false, dataType = "Date"),
-    	@ApiImplicitParam(name = "auCustomTaskCityId", value = "lvS任务要求市", required = false, dataType = "Date"),
-    	@ApiImplicitParam(name = "auCustomTaskProvinceId", value = "lvS任务要求省", required = false, dataType = "Date"),
     	@ApiImplicitParam(name = "auCustomTaskTaskDepth", value = "lvS任务深度", required = false, dataType = "Date"),
     	@ApiImplicitParam(name = "auCustomTaskAreaId", value = "lvS任务要求区", required = false, dataType = "Date"),
+    	@ApiImplicitParam(name = "auCustomTaskCityId", value = "lvS任务要求市", required = false, dataType = "Date"),
+    	@ApiImplicitParam(name = "auCustomTaskProvinceId", value = "lvS任务要求省", required = false, dataType = "Date"),
     	@ApiImplicitParam(name = "auCustomTaskOccupationId", value = "lvS职业", required = false, dataType = "Date"),
     	@ApiImplicitParam(name = "auCustomTaskId", value = "return-ID", required = false, dataType = "Date"),
     	@ApiImplicitParam(name = "auCompanyAppName", value = "return-lvMapp名称", required = false, dataType = "String"),
@@ -245,6 +251,7 @@ public class AuCustomTaskController extends BaseController <IAuCustomTaskService
     	@ApiImplicitParam(name = "auCustomTaskSchemeId", value = "return-lvS套餐id", required = false, dataType = "String"),
     	@ApiImplicitParam(name = "sysTaskTypeTypeTitle", value = "return-lvM分类名称", required = false, dataType = "String"),
     	@ApiImplicitParam(name = "sysTaskDepthDepthTitle", value = "return-lvM任务深度标题", required = false, dataType = "String"),
+    	@ApiImplicitParam(name = "sysTaskActivityActivityName", value = "return-lvM活动名称", required = false, dataType = "String"),
     	@ApiImplicitParam(name = "sysProvinceName", value = "return-lvM省名称", required = false, dataType = "String"),
     	@ApiImplicitParam(name = "sysCityName", value = "return-lvM市名称", required = false, dataType = "String"),
     	@ApiImplicitParam(name = "sysAreaName", value = "return-lvM区名称", required = false, dataType = "String"),
@@ -268,7 +275,8 @@ public class AuCustomTaskController extends BaseController <IAuCustomTaskService
     	@ApiImplicitParam(name = "auCustomTaskTaskReward", value = "return-任务奖励金额", required = false, dataType = "Date"),
     	@ApiImplicitParam(name = "auCustomTaskTaskStatus", value = "return-lvS任务状态:0-已审核,1-未审核,2-未通过,3-未开始,4-进行中,5-已结束", required = false, dataType = "Date"),
     	@ApiImplicitParam(name = "auCustomTaskCreatedTime", value = "return-il创建时间", required = false, dataType = "Date"),
-    	@ApiImplicitParam(name = "auCustomTaskUpdatedTime", value = "return-u修改时间", required = false, dataType = "Date")
+    	@ApiImplicitParam(name = "auCustomTaskUpdatedTime", value = "return-u修改时间", required = false, dataType = "Date"),
+    	@ApiImplicitParam(name = "auCustomTaskDelFlag", value = "return-逻辑删除:0-未删除,1-已删除", required = false, dataType = "Date")
      })
      @RequestMapping(value = "/allList", method = RequestMethod.POST)
 	public ResultBean<List<AuCustomTask>> allList(@RequestBody HashMap<String,Object> param){

@@ -32,12 +32,13 @@ import java.util.HashMap;
 @Service("ISysExtensionTypeService")
 public class ISysExtensionTypeService extends BaseService<SysExtensionTypeMapper,SysExtensionType> {
 
+   
    /**
     * 根据主键物理删除
     * @param String 主键ID
     * @return 返回结果
 	* @author junxu.yang
-	* @since 2021-05-30
+	* @since 2021-06-01
     */
 	public void deleteById(String sysExtensionTypeId){
 		mapper.deleteById(sysExtensionTypeId);
@@ -48,12 +49,13 @@ public class ISysExtensionTypeService extends BaseService<SysExtensionTypeMapper
     * @param String 主键ID
     * @return 返回结果
 	* @author junxu.yang
-	* @since 2021-05-30
+	* @since 2021-06-01
     */
 	public void deleteByIdLogic(String sysExtensionTypeId){
 		mapper.deleteByIdLogic(sysExtensionTypeId);
 	}
 	
+
 	
 	public void updateObjById(SysExtensionType sysExtensionType){
 		mapper.updateObjById(sysExtensionType);
@@ -66,7 +68,7 @@ public class ISysExtensionTypeService extends BaseService<SysExtensionTypeMapper
     * @param SysExtensionType 对象
     * @return 返回结果 void
 	* @author junxu.yang
-	* @since 2021-05-30
+	* @since 2021-06-01
     */
 	public void insertObj(SysExtensionType sysExtensionType){
 		mapper.insertObj(sysExtensionType);
@@ -78,7 +80,7 @@ public class ISysExtensionTypeService extends BaseService<SysExtensionTypeMapper
     * @param List<SysExtensionType> 对象
     * @return 返回结果
 	* @author junxu.yang
-	* @since 2021-05-30
+	* @since 2021-06-01
     */
 	public void batchInsertObj(List<SysExtensionType> list){
 		mapper.batchInsertObj(list);
@@ -89,7 +91,7 @@ public class ISysExtensionTypeService extends BaseService<SysExtensionTypeMapper
     * @param String 主键ID
     * @return 返回结果
 	* @author junxu.yang
-	* @since 2021-05-30
+	* @since 2021-06-01
     */
 	public HashMap<String,Object> selectObjById(String sysExtensionTypeId){
 		return mapper.selectObjById(sysExtensionTypeId);
@@ -101,7 +103,7 @@ public class ISysExtensionTypeService extends BaseService<SysExtensionTypeMapper
     * @param HashMap<String,Object> 对象
     * @return 返回结果
 	* @author junxu.yang
-	* @since 2021-05-30
+	* @since 2021-06-01
     */
 	public Integer countNum(HashMap<String,Object> params) {
 		return mapper.countNum(params);
@@ -113,7 +115,7 @@ public class ISysExtensionTypeService extends BaseService<SysExtensionTypeMapper
 	* @param HashMap<String,Object> 对象
 	* @return 返回结果 PageInfo
 	* @author junxu.yang
-	* @since 2021-05-30
+	* @since 2021-06-01
 	 */
 	public PageInfo<SysExtensionType> pageList(HashMap<String,Object> params) throws Exception {
 		Integer pageNum = (Integer)params.get("pageNum");

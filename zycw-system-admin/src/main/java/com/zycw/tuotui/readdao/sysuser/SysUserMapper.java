@@ -17,13 +17,16 @@ import java.util.HashMap;
  * </p>
  *
  * @author junxu.yang
- * @since 2021-05-30
+ * @since 2021-06-01
  */
 public interface SysUserMapper extends Mapper<SysUser> {
 	
 	public void deleteById(@Param("sysUserId") String sysUserId);
 	
 	public void deleteByIdLogic(@Param("sysUserId") String sysUserId);
+	
+	public void deleteBysysUserRoleId(@Param("id") String id);
+    
 	
 	
 	public void updateObjById(SysUser sysUser);

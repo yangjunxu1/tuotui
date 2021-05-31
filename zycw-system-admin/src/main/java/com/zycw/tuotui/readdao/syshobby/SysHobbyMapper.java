@@ -17,13 +17,14 @@ import java.util.HashMap;
  * </p>
  *
  * @author junxu.yang
- * @since 2021-05-30
+ * @since 2021-06-01
  */
 public interface SysHobbyMapper extends Mapper<SysHobby> {
 	
 	public void deleteById(@Param("sysHobbyId") String sysHobbyId);
 	
 	public void deleteByIdLogic(@Param("sysHobbyId") String sysHobbyId);
+	
 	
 	
 	public void updateObjById(SysHobby sysHobby);

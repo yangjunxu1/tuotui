@@ -17,13 +17,14 @@ import java.util.HashMap;
  * </p>
  *
  * @author junxu.yang
- * @since 2021-05-30
+ * @since 2021-06-01
  */
 public interface SysResourceMapper extends Mapper<SysResource> {
 	
 	public void deleteById(@Param("sysResourceId") String sysResourceId);
 	
 	public void deleteByIdLogic(@Param("sysResourceId") String sysResourceId);
+	
 	
 	
 	public void updateObjById(SysResource sysResource);

@@ -17,13 +17,14 @@ import java.util.HashMap;
  * </p>
  *
  * @author junxu.yang
- * @since 2021-05-30
+ * @since 2021-06-01
  */
 public interface AuSchemeMapper extends Mapper<AuScheme> {
 	
 	public void deleteById(@Param("auSchemeId") String auSchemeId);
 	
 	public void deleteByIdLogic(@Param("auSchemeId") String auSchemeId);
+	
 	
 	
 	public void updateObjById(AuScheme auScheme);

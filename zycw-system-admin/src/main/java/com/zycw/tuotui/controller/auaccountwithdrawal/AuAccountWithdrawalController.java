@@ -118,7 +118,8 @@ public class AuAccountWithdrawalController extends BaseController <IAuAccountWit
 
 
 
-    	@ApiImplicitParam(name = "auAccountWithdrawalWithdrawalPath", value = "return-提现途径:0-微信,1-支付宝,2-银行卡", required = false, dataType = "${dataType}"),
+
+    	@ApiImplicitParam(name = "auAccountWithdrawalDeFlag", value = "return-逻辑删除:0-未删除,1-已删除", required = false, dataType = "${dataType}"),
      })
      @RequestMapping(value = "/pageList", method = RequestMethod.POST)
      public ResultBeanFactory.ResultBean<PageInfo<AuAccountWithdrawal>> pageList(@RequestBody HashMap<String,Object> params) {
@@ -144,6 +145,7 @@ public class AuAccountWithdrawalController extends BaseController <IAuAccountWit
     	@ApiImplicitParam(name = "auAccountWithdrawalWithdrawalTime", value = "return-lv提现时间", required = false, dataType = "Date"),
     	@ApiImplicitParam(name = "auAccountWithdrawalWithdrawalStatus", value = "return-提现状态:0-已到账,1-未到账", required = false, dataType = "Date"),
     	@ApiImplicitParam(name = "auAccountWithdrawalWithdrawalPath", value = "return-提现途径:0-微信,1-支付宝,2-银行卡", required = false, dataType = "Date"),
+    	@ApiImplicitParam(name = "auAccountWithdrawalDeFlag", value = "return-逻辑删除:0-未删除,1-已删除", required = false, dataType = "Date"),
 		})
      @RequestMapping(value = "/selectObjById", method = RequestMethod.GET)
      public ResultBean<HashMap<String,Object>> info(@RequestParam("auAccountWithdrawalId") String auAccountWithdrawalId) {
@@ -163,7 +165,8 @@ public class AuAccountWithdrawalController extends BaseController <IAuAccountWit
     	@ApiImplicitParam(name = "auCustomTaskTaskTitle", value = "return-lvM任务标题", required = false, dataType = "String"),
     	@ApiImplicitParam(name = "auAccountWithdrawalWithdrawalTime", value = "return-lv提现时间", required = false, dataType = "Date"),
     	@ApiImplicitParam(name = "auAccountWithdrawalWithdrawalStatus", value = "return-提现状态:0-已到账,1-未到账", required = false, dataType = "Date"),
-    	@ApiImplicitParam(name = "auAccountWithdrawalWithdrawalPath", value = "return-提现途径:0-微信,1-支付宝,2-银行卡", required = false, dataType = "Date")
+    	@ApiImplicitParam(name = "auAccountWithdrawalWithdrawalPath", value = "return-提现途径:0-微信,1-支付宝,2-银行卡", required = false, dataType = "Date"),
+    	@ApiImplicitParam(name = "auAccountWithdrawalDeFlag", value = "return-逻辑删除:0-未删除,1-已删除", required = false, dataType = "Date")
      })
      @RequestMapping(value = "/allList", method = RequestMethod.POST)
 	public ResultBean<List<AuAccountWithdrawal>> allList(@RequestBody HashMap<String,Object> param){

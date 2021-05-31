@@ -80,21 +80,18 @@ public class AuCompanyController extends BaseController <IAuCompanyService, AuCo
 	 * </p>
 	 *
 	 * @author junxu.yang
-	 * @since 2021-05-30
+	 * @since 2021-06-01
 	 */
      @ApiOperation(value = "根据名称删除")
      @ApiImplicitParams({
-        	@ApiImplicitParam(name = "AuCompany", value = "", required = true, dataType = "")
+        	@ApiImplicitParam(name = "", value = "", required = true, dataType = "")
      })
-    @RequestMapping(value = "/byCompanyName", method = RequestMethod.POST)
-	public ResultBean<String> byCompanyName(@RequestBody AuCompany auCompany){
+    @RequestMapping(value = "/byCompanyName", method = RequestMethod.GET)
+	public ResultBean<String> byCompanyName(){
 		
 		try {
-			if(auCompany.getAuCompanyName()==null||"".equals(auCompany.getAuCompanyName())){
-				return resultBeanFactory.getBean("auCompanyName 不能为空");
-			}
-			logger.info("auCompany.byCompanyName页面请求参数："+ auCompany);
-			baseService.byCompanyName( auCompany);
+			logger.info("auCompany.byCompanyName页面请求参数："+);
+			baseService.byCompanyName();
 			return resultBeanFactory.getBean("删除成功");
         } catch (Exception e) {
             logger.error("删除失败:{}", e);
@@ -131,18 +128,18 @@ public class AuCompanyController extends BaseController <IAuCompanyService, AuCo
 	 * </p>
 	 *
 	 * @author junxu.yang
-	 * @since 2021-05-30
+	 * @since 2021-06-01
 	 */
      @ApiOperation(value = "测试更新")
      @ApiImplicitParams({
-        	@ApiImplicitParam(name = "param", value = "", required = true, dataType = "")
+        	@ApiImplicitParam(name = "", value = "", required = true, dataType = "")
      })
     @RequestMapping(value = "/testUpdateUpdate", method = RequestMethod.POST)
-	public ResultBean<String> testUpdateUpdate(@RequestBody HashMap<String,Object> param){
+	public ResultBean<String> testUpdateUpdate(){
 		try {
-			logger.info("auCompany.testUpdate页面请求参数："+ param);
+			logger.info("auCompany.testUpdate页面请求参数："+);
 			
-			baseService.testUpdateUpdate( param);
+			baseService.testUpdateUpdate();
        		return resultBeanFactory.getBean("修改成功");
         } catch (Exception e) {
             logger.error("修改失败:{}", e);
@@ -152,11 +149,11 @@ public class AuCompanyController extends BaseController <IAuCompanyService, AuCo
 	
 	
     @RequestMapping(value = "/testUpdateInsert", method = RequestMethod.POST)
-	public ResultBean<String> testUpdateInsert(@RequestBody HashMap<String,Object> param){
+	public ResultBean<String> testUpdateInsert(){
 		try {
-			logger.info("auCompany.testUpdate页面请求参数："+ param);
+			logger.info("auCompany.testUpdate页面请求参数："+);
 			
-			baseService.testUpdateInsert( param);
+			baseService.testUpdateInsert();
        		return resultBeanFactory.getBean("修改成功");
 			
         } catch (Exception e) {
@@ -205,7 +202,8 @@ public class AuCompanyController extends BaseController <IAuCompanyService, AuCo
 
 
 
-    	@ApiImplicitParam(name = "auCompanyUpdatedTime", value = "return-u修改时间", required = false, dataType = "Date"),
+
+    	@ApiImplicitParam(name = "auCompanyDelfFlag", value = "return-逻辑删除:0-未删除,1-已删除", required = false, dataType = "${dataType}"),
      })
      @RequestMapping(value = "/pageList", method = RequestMethod.POST)
      public ResultBeanFactory.ResultBean<PageInfo<AuCompany>> pageList(@RequestBody HashMap<String,Object> params) {
@@ -224,6 +222,38 @@ public class AuCompanyController extends BaseController <IAuCompanyService, AuCo
 
      @ApiOperation(value = "通过id查询")
      @ApiImplicitParam(name = "auCompanyId", value = "ID", required = true, dataType = "String")
+     @ApiImplicitParams({
+    	@ApiImplicitParam(name = "auCompanyId", value = "return-id", required = false, dataType = "${dataType}"),
+    	@ApiImplicitParam(name = "auCompanyName", value = "return-lvM企业名称", required = false, dataType = "String"),
+    	@ApiImplicitParam(name = "auCompanyCreditCode", value = "return-lv企业信用编码", required = false, dataType = "String"),
+    	@ApiImplicitParam(name = "auCompanyBusinessLicense", value = "return-lv营业执照照片", required = false, dataType = "String"),
+    	@ApiImplicitParam(name = "auCompanyCorporation", value = "return-lv法人姓名", required = false, dataType = "String"),
+    	@ApiImplicitParam(name = "auCompanyContactor", value = "return-lv联系人姓名", required = false, dataType = "String"),
+    	@ApiImplicitParam(name = "auCompanyContactsPhone", value = "return-lv联系方式", required = false, dataType = "String"),
+    	@ApiImplicitParam(name = "auCompanyContactsProxyStatement", value = "return-lv联系人委托书", required = false, dataType = "String"),
+    	@ApiImplicitParam(name = "auCompanyAddress", value = "return-lv企业地址", required = false, dataType = "String"),
+    	@ApiImplicitParam(name = "auCompanyAccountPrice", value = "return-h公司账户金额", required = false, dataType = "String"),
+    	@ApiImplicitParam(name = "auCompanyUserId", value = "return-lv用户id", required = false, dataType = "int"),
+    	@ApiImplicitParam(name = "auCompanyVerifyStatus", value = "return-lv审核状态:0-通过,1-未通过", required = false, dataType = "int"),
+    	@ApiImplicitParam(name = "auCompanyVerifyRefuse", value = "return-拒绝原因", required = false, dataType = "String"),
+    	@ApiImplicitParam(name = "auCompanyVerifyTime", value = "return-lvul审核时间", required = false, dataType = "Date"),
+    	@ApiImplicitParam(name = "auCompanyReviewStatus", value = "return-lv复审状态:0-通过,1-未通过", required = false, dataType = "Date"),
+    	@ApiImplicitParam(name = "auCompanyReviewRefuse", value = "return-v复审拒绝理由", required = false, dataType = "String"),
+    	@ApiImplicitParam(name = "auCompanyReviewTime", value = "return-lv复审时间", required = false, dataType = "Date"),
+    	@ApiImplicitParam(name = "auCompanyCreatedTime", value = "return-il创建时间", required = false, dataType = "Date"),
+    	@ApiImplicitParam(name = "auCompanyUpdatedTime", value = "return-u修改时间", required = false, dataType = "Date"),
+    	@ApiImplicitParam(name = "auCompanyDelfFlag", value = "return-逻辑删除:0-未删除,1-已删除", required = false, dataType = "Date"),
+		})
+     @RequestMapping(value = "/selectObjById", method = RequestMethod.GET)
+     public ResultBean<HashMap<String,Object>> info(@RequestParam("auCompanyId") String auCompanyId) {
+			logger.info("auCompany.selectObjById页面请求参数："+auCompanyId);
+         HashMap<String,Object> auCompany = baseService.selectObjById(auCompanyId);
+         return resultBeanFactory.getBean(auCompany);
+     }
+     
+     
+	
+     @ApiOperation(value = "allList")
      @ApiImplicitParams({
     	@ApiImplicitParam(name = "auCompanyId", value = "return-id", required = false, dataType = "Date"),
     	@ApiImplicitParam(name = "auCompanyName", value = "return-lvM企业名称", required = false, dataType = "String"),
@@ -244,66 +274,7 @@ public class AuCompanyController extends BaseController <IAuCompanyService, AuCo
     	@ApiImplicitParam(name = "auCompanyReviewTime", value = "return-lv复审时间", required = false, dataType = "Date"),
     	@ApiImplicitParam(name = "auCompanyCreatedTime", value = "return-il创建时间", required = false, dataType = "Date"),
     	@ApiImplicitParam(name = "auCompanyUpdatedTime", value = "return-u修改时间", required = false, dataType = "Date"),
-		})
-     @RequestMapping(value = "/selectObjById", method = RequestMethod.GET)
-     public ResultBean<HashMap<String,Object>> info(@RequestParam("auCompanyId") String auCompanyId) {
-			logger.info("auCompany.selectObjById页面请求参数："+auCompanyId);
-         HashMap<String,Object> auCompany = baseService.selectObjById(auCompanyId);
-         return resultBeanFactory.getBean(auCompany);
-     }
-     
-     
-   
-	/**
-	 * <p>
-	 * getCompanyByProject 根据项目查询公司
-	 * </p>
-	 *
-	 * @author junxu.yang
-	 * @since 2021-05-30
-	 */
-	
-     @ApiOperation(value = "根据项目查询公司")
-     @ApiImplicitParams({
-			@ApiImplicitParam(name = "", value = "", required = false, dataType = "Date"),
-         			@ApiImplicitParam(name = "${colObj.columnAlias}", value = "return-${colObj.comment}", required = false, dataType = "Date"),
-         			@ApiImplicitParam(name = "${colObj.columnAlias}", value = "return-${colObj.comment}", required = false, dataType = "Date"),
-         			@ApiImplicitParam(name = "auCompanyName", value = "return-lvM企业名称", required = false, dataType = "String"),
-         			@ApiImplicitParam(name = "${colObj.columnAlias}", value = "return-${colObj.comment}", required = false, dataType = "String")
-     })
-     
-     @RequestMapping(value = "/getCompanyByProject", method = RequestMethod.POST)
-	public ResultBean<List<HashMap>> getCompanyByProject(@RequestBody HashMap<String,Object> param){
-	
-			logger.info("auCompany.getCompanyByProject页面请求参数："+ param);
-				if(param.get("auProjectProjectName")==null||"".equals(param.get("${$where.tableColumnvalue}"))){
-					return resultBeanFactory.getException("auProjectProjectName 不能为空");
-				}
-		List<HashMap> result = baseService.getCompanyByProject( param);
-		 return resultBeanFactory.getBean(result);
-	}
-	
-     @ApiOperation(value = "allList")
-     @ApiImplicitParams({
-    	@ApiImplicitParam(name = "auCompanyId", value = "return-id", required = false, dataType = "String"),
-    	@ApiImplicitParam(name = "auCompanyName", value = "return-lvM企业名称", required = false, dataType = "String"),
-    	@ApiImplicitParam(name = "auCompanyCreditCode", value = "return-lv企业信用编码", required = false, dataType = "String"),
-    	@ApiImplicitParam(name = "auCompanyBusinessLicense", value = "return-lv营业执照照片", required = false, dataType = "String"),
-    	@ApiImplicitParam(name = "auCompanyCorporation", value = "return-lv法人姓名", required = false, dataType = "String"),
-    	@ApiImplicitParam(name = "auCompanyContactor", value = "return-lv联系人姓名", required = false, dataType = "String"),
-    	@ApiImplicitParam(name = "auCompanyContactsPhone", value = "return-lv联系方式", required = false, dataType = "String"),
-    	@ApiImplicitParam(name = "auCompanyContactsProxyStatement", value = "return-lv联系人委托书", required = false, dataType = "String"),
-    	@ApiImplicitParam(name = "auCompanyAddress", value = "return-lv企业地址", required = false, dataType = "String"),
-    	@ApiImplicitParam(name = "auCompanyAccountPrice", value = "return-h公司账户金额", required = false, dataType = "String"),
-    	@ApiImplicitParam(name = "auCompanyUserId", value = "return-lv用户id", required = false, dataType = "int"),
-    	@ApiImplicitParam(name = "auCompanyVerifyStatus", value = "return-lv审核状态:0-通过,1-未通过", required = false, dataType = "int"),
-    	@ApiImplicitParam(name = "auCompanyVerifyRefuse", value = "return-拒绝原因", required = false, dataType = "String"),
-    	@ApiImplicitParam(name = "auCompanyVerifyTime", value = "return-lvul审核时间", required = false, dataType = "Date"),
-    	@ApiImplicitParam(name = "auCompanyReviewStatus", value = "return-lv复审状态:0-通过,1-未通过", required = false, dataType = "Date"),
-    	@ApiImplicitParam(name = "auCompanyReviewRefuse", value = "return-v复审拒绝理由", required = false, dataType = "String"),
-    	@ApiImplicitParam(name = "auCompanyReviewTime", value = "return-lv复审时间", required = false, dataType = "Date"),
-    	@ApiImplicitParam(name = "auCompanyCreatedTime", value = "return-il创建时间", required = false, dataType = "Date"),
-    	@ApiImplicitParam(name = "auCompanyUpdatedTime", value = "return-u修改时间", required = false, dataType = "Date")
+    	@ApiImplicitParam(name = "auCompanyDelfFlag", value = "return-逻辑删除:0-未删除,1-已删除", required = false, dataType = "Date")
      })
      @RequestMapping(value = "/allList", method = RequestMethod.POST)
 	public ResultBean<List<AuCompany>> allList(@RequestBody HashMap<String,Object> param){
