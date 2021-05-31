@@ -73,33 +73,6 @@ public class AuCompanyController extends BaseController <IAuCompanyService, AuCo
 		}
      }
      
-	
-	/**
-	 * <p>
-	 * byCompanyName 根据名称删除
-	 * </p>
-	 *
-	 * @author junxu.yang
-	 * @since 2021-06-01
-	 */
-     @ApiOperation(value = "根据名称删除")
-     @ApiImplicitParams({
-        	@ApiImplicitParam(name = "", value = "", required = true, dataType = "")
-     })
-    @RequestMapping(value = "/byCompanyName", method = RequestMethod.GET)
-	public ResultBean<String> byCompanyName(){
-		
-		try {
-			logger.info("auCompany.byCompanyName页面请求参数："+);
-			baseService.byCompanyName();
-			return resultBeanFactory.getBean("删除成功");
-        } catch (Exception e) {
-            logger.error("删除失败:{}", e);
-            return resultBeanFactory.getException(e);
-        }
-	}
-	
-	
 
      @ApiOperation(value = "根据主键修改")
      @ApiImplicitParam(name = "auCompany", value = "企业信息对象", required = true, dataType = "AuCompany")
@@ -121,46 +94,6 @@ public class AuCompanyController extends BaseController <IAuCompanyService, AuCo
      }
      
      
-	
-	/**
-	 * <p>
-	 * testUpdate 测试更新
-	 * </p>
-	 *
-	 * @author junxu.yang
-	 * @since 2021-06-01
-	 */
-     @ApiOperation(value = "测试更新")
-     @ApiImplicitParams({
-        	@ApiImplicitParam(name = "", value = "", required = true, dataType = "")
-     })
-    @RequestMapping(value = "/testUpdateUpdate", method = RequestMethod.POST)
-	public ResultBean<String> testUpdateUpdate(){
-		try {
-			logger.info("auCompany.testUpdate页面请求参数："+);
-			
-			baseService.testUpdateUpdate();
-       		return resultBeanFactory.getBean("修改成功");
-        } catch (Exception e) {
-            logger.error("修改失败:{}", e);
-            return resultBeanFactory.getException(e);
-        }
-	}
-	
-	
-    @RequestMapping(value = "/testUpdateInsert", method = RequestMethod.POST)
-	public ResultBean<String> testUpdateInsert(){
-		try {
-			logger.info("auCompany.testUpdate页面请求参数："+);
-			
-			baseService.testUpdateInsert();
-       		return resultBeanFactory.getBean("修改成功");
-			
-        } catch (Exception e) {
-            logger.error("修改失败:{}", e);
-            return resultBeanFactory.getException(e);
-        }
-	}
 
      @ApiOperation(value = "新增")
      @ApiImplicitParam(name = "auCompany", value = "企业信息对象", required = true, dataType = "AuCompany")

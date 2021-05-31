@@ -26,16 +26,10 @@ public interface AuCompanyMapper extends Mapper<AuCompany> {
 	public void deleteByIdLogic(@Param("auCompanyId") String auCompanyId);
 	
 	
-	public void byCompanyName();
-	
-	
 	
 	public void updateObjById(AuCompany auCompany);
 	
 	
-	public void testUpdateUpdate();
-	
-	public void testUpdateInsert();
 	
 	public void insertObj(AuCompany auCompany);
 	

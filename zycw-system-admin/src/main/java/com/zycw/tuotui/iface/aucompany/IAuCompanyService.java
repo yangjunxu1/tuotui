@@ -69,48 +69,11 @@ public class IAuCompanyService extends BaseService<AuCompanyMapper,AuCompany> {
 	
 
 	
-	/**
-	 * <p>
-	 * byCompanyName 根据名称删除
-	 * </p>
-	 *
-	 * @author junxu.yang
-	 * @since 2021-06-01
-	 */
-	public void byCompanyName(){
-		mapper.byCompanyName();
-	}
-	
-	
-	
 	public void updateObjById(AuCompany auCompany){
 		mapper.updateObjById(auCompany);
 	}
 	
 	
-	
-	/**
-	 * <p>
-	 * testUpdate 测试更新
-	 * </p>
-	 *
-	 * @author junxu.yang
-	 * @since 2021-06-01
-	 */
-	public void testUpdateUpdate(){
-		mapper.testUpdateUpdate();
-	}
-	/**
-	 * <p>
-	 * testUpdate 测试更新
-	 * </p>
-	 *
-	 * @author junxu.yang
-	 * @since 2021-06-01
-	 */
-	public void testUpdateInsert(){
-		mapper.testUpdateInsert();
-	}
 	
    /**
     * 添加
