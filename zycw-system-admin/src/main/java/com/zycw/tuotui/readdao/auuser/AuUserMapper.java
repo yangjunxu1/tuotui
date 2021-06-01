@@ -51,8 +51,9 @@ public interface AuUserMapper extends Mapper<AuUser> {
 	public List<AuUser> pageList(@Param("param") HashMap<String,Object> param);
 	
 	public List<AuUser> allList(@Param("param") HashMap<String,Object> param);
-	
-	
+
+	public Integer getUserByMobileAndUUiDCountNum(@Param("param") HashMap<String,Object> param);
+	public List<AuUser> getUserByMobileAndUUiD(@Param("param") HashMap<String,Object> param);
 	
 	
 	

@@ -111,28 +111,12 @@ public class AuUserController extends BaseController <IAuUserService, AuUser>{
      
      @ApiOperation(value = "分页查询")
      @ApiImplicitParams({
-    	@ApiImplicitParam(name = "auUserCityId", value = "lvS市", required = false, dataType = "${dataType}"),
     	@ApiImplicitParam(name = "auUserProvinceId", value = "lvS省", required = false, dataType = "${dataType}"),
     	@ApiImplicitParam(name = "auUserAreaId", value = "lvS区", required = false, dataType = "${dataType}"),
+    	@ApiImplicitParam(name = "auUserCityId", value = "lvS市", required = false, dataType = "${dataType}"),
     	@ApiImplicitParam(name = "auUserOccupationId", value = "lvS职业", required = false, dataType = "${dataType}"),
 		@ApiImplicitParam(name = "pageSize", value = "每页条数", required = false, dataType = "int"),
 		@ApiImplicitParam(name = "pageNum", value = "当前页数", required = false, dataType = "int"),
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
     	@ApiImplicitParam(name = "auUserUpdatedTime", value = "return-修改时间", required = false, dataType = "Date"),
@@ -151,12 +135,11 @@ public class AuUserController extends BaseController <IAuUserService, AuUser>{
 		}
      }
 
-
-     @ApiOperation(value = "通过id查询")
      @ApiImplicitParam(name = "auUserId", value = "ID", required = true, dataType = "String")
      @ApiImplicitParams({
     	@ApiImplicitParam(name = "auUserId", value = "return-id", required = false, dataType = "Date"),
     	@ApiImplicitParam(name = "auUserMobile", value = "return-lvM手机号", required = false, dataType = "String"),
+    	@ApiImplicitParam(name = "auUserIsAgent", value = "return-lvs是否是代理:0-不是，1-是", required = false, dataType = "String"),
     	@ApiImplicitParam(name = "auUserNick", value = "return-lv昵称", required = false, dataType = "String"),
     	@ApiImplicitParam(name = "auUserUimg", value = "return-lv用户头像", required = false, dataType = "String"),
     	@ApiImplicitParam(name = "auUserType", value = "return-lvS用户类型:0-普通会员,1-代理商,2-企业会员", required = false, dataType = "String"),
@@ -171,54 +154,4 @@ public class AuUserController extends BaseController <IAuUserService, AuUser>{
     	@ApiImplicitParam(name = "auUserAgentCode", value = "return-lv代理商编号", required = false, dataType = "String"),
     	@ApiImplicitParam(name = "auUserStatus", value = "return-lvS用户状态:0-启用,1-禁用", required = false, dataType = "String"),
     	@ApiImplicitParam(name = "auUserWxid", value = "return-lv微信id", required = false, dataType = "String"),
-    	@ApiImplicitParam(name = "auUserZfbid", value = "return-lv支付宝id", required = false, dataType = "String"),
-    	@ApiImplicitParam(name = "auUserCreatedTime", value = "return-l创建时间", required = false, dataType = "Date"),
-    	@ApiImplicitParam(name = "auUserUpdatedTime", value = "return-修改时间", required = false, dataType = "Date"),
-		})
-     @RequestMapping(value = "/selectObjById", method = RequestMethod.GET)
-     public ResultBean<HashMap<String,Object>> info(@RequestParam("auUserId") String auUserId) {
-			logger.info("auUser.selectObjById页面请求参数："+auUserId);
-         HashMap<String,Object> auUser = baseService.selectObjById(auUserId);
-         return resultBeanFactory.getBean(auUser);
-     }
-     
-     
-	
-     @ApiOperation(value = "allList")
-     @ApiImplicitParams({
-    	@ApiImplicitParam(name = "auUserCityId", value = "lvS市", required = false, dataType = "Date"),
-    	@ApiImplicitParam(name = "auUserProvinceId", value = "lvS省", required = false, dataType = "Date"),
-    	@ApiImplicitParam(name = "auUserAreaId", value = "lvS区", required = false, dataType = "Date"),
-    	@ApiImplicitParam(name = "auUserOccupationId", value = "lvS职业", required = false, dataType = "Date"),
-    	@ApiImplicitParam(name = "auUserId", value = "return-id", required = false, dataType = "Date"),
-    	@ApiImplicitParam(name = "auUserMobile", value = "return-lvM手机号", required = false, dataType = "String"),
-    	@ApiImplicitParam(name = "auUserNick", value = "return-lv昵称", required = false, dataType = "String"),
-    	@ApiImplicitParam(name = "auUserUimg", value = "return-lv用户头像", required = false, dataType = "String"),
-    	@ApiImplicitParam(name = "auUserType", value = "return-lvS用户类型:0-普通会员,1-代理商,2-企业会员", required = false, dataType = "String"),
-    	@ApiImplicitParam(name = "auUserPassword", value = "return-密码", required = false, dataType = "String"),
-    	@ApiImplicitParam(name = "auUserTrueName", value = "return-lv真实姓名", required = false, dataType = "String"),
-    	@ApiImplicitParam(name = "auUserUseruuid", value = "return-用户设备唯一编号", required = false, dataType = "String"),
-    	@ApiImplicitParam(name = "auUserSex", value = "return-lvr性别:0-男,1-女", required = false, dataType = "String"),
-    	@ApiImplicitParam(name = "sysProvinceName", value = "return-lvM省名称", required = false, dataType = "String"),
-    	@ApiImplicitParam(name = "sysCityName", value = "return-lvM市名称", required = false, dataType = "String"),
-    	@ApiImplicitParam(name = "sysAreaName", value = "return-lvM区名称", required = false, dataType = "String"),
-    	@ApiImplicitParam(name = "auOccupationOccupationName", value = "return-Mlv职业", required = false, dataType = "String"),
-    	@ApiImplicitParam(name = "auUserAgentCode", value = "return-lv代理商编号", required = false, dataType = "String"),
-    	@ApiImplicitParam(name = "auUserStatus", value = "return-lvS用户状态:0-启用,1-禁用", required = false, dataType = "String"),
-    	@ApiImplicitParam(name = "auUserWxid", value = "return-lv微信id", required = false, dataType = "String"),
-    	@ApiImplicitParam(name = "auUserZfbid", value = "return-lv支付宝id", required = false, dataType = "String"),
-    	@ApiImplicitParam(name = "auUserCreatedTime", value = "return-l创建时间", required = false, dataType = "Date"),
-    	@ApiImplicitParam(name = "auUserUpdatedTime", value = "return-修改时间", required = false, dataType = "Date")
-     })
-     @RequestMapping(value = "/allList", method = RequestMethod.POST)
-	public ResultBean<List<AuUser>> allList(@RequestBody HashMap<String,Object> param){
-			logger.info("auUser.allList页面请求参数："+param);
-		List<AuUser> result = baseService.allList(param);
-		 return resultBeanFactory.getBean(result);
-	}
-	
-	     
-	
-
-}
-
+    	@ApiImplicitParam(name = "auUserZfbid", value =

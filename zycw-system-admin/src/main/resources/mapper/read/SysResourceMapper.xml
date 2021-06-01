@@ -44,12 +44,12 @@
  
  	<update id="updateObjById"  parameterType="com.zycw.tuotui.entity.sysresource.SysResource">
         UPDATE sys_resource SET 
-		            name=sysResourceName,
-		            router=sysResourceRouter,
-		            path=sysResourcePath,
-		            icon=sysResourceIcon,
-		            ishidden=sysResourceIshidden,
-		            roles=sysResourceRoles,
+		            name=#{sysResourceName},
+		            router=#{sysResourceRouter},
+		            path=#{sysResourcePath},
+		            icon=#{sysResourceIcon},
+		            ishidden=#{sysResourceIshidden},
+		            roles=#{sysResourceRoles},
 		            delFlag=#{sysResourceDelFlag}
         WHERE 
         id=#{sysResourceId}
@@ -102,28 +102,28 @@
     
     <select id="selectObjById" parameterType="java.util.Map" resultType="java.util.HashMap">
     	SELECT  
-com.baomidou.mybatisplus.generator.config.po.TableField@35ac0a9
+com.baomidou.mybatisplus.generator.config.po.TableField@6eda205a
         		sysResource.id AS sysResourceId,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@5f029d48
+com.baomidou.mybatisplus.generator.config.po.TableField@1fe726bf
         		sysResource.name AS sysResourceName,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@49471aba
+com.baomidou.mybatisplus.generator.config.po.TableField@5191fa7b
         		sysResource.router AS sysResourceRouter,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@702aee04
+com.baomidou.mybatisplus.generator.config.po.TableField@21b871eb
         		sysResource.path AS sysResourcePath,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@1aaf1e39
+com.baomidou.mybatisplus.generator.config.po.TableField@60b23f6
         		sysResource.icon AS sysResourceIcon,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@518c28f9
+com.baomidou.mybatisplus.generator.config.po.TableField@207f3f56
         		sysResource.ishidden AS sysResourceIshidden,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@20ef6ab8
+com.baomidou.mybatisplus.generator.config.po.TableField@7ee35b00
         		sysResource.roles AS sysResourceRoles,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@712fa6f
+com.baomidou.mybatisplus.generator.config.po.TableField@1c365a1e
         		sysResource.delFlag AS sysResourceDelFlag
 		 FROM 
 		 	sys_resource sysResource

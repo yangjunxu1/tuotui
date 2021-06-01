@@ -40,8 +40,8 @@
  
  	<update id="updateObjById"  parameterType="com.zycw.tuotui.entity.sysadvertpostition.SysAdvertPostition">
         UPDATE sys_advert_postition SET 
-		            name=sysAdvertPostitionName,
-		            code=sysAdvertPostitionCode,
+		            name=#{sysAdvertPostitionName},
+		            code=#{sysAdvertPostitionCode},
 		            delFlag=#{sysAdvertPostitionDelFlag}
         WHERE 
         id=#{sysAdvertPostitionId}
@@ -78,16 +78,16 @@
     
     <select id="selectObjById" parameterType="java.util.Map" resultType="java.util.HashMap">
     	SELECT  
-com.baomidou.mybatisplus.generator.config.po.TableField@1dd401f1
+com.baomidou.mybatisplus.generator.config.po.TableField@6a7b2f81
         		sysAdvertPostition.id AS sysAdvertPostitionId,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@7114f66f
+com.baomidou.mybatisplus.generator.config.po.TableField@3d43d882
         		sysAdvertPostition.name AS sysAdvertPostitionName,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@1d2663dd
+com.baomidou.mybatisplus.generator.config.po.TableField@1d43cb01
         		sysAdvertPostition.code AS sysAdvertPostitionCode,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@5f5c3437
+com.baomidou.mybatisplus.generator.config.po.TableField@5b24d6eb
         		sysAdvertPostition.delFlag AS sysAdvertPostitionDelFlag
 		 FROM 
 		 	sys_advert_postition sysAdvertPostition

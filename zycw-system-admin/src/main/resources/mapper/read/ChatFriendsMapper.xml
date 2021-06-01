@@ -41,9 +41,9 @@
  
  	<update id="updateObjById"  parameterType="com.zycw.tuotui.entity.chatfriends.ChatFriends">
         UPDATE chat_friends SET 
-		            userid=chatFriendsUserid,
-		            fuserid=chatFriendsFuserid,
-		            addtime=chatFriendsAddtime,
+		            userid=#{chatFriendsUserid},
+		            fuserid=#{chatFriendsFuserid},
+		            addtime=#{chatFriendsAddtime},
 		            delFlaf=#{chatFriendsDelFlaf}
         WHERE 
         id=#{chatFriendsId}
@@ -84,19 +84,19 @@
     
     <select id="selectObjById" parameterType="java.util.Map" resultType="java.util.HashMap">
     	SELECT  
-com.baomidou.mybatisplus.generator.config.po.TableField@57073dc0
+com.baomidou.mybatisplus.generator.config.po.TableField@30e28efa
         		chatFriends.id AS chatFriendsId,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@ba4e955
+com.baomidou.mybatisplus.generator.config.po.TableField@1a69c858
         		chatFriends.userid AS chatFriendsUserid,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@7eff5f7a
+com.baomidou.mybatisplus.generator.config.po.TableField@37a749c5
         		chatFriends.fuserid AS chatFriendsFuserid,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@1248f6cf
+com.baomidou.mybatisplus.generator.config.po.TableField@2d0d5b15
         		chatFriends.addtime AS chatFriendsAddtime,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@15bdfc8b
+com.baomidou.mybatisplus.generator.config.po.TableField@20be3c39
         		chatFriends.delFlaf AS chatFriendsDelFlaf
 		 FROM 
 		 	chat_friends chatFriends

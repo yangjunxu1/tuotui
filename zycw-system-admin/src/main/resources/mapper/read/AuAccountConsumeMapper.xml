@@ -53,11 +53,11 @@
  
  	<update id="updateObjById"  parameterType="com.zycw.tuotui.entity.auaccountconsume.AuAccountConsume">
         UPDATE au_account_consume SET 
-		            company_id=auAccountConsumeCompanyId,
-		            user_id=auAccountConsumeUserId,
-		            price=auAccountConsumePrice,
-		            task_id=auAccountConsumeTaskId,
-		            consume_time=auAccountConsumeConsumeTime,
+		            company_id=#{auAccountConsumeCompanyId},
+		            user_id=#{auAccountConsumeUserId},
+		            price=#{auAccountConsumePrice},
+		            task_id=#{auAccountConsumeTaskId},
+		            consume_time=#{auAccountConsumeConsumeTime},
 		            delFlag=#{auAccountConsumeDelFlag}
         WHERE 
         id=#{auAccountConsumeId}
@@ -106,27 +106,27 @@
     
     <select id="selectObjById" parameterType="java.util.Map" resultType="java.util.HashMap">
     	SELECT  
-com.baomidou.mybatisplus.generator.config.po.TableField@18ebbe3a
+com.baomidou.mybatisplus.generator.config.po.TableField@5efc6cba
         		auAccountConsume.id AS auAccountConsumeId,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@4f57b517
+com.baomidou.mybatisplus.generator.config.po.TableField@3c76427c
         		auAccountConsume.company_id AS auAccountConsumeCompanyId,
         		auCompany.name AS auCompanyName,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@5de1d715
+com.baomidou.mybatisplus.generator.config.po.TableField@5dcb95c0
         		auAccountConsume.user_id AS auAccountConsumeUserId,
         		auUser.mobile AS auUserMobile,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@5f1e386c
+com.baomidou.mybatisplus.generator.config.po.TableField@1069bdfe
         		auAccountConsume.price AS auAccountConsumePrice,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@2b4a6be
+com.baomidou.mybatisplus.generator.config.po.TableField@7bde6832
         		auAccountConsume.task_id AS auAccountConsumeTaskId,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@533d22cd
+com.baomidou.mybatisplus.generator.config.po.TableField@3d60e30c
         		auAccountConsume.consume_time AS auAccountConsumeConsumeTime,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@b70ec0
+com.baomidou.mybatisplus.generator.config.po.TableField@3c0404f5
         		auAccountConsume.delFlag AS auAccountConsumeDelFlag
 		 FROM 
 		 	au_account_consume auAccountConsume

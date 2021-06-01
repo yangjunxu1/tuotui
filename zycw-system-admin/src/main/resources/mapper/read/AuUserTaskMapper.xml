@@ -53,11 +53,11 @@
  
  	<update id="updateObjById"  parameterType="com.zycw.tuotui.entity.auusertask.AuUserTask">
         UPDATE au_user_task SET 
-		            user_id=auUserTaskUserId,
-		            task_id=auUserTaskTaskId,
-		            task_status=auUserTaskTaskStatus,
-		            start_time=auUserTaskStartTime,
-		            end_time=auUserTaskEndTime,
+		            user_id=#{auUserTaskUserId},
+		            task_id=#{auUserTaskTaskId},
+		            task_status=#{auUserTaskTaskStatus},
+		            start_time=#{auUserTaskStartTime},
+		            end_time=#{auUserTaskEndTime},
 		            delFlag=#{auUserTaskDelFlag}
         WHERE 
         id=#{auUserTaskId}
@@ -106,27 +106,27 @@
     
     <select id="selectObjById" parameterType="java.util.Map" resultType="java.util.HashMap">
     	SELECT  
-com.baomidou.mybatisplus.generator.config.po.TableField@d9442e3
+com.baomidou.mybatisplus.generator.config.po.TableField@4048a9
         		auUserTask.id AS auUserTaskId,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@21f70cab
+com.baomidou.mybatisplus.generator.config.po.TableField@3633f612
         		auUserTask.user_id AS auUserTaskUserId,
         		auUser.mobile AS auUserMobile,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@282a6470
+com.baomidou.mybatisplus.generator.config.po.TableField@1a34ff04
         		auUserTask.task_id AS auUserTaskTaskId,
         		auCustomTask.task_title AS auCustomTaskTaskTitle,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@6a806d78
+com.baomidou.mybatisplus.generator.config.po.TableField@795cf752
         		auUserTask.task_status AS auUserTaskTaskStatus,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@db2d46b
+com.baomidou.mybatisplus.generator.config.po.TableField@67c40c68
         		auUserTask.start_time AS auUserTaskStartTime,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@7f8f6f20
+com.baomidou.mybatisplus.generator.config.po.TableField@4c0fe277
         		auUserTask.end_time AS auUserTaskEndTime,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@47d9d45
+com.baomidou.mybatisplus.generator.config.po.TableField@71fef82d
         		auUserTask.delFlag AS auUserTaskDelFlag
 		 FROM 
 		 	au_user_task auUserTask

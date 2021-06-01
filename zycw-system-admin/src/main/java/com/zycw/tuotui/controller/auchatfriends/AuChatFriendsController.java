@@ -33,7 +33,7 @@ import java.util.HashMap;
 
 
 @ApiOperation(value = "")
-@Api(value = "即时通讯接口", tags = { "即时通讯接口" })
+@Api(value = "接口", tags = { "接口" })
 @Slf4j
 @RestController
 @RequestMapping("/auChatFriends")
@@ -109,8 +109,8 @@ public class AuChatFriendsController extends BaseController <IAuChatFriendsServi
      
      @ApiOperation(value = "分页查询")
      @ApiImplicitParams({
-    	@ApiImplicitParam(name = "auChatFriendsUserId", value = "用户", required = false, dataType = "${dataType}"),
     	@ApiImplicitParam(name = "auChatFriendsFuserId", value = "好友", required = false, dataType = "${dataType}"),
+    	@ApiImplicitParam(name = "auChatFriendsUserId", value = "用户", required = false, dataType = "${dataType}"),
 		@ApiImplicitParam(name = "pageSize", value = "每页条数", required = false, dataType = "int"),
 		@ApiImplicitParam(name = "pageNum", value = "当前页数", required = false, dataType = "int"),
 
@@ -154,8 +154,8 @@ public class AuChatFriendsController extends BaseController <IAuChatFriendsServi
 	
      @ApiOperation(value = "allList")
      @ApiImplicitParams({
-    	@ApiImplicitParam(name = "auChatFriendsUserId", value = "用户", required = false, dataType = "Date"),
     	@ApiImplicitParam(name = "auChatFriendsFuserId", value = "好友", required = false, dataType = "Date"),
+    	@ApiImplicitParam(name = "auChatFriendsUserId", value = "用户", required = false, dataType = "Date"),
     	@ApiImplicitParam(name = "auChatFriendsId", value = "return-ID", required = false, dataType = "Date"),
     	@ApiImplicitParam(name = "auUserMobile", value = "return-lvM手机号", required = false, dataType = "String"),
     	@ApiImplicitParam(name = "sysUserUsername", value = "return-lvM用户名", required = false, dataType = "String"),
@@ -168,12 +168,17 @@ public class AuChatFriendsController extends BaseController <IAuChatFriendsServi
 		List<AuChatFriends> result = baseService.allList(param);
 		 return resultBeanFactory.getBean(result);
 	}
+	
+	     
+	
 
 	@ApiOperation(value = "点击查询分页查询")
 	@ApiImplicitParams({
 			@ApiImplicitParam(name = "auChatFriendsUserId", value = "用户", required = false, dataType = "${dataType}"),
 			@ApiImplicitParam(name = "pageSize", value = "每页条数", required = false, dataType = "int"),
-			@ApiImplicitParam(name = "pageNum", value = "当前页数", required = false, dataType = "int")})
+			@ApiImplicitParam(name = "pageNum", value = "当前页数", required = false, dataType = "int"),
+			@ApiImplicitParam(name = "auChatFriendsDelFlag", value = "return-逻辑删除:0-未删除,1-已删除", required = false, dataType = "${dataType}"),
+	})
 	@RequestMapping(value = "/searchSysUserPageList", method = RequestMethod.POST)
 	public ResultBeanFactory.ResultBean<PageInfo<AuChatFriends>> searchSysUserPageList(@RequestBody HashMap<String,Object> params) {
 		try {
@@ -199,6 +204,28 @@ public class AuChatFriendsController extends BaseController <IAuChatFriendsServi
 			return resultBeanFactory.getBean("插入记录成功");
 		} catch (Exception e) {
 			logger.error("插入记录失败:{}", e);
+			return resultBeanFactory.getException(e);
+		}
+	}
+
+	@ApiOperation(value = "查询用户的好友")
+	@ApiImplicitParams({
+			@ApiImplicitParam(name = "auChatFriendsUserId", value = "用户", required = false, dataType = "${dataType}"),
+			@ApiImplicitParam(name = "auChatFriendsFuserId", value = "好友", required = false, dataType = "${dataType}"),
+			@ApiImplicitParam(name = "pageSize", value = "每页条数", required = false, dataType = "int"),
+			@ApiImplicitParam(name = "pageNum", value = "当前页数", required = false, dataType = "int"),
+			@ApiImplicitParam(name = "auChatFriendsDelFlag", value = "return-逻辑删除:0-未删除,1-已删除", required = false, dataType = "${dataType}"),
+	})
+	@RequestMapping(value = "/searchFriendsPageList", method = RequestMethod.POST)
+	public ResultBeanFactory.ResultBean<PageInfo<AuChatFriends>> searchFriendsPageList(@RequestBody HashMap<String,Object> params) {
+		try {
+			logger.info("auChatFriends.pageList页面请求参数："+params);
+			int count = baseService.sysFriendsCountNum(params);
+			PageInfo<AuChatFriends> result=baseService.sysFriendsPageList(params);
+			result.setTotal(count);
+			return resultBeanFactory.getBean(result);
+		} catch (Exception e) {
+			logger.error("AuChatFriendsController.pageList Exception:{}", e);
 			return resultBeanFactory.getException(e);
 		}
 	}

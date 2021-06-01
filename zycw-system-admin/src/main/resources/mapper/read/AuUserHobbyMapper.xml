@@ -49,7 +49,7 @@
  
  	<update id="updateObjById"  parameterType="com.zycw.tuotui.entity.auuserhobby.AuUserHobby">
         UPDATE au_user_hobby SET 
-		            user_id=auUserHobbyUserId,
+		            user_id=#{auUserHobbyUserId},
 		            hobby_id=#{auUserHobbyHobbyId}
         WHERE 
         id=#{auUserHobbyId}
@@ -82,14 +82,14 @@
     
     <select id="selectObjById" parameterType="java.util.Map" resultType="java.util.HashMap">
     	SELECT  
-com.baomidou.mybatisplus.generator.config.po.TableField@2305975e
+com.baomidou.mybatisplus.generator.config.po.TableField@77b270f7
         		auUserHobby.id AS auUserHobbyId,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@79810901
+com.baomidou.mybatisplus.generator.config.po.TableField@6ecbe053
         		auUserHobby.user_id AS auUserHobbyUserId,
         		sysHobby.hobby_title AS sysHobbyHobbyTitle,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@45019006
+com.baomidou.mybatisplus.generator.config.po.TableField@65fb8a68
         		auUserHobby.hobby_id AS auUserHobbyHobbyId
         		sysHobby.hobby_title AS sysHobbyHobbyTitle
 		 FROM 

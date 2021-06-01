@@ -47,15 +47,15 @@
  
  	<update id="updateObjById"  parameterType="com.zycw.tuotui.entity.auscheme.AuScheme">
         UPDATE au_scheme SET 
-		            name=auSchemeName,
-		            price=auSchemePrice,
-		            content=auSchemeContent,
-		            status=auSchemeStatus,
-		            extension_type=auSchemeExtensionType,
-		            task_type=auSchemeTaskType,
-		            task_depth=auSchemeTaskDepth,
-		            created_time=auSchemeCreatedTime,
-		            updated_time=auSchemeUpdatedTime,
+		            name=#{auSchemeName},
+		            price=#{auSchemePrice},
+		            content=#{auSchemeContent},
+		            status=#{auSchemeStatus},
+		            extension_type=#{auSchemeExtensionType},
+		            task_type=#{auSchemeTaskType},
+		            task_depth=#{auSchemeTaskDepth},
+		            created_time=#{auSchemeCreatedTime},
+		            updated_time=#{auSchemeUpdatedTime},
 		            delFlag=#{auSchemeDelFlag}
         WHERE 
         id=#{auSchemeId}
@@ -120,37 +120,37 @@
     
     <select id="selectObjById" parameterType="java.util.Map" resultType="java.util.HashMap">
     	SELECT  
-com.baomidou.mybatisplus.generator.config.po.TableField@6ce9c0e2
+com.baomidou.mybatisplus.generator.config.po.TableField@5cd63a70
         		auScheme.id AS auSchemeId,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@2fb8d486
+com.baomidou.mybatisplus.generator.config.po.TableField@13de4bd9
         		auScheme.name AS auSchemeName,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@420b9e1c
+com.baomidou.mybatisplus.generator.config.po.TableField@6e543fca
         		auScheme.price AS auSchemePrice,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@353e4174
+com.baomidou.mybatisplus.generator.config.po.TableField@8b0bdb8
         		auScheme.content AS auSchemeContent,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@4e5471c9
+com.baomidou.mybatisplus.generator.config.po.TableField@2b491be
         		auScheme.status AS auSchemeStatus,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@27a18061
+com.baomidou.mybatisplus.generator.config.po.TableField@63d592b2
         		auScheme.extension_type AS auSchemeExtensionType,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@39c411f7
+com.baomidou.mybatisplus.generator.config.po.TableField@2c304b6d
         		auScheme.task_type AS auSchemeTaskType,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@7e36c25a
+com.baomidou.mybatisplus.generator.config.po.TableField@21607e2e
         		auScheme.task_depth AS auSchemeTaskDepth,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@13013e6c
+com.baomidou.mybatisplus.generator.config.po.TableField@7ff32dd
         		auScheme.created_time AS auSchemeCreatedTime,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@380816e5
+com.baomidou.mybatisplus.generator.config.po.TableField@48f07092
         		auScheme.updated_time AS auSchemeUpdatedTime,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@215ae3ba
+com.baomidou.mybatisplus.generator.config.po.TableField@66b531c2
         		auScheme.delFlag AS auSchemeDelFlag
 		 FROM 
 		 	au_scheme auScheme

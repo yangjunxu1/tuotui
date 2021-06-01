@@ -41,9 +41,9 @@
  
  	<update id="updateObjById"  parameterType="com.zycw.tuotui.entity.sysextensiontype.SysExtensionType">
         UPDATE sys_extension_type SET 
-		            titel=sysExtensionTypeTitel,
-		            price=sysExtensionTypePrice,
-		            content=sysExtensionTypeContent,
+		            titel=#{sysExtensionTypeTitel},
+		            price=#{sysExtensionTypePrice},
+		            content=#{sysExtensionTypeContent},
 		            delFlag=#{sysExtensionTypeDelFlag}
         WHERE 
         id=#{sysExtensionTypeId}
@@ -84,19 +84,19 @@
     
     <select id="selectObjById" parameterType="java.util.Map" resultType="java.util.HashMap">
     	SELECT  
-com.baomidou.mybatisplus.generator.config.po.TableField@50ecdd2f
+com.baomidou.mybatisplus.generator.config.po.TableField@2d9c16d4
         		sysExtensionType.id AS sysExtensionTypeId,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@596f43f3
+com.baomidou.mybatisplus.generator.config.po.TableField@9457482
         		sysExtensionType.titel AS sysExtensionTypeTitel,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@7460c9e2
+com.baomidou.mybatisplus.generator.config.po.TableField@418d96da
         		sysExtensionType.price AS sysExtensionTypePrice,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@204b318a
+com.baomidou.mybatisplus.generator.config.po.TableField@1d30c210
         		sysExtensionType.content AS sysExtensionTypeContent,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@3814aafb
+com.baomidou.mybatisplus.generator.config.po.TableField@4921e91e
         		sysExtensionType.delFlag AS sysExtensionTypeDelFlag
 		 FROM 
 		 	sys_extension_type sysExtensionType

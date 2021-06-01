@@ -56,24 +56,24 @@
  
  	<update id="updateObjById"  parameterType="com.zycw.tuotui.entity.aucompany.AuCompany">
         UPDATE au_company SET 
-		            name=auCompanyName,
-		            credit_code=auCompanyCreditCode,
-		            business_license=auCompanyBusinessLicense,
-		            corporation=auCompanyCorporation,
-		            contactor=auCompanyContactor,
-		            contacts_phone=auCompanyContactsPhone,
-		            contacts_proxy_statement=auCompanyContactsProxyStatement,
-		            address=auCompanyAddress,
-		            account_price=auCompanyAccountPrice,
-		            user_id=auCompanyUserId,
-		            verify_status=auCompanyVerifyStatus,
-		            verify_refuse=auCompanyVerifyRefuse,
-		            verify_time=auCompanyVerifyTime,
-		            review_status=auCompanyReviewStatus,
-		            review_refuse=auCompanyReviewRefuse,
-		            review_time=auCompanyReviewTime,
-		            created_time=auCompanyCreatedTime,
-		            updated_time=auCompanyUpdatedTime,
+		            name=#{auCompanyName},
+		            credit_code=#{auCompanyCreditCode},
+		            business_license=#{auCompanyBusinessLicense},
+		            corporation=#{auCompanyCorporation},
+		            contactor=#{auCompanyContactor},
+		            contacts_phone=#{auCompanyContactsPhone},
+		            contacts_proxy_statement=#{auCompanyContactsProxyStatement},
+		            address=#{auCompanyAddress},
+		            account_price=#{auCompanyAccountPrice},
+		            user_id=#{auCompanyUserId},
+		            verify_status=#{auCompanyVerifyStatus},
+		            verify_refuse=#{auCompanyVerifyRefuse},
+		            verify_time=#{auCompanyVerifyTime},
+		            review_status=#{auCompanyReviewStatus},
+		            review_refuse=#{auCompanyReviewRefuse},
+		            review_time=#{auCompanyReviewTime},
+		            created_time=#{auCompanyCreatedTime},
+		            updated_time=#{auCompanyUpdatedTime},
 		            delfFlag=#{auCompanyDelfFlag}
         WHERE 
         id=#{auCompanyId}
@@ -174,64 +174,64 @@
     
     <select id="selectObjById" parameterType="java.util.Map" resultType="java.util.HashMap">
     	SELECT  
-com.baomidou.mybatisplus.generator.config.po.TableField@428ccb93
+com.baomidou.mybatisplus.generator.config.po.TableField@591f4630
         		auCompany.id AS auCompanyId,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@19ee03c4
+com.baomidou.mybatisplus.generator.config.po.TableField@3f621cae
         		auCompany.name AS auCompanyName,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@65b22ef5
+com.baomidou.mybatisplus.generator.config.po.TableField@5d242aac
         		auCompany.credit_code AS auCompanyCreditCode,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@599cea56
+com.baomidou.mybatisplus.generator.config.po.TableField@4bd83da6
         		auCompany.business_license AS auCompanyBusinessLicense,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@340e9717
+com.baomidou.mybatisplus.generator.config.po.TableField@325957f6
         		auCompany.corporation AS auCompanyCorporation,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@5d174271
+com.baomidou.mybatisplus.generator.config.po.TableField@1df1ba7f
         		auCompany.contactor AS auCompanyContactor,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@29a61aa0
+com.baomidou.mybatisplus.generator.config.po.TableField@61fc8227
         		auCompany.contacts_phone AS auCompanyContactsPhone,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@17569b98
+com.baomidou.mybatisplus.generator.config.po.TableField@6bc3b6b3
         		auCompany.contacts_proxy_statement AS auCompanyContactsProxyStatement,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@57a0104a
+com.baomidou.mybatisplus.generator.config.po.TableField@13ddbada
         		auCompany.address AS auCompanyAddress,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@30c3c405
+com.baomidou.mybatisplus.generator.config.po.TableField@36fc89c
         		auCompany.account_price AS auCompanyAccountPrice,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@2929bba7
+com.baomidou.mybatisplus.generator.config.po.TableField@6079f6c
         		auCompany.user_id AS auCompanyUserId,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@a806f41
+com.baomidou.mybatisplus.generator.config.po.TableField@7007d731
         		auCompany.verify_status AS auCompanyVerifyStatus,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@5d750c1b
+com.baomidou.mybatisplus.generator.config.po.TableField@e72a881
         		auCompany.verify_refuse AS auCompanyVerifyRefuse,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@7338185c
+com.baomidou.mybatisplus.generator.config.po.TableField@7324bafb
         		auCompany.verify_time AS auCompanyVerifyTime,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@17a8611f
+com.baomidou.mybatisplus.generator.config.po.TableField@4962a70c
         		auCompany.review_status AS auCompanyReviewStatus,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@1e5bfecc
+com.baomidou.mybatisplus.generator.config.po.TableField@7124f4e
         		auCompany.review_refuse AS auCompanyReviewRefuse,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@6b3b3cc8
+com.baomidou.mybatisplus.generator.config.po.TableField@1c3fc98d
         		auCompany.review_time AS auCompanyReviewTime,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@5872330b
+com.baomidou.mybatisplus.generator.config.po.TableField@4a1a4b93
         		auCompany.created_time AS auCompanyCreatedTime,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@c861183
+com.baomidou.mybatisplus.generator.config.po.TableField@161cdf1b
         		auCompany.updated_time AS auCompanyUpdatedTime,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@4dea3341
+com.baomidou.mybatisplus.generator.config.po.TableField@3618aa9
         		auCompany.delfFlag AS auCompanyDelfFlag
 		 FROM 
 		 	au_company auCompany

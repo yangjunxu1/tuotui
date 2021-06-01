@@ -39,7 +39,7 @@
  
  	<update id="updateObjById"  parameterType="com.zycw.tuotui.entity.syshobby.SysHobby">
         UPDATE sys_hobby SET 
-		            hobby_title=sysHobbyHobbyTitle,
+		            hobby_title=#{sysHobbyHobbyTitle},
 		            delFlag=#{sysHobbyDelFlag}
         WHERE 
         id=#{sysHobbyId}
@@ -72,13 +72,13 @@
     
     <select id="selectObjById" parameterType="java.util.Map" resultType="java.util.HashMap">
     	SELECT  
-com.baomidou.mybatisplus.generator.config.po.TableField@16f85966
+com.baomidou.mybatisplus.generator.config.po.TableField@6f3e88f3
         		sysHobby.id AS sysHobbyId,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@6ec01411
+com.baomidou.mybatisplus.generator.config.po.TableField@45dfea
         		sysHobby.hobby_title AS sysHobbyHobbyTitle,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@27f99848
+com.baomidou.mybatisplus.generator.config.po.TableField@20f636cf
         		sysHobby.delFlag AS sysHobbyDelFlag
 		 FROM 
 		 	sys_hobby sysHobby
