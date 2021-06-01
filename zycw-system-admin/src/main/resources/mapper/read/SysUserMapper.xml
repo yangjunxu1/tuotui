@@ -10,7 +10,7 @@
                     <id column="id" />
                     <result column="username" />
                     <result column="password" />
-                    <result column="nike" />
+                    <result column="nick" />
                     <result column="uimg" />
                     <result column="role_id" />
                     <result column="true_name" />
@@ -54,7 +54,7 @@
         UPDATE sys_user SET 
 		            username=#{sysUserUsername},
 		            password=#{sysUserPassword},
-		            nike=#{sysUserNike},
+		            nick=#{sysUserNick},
 		            uimg=#{sysUserUimg},
 		            role_id=#{sysUserRoleId},
 		            true_name=#{sysUserTrueName},
@@ -71,7 +71,7 @@
     	INSERT INTO sys_user(
     			username,
     			password,
-    			nike,
+    			nick,
     			uimg,
     			role_id,
     			true_name,
@@ -83,7 +83,7 @@
         VALUES(
 		           #{sysUserUsername},
 		           #{sysUserPassword},
-		           #{sysUserNike},
+		           #{sysUserNick},
 		           #{sysUserUimg},
 		           #{sysUserRoleId},
 		           #{sysUserTrueName},
@@ -97,7 +97,7 @@
     	INSERT INTO sys_user(
     			username,
     			password,
-    			nike,
+    			nick,
     			uimg,
     			role_id,
     			true_name,
@@ -110,7 +110,7 @@
         <foreach collection="list" item="item"  separator=",">
 		           #{item.sysUserUsername},
 		           #{item.sysUserPassword},
-		           #{item.sysUserNike},
+		           #{item.sysUserNick},
 		           #{item.sysUserUimg},
 		           #{item.sysUserRoleId},
 		           #{item.sysUserTrueName},
@@ -125,38 +125,38 @@
     
     <select id="selectObjById" parameterType="java.util.Map" resultType="java.util.HashMap">
     	SELECT  
-com.baomidou.mybatisplus.generator.config.po.TableField@5cee4adf
+com.baomidou.mybatisplus.generator.config.po.TableField@31640a1a
         		sysUser.id AS sysUserId,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@350a030f
+com.baomidou.mybatisplus.generator.config.po.TableField@48831890
         		sysUser.username AS sysUserUsername,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@4c07d7a6
+com.baomidou.mybatisplus.generator.config.po.TableField@afc1f7d
         		sysUser.password AS sysUserPassword,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@1ad5753c
-        		sysUser.nike AS sysUserNike,
+com.baomidou.mybatisplus.generator.config.po.TableField@6507137c
+        		sysUser.nick AS sysUserNick,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@337beb8d
+com.baomidou.mybatisplus.generator.config.po.TableField@67ff7dd5
         		sysUser.uimg AS sysUserUimg,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@560c9496
+com.baomidou.mybatisplus.generator.config.po.TableField@37e8be22
         		sysUser.role_id AS sysUserRoleId,
         		sysRole.name AS sysRoleName,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@1a81eff8
+com.baomidou.mybatisplus.generator.config.po.TableField@68a2064d
         		sysUser.true_name AS sysUserTrueName,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@12a134bc
+com.baomidou.mybatisplus.generator.config.po.TableField@6f641b07
         		sysUser.mobile AS sysUserMobile,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@7ea9b1f7
+com.baomidou.mybatisplus.generator.config.po.TableField@2ba022df
         		sysUser.created_time AS sysUserCreatedTime,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@21e2ad5d
+com.baomidou.mybatisplus.generator.config.po.TableField@7cf6fdbe
         		sysUser.updated_time AS sysUserUpdatedTime,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@348978b6
+com.baomidou.mybatisplus.generator.config.po.TableField@49e1c03
         		sysUser.delFlag AS sysUserDelFlag
 		 FROM 
 		 	sys_user sysUser
@@ -167,7 +167,7 @@ com.baomidou.mybatisplus.generator.config.po.TableField@348978b6
 		 and sysRole.id=#{sysUserId}
     </select>
     
-    <select id="countNum" parameterType="java.util.Map" resultType="java.lang.Integer">
+    <select id="countNum" parameterType="java.util.Map" resultType="Integer">
     	SELECT 	
     		COUNT(1)
     	FROM
@@ -189,7 +189,7 @@ com.baomidou.mybatisplus.generator.config.po.TableField@348978b6
             		
         		sysUser.password AS sysUserPassword,
             		
-        		sysUser.nike AS sysUserNike,
+        		sysUser.nick AS sysUserNick,
             		
         		sysUser.uimg AS sysUserUimg,
             		
@@ -226,7 +226,7 @@ com.baomidou.mybatisplus.generator.config.po.TableField@348978b6
             		
         		sysUser.password AS sysUserPassword,
             		
-        		sysUser.nike AS sysUserNike,
+        		sysUser.nick AS sysUserNick,
             		
         		sysUser.uimg AS sysUserUimg,
             		

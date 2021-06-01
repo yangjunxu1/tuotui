@@ -47,9 +47,9 @@ public class SysUser implements Serializable {
     	@Column(name = "password")
 	private String sysUserPassword;
 
-    @ApiModelProperty(name="sysUserNike",value = "lv用户昵称")
-    	@Column(name = "nike")
-	private String sysUserNike;
+    @ApiModelProperty(name="sysUserNick",value = "lv用户昵称")
+    	@Column(name = "nick")
+	private String sysUserNick;
 
     @ApiModelProperty(name="sysUserUimg",value = "lv用户头像")
     	@Column(name = "uimg")
