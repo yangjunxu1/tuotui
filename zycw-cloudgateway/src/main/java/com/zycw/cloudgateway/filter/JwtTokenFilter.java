@@ -42,23 +42,23 @@ public class JwtTokenFilter implements GatewayFilter {
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
         String path = exchange.getRequest().getURI().getPath();
-        if (!validateRequestPathUrl(path)) return chain.filter(exchange);
-        String authToken = exchange.getRequest().getHeaders().getFirst("Authorization");
-        if (StringUtil.isEmpty(authToken)) {
-            authToken = exchange.getRequest().getQueryParams().getFirst("token");
-            if (StringUtil.isEmpty(authToken)) {
-                throw new UserTokenException("token is null");
-            }
-        }
-        try {
-            authToken = authToken.substring("Bearer ".length());
-            IJWTInfo info = tokenValidateHandler.doValidate(authToken);
-            BaseContextHandler.setUserID(info.getId());
-            BaseContextHandler.setUsername(info.getName());
-            BaseContextHandler.setToken(authToken);
-        } catch (Exception e) {
-            throw new UserTokenException("token validate fail");
-        }
+//        if (!validateRequestPathUrl(path)) return chain.filter(exchange);
+//        String authToken = exchange.getRequest().getHeaders().getFirst("Authorization");
+//        if (StringUtil.isEmpty(authToken)) {
+//            authToken = exchange.getRequest().getQueryParams().getFirst("token");
+//            if (StringUtil.isEmpty(authToken)) {
+//                throw new UserTokenException("token is null");
+//            }
+//        }
+//        try {
+//            authToken = authToken.substring("Bearer ".length());
+//            IJWTInfo info = tokenValidateHandler.doValidate(authToken);
+//            BaseContextHandler.setUserID(info.getId());
+//            BaseContextHandler.setUsername(info.getName());
+//            BaseContextHandler.setToken(authToken);
+//        } catch (Exception e) {
+//            throw new UserTokenException("token validate fail");
+//        }
         return chain.filter(exchange);
     }
 }
