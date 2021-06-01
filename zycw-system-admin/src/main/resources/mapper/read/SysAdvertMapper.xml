@@ -289,7 +289,7 @@ com.baomidou.mybatisplus.generator.config.po.TableField@1b61ce9e
     </select>
     
 	
-	<select id="getAdvertBypositonAndType"   parameterType="java.util.Map,java.util.Map" resultType="java.util.HashMap">
+	<select id="getAdvertBypositonAndType"   parameterType="java.util.Map" resultType="java.util.HashMap">
         select 
 		           SysAdvert.sysAdvertId as sysAdvertId,
 		           SysAdvert.title as sysAdvertTitle,
