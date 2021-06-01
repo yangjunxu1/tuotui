@@ -299,7 +299,7 @@ com.baomidou.mybatisplus.generator.config.po.TableField@8890c60
 		           sysAdvert.urlas sysAdvertUrl,
 		           sysAdvert.router as sysAdvertRouter,
 		           sysAdvert.content as sysAdvertContent
-        FROM sys_advert sys_advert
+        FROM sys_advert sysAdvert
 				
 				, sys_advert_postition sysAdvertPostition
 				 sys_advert_type sysAdvertType on 1=1
