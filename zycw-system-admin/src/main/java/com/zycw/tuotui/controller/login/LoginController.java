@@ -39,13 +39,12 @@ public class LoginController {
             @ApiImplicitParam(name = "uid", value = "账号/手机号", required = true, dataType = "String"),
             @ApiImplicitParam(name = "password", value = "密码", required = true, dataType = "String"),
             @ApiImplicitParam(name = "code", value = "密码/验证码", required = false, dataType = "String"),
-            @ApiImplicitParam(name = "type", value = "登陆类型,1-账户+密码 2-手机号+验证码 3-邮箱+密码 4-手机号+密码", required = true),
             @ApiImplicitParam(name = "deviceNo", value = "设备编号", required = true)
     })
-    public ResultBeanFactory.ResultBean<String> login(String uid, String password, String code, Integer type, String deviceNo) {
-        logger.info("[LoginController] uid:" + uid + "code:" + code + "type:" + type + "deviceNo:" + deviceNo);
+    public ResultBeanFactory.ResultBean<String> login(String uid, String password, String code, String deviceNo) {
+        logger.info("[LoginController] uid:" + uid + "code:" + code + "deviceNo:" + deviceNo);
         try {
-            String token = loginService.login(uid, password, code, type, deviceNo);
+            String token = loginService.login(uid, password, code, deviceNo);
             return resultBeanFactory.getBean(token);
         } catch (Exception e) {
             logger.error("失败原因:{}", e);
