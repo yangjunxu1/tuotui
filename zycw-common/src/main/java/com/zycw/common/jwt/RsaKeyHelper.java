@@ -1,5 +1,6 @@
 package com.zycw.common.jwt;
 
+import org.apache.xmlbeans.impl.util.Base64;
 import sun.misc.BASE64Decoder;
 import sun.misc.BASE64Encoder;
 
@@ -7,6 +8,7 @@ import java.io.DataInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.charset.Charset;
 import java.security.*;
 import java.security.spec.PKCS8EncodedKeySpec;
 import java.security.spec.X509EncodedKeySpec;
@@ -16,10 +18,10 @@ import java.util.Map;
 /**
  * Title: JWT
  *
- * @author   yangjunxu
- * @version  1.0
- * @since    
- * @Date	 2018年4月4日  上午12:19:56	
+ * @author yangjunxu
+ * @version 1.0
+ * @Date 2018年4月4日  上午12:19:56
+ * @since
  */
 public class RsaKeyHelper {
     /**
@@ -37,8 +39,8 @@ public class RsaKeyHelper {
         dis.close();
         X509EncodedKeySpec spec = new X509EncodedKeySpec(keyBytes);
         KeyFactory kf = KeyFactory.getInstance("RSA");
-        resourceAsStream=null;
-        dis=null;
+        resourceAsStream = null;
+        dis = null;
         return kf.generatePublic(spec);
     }
 
@@ -55,8 +57,8 @@ public class RsaKeyHelper {
         byte[] keyBytes = new byte[resourceAsStream.available()];
         dis.readFully(keyBytes);
         dis.close();
-        dis=null;
-        resourceAsStream=null;
+        dis = null;
+        resourceAsStream = null;
         PKCS8EncodedKeySpec spec = new PKCS8EncodedKeySpec(keyBytes);
         KeyFactory kf = KeyFactory.getInstance("RSA");
         return kf.generatePrivate(spec);
@@ -97,7 +99,7 @@ public class RsaKeyHelper {
      * @throws IOException
      * @throws NoSuchAlgorithmException
      */
-    public void generateKey(String publicKeyFilename, String privateKeyFilename, String password) throws IOException, NoSuchAlgorithmException {
+    public static void generateKey(String publicKeyFilename, String privateKeyFilename, String password) throws IOException, NoSuchAlgorithmException {
         KeyPairGenerator keyPairGenerator = KeyPairGenerator.getInstance("RSA");
         SecureRandom secureRandom = new SecureRandom(password.getBytes());
         keyPairGenerator.initialize(1024, secureRandom);
@@ -163,12 +165,16 @@ public class RsaKeyHelper {
         return (new BASE64Decoder()).decodeBuffer(s);
     }
 
-    public static void main(String[] args) throws NoSuchAlgorithmException {
-        KeyPairGenerator keyPairGenerator = KeyPairGenerator.getInstance("RSA");
-        SecureRandom secureRandom = new SecureRandom("123".getBytes());
-        keyPairGenerator.initialize(1024, secureRandom);
-        KeyPair keyPair = keyPairGenerator.genKeyPair();
-        System.out.println(keyPair.getPublic().getEncoded());
+    public static void main(String[] args) throws NoSuchAlgorithmException, IOException {
+//        KeyPairGenerator keyPairGenerator = KeyPairGenerator.getInstance("RSA");
+//        SecureRandom secureRandom = new SecureRandom("123".getBytes());
+//        keyPairGenerator.initialize(1024, secureRandom);
+//        KeyPair keyPair = keyPairGenerator.genKeyPair();
+//        System.out.println(keyPair.getPublic().getEncoded());
+//        generateKey("./pub.txt","./per.txt","123456");
+
+        InputStream resourceAsStream = RsaKeyHelper.class.getClassLoader().getResourceAsStream("pub.key");
+        System.out.println(resourceAsStream);
     }
 
 }
