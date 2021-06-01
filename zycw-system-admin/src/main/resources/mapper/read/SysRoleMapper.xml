@@ -3,10 +3,13 @@
 <mapper namespace="com.zycw.tuotui.readdao.sysrole.SysRoleMapper">
 
 
+
+
         <!-- 通用查询映射结果 -->
         <resultMap id="BaseResultMap" type="com.zycw.tuotui.entity.sysrole.SysRole">
                     <id column="id" />
                     <result column="name" />
+                    <result column="delFlag" />
         </resultMap>
 
     
@@ -23,16 +26,21 @@
     
     
     <update id="deleteByIdLogic">
-        UPDATE sys_role SET delFlag = 1' 
+        UPDATE sys_role SET delFlag = 1 
         WHERE 
         id=#{sysRoleId}
     </update>
+    
+    
+    
+    
     
  
  
  	<update id="updateObjById"  parameterType="com.zycw.tuotui.entity.sysrole.SysRole">
         UPDATE sys_role SET 
-		            name=#{sysRoleName}
+		            name=sysRoleName,
+		            delFlag=#{sysRoleDelFlag}
         WHERE 
         id=#{sysRoleId}
     </update>
@@ -40,19 +48,23 @@
     
     <insert id='insertObj' parameterType="com.zycw.tuotui.entity.sysrole.SysRole">
     	INSERT INTO sys_role(
-    			name
+    			name,
+    			delFlag
     	)
         VALUES(
-		           #{sysRoleName}
+		           #{sysRoleName},
+		           #{sysRoleDelFlag}
         )
     </insert>
     <insert id='batchInsertObj' parameterType="java.util.List">
     	INSERT INTO sys_role(
-    			name
+    			name,
+    			delFlag
     	)
         VALUES(
         <foreach collection="list" item="item"  separator=",">
-		           #{item.sysRoleName}
+		           #{item.sysRoleName},
+		           #{item.sysRoleDelFlag}
         </foreach>
         )
     </insert>
@@ -60,14 +72,18 @@
     
     <select id="selectObjById" parameterType="java.util.Map" resultType="java.util.HashMap">
     	SELECT  
-com.baomidou.mybatisplus.generator.config.po.TableField@3743ac8e
+com.baomidou.mybatisplus.generator.config.po.TableField@39326c6d
         		sysRole.id AS sysRoleId,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@56c9ed37
-        		sysRole.name AS sysRoleName
+com.baomidou.mybatisplus.generator.config.po.TableField@5a1b9515
+        		sysRole.name AS sysRoleName,
+            		
+com.baomidou.mybatisplus.generator.config.po.TableField@7b9553bb
+        		sysRole.delFlag AS sysRoleDelFlag
 		 FROM 
 		 	sys_role sysRole
     	WHERE 1=1
+    	and sysRole.delFlag = 0
 		 and ${tbAlias}.id=#{sysRoleId}
     </select>
     
@@ -77,16 +93,20 @@ com.baomidou.mybatisplus.generator.config.po.TableField@56c9ed37
     	FROM
     		sys_role sysRole
     	WHERE 1=1
+    	and sysRole.delFlag = 0
     	
     </select>
     <select id="pageList" parameterType="java.util.Map" resultType="java.util.Map">
     	SELECT 	
         		sysRole.id AS sysRoleId,
             		
-        		sysRole.name AS sysRoleName
+        		sysRole.name AS sysRoleName,
+            		
+        		sysRole.delFlag AS sysRoleDelFlag
     	FROM
     		sys_role sysRole
     	WHERE 1=1
+    	and sysRole.delFlag = 0
     	
     		LIMIT #{param.pageStart},#{param.pageNum}
     </select>
@@ -96,7 +116,9 @@ com.baomidou.mybatisplus.generator.config.po.TableField@56c9ed37
     	    	SELECT 	
         		sysRole.id AS sysRoleId,
             		
-        		sysRole.name AS sysRoleName
+        		sysRole.name AS sysRoleName,
+            		
+        		sysRole.delFlag AS sysRoleDelFlag
     	FROM
     		sys_role sysRole
     	WHERE 1=1

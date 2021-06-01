@@ -17,6 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.zycw.common.util.Page;
 import com.zycw.tuotui.readdao.sysadvertpostition.SysAdvertPostitionMapper;
 import com.zycw.tuotui.entity.sysadvertpostition.SysAdvertPostition;
+import com.zycw.tuotui.iface.sysadvert.ISysAdvertService;
 
 import java.lang.String;
 import java.lang.Integer;
@@ -32,15 +33,19 @@ import java.util.HashMap;
 @Service("ISysAdvertPostitionService")
 public class ISysAdvertPostitionService extends BaseService<SysAdvertPostitionMapper,SysAdvertPostition> {
 
+   
+    @Autowired
+    private ISysAdvertService iSysAdvertService;
    /**
     * 根据主键物理删除
     * @param String 主键ID
     * @return 返回结果
 	* @author junxu.yang
-	* @since 2021-05-30
+	* @since 2021-06-01
     */
 	public void deleteById(String sysAdvertPostitionId){
 		mapper.deleteById(sysAdvertPostitionId);
+     	iSysAdvertService.deleteBysysAdvertPostitionId(sysAdvertPostitionId);
 	}
 	
    /**
@@ -48,12 +53,13 @@ public class ISysAdvertPostitionService extends BaseService<SysAdvertPostitionMa
     * @param String 主键ID
     * @return 返回结果
 	* @author junxu.yang
-	* @since 2021-05-30
+	* @since 2021-06-01
     */
 	public void deleteByIdLogic(String sysAdvertPostitionId){
 		mapper.deleteByIdLogic(sysAdvertPostitionId);
 	}
 	
+
 	
 	public void updateObjById(SysAdvertPostition sysAdvertPostition){
 		mapper.updateObjById(sysAdvertPostition);
@@ -66,7 +72,7 @@ public class ISysAdvertPostitionService extends BaseService<SysAdvertPostitionMa
     * @param SysAdvertPostition 对象
     * @return 返回结果 void
 	* @author junxu.yang
-	* @since 2021-05-30
+	* @since 2021-06-01
     */
 	public void insertObj(SysAdvertPostition sysAdvertPostition){
 		mapper.insertObj(sysAdvertPostition);
@@ -78,7 +84,7 @@ public class ISysAdvertPostitionService extends BaseService<SysAdvertPostitionMa
     * @param List<SysAdvertPostition> 对象
     * @return 返回结果
 	* @author junxu.yang
-	* @since 2021-05-30
+	* @since 2021-06-01
     */
 	public void batchInsertObj(List<SysAdvertPostition> list){
 		mapper.batchInsertObj(list);
@@ -89,7 +95,7 @@ public class ISysAdvertPostitionService extends BaseService<SysAdvertPostitionMa
     * @param String 主键ID
     * @return 返回结果
 	* @author junxu.yang
-	* @since 2021-05-30
+	* @since 2021-06-01
     */
 	public HashMap<String,Object> selectObjById(String sysAdvertPostitionId){
 		return mapper.selectObjById(sysAdvertPostitionId);
@@ -101,7 +107,7 @@ public class ISysAdvertPostitionService extends BaseService<SysAdvertPostitionMa
     * @param HashMap<String,Object> 对象
     * @return 返回结果
 	* @author junxu.yang
-	* @since 2021-05-30
+	* @since 2021-06-01
     */
 	public Integer countNum(HashMap<String,Object> params) {
 		return mapper.countNum(params);
@@ -113,7 +119,7 @@ public class ISysAdvertPostitionService extends BaseService<SysAdvertPostitionMa
 	* @param HashMap<String,Object> 对象
 	* @return 返回结果 PageInfo
 	* @author junxu.yang
-	* @since 2021-05-30
+	* @since 2021-06-01
 	 */
 	public PageInfo<SysAdvertPostition> pageList(HashMap<String,Object> params) throws Exception {
 		Integer pageNum = (Integer)params.get("pageNum");

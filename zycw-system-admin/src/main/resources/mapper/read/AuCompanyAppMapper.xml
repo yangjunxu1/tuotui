@@ -3,6 +3,8 @@
 <mapper namespace="com.zycw.tuotui.readdao.aucompanyapp.AuCompanyAppMapper">
 
 
+
+
         <!-- 通用查询映射结果 -->
         <resultMap id="BaseResultMap" type="com.zycw.tuotui.entity.aucompanyapp.AuCompanyApp">
                     <id column="id" />
@@ -20,6 +22,7 @@
                     <result column="review_time" />
                     <result column="created_time" />
                     <result column="updated_time" />
+                    <result column="delFlag" />
         </resultMap>
 
     
@@ -36,10 +39,19 @@
     
     
     <update id="deleteByIdLogic">
-        UPDATE au_company_app SET delFlag = 1' 
+        UPDATE au_company_app SET delFlag = 1 
         WHERE 
         id=#{auCompanyAppId}
     </update>
+    
+    
+	 
+    <delete id="deleteByauCompanyAppCompanyId">
+        DELETE FROM au_company_app WHERE 
+        company_id=id
+    </delete>
+    
+    
     
  
  
@@ -58,7 +70,8 @@
 		            review_refuse=auCompanyAppReviewRefuse,
 		            review_time=auCompanyAppReviewTime,
 		            created_time=auCompanyAppCreatedTime,
-		            updated_time=#{auCompanyAppUpdatedTime}
+		            updated_time=auCompanyAppUpdatedTime,
+		            delFlag=#{auCompanyAppDelFlag}
         WHERE 
         id=#{auCompanyAppId}
     </update>
@@ -79,7 +92,8 @@
     			review_refuse,
     			review_time,
     			created_time,
-    			updated_time
+    			updated_time,
+    			delFlag
     	)
         VALUES(
 		           #{auCompanyAppCompanyId},
@@ -95,7 +109,8 @@
 		           #{auCompanyAppReviewRefuse},
 		           #{auCompanyAppReviewTime},
 		           #{auCompanyAppCreatedTime},
-		           #{auCompanyAppUpdatedTime}
+		           #{auCompanyAppUpdatedTime},
+		           #{auCompanyAppDelFlag}
         )
     </insert>
     <insert id='batchInsertObj' parameterType="java.util.List">
@@ -113,7 +128,8 @@
     			review_refuse,
     			review_time,
     			created_time,
-    			updated_time
+    			updated_time,
+    			delFlag
     	)
         VALUES(
         <foreach collection="list" item="item"  separator=",">
@@ -130,7 +146,8 @@
 		           #{item.auCompanyAppReviewRefuse},
 		           #{item.auCompanyAppReviewTime},
 		           #{item.auCompanyAppCreatedTime},
-		           #{item.auCompanyAppUpdatedTime}
+		           #{item.auCompanyAppUpdatedTime},
+		           #{item.auCompanyAppDelFlag}
         </foreach>
         )
     </insert>
@@ -138,55 +155,59 @@
     
     <select id="selectObjById" parameterType="java.util.Map" resultType="java.util.HashMap">
     	SELECT  
-com.baomidou.mybatisplus.generator.config.po.TableField@366c28d7
+com.baomidou.mybatisplus.generator.config.po.TableField@1b2e3892
         		auCompanyApp.id AS auCompanyAppId,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@10f27078
+com.baomidou.mybatisplus.generator.config.po.TableField@5ac7833d
         		auCompanyApp.company_id AS auCompanyAppCompanyId,
         		auCompany.name AS auCompanyAppName,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@744862fa
+com.baomidou.mybatisplus.generator.config.po.TableField@305931d2
         		auCompanyApp.name AS auCompanyAppName,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@7214c44b
+com.baomidou.mybatisplus.generator.config.po.TableField@dc15d50
         		auCompanyApp.remark AS auCompanyAppRemark,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@35bd0b4d
+com.baomidou.mybatisplus.generator.config.po.TableField@645dd006
         		auCompanyApp.icon_path AS auCompanyAppIconPath,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@1033173c
+com.baomidou.mybatisplus.generator.config.po.TableField@a52c4d2
         		auCompanyApp.app_size AS auCompanyAppAppSize,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@27dbe872
+com.baomidou.mybatisplus.generator.config.po.TableField@73fca3eb
         		auCompanyApp.down_url AS auCompanyAppDownUrl,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@73b9465e
+com.baomidou.mybatisplus.generator.config.po.TableField@74d04b19
         		auCompanyApp.verify_status AS auCompanyAppVerifyStatus,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@2e83cc07
+com.baomidou.mybatisplus.generator.config.po.TableField@7e076865
         		auCompanyApp.veruft_refuse AS auCompanyAppVeruftRefuse,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@2601a41c
+com.baomidou.mybatisplus.generator.config.po.TableField@626f5723
         		auCompanyApp.verify_time AS auCompanyAppVerifyTime,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@5e6150d6
+com.baomidou.mybatisplus.generator.config.po.TableField@749a537e
         		auCompanyApp.review_status AS auCompanyAppReviewStatus,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@675366f2
+com.baomidou.mybatisplus.generator.config.po.TableField@2644677
         		auCompanyApp.review_refuse AS auCompanyAppReviewRefuse,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@57006deb
+com.baomidou.mybatisplus.generator.config.po.TableField@47e5521e
         		auCompanyApp.review_time AS auCompanyAppReviewTime,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@7c8a0253
+com.baomidou.mybatisplus.generator.config.po.TableField@5fabc38e
         		auCompanyApp.created_time AS auCompanyAppCreatedTime,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@28391af4
-        		auCompanyApp.updated_time AS auCompanyAppUpdatedTime
+com.baomidou.mybatisplus.generator.config.po.TableField@798c7aa6
+        		auCompanyApp.updated_time AS auCompanyAppUpdatedTime,
+            		
+com.baomidou.mybatisplus.generator.config.po.TableField@597bcc1e
+        		auCompanyApp.delFlag AS auCompanyAppDelFlag
 		 FROM 
 		 	au_company_app auCompanyApp
         	,au_company	auCompany
     	WHERE 1=1
+    	and auCompanyApp.delFlag = 0
 				and auCompanyApp.company_id = auCompany.id
 		 and auCompany.id=#{auCompanyAppId}
     </select>
@@ -198,6 +219,7 @@ com.baomidou.mybatisplus.generator.config.po.TableField@28391af4
     		au_company_app auCompanyApp
         	,au_company	auCompany
     	WHERE 1=1
+    	and auCompanyApp.delFlag = 0
     	
 				and auCompanyApp.company_id = auCompany.id
         	<if test="param.auCompanyAppCompanyId != null and param.auCompanyAppCompanyId != '' ">
@@ -234,11 +256,14 @@ com.baomidou.mybatisplus.generator.config.po.TableField@28391af4
             		
         		auCompanyApp.created_time AS auCompanyAppCreatedTime,
             		
-        		auCompanyApp.updated_time AS auCompanyAppUpdatedTime
+        		auCompanyApp.updated_time AS auCompanyAppUpdatedTime,
+            		
+        		auCompanyApp.delFlag AS auCompanyAppDelFlag
     	FROM
     		au_company_app auCompanyApp
         	,au_company	auCompany
     	WHERE 1=1
+    	and auCompanyApp.delFlag = 0
     	
 				and auCompanyApp.company_id = auCompany.id
         	<if test="param.auCompanyAppCompanyId != null and param.auCompanyAppCompanyId != '' ">
@@ -278,7 +303,9 @@ com.baomidou.mybatisplus.generator.config.po.TableField@28391af4
             		
         		auCompanyApp.created_time AS auCompanyAppCreatedTime,
             		
-        		auCompanyApp.updated_time AS auCompanyAppUpdatedTime
+        		auCompanyApp.updated_time AS auCompanyAppUpdatedTime,
+            		
+        		auCompanyApp.delFlag AS auCompanyAppDelFlag
     	FROM
     		au_company_app auCompanyApp
         	,au_company	auCompany

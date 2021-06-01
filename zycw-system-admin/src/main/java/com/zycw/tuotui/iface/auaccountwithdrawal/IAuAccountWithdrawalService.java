@@ -32,12 +32,13 @@ import java.util.HashMap;
 @Service("IAuAccountWithdrawalService")
 public class IAuAccountWithdrawalService extends BaseService<AuAccountWithdrawalMapper,AuAccountWithdrawal> {
 
+   
    /**
     * 根据主键物理删除
     * @param String 主键ID
     * @return 返回结果
 	* @author junxu.yang
-	* @since 2021-05-30
+	* @since 2021-06-01
     */
 	public void deleteById(String auAccountWithdrawalId){
 		mapper.deleteById(auAccountWithdrawalId);
@@ -48,12 +49,35 @@ public class IAuAccountWithdrawalService extends BaseService<AuAccountWithdrawal
     * @param String 主键ID
     * @return 返回结果
 	* @author junxu.yang
-	* @since 2021-05-30
+	* @since 2021-06-01
     */
 	public void deleteByIdLogic(String auAccountWithdrawalId){
 		mapper.deleteByIdLogic(auAccountWithdrawalId);
 	}
 	
+	
+   /**
+    * 根据外键auAccountWithdrawalUserId删除
+    * @param String 外键ID
+    * @return 返回结果
+	* @author junxu.yang
+	* @since 2021-06-01
+    */
+	public void deleteByauAccountWithdrawalUserId(String id){
+		mapper.deleteByauAccountWithdrawalUserId(id);
+	}
+	
+   /**
+    * 根据外键auAccountWithdrawalTaskId删除
+    * @param String 外键ID
+    * @return 返回结果
+	* @author junxu.yang
+	* @since 2021-06-01
+    */
+	public void deleteByauAccountWithdrawalTaskId(String id){
+		mapper.deleteByauAccountWithdrawalTaskId(id);
+	}
+
 	
 	public void updateObjById(AuAccountWithdrawal auAccountWithdrawal){
 		mapper.updateObjById(auAccountWithdrawal);
@@ -66,7 +90,7 @@ public class IAuAccountWithdrawalService extends BaseService<AuAccountWithdrawal
     * @param AuAccountWithdrawal 对象
     * @return 返回结果 void
 	* @author junxu.yang
-	* @since 2021-05-30
+	* @since 2021-06-01
     */
 	public void insertObj(AuAccountWithdrawal auAccountWithdrawal){
 		mapper.insertObj(auAccountWithdrawal);
@@ -78,7 +102,7 @@ public class IAuAccountWithdrawalService extends BaseService<AuAccountWithdrawal
     * @param List<AuAccountWithdrawal> 对象
     * @return 返回结果
 	* @author junxu.yang
-	* @since 2021-05-30
+	* @since 2021-06-01
     */
 	public void batchInsertObj(List<AuAccountWithdrawal> list){
 		mapper.batchInsertObj(list);
@@ -89,7 +113,7 @@ public class IAuAccountWithdrawalService extends BaseService<AuAccountWithdrawal
     * @param String 主键ID
     * @return 返回结果
 	* @author junxu.yang
-	* @since 2021-05-30
+	* @since 2021-06-01
     */
 	public HashMap<String,Object> selectObjById(String auAccountWithdrawalId){
 		return mapper.selectObjById(auAccountWithdrawalId);
@@ -101,7 +125,7 @@ public class IAuAccountWithdrawalService extends BaseService<AuAccountWithdrawal
     * @param HashMap<String,Object> 对象
     * @return 返回结果
 	* @author junxu.yang
-	* @since 2021-05-30
+	* @since 2021-06-01
     */
 	public Integer countNum(HashMap<String,Object> params) {
 		return mapper.countNum(params);
@@ -113,7 +137,7 @@ public class IAuAccountWithdrawalService extends BaseService<AuAccountWithdrawal
 	* @param HashMap<String,Object> 对象
 	* @return 返回结果 PageInfo
 	* @author junxu.yang
-	* @since 2021-05-30
+	* @since 2021-06-01
 	 */
 	public PageInfo<AuAccountWithdrawal> pageList(HashMap<String,Object> params) throws Exception {
 		Integer pageNum = (Integer)params.get("pageNum");

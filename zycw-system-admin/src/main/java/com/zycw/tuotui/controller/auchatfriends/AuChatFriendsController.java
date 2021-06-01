@@ -109,14 +109,15 @@ public class AuChatFriendsController extends BaseController <IAuChatFriendsServi
      
      @ApiOperation(value = "分页查询")
      @ApiImplicitParams({
-    	@ApiImplicitParam(name = "auChatFriendsFuserId", value = "好友", required = false, dataType = "${dataType}"),
     	@ApiImplicitParam(name = "auChatFriendsUserId", value = "用户", required = false, dataType = "${dataType}"),
+    	@ApiImplicitParam(name = "auChatFriendsFuserId", value = "好友", required = false, dataType = "${dataType}"),
 		@ApiImplicitParam(name = "pageSize", value = "每页条数", required = false, dataType = "int"),
 		@ApiImplicitParam(name = "pageNum", value = "当前页数", required = false, dataType = "int"),
 
 
 
-    	@ApiImplicitParam(name = "auChatFriendsAddtime", value = "return-i添加时间", required = false, dataType = "Date"),
+
+    	@ApiImplicitParam(name = "auChatFriendsDelFlag", value = "return-逻辑删除:0-未删除,1-已删除", required = false, dataType = "${dataType}"),
      })
      @RequestMapping(value = "/pageList", method = RequestMethod.POST)
      public ResultBeanFactory.ResultBean<PageInfo<AuChatFriends>> pageList(@RequestBody HashMap<String,Object> params) {
@@ -136,10 +137,11 @@ public class AuChatFriendsController extends BaseController <IAuChatFriendsServi
      @ApiOperation(value = "通过id查询")
      @ApiImplicitParam(name = "auChatFriendsId", value = "ID", required = true, dataType = "String")
      @ApiImplicitParams({
-    	@ApiImplicitParam(name = "auChatFriendsId", value = "return-ID", required = false, dataType = "Date"),
+    	@ApiImplicitParam(name = "auChatFriendsId", value = "return-ID", required = false, dataType = "${dataType}"),
     	@ApiImplicitParam(name = "auUserMobile", value = "return-lvM手机号", required = false, dataType = "String"),
     	@ApiImplicitParam(name = "sysUserUsername", value = "return-lvM用户名", required = false, dataType = "String"),
     	@ApiImplicitParam(name = "auChatFriendsAddtime", value = "return-i添加时间", required = false, dataType = "Date"),
+    	@ApiImplicitParam(name = "auChatFriendsDelFlag", value = "return-逻辑删除:0-未删除,1-已删除", required = false, dataType = "Date"),
 		})
      @RequestMapping(value = "/selectObjById", method = RequestMethod.GET)
      public ResultBean<HashMap<String,Object>> info(@RequestParam("auChatFriendsId") String auChatFriendsId) {
@@ -152,12 +154,13 @@ public class AuChatFriendsController extends BaseController <IAuChatFriendsServi
 	
      @ApiOperation(value = "allList")
      @ApiImplicitParams({
-    	@ApiImplicitParam(name = "auChatFriendsFuserId", value = "好友", required = false, dataType = "Date"),
     	@ApiImplicitParam(name = "auChatFriendsUserId", value = "用户", required = false, dataType = "Date"),
+    	@ApiImplicitParam(name = "auChatFriendsFuserId", value = "好友", required = false, dataType = "Date"),
     	@ApiImplicitParam(name = "auChatFriendsId", value = "return-ID", required = false, dataType = "Date"),
     	@ApiImplicitParam(name = "auUserMobile", value = "return-lvM手机号", required = false, dataType = "String"),
     	@ApiImplicitParam(name = "sysUserUsername", value = "return-lvM用户名", required = false, dataType = "String"),
-    	@ApiImplicitParam(name = "auChatFriendsAddtime", value = "return-i添加时间", required = false, dataType = "Date")
+    	@ApiImplicitParam(name = "auChatFriendsAddtime", value = "return-i添加时间", required = false, dataType = "Date"),
+    	@ApiImplicitParam(name = "auChatFriendsDelFlag", value = "return-逻辑删除:0-未删除,1-已删除", required = false, dataType = "Date")
      })
      @RequestMapping(value = "/allList", method = RequestMethod.POST)
 	public ResultBean<List<AuChatFriends>> allList(@RequestBody HashMap<String,Object> param){

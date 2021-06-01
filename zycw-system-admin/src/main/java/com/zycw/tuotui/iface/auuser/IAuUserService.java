@@ -17,6 +17,11 @@ import org.springframework.transaction.annotation.Transactional;
 import com.zycw.common.util.Page;
 import com.zycw.tuotui.readdao.auuser.AuUserMapper;
 import com.zycw.tuotui.entity.auuser.AuUser;
+import com.zycw.tuotui.iface.auaccountconsume.IAuAccountConsumeService;
+import com.zycw.tuotui.iface.auaccountwithdrawal.IAuAccountWithdrawalService;
+import com.zycw.tuotui.iface.auchatfriends.IAuChatFriendsService;
+import com.zycw.tuotui.iface.aucustomtask.IAuCustomTaskService;
+import com.zycw.tuotui.iface.auusertask.IAuUserTaskService;
 
 import java.lang.String;
 import java.lang.Integer;
@@ -32,15 +37,31 @@ import java.util.HashMap;
 @Service("IAuUserService")
 public class IAuUserService extends BaseService<AuUserMapper,AuUser> {
 
+   
+    @Autowired
+    private IAuAccountConsumeService iAuAccountConsumeService;
+    @Autowired
+    private IAuAccountWithdrawalService iAuAccountWithdrawalService;
+    @Autowired
+    private IAuChatFriendsService iAuChatFriendsService;
+    @Autowired
+    private IAuCustomTaskService iAuCustomTaskService;
+    @Autowired
+    private IAuUserTaskService iAuUserTaskService;
    /**
     * 根据主键物理删除
     * @param String 主键ID
     * @return 返回结果
 	* @author junxu.yang
-	* @since 2021-05-30
+	* @since 2021-06-01
     */
 	public void deleteById(String auUserId){
 		mapper.deleteById(auUserId);
+     	iAuAccountConsumeService.deleteByauAccountConsumeUserId(auUserId);
+     	iAuAccountWithdrawalService.deleteByauAccountWithdrawalUserId(auUserId);
+     	iAuChatFriendsService.deleteByauChatFriendsUserId(auUserId);
+     	iAuCustomTaskService.deleteByauCustomTaskUserId(auUserId);
+     	iAuUserTaskService.deleteByauUserTaskUserId(auUserId);
 	}
 	
    /**
@@ -48,12 +69,57 @@ public class IAuUserService extends BaseService<AuUserMapper,AuUser> {
     * @param String 主键ID
     * @return 返回结果
 	* @author junxu.yang
-	* @since 2021-05-30
+	* @since 2021-06-01
     */
 	public void deleteByIdLogic(String auUserId){
 		mapper.deleteByIdLogic(auUserId);
 	}
 	
+	
+   /**
+    * 根据外键auUserProvinceId删除
+    * @param String 外键ID
+    * @return 返回结果
+	* @author junxu.yang
+	* @since 2021-06-01
+    */
+	public void deleteByauUserProvinceId(String id){
+		mapper.deleteByauUserProvinceId(id);
+	}
+	
+   /**
+    * 根据外键auUserCityId删除
+    * @param String 外键ID
+    * @return 返回结果
+	* @author junxu.yang
+	* @since 2021-06-01
+    */
+	public void deleteByauUserCityId(String id){
+		mapper.deleteByauUserCityId(id);
+	}
+	
+   /**
+    * 根据外键auUserAreaId删除
+    * @param String 外键ID
+    * @return 返回结果
+	* @author junxu.yang
+	* @since 2021-06-01
+    */
+	public void deleteByauUserAreaId(String id){
+		mapper.deleteByauUserAreaId(id);
+	}
+	
+   /**
+    * 根据外键auUserOccupationId删除
+    * @param String 外键ID
+    * @return 返回结果
+	* @author junxu.yang
+	* @since 2021-06-01
+    */
+	public void deleteByauUserOccupationId(String id){
+		mapper.deleteByauUserOccupationId(id);
+	}
+
 	
 	public void updateObjById(AuUser auUser){
 		mapper.updateObjById(auUser);
@@ -66,7 +132,7 @@ public class IAuUserService extends BaseService<AuUserMapper,AuUser> {
     * @param AuUser 对象
     * @return 返回结果 void
 	* @author junxu.yang
-	* @since 2021-05-30
+	* @since 2021-06-01
     */
 	public void insertObj(AuUser auUser){
 		mapper.insertObj(auUser);
@@ -78,7 +144,7 @@ public class IAuUserService extends BaseService<AuUserMapper,AuUser> {
     * @param List<AuUser> 对象
     * @return 返回结果
 	* @author junxu.yang
-	* @since 2021-05-30
+	* @since 2021-06-01
     */
 	public void batchInsertObj(List<AuUser> list){
 		mapper.batchInsertObj(list);
@@ -89,7 +155,7 @@ public class IAuUserService extends BaseService<AuUserMapper,AuUser> {
     * @param String 主键ID
     * @return 返回结果
 	* @author junxu.yang
-	* @since 2021-05-30
+	* @since 2021-06-01
     */
 	public HashMap<String,Object> selectObjById(String auUserId){
 		return mapper.selectObjById(auUserId);
@@ -101,7 +167,7 @@ public class IAuUserService extends BaseService<AuUserMapper,AuUser> {
     * @param HashMap<String,Object> 对象
     * @return 返回结果
 	* @author junxu.yang
-	* @since 2021-05-30
+	* @since 2021-06-01
     */
 	public Integer countNum(HashMap<String,Object> params) {
 		return mapper.countNum(params);
@@ -113,7 +179,7 @@ public class IAuUserService extends BaseService<AuUserMapper,AuUser> {
 	* @param HashMap<String,Object> 对象
 	* @return 返回结果 PageInfo
 	* @author junxu.yang
-	* @since 2021-05-30
+	* @since 2021-06-01
 	 */
 	public PageInfo<AuUser> pageList(HashMap<String,Object> params) throws Exception {
 		Integer pageNum = (Integer)params.get("pageNum");

@@ -111,6 +111,7 @@ public class SysAdvertController extends BaseController <ISysAdvertService, SysA
      
      @ApiOperation(value = "分页查询")
      @ApiImplicitParams({
+    	@ApiImplicitParam(name = "sysAdvertTypeId", value = "广告类型", required = false, dataType = "${dataType}"),
     	@ApiImplicitParam(name = "sysAdvertPostitionId", value = "", required = false, dataType = "${dataType}"),
 		@ApiImplicitParam(name = "pageSize", value = "每页条数", required = false, dataType = "int"),
 		@ApiImplicitParam(name = "pageNum", value = "当前页数", required = false, dataType = "int"),
@@ -123,7 +124,9 @@ public class SysAdvertController extends BaseController <ISysAdvertService, SysA
 
 
 
-    	@ApiImplicitParam(name = "sysAdvertUpdatedTime", value = "return-u修改时间", required = false, dataType = "Date"),
+
+
+    	@ApiImplicitParam(name = "sysAdvertDeflFlag", value = "return-逻辑删除:0-未删除,1-已删除", required = false, dataType = "${dataType}"),
      })
      @RequestMapping(value = "/pageList", method = RequestMethod.POST)
      public ResultBeanFactory.ResultBean<PageInfo<SysAdvert>> pageList(@RequestBody HashMap<String,Object> params) {
@@ -143,9 +146,10 @@ public class SysAdvertController extends BaseController <ISysAdvertService, SysA
      @ApiOperation(value = "通过id查询")
      @ApiImplicitParam(name = "sysAdvertId", value = "ID", required = true, dataType = "String")
      @ApiImplicitParams({
-    	@ApiImplicitParam(name = "sysAdvertId", value = "return-hID", required = false, dataType = "Date"),
+    	@ApiImplicitParam(name = "sysAdvertId", value = "return-hID", required = false, dataType = "${dataType}"),
     	@ApiImplicitParam(name = "sysAdvertTitle", value = "return-lv广告标题", required = false, dataType = "String"),
     	@ApiImplicitParam(name = "sysAdvertPostitionName", value = "return-lnM位置名称", required = false, dataType = "String"),
+    	@ApiImplicitParam(name = "sysAdvertTypeTypeName", value = "return-lvM类型名称", required = false, dataType = "String"),
     	@ApiImplicitParam(name = "sysAdvertPicAddr", value = "return-lv广告图片地址", required = false, dataType = "String"),
     	@ApiImplicitParam(name = "sysAdvertUrl", value = "return-lv外链地址", required = false, dataType = "String"),
     	@ApiImplicitParam(name = "sysAdvertRouter", value = "return-lv内链地址", required = false, dataType = "String"),
@@ -153,6 +157,7 @@ public class SysAdvertController extends BaseController <ISysAdvertService, SysA
     	@ApiImplicitParam(name = "sysAdvertContent", value = "return-文字介绍", required = false, dataType = "String"),
     	@ApiImplicitParam(name = "sysAdvertCreatedTime", value = "return-il创建时间", required = false, dataType = "Date"),
     	@ApiImplicitParam(name = "sysAdvertUpdatedTime", value = "return-u修改时间", required = false, dataType = "Date"),
+    	@ApiImplicitParam(name = "sysAdvertDeflFlag", value = "return-逻辑删除:0-未删除,1-已删除", required = false, dataType = "Date"),
 		})
      @RequestMapping(value = "/selectObjById", method = RequestMethod.GET)
      public ResultBean<HashMap<String,Object>> info(@RequestParam("sysAdvertId") String sysAdvertId) {
@@ -162,20 +167,60 @@ public class SysAdvertController extends BaseController <ISysAdvertService, SysA
      }
      
      
+   
+	/**
+	 * <p>
+	 * getAdvertBypositonAndType 根据广告位置和类型查询广告
+	 * </p>
+	 *
+	 * @author junxu.yang
+	 * @since 2021-06-01
+	 */
+	
+     @ApiOperation(value = "根据广告位置和类型查询广告")
+     @ApiImplicitParams({
+			@ApiImplicitParam(name = "", value = "", required = false, dataType = "Date"),
+			@ApiImplicitParam(name = "", value = "", required = false, dataType = "Date"),
+         			@ApiImplicitParam(name = "sysAdvertId", value = "return-hID", required = false, dataType = "Date"),
+         			@ApiImplicitParam(name = "sysAdvertTitle", value = "return-lv广告标题", required = false, dataType = "String"),
+         			@ApiImplicitParam(name = "sysAdvertPostitionId", value = "return-", required = false, dataType = "String"),
+         			@ApiImplicitParam(name = "sysAdvertTypeId", value = "return-广告类型", required = false, dataType = "String"),
+         			@ApiImplicitParam(name = "sysAdvertPicAddr", value = "return-lv广告图片地址", required = false, dataType = "String"),
+         			@ApiImplicitParam(name = "sysAdvertUrl", value = "return-lv外链地址", required = false, dataType = "String"),
+         			@ApiImplicitParam(name = "sysAdvertRouter", value = "return-lv内链地址", required = false, dataType = "String"),
+         			@ApiImplicitParam(name = "${colObj.columnAlias}", value = "return-${colObj.comment}", required = false, dataType = "String")
+     })
+     
+     @RequestMapping(value = "/getAdvertBypositonAndType", method = RequestMethod.POST)
+	public ResultBean<List<HashMap>> getAdvertBypositonAndType(@RequestBody HashMap<String,Object> param){
+	
+			logger.info("sysAdvert.getAdvertBypositonAndType页面请求参数："+param);
+				if(param.get("postitionCode")==null||"".equals(param.get("${$where.tableColumnvalue}"))){
+					return resultBeanFactory.getException("postitionCode 不能为空");
+				}
+				if(param.get("typeCode")==null||"".equals(param.get("${$where.tableColumnvalue}"))){
+					return resultBeanFactory.getException("typeCode 不能为空");
+				}
+		List<HashMap> result = baseService.getAdvertBypositonAndType(param);
+		 return resultBeanFactory.getBean(result);
+	}
 	
      @ApiOperation(value = "allList")
      @ApiImplicitParams({
-    	@ApiImplicitParam(name = "sysAdvertPostitionId", value = "", required = false, dataType = "Date"),
-    	@ApiImplicitParam(name = "sysAdvertId", value = "return-hID", required = false, dataType = "Date"),
+    	@ApiImplicitParam(name = "sysAdvertTypeId", value = "广告类型", required = false, dataType = "String"),
+    	@ApiImplicitParam(name = "sysAdvertPostitionId", value = "", required = false, dataType = "String"),
+    	@ApiImplicitParam(name = "sysAdvertId", value = "return-hID", required = false, dataType = "String"),
     	@ApiImplicitParam(name = "sysAdvertTitle", value = "return-lv广告标题", required = false, dataType = "String"),
     	@ApiImplicitParam(name = "sysAdvertPostitionName", value = "return-lnM位置名称", required = false, dataType = "String"),
+    	@ApiImplicitParam(name = "sysAdvertTypeTypeName", value = "return-lvM类型名称", required = false, dataType = "String"),
     	@ApiImplicitParam(name = "sysAdvertPicAddr", value = "return-lv广告图片地址", required = false, dataType = "String"),
     	@ApiImplicitParam(name = "sysAdvertUrl", value = "return-lv外链地址", required = false, dataType = "String"),
     	@ApiImplicitParam(name = "sysAdvertRouter", value = "return-lv内链地址", required = false, dataType = "String"),
     	@ApiImplicitParam(name = "sysAdvertType", value = "return-lvS广告类型:0-协议,1-站内广告，2-外链广告", required = false, dataType = "String"),
     	@ApiImplicitParam(name = "sysAdvertContent", value = "return-文字介绍", required = false, dataType = "String"),
     	@ApiImplicitParam(name = "sysAdvertCreatedTime", value = "return-il创建时间", required = false, dataType = "Date"),
-    	@ApiImplicitParam(name = "sysAdvertUpdatedTime", value = "return-u修改时间", required = false, dataType = "Date")
+    	@ApiImplicitParam(name = "sysAdvertUpdatedTime", value = "return-u修改时间", required = false, dataType = "Date"),
+    	@ApiImplicitParam(name = "sysAdvertDeflFlag", value = "return-逻辑删除:0-未删除,1-已删除", required = false, dataType = "Date")
      })
      @RequestMapping(value = "/allList", method = RequestMethod.POST)
 	public ResultBean<List<SysAdvert>> allList(@RequestBody HashMap<String,Object> param){

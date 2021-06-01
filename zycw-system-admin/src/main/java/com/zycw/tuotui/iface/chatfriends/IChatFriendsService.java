@@ -32,12 +32,13 @@ import java.util.HashMap;
 @Service("IChatFriendsService")
 public class IChatFriendsService extends BaseService<ChatFriendsMapper,ChatFriends> {
 
+   
    /**
     * 根据主键物理删除
     * @param String 主键ID
     * @return 返回结果
 	* @author junxu.yang
-	* @since 2021-05-30
+	* @since 2021-06-01
     */
 	public void deleteById(String chatFriendsId){
 		mapper.deleteById(chatFriendsId);
@@ -48,12 +49,13 @@ public class IChatFriendsService extends BaseService<ChatFriendsMapper,ChatFrien
     * @param String 主键ID
     * @return 返回结果
 	* @author junxu.yang
-	* @since 2021-05-30
+	* @since 2021-06-01
     */
 	public void deleteByIdLogic(String chatFriendsId){
 		mapper.deleteByIdLogic(chatFriendsId);
 	}
 	
+
 	
 	public void updateObjById(ChatFriends chatFriends){
 		mapper.updateObjById(chatFriends);
@@ -66,7 +68,7 @@ public class IChatFriendsService extends BaseService<ChatFriendsMapper,ChatFrien
     * @param ChatFriends 对象
     * @return 返回结果 void
 	* @author junxu.yang
-	* @since 2021-05-30
+	* @since 2021-06-01
     */
 	public void insertObj(ChatFriends chatFriends){
 		mapper.insertObj(chatFriends);
@@ -78,7 +80,7 @@ public class IChatFriendsService extends BaseService<ChatFriendsMapper,ChatFrien
     * @param List<ChatFriends> 对象
     * @return 返回结果
 	* @author junxu.yang
-	* @since 2021-05-30
+	* @since 2021-06-01
     */
 	public void batchInsertObj(List<ChatFriends> list){
 		mapper.batchInsertObj(list);
@@ -89,7 +91,7 @@ public class IChatFriendsService extends BaseService<ChatFriendsMapper,ChatFrien
     * @param String 主键ID
     * @return 返回结果
 	* @author junxu.yang
-	* @since 2021-05-30
+	* @since 2021-06-01
     */
 	public HashMap<String,Object> selectObjById(String chatFriendsId){
 		return mapper.selectObjById(chatFriendsId);
@@ -101,7 +103,7 @@ public class IChatFriendsService extends BaseService<ChatFriendsMapper,ChatFrien
     * @param HashMap<String,Object> 对象
     * @return 返回结果
 	* @author junxu.yang
-	* @since 2021-05-30
+	* @since 2021-06-01
     */
 	public Integer countNum(HashMap<String,Object> params) {
 		return mapper.countNum(params);
@@ -113,7 +115,7 @@ public class IChatFriendsService extends BaseService<ChatFriendsMapper,ChatFrien
 	* @param HashMap<String,Object> 对象
 	* @return 返回结果 PageInfo
 	* @author junxu.yang
-	* @since 2021-05-30
+	* @since 2021-06-01
 	 */
 	public PageInfo<ChatFriends> pageList(HashMap<String,Object> params) throws Exception {
 		Integer pageNum = (Integer)params.get("pageNum");

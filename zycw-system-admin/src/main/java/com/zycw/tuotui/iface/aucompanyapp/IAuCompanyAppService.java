@@ -17,6 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.zycw.common.util.Page;
 import com.zycw.tuotui.readdao.aucompanyapp.AuCompanyAppMapper;
 import com.zycw.tuotui.entity.aucompanyapp.AuCompanyApp;
+import com.zycw.tuotui.iface.aucustomtask.IAuCustomTaskService;
 
 import java.lang.String;
 import java.lang.Integer;
@@ -32,15 +33,19 @@ import java.util.HashMap;
 @Service("IAuCompanyAppService")
 public class IAuCompanyAppService extends BaseService<AuCompanyAppMapper,AuCompanyApp> {
 
+   
+    @Autowired
+    private IAuCustomTaskService iAuCustomTaskService;
    /**
     * 根据主键物理删除
     * @param String 主键ID
     * @return 返回结果
 	* @author junxu.yang
-	* @since 2021-05-30
+	* @since 2021-06-01
     */
 	public void deleteById(String auCompanyAppId){
 		mapper.deleteById(auCompanyAppId);
+     	iAuCustomTaskService.deleteByauCustomTaskAppId(auCompanyAppId);
 	}
 	
    /**
@@ -48,12 +53,24 @@ public class IAuCompanyAppService extends BaseService<AuCompanyAppMapper,AuCompa
     * @param String 主键ID
     * @return 返回结果
 	* @author junxu.yang
-	* @since 2021-05-30
+	* @since 2021-06-01
     */
 	public void deleteByIdLogic(String auCompanyAppId){
 		mapper.deleteByIdLogic(auCompanyAppId);
 	}
 	
+	
+   /**
+    * 根据外键auCompanyAppCompanyId删除
+    * @param String 外键ID
+    * @return 返回结果
+	* @author junxu.yang
+	* @since 2021-06-01
+    */
+	public void deleteByauCompanyAppCompanyId(String id){
+		mapper.deleteByauCompanyAppCompanyId(id);
+	}
+
 	
 	public void updateObjById(AuCompanyApp auCompanyApp){
 		mapper.updateObjById(auCompanyApp);
@@ -66,7 +83,7 @@ public class IAuCompanyAppService extends BaseService<AuCompanyAppMapper,AuCompa
     * @param AuCompanyApp 对象
     * @return 返回结果 void
 	* @author junxu.yang
-	* @since 2021-05-30
+	* @since 2021-06-01
     */
 	public void insertObj(AuCompanyApp auCompanyApp){
 		mapper.insertObj(auCompanyApp);
@@ -78,7 +95,7 @@ public class IAuCompanyAppService extends BaseService<AuCompanyAppMapper,AuCompa
     * @param List<AuCompanyApp> 对象
     * @return 返回结果
 	* @author junxu.yang
-	* @since 2021-05-30
+	* @since 2021-06-01
     */
 	public void batchInsertObj(List<AuCompanyApp> list){
 		mapper.batchInsertObj(list);
@@ -89,7 +106,7 @@ public class IAuCompanyAppService extends BaseService<AuCompanyAppMapper,AuCompa
     * @param String 主键ID
     * @return 返回结果
 	* @author junxu.yang
-	* @since 2021-05-30
+	* @since 2021-06-01
     */
 	public HashMap<String,Object> selectObjById(String auCompanyAppId){
 		return mapper.selectObjById(auCompanyAppId);
@@ -101,7 +118,7 @@ public class IAuCompanyAppService extends BaseService<AuCompanyAppMapper,AuCompa
     * @param HashMap<String,Object> 对象
     * @return 返回结果
 	* @author junxu.yang
-	* @since 2021-05-30
+	* @since 2021-06-01
     */
 	public Integer countNum(HashMap<String,Object> params) {
 		return mapper.countNum(params);
@@ -113,7 +130,7 @@ public class IAuCompanyAppService extends BaseService<AuCompanyAppMapper,AuCompa
 	* @param HashMap<String,Object> 对象
 	* @return 返回结果 PageInfo
 	* @author junxu.yang
-	* @since 2021-05-30
+	* @since 2021-06-01
 	 */
 	public PageInfo<AuCompanyApp> pageList(HashMap<String,Object> params) throws Exception {
 		Integer pageNum = (Integer)params.get("pageNum");

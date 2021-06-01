@@ -3,6 +3,7 @@ package com.zycw.tuotui.entity.syscity;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableField;
 import java.io.Serializable;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -20,7 +21,7 @@ import lombok.experimental.Accessors;
  * </p>
  *
  * @author junxu.yang
- * @since 2021-05-30
+ * @since 2021-06-01
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
@@ -44,6 +45,10 @@ public class SysCity implements Serializable {
     @ApiModelProperty(name="sysCityProvinceId",value = "省")
     	@Column(name = "province_id")
 	private Integer sysCityProvinceId;
+
+    @ApiModelProperty(name="sysCityDelFlag",value = "逻辑删除:0-未删除,1-已删除")
+        	@Column(name = "delFlag")
+	private Integer sysCityDelFlag;
 
 
 }

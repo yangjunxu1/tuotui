@@ -1,0 +1,142 @@
+<?Mapper version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zycw.tuotui.readdao.systaskactivity.SysTaskActivityMapper">
+
+
+
+
+        <!-- 通用查询映射结果 -->
+        <resultMap id="BaseResultMap" type="com.zycw.tuotui.entity.systaskactivity.SysTaskActivity">
+                    <id column="id" />
+                    <result column="activity_name" />
+                    <result column="activity_code" />
+                    <result column="delFlag" />
+        </resultMap>
+
+    
+    		        <!-- 通用查询结果列 -->
+        <sql id="Base_Column_List">
+        </sql>
+
+
+    
+    <delete id="deleteById">
+        DELETE FROM sys_task_activity WHERE 
+        id=#{sysTaskActivityId}
+    </delete>
+    
+    
+    <update id="deleteByIdLogic">
+        UPDATE sys_task_activity SET delFlag = 1 
+        WHERE 
+        id=#{sysTaskActivityId}
+    </update>
+    
+    
+    
+    
+    
+ 
+ 
+ 	<update id="updateObjById"  parameterType="com.zycw.tuotui.entity.systaskactivity.SysTaskActivity">
+        UPDATE sys_task_activity SET 
+		            activity_name=sysTaskActivityActivityName,
+		            activity_code=sysTaskActivityActivityCode,
+		            delFlag=#{sysTaskActivityDelFlag}
+        WHERE 
+        id=#{sysTaskActivityId}
+    </update>
+ 
+    
+    <insert id='insertObj' parameterType="com.zycw.tuotui.entity.systaskactivity.SysTaskActivity">
+    	INSERT INTO sys_task_activity(
+    			activity_name,
+    			activity_code,
+    			delFlag
+    	)
+        VALUES(
+		           #{sysTaskActivityActivityName},
+		           #{sysTaskActivityActivityCode},
+		           #{sysTaskActivityDelFlag}
+        )
+    </insert>
+    <insert id='batchInsertObj' parameterType="java.util.List">
+    	INSERT INTO sys_task_activity(
+    			activity_name,
+    			activity_code,
+    			delFlag
+    	)
+        VALUES(
+        <foreach collection="list" item="item"  separator=",">
+		           #{item.sysTaskActivityActivityName},
+		           #{item.sysTaskActivityActivityCode},
+		           #{item.sysTaskActivityDelFlag}
+        </foreach>
+        )
+    </insert>
+    
+    
+    <select id="selectObjById" parameterType="java.util.Map" resultType="java.util.HashMap">
+    	SELECT  
+com.baomidou.mybatisplus.generator.config.po.TableField@2a5f5414
+        		sysTaskActivity.id AS sysTaskActivityId,
+            		
+com.baomidou.mybatisplus.generator.config.po.TableField@44712f05
+        		sysTaskActivity.activity_name AS sysTaskActivityActivityName,
+            		
+com.baomidou.mybatisplus.generator.config.po.TableField@75c02197
+        		sysTaskActivity.activity_code AS sysTaskActivityActivityCode,
+            		
+com.baomidou.mybatisplus.generator.config.po.TableField@7f2c90eb
+        		sysTaskActivity.delFlag AS sysTaskActivityDelFlag
+		 FROM 
+		 	sys_task_activity sysTaskActivity
+    	WHERE 1=1
+    	and sysTaskActivity.delFlag = 0
+		 and ${tbAlias}.id=#{sysTaskActivityId}
+    </select>
+    
+    <select id="countNum" parameterType="java.util.Map" resultType="Integer">
+    	SELECT 	
+    		COUNT(1)
+    	FROM
+    		sys_task_activity sysTaskActivity
+    	WHERE 1=1
+    	and sysTaskActivity.delFlag = 0
+    	
+    </select>
+    <select id="pageList" parameterType="java.util.Map" resultType="java.util.Map">
+    	SELECT 	
+        		sysTaskActivity.id AS sysTaskActivityId,
+            		
+        		sysTaskActivity.activity_name AS sysTaskActivityActivityName,
+            		
+        		sysTaskActivity.activity_code AS sysTaskActivityActivityCode,
+            		
+        		sysTaskActivity.delFlag AS sysTaskActivityDelFlag
+    	FROM
+    		sys_task_activity sysTaskActivity
+    	WHERE 1=1
+    	and sysTaskActivity.delFlag = 0
+    	
+    		LIMIT #{param.pageStart},#{param.pageNum}
+    </select>
+    
+    
+    <select id="allList" parameterType="java.util.Map" resultType="java.util.Map">
+    	    	SELECT 	
+        		sysTaskActivity.id AS sysTaskActivityId,
+            		
+        		sysTaskActivity.activity_name AS sysTaskActivityActivityName,
+            		
+        		sysTaskActivity.activity_code AS sysTaskActivityActivityCode,
+            		
+        		sysTaskActivity.delFlag AS sysTaskActivityDelFlag
+    	FROM
+    		sys_task_activity sysTaskActivity
+    	WHERE 1=1
+    	
+    </select>
+    
+    
+</mapper>

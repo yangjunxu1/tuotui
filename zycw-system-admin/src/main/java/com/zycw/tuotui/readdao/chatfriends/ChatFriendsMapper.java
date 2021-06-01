@@ -17,13 +17,14 @@ import java.util.HashMap;
  * </p>
  *
  * @author junxu.yang
- * @since 2021-05-30
+ * @since 2021-06-01
  */
 public interface ChatFriendsMapper extends Mapper<ChatFriends> {
 	
 	public void deleteById(@Param("chatFriendsId") String chatFriendsId);
 	
 	public void deleteByIdLogic(@Param("chatFriendsId") String chatFriendsId);
+	
 	
 	
 	public void updateObjById(ChatFriends chatFriends);

@@ -17,13 +17,14 @@ import java.util.HashMap;
  * </p>
  *
  * @author junxu.yang
- * @since 2021-05-30
+ * @since 2021-06-01
  */
 public interface SysRoleMapper extends Mapper<SysRole> {
 	
 	public void deleteById(@Param("sysRoleId") String sysRoleId);
 	
 	public void deleteByIdLogic(@Param("sysRoleId") String sysRoleId);
+	
 	
 	
 	public void updateObjById(SysRole sysRole);

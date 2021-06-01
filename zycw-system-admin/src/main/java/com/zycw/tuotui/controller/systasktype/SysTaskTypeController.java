@@ -112,7 +112,8 @@ public class SysTaskTypeController extends BaseController <ISysTaskTypeService, 
 
 
 
-    	@ApiImplicitParam(name = "sysTaskTypeTypeContent", value = "return-简介", required = false, dataType = "String"),
+
+    	@ApiImplicitParam(name = "sysTaskTypeDelFlag", value = "return-逻辑删除:0-未删除,1-已删除", required = false, dataType = "${dataType}"),
      })
      @RequestMapping(value = "/pageList", method = RequestMethod.POST)
      public ResultBeanFactory.ResultBean<PageInfo<SysTaskType>> pageList(@RequestBody HashMap<String,Object> params) {
@@ -132,10 +133,11 @@ public class SysTaskTypeController extends BaseController <ISysTaskTypeService, 
      @ApiOperation(value = "通过id查询")
      @ApiImplicitParam(name = "sysTaskTypeId", value = "ID", required = true, dataType = "String")
      @ApiImplicitParams({
-    	@ApiImplicitParam(name = "sysTaskTypeId", value = "return-ID", required = false, dataType = "String"),
+    	@ApiImplicitParam(name = "sysTaskTypeId", value = "return-ID", required = false, dataType = "${dataType}"),
     	@ApiImplicitParam(name = "sysTaskTypeTypeTitle", value = "return-lvM分类名称", required = false, dataType = "String"),
     	@ApiImplicitParam(name = "sysTaskTypeTypePrice", value = "return-lv任务分类价格", required = false, dataType = "String"),
     	@ApiImplicitParam(name = "sysTaskTypeTypeContent", value = "return-简介", required = false, dataType = "String"),
+    	@ApiImplicitParam(name = "sysTaskTypeDelFlag", value = "return-逻辑删除:0-未删除,1-已删除", required = false, dataType = "String"),
 		})
      @RequestMapping(value = "/selectObjById", method = RequestMethod.GET)
      public ResultBean<HashMap<String,Object>> info(@RequestParam("sysTaskTypeId") String sysTaskTypeId) {
@@ -151,7 +153,8 @@ public class SysTaskTypeController extends BaseController <ISysTaskTypeService, 
     	@ApiImplicitParam(name = "sysTaskTypeId", value = "return-ID", required = false, dataType = "String"),
     	@ApiImplicitParam(name = "sysTaskTypeTypeTitle", value = "return-lvM分类名称", required = false, dataType = "String"),
     	@ApiImplicitParam(name = "sysTaskTypeTypePrice", value = "return-lv任务分类价格", required = false, dataType = "String"),
-    	@ApiImplicitParam(name = "sysTaskTypeTypeContent", value = "return-简介", required = false, dataType = "String")
+    	@ApiImplicitParam(name = "sysTaskTypeTypeContent", value = "return-简介", required = false, dataType = "String"),
+    	@ApiImplicitParam(name = "sysTaskTypeDelFlag", value = "return-逻辑删除:0-未删除,1-已删除", required = false, dataType = "String")
      })
      @RequestMapping(value = "/allList", method = RequestMethod.POST)
 	public ResultBean<List<SysTaskType>> allList(@RequestBody HashMap<String,Object> param){

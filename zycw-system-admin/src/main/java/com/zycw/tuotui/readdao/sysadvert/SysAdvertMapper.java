@@ -17,13 +17,18 @@ import java.util.HashMap;
  * </p>
  *
  * @author junxu.yang
- * @since 2021-05-30
+ * @since 2021-06-01
  */
 public interface SysAdvertMapper extends Mapper<SysAdvert> {
 	
 	public void deleteById(@Param("sysAdvertId") String sysAdvertId);
 	
 	public void deleteByIdLogic(@Param("sysAdvertId") String sysAdvertId);
+	
+	public void deleteBysysAdvertPostitionId(@Param("id") String id);
+    
+	public void deleteBysysAdvertTypeId(@Param("id") String id);
+    
 	
 	
 	public void updateObjById(SysAdvert sysAdvert);
@@ -44,6 +49,9 @@ public interface SysAdvertMapper extends Mapper<SysAdvert> {
 	public List<SysAdvert> allList(@Param("param") HashMap<String,Object> param);
 	
 	
+	
+	public Integer getAdvertBypositonAndTypeCountNum(@Param("param") HashMap<String,Object> param);
+	public List<HashMap> getAdvertBypositonAndType(@Param("param") HashMap<String,Object> param);
 	
 	
 	

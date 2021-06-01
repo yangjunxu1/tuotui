@@ -1,0 +1,142 @@
+<?Mapper version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zycw.tuotui.readdao.sysadverttype.SysAdvertTypeMapper">
+
+
+
+
+        <!-- 通用查询映射结果 -->
+        <resultMap id="BaseResultMap" type="com.zycw.tuotui.entity.sysadverttype.SysAdvertType">
+                    <id column="id" />
+                    <result column="type_name" />
+                    <result column="type_code" />
+                    <result column="delFlag" />
+        </resultMap>
+
+    
+    		        <!-- 通用查询结果列 -->
+        <sql id="Base_Column_List">
+        </sql>
+
+
+    
+    <delete id="deleteById">
+        DELETE FROM sys_advert_type WHERE 
+        id=#{sysAdvertTypeId}
+    </delete>
+    
+    
+    <update id="deleteByIdLogic">
+        UPDATE sys_advert_type SET delFlag = 1 
+        WHERE 
+        id=#{sysAdvertTypeId}
+    </update>
+    
+    
+    
+    
+    
+ 
+ 
+ 	<update id="updateObjById"  parameterType="com.zycw.tuotui.entity.sysadverttype.SysAdvertType">
+        UPDATE sys_advert_type SET 
+		            type_name=sysAdvertTypeTypeName,
+		            type_code=sysAdvertTypeTypeCode,
+		            delFlag=#{sysAdvertTypeDelFlag}
+        WHERE 
+        id=#{sysAdvertTypeId}
+    </update>
+ 
+    
+    <insert id='insertObj' parameterType="com.zycw.tuotui.entity.sysadverttype.SysAdvertType">
+    	INSERT INTO sys_advert_type(
+    			type_name,
+    			type_code,
+    			delFlag
+    	)
+        VALUES(
+		           #{sysAdvertTypeTypeName},
+		           #{sysAdvertTypeTypeCode},
+		           #{sysAdvertTypeDelFlag}
+        )
+    </insert>
+    <insert id='batchInsertObj' parameterType="java.util.List">
+    	INSERT INTO sys_advert_type(
+    			type_name,
+    			type_code,
+    			delFlag
+    	)
+        VALUES(
+        <foreach collection="list" item="item"  separator=",">
+		           #{item.sysAdvertTypeTypeName},
+		           #{item.sysAdvertTypeTypeCode},
+		           #{item.sysAdvertTypeDelFlag}
+        </foreach>
+        )
+    </insert>
+    
+    
+    <select id="selectObjById" parameterType="java.util.Map" resultType="java.util.HashMap">
+    	SELECT  
+com.baomidou.mybatisplus.generator.config.po.TableField@3c0599e4
+        		sysAdvertType.id AS sysAdvertTypeId,
+            		
+com.baomidou.mybatisplus.generator.config.po.TableField@6a06510d
+        		sysAdvertType.type_name AS sysAdvertTypeTypeName,
+            		
+com.baomidou.mybatisplus.generator.config.po.TableField@c1ab8e0
+        		sysAdvertType.type_code AS sysAdvertTypeTypeCode,
+            		
+com.baomidou.mybatisplus.generator.config.po.TableField@60317e02
+        		sysAdvertType.delFlag AS sysAdvertTypeDelFlag
+		 FROM 
+		 	sys_advert_type sysAdvertType
+    	WHERE 1=1
+    	and sysAdvertType.delFlag = 0
+		 and ${tbAlias}.id=#{sysAdvertTypeId}
+    </select>
+    
+    <select id="countNum" parameterType="java.util.Map" resultType="Integer">
+    	SELECT 	
+    		COUNT(1)
+    	FROM
+    		sys_advert_type sysAdvertType
+    	WHERE 1=1
+    	and sysAdvertType.delFlag = 0
+    	
+    </select>
+    <select id="pageList" parameterType="java.util.Map" resultType="java.util.Map">
+    	SELECT 	
+        		sysAdvertType.id AS sysAdvertTypeId,
+            		
+        		sysAdvertType.type_name AS sysAdvertTypeTypeName,
+            		
+        		sysAdvertType.type_code AS sysAdvertTypeTypeCode,
+            		
+        		sysAdvertType.delFlag AS sysAdvertTypeDelFlag
+    	FROM
+    		sys_advert_type sysAdvertType
+    	WHERE 1=1
+    	and sysAdvertType.delFlag = 0
+    	
+    		LIMIT #{param.pageStart},#{param.pageNum}
+    </select>
+    
+    
+    <select id="allList" parameterType="java.util.Map" resultType="java.util.Map">
+    	    	SELECT 	
+        		sysAdvertType.id AS sysAdvertTypeId,
+            		
+        		sysAdvertType.type_name AS sysAdvertTypeTypeName,
+            		
+        		sysAdvertType.type_code AS sysAdvertTypeTypeCode,
+            		
+        		sysAdvertType.delFlag AS sysAdvertTypeDelFlag
+    	FROM
+    		sys_advert_type sysAdvertType
+    	WHERE 1=1
+    	
+    </select>
+    
+    
+</mapper>

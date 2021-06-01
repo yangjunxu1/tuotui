@@ -17,13 +17,18 @@ import java.util.HashMap;
  * </p>
  *
  * @author junxu.yang
- * @since 2021-05-30
+ * @since 2021-06-01
  */
 public interface AuUserTaskMapper extends Mapper<AuUserTask> {
 	
 	public void deleteById(@Param("auUserTaskId") String auUserTaskId);
 	
 	public void deleteByIdLogic(@Param("auUserTaskId") String auUserTaskId);
+	
+	public void deleteByauUserTaskUserId(@Param("id") String id);
+    
+	public void deleteByauUserTaskTaskId(@Param("id") String id);
+    
 	
 	
 	public void updateObjById(AuUserTask auUserTask);

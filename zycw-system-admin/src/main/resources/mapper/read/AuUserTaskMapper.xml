@@ -3,6 +3,8 @@
 <mapper namespace="com.zycw.tuotui.readdao.auusertask.AuUserTaskMapper">
 
 
+
+
         <!-- 通用查询映射结果 -->
         <resultMap id="BaseResultMap" type="com.zycw.tuotui.entity.auusertask.AuUserTask">
                     <id column="id" />
@@ -11,6 +13,7 @@
                     <result column="task_status" />
                     <result column="start_time" />
                     <result column="end_time" />
+                    <result column="delFlag" />
         </resultMap>
 
     
@@ -27,10 +30,24 @@
     
     
     <update id="deleteByIdLogic">
-        UPDATE au_user_task SET delFlag = 1' 
+        UPDATE au_user_task SET delFlag = 1 
         WHERE 
         id=#{auUserTaskId}
     </update>
+    
+    
+	 
+    <delete id="deleteByauUserTaskUserId">
+        DELETE FROM au_user_task WHERE 
+        user_id=id
+    </delete>
+	 
+    <delete id="deleteByauUserTaskTaskId">
+        DELETE FROM au_user_task WHERE 
+        task_id=id
+    </delete>
+    
+    
     
  
  
@@ -40,7 +57,8 @@
 		            task_id=auUserTaskTaskId,
 		            task_status=auUserTaskTaskStatus,
 		            start_time=auUserTaskStartTime,
-		            end_time=#{auUserTaskEndTime}
+		            end_time=auUserTaskEndTime,
+		            delFlag=#{auUserTaskDelFlag}
         WHERE 
         id=#{auUserTaskId}
     </update>
@@ -52,14 +70,16 @@
     			task_id,
     			task_status,
     			start_time,
-    			end_time
+    			end_time,
+    			delFlag
     	)
         VALUES(
 		           #{auUserTaskUserId},
 		           #{auUserTaskTaskId},
 		           #{auUserTaskTaskStatus},
 		           #{auUserTaskStartTime},
-		           #{auUserTaskEndTime}
+		           #{auUserTaskEndTime},
+		           #{auUserTaskDelFlag}
         )
     </insert>
     <insert id='batchInsertObj' parameterType="java.util.List">
@@ -68,7 +88,8 @@
     			task_id,
     			task_status,
     			start_time,
-    			end_time
+    			end_time,
+    			delFlag
     	)
         VALUES(
         <foreach collection="list" item="item"  separator=",">
@@ -76,7 +97,8 @@
 		           #{item.auUserTaskTaskId},
 		           #{item.auUserTaskTaskStatus},
 		           #{item.auUserTaskStartTime},
-		           #{item.auUserTaskEndTime}
+		           #{item.auUserTaskEndTime},
+		           #{item.auUserTaskDelFlag}
         </foreach>
         )
     </insert>
@@ -84,30 +106,34 @@
     
     <select id="selectObjById" parameterType="java.util.Map" resultType="java.util.HashMap">
     	SELECT  
-com.baomidou.mybatisplus.generator.config.po.TableField@4f168f8d
+com.baomidou.mybatisplus.generator.config.po.TableField@d9442e3
         		auUserTask.id AS auUserTaskId,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@66fa0650
+com.baomidou.mybatisplus.generator.config.po.TableField@21f70cab
         		auUserTask.user_id AS auUserTaskUserId,
         		auUser.mobile AS auUserMobile,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@50a3843e
+com.baomidou.mybatisplus.generator.config.po.TableField@282a6470
         		auUserTask.task_id AS auUserTaskTaskId,
         		auCustomTask.task_title AS auCustomTaskTaskTitle,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@1e4e015
+com.baomidou.mybatisplus.generator.config.po.TableField@6a806d78
         		auUserTask.task_status AS auUserTaskTaskStatus,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@682caf2e
+com.baomidou.mybatisplus.generator.config.po.TableField@db2d46b
         		auUserTask.start_time AS auUserTaskStartTime,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@4ab3d127
-        		auUserTask.end_time AS auUserTaskEndTime
+com.baomidou.mybatisplus.generator.config.po.TableField@7f8f6f20
+        		auUserTask.end_time AS auUserTaskEndTime,
+            		
+com.baomidou.mybatisplus.generator.config.po.TableField@47d9d45
+        		auUserTask.delFlag AS auUserTaskDelFlag
 		 FROM 
 		 	au_user_task auUserTask
         	,au_user	auUser
         	,au_custom_task	auCustomTask
     	WHERE 1=1
+    	and auUserTask.delFlag = 0
 				and auUserTask.user_id = auUser.id
 				and auUserTask.task_id = auCustomTask.id
 		 and auCustomTask.id=#{auUserTaskId}
@@ -121,6 +147,7 @@ com.baomidou.mybatisplus.generator.config.po.TableField@4ab3d127
         	,au_user	auUser
         	,au_custom_task	auCustomTask
     	WHERE 1=1
+    	and auUserTask.delFlag = 0
     	
 				and auUserTask.user_id = auUser.id
 				and auUserTask.task_id = auCustomTask.id
@@ -143,12 +170,15 @@ com.baomidou.mybatisplus.generator.config.po.TableField@4ab3d127
             		
         		auUserTask.start_time AS auUserTaskStartTime,
             		
-        		auUserTask.end_time AS auUserTaskEndTime
+        		auUserTask.end_time AS auUserTaskEndTime,
+            		
+        		auUserTask.delFlag AS auUserTaskDelFlag
     	FROM
     		au_user_task auUserTask
         	,au_user	auUser
         	,au_custom_task	auCustomTask
     	WHERE 1=1
+    	and auUserTask.delFlag = 0
     	
 				and auUserTask.user_id = auUser.id
 				and auUserTask.task_id = auCustomTask.id
@@ -174,7 +204,9 @@ com.baomidou.mybatisplus.generator.config.po.TableField@4ab3d127
             		
         		auUserTask.start_time AS auUserTaskStartTime,
             		
-        		auUserTask.end_time AS auUserTaskEndTime
+        		auUserTask.end_time AS auUserTaskEndTime,
+            		
+        		auUserTask.delFlag AS auUserTaskDelFlag
     	FROM
     		au_user_task auUserTask
         	,au_user	auUser

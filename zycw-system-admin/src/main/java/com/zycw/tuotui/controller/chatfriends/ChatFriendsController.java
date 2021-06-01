@@ -112,7 +112,8 @@ public class ChatFriendsController extends BaseController <IChatFriendsService, 
 
 
 
-    	@ApiImplicitParam(name = "chatFriendsAddtime", value = "return-", required = false, dataType = "${dataType}"),
+
+    	@ApiImplicitParam(name = "chatFriendsDelFlaf", value = "return-逻辑删除:0-未删除,1-已删除", required = false, dataType = "${dataType}"),
      })
      @RequestMapping(value = "/pageList", method = RequestMethod.POST)
      public ResultBeanFactory.ResultBean<PageInfo<ChatFriends>> pageList(@RequestBody HashMap<String,Object> params) {
@@ -136,6 +137,7 @@ public class ChatFriendsController extends BaseController <IChatFriendsService, 
     	@ApiImplicitParam(name = "chatFriendsUserid", value = "return-用户id", required = false, dataType = "String"),
     	@ApiImplicitParam(name = "chatFriendsFuserid", value = "return-好友id", required = false, dataType = "String"),
     	@ApiImplicitParam(name = "chatFriendsAddtime", value = "return-", required = false, dataType = "String"),
+    	@ApiImplicitParam(name = "chatFriendsDelFlaf", value = "return-逻辑删除:0-未删除,1-已删除", required = false, dataType = "String"),
 		})
      @RequestMapping(value = "/selectObjById", method = RequestMethod.GET)
      public ResultBean<HashMap<String,Object>> info(@RequestParam("chatFriendsId") String chatFriendsId) {
@@ -151,7 +153,8 @@ public class ChatFriendsController extends BaseController <IChatFriendsService, 
     	@ApiImplicitParam(name = "chatFriendsId", value = "return-", required = false, dataType = "String"),
     	@ApiImplicitParam(name = "chatFriendsUserid", value = "return-用户id", required = false, dataType = "String"),
     	@ApiImplicitParam(name = "chatFriendsFuserid", value = "return-好友id", required = false, dataType = "String"),
-    	@ApiImplicitParam(name = "chatFriendsAddtime", value = "return-", required = false, dataType = "String")
+    	@ApiImplicitParam(name = "chatFriendsAddtime", value = "return-", required = false, dataType = "String"),
+    	@ApiImplicitParam(name = "chatFriendsDelFlaf", value = "return-逻辑删除:0-未删除,1-已删除", required = false, dataType = "String")
      })
      @RequestMapping(value = "/allList", method = RequestMethod.POST)
 	public ResultBean<List<ChatFriends>> allList(@RequestBody HashMap<String,Object> param){

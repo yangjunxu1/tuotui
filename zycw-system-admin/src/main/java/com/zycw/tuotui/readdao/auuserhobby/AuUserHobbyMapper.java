@@ -17,13 +17,18 @@ import java.util.HashMap;
  * </p>
  *
  * @author junxu.yang
- * @since 2021-05-30
+ * @since 2021-06-01
  */
 public interface AuUserHobbyMapper extends Mapper<AuUserHobby> {
 	
 	public void deleteById(@Param("auUserHobbyId") String auUserHobbyId);
 	
 	public void deleteByIdLogic(@Param("auUserHobbyId") String auUserHobbyId);
+	
+	public void deleteByauUserHobbyUserId(@Param("id") String id);
+    
+	public void deleteByauUserHobbyHobbyId(@Param("id") String id);
+    
 	
 	
 	public void updateObjById(AuUserHobby auUserHobby);

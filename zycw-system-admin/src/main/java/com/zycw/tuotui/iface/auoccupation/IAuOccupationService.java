@@ -17,6 +17,8 @@ import org.springframework.transaction.annotation.Transactional;
 import com.zycw.common.util.Page;
 import com.zycw.tuotui.readdao.auoccupation.AuOccupationMapper;
 import com.zycw.tuotui.entity.auoccupation.AuOccupation;
+import com.zycw.tuotui.iface.aucustomtask.IAuCustomTaskService;
+import com.zycw.tuotui.iface.auuser.IAuUserService;
 
 import java.lang.String;
 import java.lang.Integer;
@@ -32,15 +34,22 @@ import java.util.HashMap;
 @Service("IAuOccupationService")
 public class IAuOccupationService extends BaseService<AuOccupationMapper,AuOccupation> {
 
+   
+    @Autowired
+    private IAuCustomTaskService iAuCustomTaskService;
+    @Autowired
+    private IAuUserService iAuUserService;
    /**
     * 根据主键物理删除
     * @param String 主键ID
     * @return 返回结果
 	* @author junxu.yang
-	* @since 2021-05-30
+	* @since 2021-06-01
     */
 	public void deleteById(String auOccupationId){
 		mapper.deleteById(auOccupationId);
+     	iAuCustomTaskService.deleteByauCustomTaskOccupationId(auOccupationId);
+     	iAuUserService.deleteByauUserOccupationId(auOccupationId);
 	}
 	
    /**
@@ -48,12 +57,13 @@ public class IAuOccupationService extends BaseService<AuOccupationMapper,AuOccup
     * @param String 主键ID
     * @return 返回结果
 	* @author junxu.yang
-	* @since 2021-05-30
+	* @since 2021-06-01
     */
 	public void deleteByIdLogic(String auOccupationId){
 		mapper.deleteByIdLogic(auOccupationId);
 	}
 	
+
 	
 	public void updateObjById(AuOccupation auOccupation){
 		mapper.updateObjById(auOccupation);
@@ -66,7 +76,7 @@ public class IAuOccupationService extends BaseService<AuOccupationMapper,AuOccup
     * @param AuOccupation 对象
     * @return 返回结果 void
 	* @author junxu.yang
-	* @since 2021-05-30
+	* @since 2021-06-01
     */
 	public void insertObj(AuOccupation auOccupation){
 		mapper.insertObj(auOccupation);
@@ -78,7 +88,7 @@ public class IAuOccupationService extends BaseService<AuOccupationMapper,AuOccup
     * @param List<AuOccupation> 对象
     * @return 返回结果
 	* @author junxu.yang
-	* @since 2021-05-30
+	* @since 2021-06-01
     */
 	public void batchInsertObj(List<AuOccupation> list){
 		mapper.batchInsertObj(list);
@@ -89,7 +99,7 @@ public class IAuOccupationService extends BaseService<AuOccupationMapper,AuOccup
     * @param String 主键ID
     * @return 返回结果
 	* @author junxu.yang
-	* @since 2021-05-30
+	* @since 2021-06-01
     */
 	public HashMap<String,Object> selectObjById(String auOccupationId){
 		return mapper.selectObjById(auOccupationId);
@@ -101,7 +111,7 @@ public class IAuOccupationService extends BaseService<AuOccupationMapper,AuOccup
     * @param HashMap<String,Object> 对象
     * @return 返回结果
 	* @author junxu.yang
-	* @since 2021-05-30
+	* @since 2021-06-01
     */
 	public Integer countNum(HashMap<String,Object> params) {
 		return mapper.countNum(params);
@@ -113,7 +123,7 @@ public class IAuOccupationService extends BaseService<AuOccupationMapper,AuOccup
 	* @param HashMap<String,Object> 对象
 	* @return 返回结果 PageInfo
 	* @author junxu.yang
-	* @since 2021-05-30
+	* @since 2021-06-01
 	 */
 	public PageInfo<AuOccupation> pageList(HashMap<String,Object> params) throws Exception {
 		Integer pageNum = (Integer)params.get("pageNum");

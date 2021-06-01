@@ -32,12 +32,13 @@ import java.util.HashMap;
 @Service("IAuChatFriendsService")
 public class IAuChatFriendsService extends BaseService<AuChatFriendsMapper,AuChatFriends> {
 
+   
    /**
     * 根据主键物理删除
     * @param String 主键ID
     * @return 返回结果
 	* @author junxu.yang
-	* @since 2021-05-30
+	* @since 2021-06-01
     */
 	public void deleteById(String auChatFriendsId){
 		mapper.deleteById(auChatFriendsId);
@@ -48,12 +49,35 @@ public class IAuChatFriendsService extends BaseService<AuChatFriendsMapper,AuCha
     * @param String 主键ID
     * @return 返回结果
 	* @author junxu.yang
-	* @since 2021-05-30
+	* @since 2021-06-01
     */
 	public void deleteByIdLogic(String auChatFriendsId){
 		mapper.deleteByIdLogic(auChatFriendsId);
 	}
 	
+	
+   /**
+    * 根据外键auChatFriendsUserId删除
+    * @param String 外键ID
+    * @return 返回结果
+	* @author junxu.yang
+	* @since 2021-06-01
+    */
+	public void deleteByauChatFriendsUserId(String id){
+		mapper.deleteByauChatFriendsUserId(id);
+	}
+	
+   /**
+    * 根据外键auChatFriendsFuserId删除
+    * @param String 外键ID
+    * @return 返回结果
+	* @author junxu.yang
+	* @since 2021-06-01
+    */
+	public void deleteByauChatFriendsFuserId(String id){
+		mapper.deleteByauChatFriendsFuserId(id);
+	}
+
 	
 	public void updateObjById(AuChatFriends auChatFriends){
 		mapper.updateObjById(auChatFriends);
@@ -66,7 +90,7 @@ public class IAuChatFriendsService extends BaseService<AuChatFriendsMapper,AuCha
     * @param AuChatFriends 对象
     * @return 返回结果 void
 	* @author junxu.yang
-	* @since 2021-05-30
+	* @since 2021-06-01
     */
 	public void insertObj(AuChatFriends auChatFriends){
 		mapper.insertObj(auChatFriends);
@@ -78,7 +102,7 @@ public class IAuChatFriendsService extends BaseService<AuChatFriendsMapper,AuCha
     * @param List<AuChatFriends> 对象
     * @return 返回结果
 	* @author junxu.yang
-	* @since 2021-05-30
+	* @since 2021-06-01
     */
 	public void batchInsertObj(List<AuChatFriends> list){
 		mapper.batchInsertObj(list);
@@ -89,7 +113,7 @@ public class IAuChatFriendsService extends BaseService<AuChatFriendsMapper,AuCha
     * @param String 主键ID
     * @return 返回结果
 	* @author junxu.yang
-	* @since 2021-05-30
+	* @since 2021-06-01
     */
 	public HashMap<String,Object> selectObjById(String auChatFriendsId){
 		return mapper.selectObjById(auChatFriendsId);
@@ -101,7 +125,7 @@ public class IAuChatFriendsService extends BaseService<AuChatFriendsMapper,AuCha
     * @param HashMap<String,Object> 对象
     * @return 返回结果
 	* @author junxu.yang
-	* @since 2021-05-30
+	* @since 2021-06-01
     */
 	public Integer countNum(HashMap<String,Object> params) {
 		return mapper.countNum(params);
@@ -113,7 +137,7 @@ public class IAuChatFriendsService extends BaseService<AuChatFriendsMapper,AuCha
 	* @param HashMap<String,Object> 对象
 	* @return 返回结果 PageInfo
 	* @author junxu.yang
-	* @since 2021-05-30
+	* @since 2021-06-01
 	 */
 	public PageInfo<AuChatFriends> pageList(HashMap<String,Object> params) throws Exception {
 		Integer pageNum = (Integer)params.get("pageNum");

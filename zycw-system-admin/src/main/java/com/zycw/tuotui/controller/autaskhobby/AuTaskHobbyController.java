@@ -107,13 +107,14 @@ public class AuTaskHobbyController extends BaseController <IAuTaskHobbyService, 
      
      @ApiOperation(value = "分页查询")
      @ApiImplicitParams({
-    	@ApiImplicitParam(name = "auTaskHobbyHobbyId", value = "任务id", required = false, dataType = "${dataType}"),
     	@ApiImplicitParam(name = "auTaskHobbyTaskId", value = "任务id", required = false, dataType = "${dataType}"),
+    	@ApiImplicitParam(name = "auTaskHobbyHobbyId", value = "任务id", required = false, dataType = "${dataType}"),
 		@ApiImplicitParam(name = "pageSize", value = "每页条数", required = false, dataType = "int"),
 		@ApiImplicitParam(name = "pageNum", value = "当前页数", required = false, dataType = "int"),
 
 
-    	@ApiImplicitParam(name = "sysHobbyHobbyTitle", value = "return-lvM爱好", required = false, dataType = "String")
+
+    	@ApiImplicitParam(name = "auTaskHobbyDelFlag", value = "return-逻辑删除:0-未删除,1-已删除", required = false, dataType = "${dataType}"),
      })
      @RequestMapping(value = "/pageList", method = RequestMethod.POST)
      public ResultBeanFactory.ResultBean<PageInfo<AuTaskHobby>> pageList(@RequestBody HashMap<String,Object> params) {
@@ -133,9 +134,10 @@ public class AuTaskHobbyController extends BaseController <IAuTaskHobbyService, 
      @ApiOperation(value = "通过id查询")
      @ApiImplicitParam(name = "auTaskHobbyId", value = "ID", required = true, dataType = "String")
      @ApiImplicitParams({
-    	@ApiImplicitParam(name = "auTaskHobbyId", value = "return-id", required = false, dataType = "String"),
+    	@ApiImplicitParam(name = "auTaskHobbyId", value = "return-id", required = false, dataType = "${dataType}"),
     	@ApiImplicitParam(name = "auCustomTaskTaskTitle", value = "return-lvM任务标题", required = false, dataType = "String"),
-    	@ApiImplicitParam(name = "sysHobbyHobbyTitle", value = "return-lvM爱好", required = false, dataType = "String")
+    	@ApiImplicitParam(name = "sysHobbyHobbyTitle", value = "return-lvM爱好", required = false, dataType = "String"),
+    	@ApiImplicitParam(name = "auTaskHobbyDelFlag", value = "return-逻辑删除:0-未删除,1-已删除", required = false, dataType = "String"),
 		})
      @RequestMapping(value = "/selectObjById", method = RequestMethod.GET)
      public ResultBean<HashMap<String,Object>> info(@RequestParam("auTaskHobbyId") String auTaskHobbyId) {
@@ -148,11 +150,12 @@ public class AuTaskHobbyController extends BaseController <IAuTaskHobbyService, 
 	
      @ApiOperation(value = "allList")
      @ApiImplicitParams({
-    	@ApiImplicitParam(name = "auTaskHobbyHobbyId", value = "任务id", required = false, dataType = "String"),
     	@ApiImplicitParam(name = "auTaskHobbyTaskId", value = "任务id", required = false, dataType = "String"),
+    	@ApiImplicitParam(name = "auTaskHobbyHobbyId", value = "任务id", required = false, dataType = "String"),
     	@ApiImplicitParam(name = "auTaskHobbyId", value = "return-id", required = false, dataType = "String"),
     	@ApiImplicitParam(name = "auCustomTaskTaskTitle", value = "return-lvM任务标题", required = false, dataType = "String"),
-    	@ApiImplicitParam(name = "sysHobbyHobbyTitle", value = "return-lvM爱好", required = false, dataType = "String")
+    	@ApiImplicitParam(name = "sysHobbyHobbyTitle", value = "return-lvM爱好", required = false, dataType = "String"),
+    	@ApiImplicitParam(name = "auTaskHobbyDelFlag", value = "return-逻辑删除:0-未删除,1-已删除", required = false, dataType = "String")
      })
      @RequestMapping(value = "/allList", method = RequestMethod.POST)
 	public ResultBean<List<AuTaskHobby>> allList(@RequestBody HashMap<String,Object> param){

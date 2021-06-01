@@ -17,13 +17,14 @@ import java.util.HashMap;
  * </p>
  *
  * @author junxu.yang
- * @since 2021-05-30
+ * @since 2021-06-01
  */
 public interface SysTaskTypeMapper extends Mapper<SysTaskType> {
 	
 	public void deleteById(@Param("sysTaskTypeId") String sysTaskTypeId);
 	
 	public void deleteByIdLogic(@Param("sysTaskTypeId") String sysTaskTypeId);
+	
 	
 	
 	public void updateObjById(SysTaskType sysTaskType);

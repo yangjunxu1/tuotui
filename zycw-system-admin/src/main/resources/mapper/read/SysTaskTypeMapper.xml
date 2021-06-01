@@ -3,12 +3,15 @@
 <mapper namespace="com.zycw.tuotui.readdao.systasktype.SysTaskTypeMapper">
 
 
+
+
         <!-- 通用查询映射结果 -->
         <resultMap id="BaseResultMap" type="com.zycw.tuotui.entity.systasktype.SysTaskType">
                     <id column="id" />
                     <result column="type_title" />
                     <result column="type_price" />
                     <result column="type_content" />
+                    <result column="delFlag" />
         </resultMap>
 
     
@@ -25,10 +28,14 @@
     
     
     <update id="deleteByIdLogic">
-        UPDATE sys_task_type SET delFlag = 1' 
+        UPDATE sys_task_type SET delFlag = 1 
         WHERE 
         id=#{sysTaskTypeId}
     </update>
+    
+    
+    
+    
     
  
  
@@ -36,7 +43,8 @@
         UPDATE sys_task_type SET 
 		            type_title=sysTaskTypeTypeTitle,
 		            type_price=sysTaskTypeTypePrice,
-		            type_content=#{sysTaskTypeTypeContent}
+		            type_content=sysTaskTypeTypeContent,
+		            delFlag=#{sysTaskTypeDelFlag}
         WHERE 
         id=#{sysTaskTypeId}
     </update>
@@ -46,25 +54,29 @@
     	INSERT INTO sys_task_type(
     			type_title,
     			type_price,
-    			type_content
+    			type_content,
+    			delFlag
     	)
         VALUES(
 		           #{sysTaskTypeTypeTitle},
 		           #{sysTaskTypeTypePrice},
-		           #{sysTaskTypeTypeContent}
+		           #{sysTaskTypeTypeContent},
+		           #{sysTaskTypeDelFlag}
         )
     </insert>
     <insert id='batchInsertObj' parameterType="java.util.List">
     	INSERT INTO sys_task_type(
     			type_title,
     			type_price,
-    			type_content
+    			type_content,
+    			delFlag
     	)
         VALUES(
         <foreach collection="list" item="item"  separator=",">
 		           #{item.sysTaskTypeTypeTitle},
 		           #{item.sysTaskTypeTypePrice},
-		           #{item.sysTaskTypeTypeContent}
+		           #{item.sysTaskTypeTypeContent},
+		           #{item.sysTaskTypeDelFlag}
         </foreach>
         )
     </insert>
@@ -72,20 +84,24 @@
     
     <select id="selectObjById" parameterType="java.util.Map" resultType="java.util.HashMap">
     	SELECT  
-com.baomidou.mybatisplus.generator.config.po.TableField@6ae757f9
+com.baomidou.mybatisplus.generator.config.po.TableField@7d87a1cf
         		sysTaskType.id AS sysTaskTypeId,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@5e5c6ff0
+com.baomidou.mybatisplus.generator.config.po.TableField@33fe4c7
         		sysTaskType.type_title AS sysTaskTypeTypeTitle,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@21c1871b
+com.baomidou.mybatisplus.generator.config.po.TableField@17c1c659
         		sysTaskType.type_price AS sysTaskTypeTypePrice,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@483f6de2
-        		sysTaskType.type_content AS sysTaskTypeTypeContent
+com.baomidou.mybatisplus.generator.config.po.TableField@618538e4
+        		sysTaskType.type_content AS sysTaskTypeTypeContent,
+            		
+com.baomidou.mybatisplus.generator.config.po.TableField@d15d57
+        		sysTaskType.delFlag AS sysTaskTypeDelFlag
 		 FROM 
 		 	sys_task_type sysTaskType
     	WHERE 1=1
+    	and sysTaskType.delFlag = 0
 		 and ${tbAlias}.id=#{sysTaskTypeId}
     </select>
     
@@ -95,6 +111,7 @@ com.baomidou.mybatisplus.generator.config.po.TableField@483f6de2
     	FROM
     		sys_task_type sysTaskType
     	WHERE 1=1
+    	and sysTaskType.delFlag = 0
     	
     </select>
     <select id="pageList" parameterType="java.util.Map" resultType="java.util.Map">
@@ -105,10 +122,13 @@ com.baomidou.mybatisplus.generator.config.po.TableField@483f6de2
             		
         		sysTaskType.type_price AS sysTaskTypeTypePrice,
             		
-        		sysTaskType.type_content AS sysTaskTypeTypeContent
+        		sysTaskType.type_content AS sysTaskTypeTypeContent,
+            		
+        		sysTaskType.delFlag AS sysTaskTypeDelFlag
     	FROM
     		sys_task_type sysTaskType
     	WHERE 1=1
+    	and sysTaskType.delFlag = 0
     	
     		LIMIT #{param.pageStart},#{param.pageNum}
     </select>
@@ -122,7 +142,9 @@ com.baomidou.mybatisplus.generator.config.po.TableField@483f6de2
             		
         		sysTaskType.type_price AS sysTaskTypeTypePrice,
             		
-        		sysTaskType.type_content AS sysTaskTypeTypeContent
+        		sysTaskType.type_content AS sysTaskTypeTypeContent,
+            		
+        		sysTaskType.delFlag AS sysTaskTypeDelFlag
     	FROM
     		sys_task_type sysTaskType
     	WHERE 1=1

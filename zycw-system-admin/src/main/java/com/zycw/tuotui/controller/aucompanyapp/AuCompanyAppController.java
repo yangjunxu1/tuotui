@@ -132,7 +132,8 @@ public class AuCompanyAppController extends BaseController <IAuCompanyAppService
 
 
 
-    	@ApiImplicitParam(name = "auCompanyAppUpdatedTime", value = "return-i-修改时间", required = false, dataType = "Date"),
+
+    	@ApiImplicitParam(name = "auCompanyAppDelFlag", value = "return-逻辑删除:0-未删除,1-已删除", required = false, dataType = "${dataType}"),
      })
      @RequestMapping(value = "/pageList", method = RequestMethod.POST)
      public ResultBeanFactory.ResultBean<PageInfo<AuCompanyApp>> pageList(@RequestBody HashMap<String,Object> params) {
@@ -152,7 +153,7 @@ public class AuCompanyAppController extends BaseController <IAuCompanyAppService
      @ApiOperation(value = "通过id查询")
      @ApiImplicitParam(name = "auCompanyAppId", value = "ID", required = true, dataType = "String")
      @ApiImplicitParams({
-    	@ApiImplicitParam(name = "auCompanyAppId", value = "return-id", required = false, dataType = "Date"),
+    	@ApiImplicitParam(name = "auCompanyAppId", value = "return-id", required = false, dataType = "${dataType}"),
     	@ApiImplicitParam(name = "auCompanyAppName", value = "return-lvMapp名称", required = false, dataType = "String"),
     	@ApiImplicitParam(name = "auCompanyAppName", value = "return-lvMapp名称", required = false, dataType = "String"),
     	@ApiImplicitParam(name = "auCompanyAppRemark", value = "return-lvapp介绍", required = false, dataType = "String"),
@@ -167,6 +168,7 @@ public class AuCompanyAppController extends BaseController <IAuCompanyAppService
     	@ApiImplicitParam(name = "auCompanyAppReviewTime", value = "return-lv复审时间", required = false, dataType = "Date"),
     	@ApiImplicitParam(name = "auCompanyAppCreatedTime", value = "return-i-创建时间", required = false, dataType = "Date"),
     	@ApiImplicitParam(name = "auCompanyAppUpdatedTime", value = "return-i-修改时间", required = false, dataType = "Date"),
+    	@ApiImplicitParam(name = "auCompanyAppDelFlag", value = "return-逻辑删除:0-未删除,1-已删除", required = false, dataType = "Date"),
 		})
      @RequestMapping(value = "/selectObjById", method = RequestMethod.GET)
      public ResultBean<HashMap<String,Object>> info(@RequestParam("auCompanyAppId") String auCompanyAppId) {
@@ -194,7 +196,8 @@ public class AuCompanyAppController extends BaseController <IAuCompanyAppService
     	@ApiImplicitParam(name = "auCompanyAppReviewRefuse", value = "return-v复审拒绝理由", required = false, dataType = "String"),
     	@ApiImplicitParam(name = "auCompanyAppReviewTime", value = "return-lv复审时间", required = false, dataType = "Date"),
     	@ApiImplicitParam(name = "auCompanyAppCreatedTime", value = "return-i-创建时间", required = false, dataType = "Date"),
-    	@ApiImplicitParam(name = "auCompanyAppUpdatedTime", value = "return-i-修改时间", required = false, dataType = "Date")
+    	@ApiImplicitParam(name = "auCompanyAppUpdatedTime", value = "return-i-修改时间", required = false, dataType = "Date"),
+    	@ApiImplicitParam(name = "auCompanyAppDelFlag", value = "return-逻辑删除:0-未删除,1-已删除", required = false, dataType = "Date")
      })
      @RequestMapping(value = "/allList", method = RequestMethod.POST)
 	public ResultBean<List<AuCompanyApp>> allList(@RequestBody HashMap<String,Object> param){

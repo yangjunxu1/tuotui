@@ -3,10 +3,13 @@
 <mapper namespace="com.zycw.tuotui.readdao.sysprovince.SysProvinceMapper">
 
 
+
+
         <!-- 通用查询映射结果 -->
         <resultMap id="BaseResultMap" type="com.zycw.tuotui.entity.sysprovince.SysProvince">
                     <id column="id" />
                     <result column="name" />
+                    <result column="delFlag" />
         </resultMap>
 
     
@@ -23,16 +26,21 @@
     
     
     <update id="deleteByIdLogic">
-        UPDATE sys_province SET delFlag = 1' 
+        UPDATE sys_province SET delFlag = 1 
         WHERE 
         id=#{sysProvinceId}
     </update>
+    
+    
+    
+    
     
  
  
  	<update id="updateObjById"  parameterType="com.zycw.tuotui.entity.sysprovince.SysProvince">
         UPDATE sys_province SET 
-		            name=#{sysProvinceName}
+		            name=sysProvinceName,
+		            delFlag=#{sysProvinceDelFlag}
         WHERE 
         id=#{sysProvinceId}
     </update>
@@ -40,19 +48,23 @@
     
     <insert id='insertObj' parameterType="com.zycw.tuotui.entity.sysprovince.SysProvince">
     	INSERT INTO sys_province(
-    			name
+    			name,
+    			delFlag
     	)
         VALUES(
-		           #{sysProvinceName}
+		           #{sysProvinceName},
+		           #{sysProvinceDelFlag}
         )
     </insert>
     <insert id='batchInsertObj' parameterType="java.util.List">
     	INSERT INTO sys_province(
-    			name
+    			name,
+    			delFlag
     	)
         VALUES(
         <foreach collection="list" item="item"  separator=",">
-		           #{item.sysProvinceName}
+		           #{item.sysProvinceName},
+		           #{item.sysProvinceDelFlag}
         </foreach>
         )
     </insert>
@@ -60,14 +72,18 @@
     
     <select id="selectObjById" parameterType="java.util.Map" resultType="java.util.HashMap">
     	SELECT  
-com.baomidou.mybatisplus.generator.config.po.TableField@e59e79a
+com.baomidou.mybatisplus.generator.config.po.TableField@14815e10
         		sysProvince.id AS sysProvinceId,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@4a5f35df
-        		sysProvince.name AS sysProvinceName
+com.baomidou.mybatisplus.generator.config.po.TableField@564c0745
+        		sysProvince.name AS sysProvinceName,
+            		
+com.baomidou.mybatisplus.generator.config.po.TableField@7389b920
+        		sysProvince.delFlag AS sysProvinceDelFlag
 		 FROM 
 		 	sys_province sysProvince
     	WHERE 1=1
+    	and sysProvince.delFlag = 0
 		 and ${tbAlias}.id=#{sysProvinceId}
     </select>
     
@@ -77,16 +93,20 @@ com.baomidou.mybatisplus.generator.config.po.TableField@4a5f35df
     	FROM
     		sys_province sysProvince
     	WHERE 1=1
+    	and sysProvince.delFlag = 0
     	
     </select>
     <select id="pageList" parameterType="java.util.Map" resultType="java.util.Map">
     	SELECT 	
         		sysProvince.id AS sysProvinceId,
             		
-        		sysProvince.name AS sysProvinceName
+        		sysProvince.name AS sysProvinceName,
+            		
+        		sysProvince.delFlag AS sysProvinceDelFlag
     	FROM
     		sys_province sysProvince
     	WHERE 1=1
+    	and sysProvince.delFlag = 0
     	
     		LIMIT #{param.pageStart},#{param.pageNum}
     </select>
@@ -96,7 +116,9 @@ com.baomidou.mybatisplus.generator.config.po.TableField@4a5f35df
     	    	SELECT 	
         		sysProvince.id AS sysProvinceId,
             		
-        		sysProvince.name AS sysProvinceName
+        		sysProvince.name AS sysProvinceName,
+            		
+        		sysProvince.delFlag AS sysProvinceDelFlag
     	FROM
     		sys_province sysProvince
     	WHERE 1=1

@@ -3,6 +3,8 @@
 <mapper namespace="com.zycw.tuotui.readdao.aucompany.AuCompanyMapper">
 
 
+
+
         <!-- 通用查询映射结果 -->
         <resultMap id="BaseResultMap" type="com.zycw.tuotui.entity.aucompany.AuCompany">
                     <id column="id" />
@@ -24,6 +26,7 @@
                     <result column="review_time" />
                     <result column="created_time" />
                     <result column="updated_time" />
+                    <result column="delfFlag" />
         </resultMap>
 
     
@@ -40,21 +43,13 @@
     
     
     <update id="deleteByIdLogic">
-        UPDATE au_company SET delFlag = 1' 
+        UPDATE au_company SET delfFlag = 1 
         WHERE 
         id=#{auCompanyId}
     </update>
     
-	
     
-    <delete id="byCompanyName">
-        DELETE FROM au_company WHERE 1=1
-        	<if test="auCompany.auCompanyName != null and auCompany.auCompanyName != '' ">
-				and auCompanyName = #{auCompany.auCompanyName} 
-        	</if>
-			
-		    
-    </delete>
+    
     
     
  
@@ -78,34 +73,12 @@
 		            review_refuse=auCompanyReviewRefuse,
 		            review_time=auCompanyReviewTime,
 		            created_time=auCompanyCreatedTime,
-		            updated_time=#{auCompanyUpdatedTime}
+		            updated_time=auCompanyUpdatedTime,
+		            delfFlag=#{auCompanyDelfFlag}
         WHERE 
         id=#{auCompanyId}
     </update>
  
-    <update id="testUpdateUpdate"  parameterType="java.util.Map">
-        UPDATE au_company SET 
-		            name=#{param.auCompanyName},
-		            parentid=#{param.auCompanyParentid}
-        WHERE 1=1
-        	<if test="param.id != null and param.id != '' ">
-				and id = #{param.id} 
-        	</if>
-			
-		    
-        	auProject.companyId =  auCompany.id			
-		    
-    </update>
-    <insert id="testUpdateInsert"  parameterType="java.util.Map">
-        INSERT INTO au_company(
-		            name,
-		            parentid
-        )
-        VALUES(
-		            #{param.auCompanyName},
-		            #{param.auCompanyParentid}
-        )
-    </insert>
     
     <insert id='insertObj' parameterType="com.zycw.tuotui.entity.aucompany.AuCompany">
     	INSERT INTO au_company(
@@ -126,7 +99,8 @@
     			review_refuse,
     			review_time,
     			created_time,
-    			updated_time
+    			updated_time,
+    			delfFlag
     	)
         VALUES(
 		           #{auCompanyName},
@@ -146,7 +120,8 @@
 		           #{auCompanyReviewRefuse},
 		           #{auCompanyReviewTime},
 		           #{auCompanyCreatedTime},
-		           #{auCompanyUpdatedTime}
+		           #{auCompanyUpdatedTime},
+		           #{auCompanyDelfFlag}
         )
     </insert>
     <insert id='batchInsertObj' parameterType="java.util.List">
@@ -168,7 +143,8 @@
     			review_refuse,
     			review_time,
     			created_time,
-    			updated_time
+    			updated_time,
+    			delfFlag
     	)
         VALUES(
         <foreach collection="list" item="item"  separator=",">
@@ -189,7 +165,8 @@
 		           #{item.auCompanyReviewRefuse},
 		           #{item.auCompanyReviewTime},
 		           #{item.auCompanyCreatedTime},
-		           #{item.auCompanyUpdatedTime}
+		           #{item.auCompanyUpdatedTime},
+		           #{item.auCompanyDelfFlag}
         </foreach>
         )
     </insert>
@@ -197,65 +174,69 @@
     
     <select id="selectObjById" parameterType="java.util.Map" resultType="java.util.HashMap">
     	SELECT  
-com.baomidou.mybatisplus.generator.config.po.TableField@64b7c214
+com.baomidou.mybatisplus.generator.config.po.TableField@428ccb93
         		auCompany.id AS auCompanyId,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@36eccaf1
+com.baomidou.mybatisplus.generator.config.po.TableField@19ee03c4
         		auCompany.name AS auCompanyName,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@90c1a12
+com.baomidou.mybatisplus.generator.config.po.TableField@65b22ef5
         		auCompany.credit_code AS auCompanyCreditCode,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@54b90ecc
+com.baomidou.mybatisplus.generator.config.po.TableField@599cea56
         		auCompany.business_license AS auCompanyBusinessLicense,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@1adb92df
+com.baomidou.mybatisplus.generator.config.po.TableField@340e9717
         		auCompany.corporation AS auCompanyCorporation,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@4a307837
+com.baomidou.mybatisplus.generator.config.po.TableField@5d174271
         		auCompany.contactor AS auCompanyContactor,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@230537e9
+com.baomidou.mybatisplus.generator.config.po.TableField@29a61aa0
         		auCompany.contacts_phone AS auCompanyContactsPhone,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@3f56922b
+com.baomidou.mybatisplus.generator.config.po.TableField@17569b98
         		auCompany.contacts_proxy_statement AS auCompanyContactsProxyStatement,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@795da274
+com.baomidou.mybatisplus.generator.config.po.TableField@57a0104a
         		auCompany.address AS auCompanyAddress,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@30e58ca8
+com.baomidou.mybatisplus.generator.config.po.TableField@30c3c405
         		auCompany.account_price AS auCompanyAccountPrice,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@3a555f22
+com.baomidou.mybatisplus.generator.config.po.TableField@2929bba7
         		auCompany.user_id AS auCompanyUserId,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@31994589
+com.baomidou.mybatisplus.generator.config.po.TableField@a806f41
         		auCompany.verify_status AS auCompanyVerifyStatus,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@25c31fcc
+com.baomidou.mybatisplus.generator.config.po.TableField@5d750c1b
         		auCompany.verify_refuse AS auCompanyVerifyRefuse,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@39df4710
+com.baomidou.mybatisplus.generator.config.po.TableField@7338185c
         		auCompany.verify_time AS auCompanyVerifyTime,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@2963a346
+com.baomidou.mybatisplus.generator.config.po.TableField@17a8611f
         		auCompany.review_status AS auCompanyReviewStatus,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@52ad1eee
+com.baomidou.mybatisplus.generator.config.po.TableField@1e5bfecc
         		auCompany.review_refuse AS auCompanyReviewRefuse,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@6f2d5608
+com.baomidou.mybatisplus.generator.config.po.TableField@6b3b3cc8
         		auCompany.review_time AS auCompanyReviewTime,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@2c096b3a
+com.baomidou.mybatisplus.generator.config.po.TableField@5872330b
         		auCompany.created_time AS auCompanyCreatedTime,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@1844846e
-        		auCompany.updated_time AS auCompanyUpdatedTime
+com.baomidou.mybatisplus.generator.config.po.TableField@c861183
+        		auCompany.updated_time AS auCompanyUpdatedTime,
+            		
+com.baomidou.mybatisplus.generator.config.po.TableField@4dea3341
+        		auCompany.delfFlag AS auCompanyDelfFlag
 		 FROM 
 		 	au_company auCompany
     	WHERE 1=1
+    	and auCompany.delfFlag = 0
 		 and ${tbAlias}.id=#{auCompanyId}
     </select>
     
@@ -265,6 +246,7 @@ com.baomidou.mybatisplus.generator.config.po.TableField@1844846e
     	FROM
     		au_company auCompany
     	WHERE 1=1
+    	and auCompany.delfFlag = 0
     	
     </select>
     <select id="pageList" parameterType="java.util.Map" resultType="java.util.Map">
@@ -305,10 +287,13 @@ com.baomidou.mybatisplus.generator.config.po.TableField@1844846e
             		
         		auCompany.created_time AS auCompanyCreatedTime,
             		
-        		auCompany.updated_time AS auCompanyUpdatedTime
+        		auCompany.updated_time AS auCompanyUpdatedTime,
+            		
+        		auCompany.delfFlag AS auCompanyDelfFlag
     	FROM
     		au_company auCompany
     	WHERE 1=1
+    	and auCompany.delfFlag = 0
     	
     		LIMIT #{param.pageStart},#{param.pageNum}
     </select>
@@ -352,48 +337,13 @@ com.baomidou.mybatisplus.generator.config.po.TableField@1844846e
             		
         		auCompany.created_time AS auCompanyCreatedTime,
             		
-        		auCompany.updated_time AS auCompanyUpdatedTime
+        		auCompany.updated_time AS auCompanyUpdatedTime,
+            		
+        		auCompany.delfFlag AS auCompanyDelfFlag
     	FROM
     		au_company auCompany
     	WHERE 1=1
     	
-    </select>
-    
-	<select id="getCompanyByProjectCount" parameterType="java.util.Map" resultType="Integer">
-    	SELECT 	
-    		COUNT(1)
-    	FROM au_company au_company
-				
-				, au_project auProject
-        WHERE 1=1
-        	auProject.companyId =  auCompany.id			
-		    
-        	<if test="param.auProjectProjectName != null and param.auProjectProjectName != '' ">
-				and auProject.auProjectProjectName = #{param.auProjectProjectName} 
-        	</if>
-			
-		    
-    </select>
-	
-	<select id="getCompanyByProject"   parameterType="java.util.Map" resultType="java.util.HashMap">
-        select 
-		           auProject.projectName as auProjectProjectName,
-		           auProject.projectCode as auProjectProjectCode,
-		           auCompany.name as auCompanyName,
-		           auCompany.id as auCompanyId
-        FROM au_company au_company
-				
-				, au_project auProject
-        WHERE 1=1
-        	auProject.companyId =  auCompany.id			
-		    
-        	<if test="param.auProjectProjectName != null and param.auProjectProjectName != '' ">
-				and auProject.auProjectProjectName = #{param.auProjectProjectName} 
-        	</if>
-			
-		    
-        
-    		LIMIT #{param.pageStart},#{param.pageSize}
     </select>
     
     

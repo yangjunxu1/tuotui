@@ -22,7 +22,7 @@ import lombok.experimental.Accessors;
  * </p>
  *
  * @author junxu.yang
- * @since 2021-05-30
+ * @since 2021-06-01
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
@@ -62,6 +62,10 @@ public class AuUser implements Serializable {
     @ApiModelProperty(name="auUserTrueName",value = "lv真实姓名")
     	@Column(name = "true_name")
 	private String auUserTrueName;
+
+    @ApiModelProperty(name="auUserUseruuid",value = "用户设备唯一编号")
+    	@Column(name = "useruuid")
+	private String auUserUseruuid;
 
     @ApiModelProperty(name="auUserSex",value = "lvr性别:0-男,1-女")
     	@Column(name = "sex")

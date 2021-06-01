@@ -112,7 +112,8 @@ public class SysTaskDepthController extends BaseController <ISysTaskDepthService
 
 
 
-    	@ApiImplicitParam(name = "sysTaskDepthDepthContent", value = "return-v简介", required = false, dataType = "String"),
+
+    	@ApiImplicitParam(name = "sysTaskDepthDelFlag", value = "return-逻辑删除:0-未删除,1-已删除", required = false, dataType = "${dataType}"),
      })
      @RequestMapping(value = "/pageList", method = RequestMethod.POST)
      public ResultBeanFactory.ResultBean<PageInfo<SysTaskDepth>> pageList(@RequestBody HashMap<String,Object> params) {
@@ -132,10 +133,11 @@ public class SysTaskDepthController extends BaseController <ISysTaskDepthService
      @ApiOperation(value = "通过id查询")
      @ApiImplicitParam(name = "sysTaskDepthId", value = "ID", required = true, dataType = "String")
      @ApiImplicitParams({
-    	@ApiImplicitParam(name = "sysTaskDepthId", value = "return-ID", required = false, dataType = "String"),
+    	@ApiImplicitParam(name = "sysTaskDepthId", value = "return-ID", required = false, dataType = "${dataType}"),
     	@ApiImplicitParam(name = "sysTaskDepthDepthTitle", value = "return-lvM任务深度标题", required = false, dataType = "String"),
     	@ApiImplicitParam(name = "sysTaskDepthDepthPrice", value = "return-lv价格", required = false, dataType = "String"),
     	@ApiImplicitParam(name = "sysTaskDepthDepthContent", value = "return-v简介", required = false, dataType = "String"),
+    	@ApiImplicitParam(name = "sysTaskDepthDelFlag", value = "return-逻辑删除:0-未删除,1-已删除", required = false, dataType = "String"),
 		})
      @RequestMapping(value = "/selectObjById", method = RequestMethod.GET)
      public ResultBean<HashMap<String,Object>> info(@RequestParam("sysTaskDepthId") String sysTaskDepthId) {
@@ -151,7 +153,8 @@ public class SysTaskDepthController extends BaseController <ISysTaskDepthService
     	@ApiImplicitParam(name = "sysTaskDepthId", value = "return-ID", required = false, dataType = "String"),
     	@ApiImplicitParam(name = "sysTaskDepthDepthTitle", value = "return-lvM任务深度标题", required = false, dataType = "String"),
     	@ApiImplicitParam(name = "sysTaskDepthDepthPrice", value = "return-lv价格", required = false, dataType = "String"),
-    	@ApiImplicitParam(name = "sysTaskDepthDepthContent", value = "return-v简介", required = false, dataType = "String")
+    	@ApiImplicitParam(name = "sysTaskDepthDepthContent", value = "return-v简介", required = false, dataType = "String"),
+    	@ApiImplicitParam(name = "sysTaskDepthDelFlag", value = "return-逻辑删除:0-未删除,1-已删除", required = false, dataType = "String")
      })
      @RequestMapping(value = "/allList", method = RequestMethod.POST)
 	public ResultBean<List<SysTaskDepth>> allList(@RequestBody HashMap<String,Object> param){

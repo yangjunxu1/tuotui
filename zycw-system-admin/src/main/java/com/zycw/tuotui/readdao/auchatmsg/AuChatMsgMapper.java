@@ -17,13 +17,14 @@ import java.util.HashMap;
  * </p>
  *
  * @author junxu.yang
- * @since 2021-05-30
+ * @since 2021-06-01
  */
 public interface AuChatMsgMapper extends Mapper<AuChatMsg> {
 	
 	public void deleteById(@Param("auChatMsgId") String auChatMsgId);
 	
 	public void deleteByIdLogic(@Param("auChatMsgId") String auChatMsgId);
+	
 	
 	
 	public void updateObjById(AuChatMsg auChatMsg);

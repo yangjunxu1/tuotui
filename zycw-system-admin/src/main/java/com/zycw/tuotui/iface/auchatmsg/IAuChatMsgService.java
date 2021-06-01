@@ -32,12 +32,13 @@ import java.util.HashMap;
 @Service("IAuChatMsgService")
 public class IAuChatMsgService extends BaseService<AuChatMsgMapper,AuChatMsg> {
 
+   
    /**
     * 根据主键物理删除
     * @param String 主键ID
     * @return 返回结果
 	* @author junxu.yang
-	* @since 2021-05-30
+	* @since 2021-06-01
     */
 	public void deleteById(String auChatMsgId){
 		mapper.deleteById(auChatMsgId);
@@ -48,12 +49,13 @@ public class IAuChatMsgService extends BaseService<AuChatMsgMapper,AuChatMsg> {
     * @param String 主键ID
     * @return 返回结果
 	* @author junxu.yang
-	* @since 2021-05-30
+	* @since 2021-06-01
     */
 	public void deleteByIdLogic(String auChatMsgId){
 		mapper.deleteByIdLogic(auChatMsgId);
 	}
 	
+
 	
 	public void updateObjById(AuChatMsg auChatMsg){
 		mapper.updateObjById(auChatMsg);
@@ -66,7 +68,7 @@ public class IAuChatMsgService extends BaseService<AuChatMsgMapper,AuChatMsg> {
     * @param AuChatMsg 对象
     * @return 返回结果 void
 	* @author junxu.yang
-	* @since 2021-05-30
+	* @since 2021-06-01
     */
 	public void insertObj(AuChatMsg auChatMsg){
 		mapper.insertObj(auChatMsg);
@@ -78,7 +80,7 @@ public class IAuChatMsgService extends BaseService<AuChatMsgMapper,AuChatMsg> {
     * @param List<AuChatMsg> 对象
     * @return 返回结果
 	* @author junxu.yang
-	* @since 2021-05-30
+	* @since 2021-06-01
     */
 	public void batchInsertObj(List<AuChatMsg> list){
 		mapper.batchInsertObj(list);
@@ -89,7 +91,7 @@ public class IAuChatMsgService extends BaseService<AuChatMsgMapper,AuChatMsg> {
     * @param String 主键ID
     * @return 返回结果
 	* @author junxu.yang
-	* @since 2021-05-30
+	* @since 2021-06-01
     */
 	public HashMap<String,Object> selectObjById(String auChatMsgId){
 		return mapper.selectObjById(auChatMsgId);
@@ -101,7 +103,7 @@ public class IAuChatMsgService extends BaseService<AuChatMsgMapper,AuChatMsg> {
     * @param HashMap<String,Object> 对象
     * @return 返回结果
 	* @author junxu.yang
-	* @since 2021-05-30
+	* @since 2021-06-01
     */
 	public Integer countNum(HashMap<String,Object> params) {
 		return mapper.countNum(params);
@@ -113,7 +115,7 @@ public class IAuChatMsgService extends BaseService<AuChatMsgMapper,AuChatMsg> {
 	* @param HashMap<String,Object> 对象
 	* @return 返回结果 PageInfo
 	* @author junxu.yang
-	* @since 2021-05-30
+	* @since 2021-06-01
 	 */
 	public PageInfo<AuChatMsg> pageList(HashMap<String,Object> params) throws Exception {
 		Integer pageNum = (Integer)params.get("pageNum");

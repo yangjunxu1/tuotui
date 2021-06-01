@@ -3,6 +3,8 @@
 <mapper namespace="com.zycw.tuotui.readdao.auchatmsg.AuChatMsgMapper">
 
 
+
+
         <!-- 通用查询映射结果 -->
         <resultMap id="BaseResultMap" type="com.zycw.tuotui.entity.auchatmsg.AuChatMsg">
                     <id column="id" />
@@ -11,6 +13,7 @@
                     <result column="sendtime" />
                     <result column="sendtext" />
                     <result column="msgtype" />
+                    <result column="delFlag" />
         </resultMap>
 
     
@@ -27,10 +30,14 @@
     
     
     <update id="deleteByIdLogic">
-        UPDATE au_chat_msg SET delFlag = 1' 
+        UPDATE au_chat_msg SET delFlag = 1 
         WHERE 
         id=#{auChatMsgId}
     </update>
+    
+    
+    
+    
     
  
  
@@ -40,7 +47,8 @@
 		            reciveuserid=auChatMsgReciveuserid,
 		            sendtime=auChatMsgSendtime,
 		            sendtext=auChatMsgSendtext,
-		            msgtype=#{auChatMsgMsgtype}
+		            msgtype=auChatMsgMsgtype,
+		            delFlag=#{auChatMsgDelFlag}
         WHERE 
         id=#{auChatMsgId}
     </update>
@@ -52,14 +60,16 @@
     			reciveuserid,
     			sendtime,
     			sendtext,
-    			msgtype
+    			msgtype,
+    			delFlag
     	)
         VALUES(
 		           #{auChatMsgSenduserid},
 		           #{auChatMsgReciveuserid},
 		           #{auChatMsgSendtime},
 		           #{auChatMsgSendtext},
-		           #{auChatMsgMsgtype}
+		           #{auChatMsgMsgtype},
+		           #{auChatMsgDelFlag}
         )
     </insert>
     <insert id='batchInsertObj' parameterType="java.util.List">
@@ -68,7 +78,8 @@
     			reciveuserid,
     			sendtime,
     			sendtext,
-    			msgtype
+    			msgtype,
+    			delFlag
     	)
         VALUES(
         <foreach collection="list" item="item"  separator=",">
@@ -76,7 +87,8 @@
 		           #{item.auChatMsgReciveuserid},
 		           #{item.auChatMsgSendtime},
 		           #{item.auChatMsgSendtext},
-		           #{item.auChatMsgMsgtype}
+		           #{item.auChatMsgMsgtype},
+		           #{item.auChatMsgDelFlag}
         </foreach>
         )
     </insert>
@@ -84,26 +96,30 @@
     
     <select id="selectObjById" parameterType="java.util.Map" resultType="java.util.HashMap">
     	SELECT  
-com.baomidou.mybatisplus.generator.config.po.TableField@2a270dbf
+com.baomidou.mybatisplus.generator.config.po.TableField@7e277f82
         		auChatMsg.id AS auChatMsgId,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@2de87915
+com.baomidou.mybatisplus.generator.config.po.TableField@37fd29a3
         		auChatMsg.senduserid AS auChatMsgSenduserid,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@72c2e846
+com.baomidou.mybatisplus.generator.config.po.TableField@4f47faad
         		auChatMsg.reciveuserid AS auChatMsgReciveuserid,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@4585d272
+com.baomidou.mybatisplus.generator.config.po.TableField@73386cae
         		auChatMsg.sendtime AS auChatMsgSendtime,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@229f5c59
+com.baomidou.mybatisplus.generator.config.po.TableField@1d2ee92b
         		auChatMsg.sendtext AS auChatMsgSendtext,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@4cd1a9ce
-        		auChatMsg.msgtype AS auChatMsgMsgtype
+com.baomidou.mybatisplus.generator.config.po.TableField@43406b1c
+        		auChatMsg.msgtype AS auChatMsgMsgtype,
+            		
+com.baomidou.mybatisplus.generator.config.po.TableField@33a2734b
+        		auChatMsg.delFlag AS auChatMsgDelFlag
 		 FROM 
 		 	au_chat_msg auChatMsg
     	WHERE 1=1
+    	and auChatMsg.delFlag = 0
 		 and ${tbAlias}.id=#{auChatMsgId}
     </select>
     
@@ -113,6 +129,7 @@ com.baomidou.mybatisplus.generator.config.po.TableField@4cd1a9ce
     	FROM
     		au_chat_msg auChatMsg
     	WHERE 1=1
+    	and auChatMsg.delFlag = 0
     	
     </select>
     <select id="pageList" parameterType="java.util.Map" resultType="java.util.Map">
@@ -127,10 +144,13 @@ com.baomidou.mybatisplus.generator.config.po.TableField@4cd1a9ce
             		
         		auChatMsg.sendtext AS auChatMsgSendtext,
             		
-        		auChatMsg.msgtype AS auChatMsgMsgtype
+        		auChatMsg.msgtype AS auChatMsgMsgtype,
+            		
+        		auChatMsg.delFlag AS auChatMsgDelFlag
     	FROM
     		au_chat_msg auChatMsg
     	WHERE 1=1
+    	and auChatMsg.delFlag = 0
     	
     		LIMIT #{param.pageStart},#{param.pageNum}
     </select>
@@ -148,7 +168,9 @@ com.baomidou.mybatisplus.generator.config.po.TableField@4cd1a9ce
             		
         		auChatMsg.sendtext AS auChatMsgSendtext,
             		
-        		auChatMsg.msgtype AS auChatMsgMsgtype
+        		auChatMsg.msgtype AS auChatMsgMsgtype,
+            		
+        		auChatMsg.delFlag AS auChatMsgDelFlag
     	FROM
     		au_chat_msg auChatMsg
     	WHERE 1=1

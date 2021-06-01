@@ -116,7 +116,8 @@ public class AuChatMsgController extends BaseController <IAuChatMsgService, AuCh
 
 
 
-    	@ApiImplicitParam(name = "auChatMsgMsgtype", value = "return-消息类型", required = false, dataType = "String"),
+
+    	@ApiImplicitParam(name = "auChatMsgDelFlag", value = "return-逻辑删除:0-未删除,1-已删除", required = false, dataType = "${dataType}"),
      })
      @RequestMapping(value = "/pageList", method = RequestMethod.POST)
      public ResultBeanFactory.ResultBean<PageInfo<AuChatMsg>> pageList(@RequestBody HashMap<String,Object> params) {
@@ -136,12 +137,13 @@ public class AuChatMsgController extends BaseController <IAuChatMsgService, AuCh
      @ApiOperation(value = "通过id查询")
      @ApiImplicitParam(name = "auChatMsgId", value = "ID", required = true, dataType = "String")
      @ApiImplicitParams({
-    	@ApiImplicitParam(name = "auChatMsgId", value = "return-ID", required = false, dataType = "String"),
-    	@ApiImplicitParam(name = "auChatMsgSenduserid", value = "return-lv用户", required = false, dataType = "String"),
-    	@ApiImplicitParam(name = "auChatMsgReciveuserid", value = "return-lv客服", required = false, dataType = "String"),
+    	@ApiImplicitParam(name = "auChatMsgId", value = "return-ID", required = false, dataType = "${dataType}"),
+    	@ApiImplicitParam(name = "auChatMsgSenduserid", value = "return-lv用户", required = false, dataType = "${dataType}"),
+    	@ApiImplicitParam(name = "auChatMsgReciveuserid", value = "return-lv客服", required = false, dataType = "${dataType}"),
     	@ApiImplicitParam(name = "auChatMsgSendtime", value = "return-lvi聊天时间", required = false, dataType = "Date"),
     	@ApiImplicitParam(name = "auChatMsgSendtext", value = "return-vl聊天内容", required = false, dataType = "String"),
     	@ApiImplicitParam(name = "auChatMsgMsgtype", value = "return-消息类型", required = false, dataType = "String"),
+    	@ApiImplicitParam(name = "auChatMsgDelFlag", value = "return-逻辑删除:0-未删除,1-已删除", required = false, dataType = "String"),
 		})
      @RequestMapping(value = "/selectObjById", method = RequestMethod.GET)
      public ResultBean<HashMap<String,Object>> info(@RequestParam("auChatMsgId") String auChatMsgId) {
@@ -159,7 +161,8 @@ public class AuChatMsgController extends BaseController <IAuChatMsgService, AuCh
     	@ApiImplicitParam(name = "auChatMsgReciveuserid", value = "return-lv客服", required = false, dataType = "String"),
     	@ApiImplicitParam(name = "auChatMsgSendtime", value = "return-lvi聊天时间", required = false, dataType = "Date"),
     	@ApiImplicitParam(name = "auChatMsgSendtext", value = "return-vl聊天内容", required = false, dataType = "String"),
-    	@ApiImplicitParam(name = "auChatMsgMsgtype", value = "return-消息类型", required = false, dataType = "String")
+    	@ApiImplicitParam(name = "auChatMsgMsgtype", value = "return-消息类型", required = false, dataType = "String"),
+    	@ApiImplicitParam(name = "auChatMsgDelFlag", value = "return-逻辑删除:0-未删除,1-已删除", required = false, dataType = "String")
      })
      @RequestMapping(value = "/allList", method = RequestMethod.POST)
 	public ResultBean<List<AuChatMsg>> allList(@RequestBody HashMap<String,Object> param){

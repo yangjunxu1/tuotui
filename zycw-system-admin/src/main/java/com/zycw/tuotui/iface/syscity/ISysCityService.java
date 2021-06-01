@@ -17,6 +17,9 @@ import org.springframework.transaction.annotation.Transactional;
 import com.zycw.common.util.Page;
 import com.zycw.tuotui.readdao.syscity.SysCityMapper;
 import com.zycw.tuotui.entity.syscity.SysCity;
+import com.zycw.tuotui.iface.aucustomtask.IAuCustomTaskService;
+import com.zycw.tuotui.iface.auuser.IAuUserService;
+import com.zycw.tuotui.iface.sysarea.ISysAreaService;
 
 import java.lang.String;
 import java.lang.Integer;
@@ -32,15 +35,25 @@ import java.util.HashMap;
 @Service("ISysCityService")
 public class ISysCityService extends BaseService<SysCityMapper,SysCity> {
 
+   
+    @Autowired
+    private IAuCustomTaskService iAuCustomTaskService;
+    @Autowired
+    private IAuUserService iAuUserService;
+    @Autowired
+    private ISysAreaService iSysAreaService;
    /**
     * 根据主键物理删除
     * @param String 主键ID
     * @return 返回结果
 	* @author junxu.yang
-	* @since 2021-05-30
+	* @since 2021-06-01
     */
 	public void deleteById(String sysCityId){
 		mapper.deleteById(sysCityId);
+     	iAuCustomTaskService.deleteByauCustomTaskCityId(sysCityId);
+     	iAuUserService.deleteByauUserCityId(sysCityId);
+     	iSysAreaService.deleteBysysAreaCityId(sysCityId);
 	}
 	
    /**
@@ -48,12 +61,24 @@ public class ISysCityService extends BaseService<SysCityMapper,SysCity> {
     * @param String 主键ID
     * @return 返回结果
 	* @author junxu.yang
-	* @since 2021-05-30
+	* @since 2021-06-01
     */
 	public void deleteByIdLogic(String sysCityId){
 		mapper.deleteByIdLogic(sysCityId);
 	}
 	
+	
+   /**
+    * 根据外键sysCityProvinceId删除
+    * @param String 外键ID
+    * @return 返回结果
+	* @author junxu.yang
+	* @since 2021-06-01
+    */
+	public void deleteBysysCityProvinceId(String id){
+		mapper.deleteBysysCityProvinceId(id);
+	}
+
 	
 	public void updateObjById(SysCity sysCity){
 		mapper.updateObjById(sysCity);
@@ -66,7 +91,7 @@ public class ISysCityService extends BaseService<SysCityMapper,SysCity> {
     * @param SysCity 对象
     * @return 返回结果 void
 	* @author junxu.yang
-	* @since 2021-05-30
+	* @since 2021-06-01
     */
 	public void insertObj(SysCity sysCity){
 		mapper.insertObj(sysCity);
@@ -78,7 +103,7 @@ public class ISysCityService extends BaseService<SysCityMapper,SysCity> {
     * @param List<SysCity> 对象
     * @return 返回结果
 	* @author junxu.yang
-	* @since 2021-05-30
+	* @since 2021-06-01
     */
 	public void batchInsertObj(List<SysCity> list){
 		mapper.batchInsertObj(list);
@@ -89,7 +114,7 @@ public class ISysCityService extends BaseService<SysCityMapper,SysCity> {
     * @param String 主键ID
     * @return 返回结果
 	* @author junxu.yang
-	* @since 2021-05-30
+	* @since 2021-06-01
     */
 	public HashMap<String,Object> selectObjById(String sysCityId){
 		return mapper.selectObjById(sysCityId);
@@ -101,7 +126,7 @@ public class ISysCityService extends BaseService<SysCityMapper,SysCity> {
     * @param HashMap<String,Object> 对象
     * @return 返回结果
 	* @author junxu.yang
-	* @since 2021-05-30
+	* @since 2021-06-01
     */
 	public Integer countNum(HashMap<String,Object> params) {
 		return mapper.countNum(params);
@@ -113,7 +138,7 @@ public class ISysCityService extends BaseService<SysCityMapper,SysCity> {
 	* @param HashMap<String,Object> 对象
 	* @return 返回结果 PageInfo
 	* @author junxu.yang
-	* @since 2021-05-30
+	* @since 2021-06-01
 	 */
 	public PageInfo<SysCity> pageList(HashMap<String,Object> params) throws Exception {
 		Integer pageNum = (Integer)params.get("pageNum");

@@ -3,11 +3,14 @@
 <mapper namespace="com.zycw.tuotui.readdao.sysroleresource.SysRoleResourceMapper">
 
 
+
+
         <!-- 通用查询映射结果 -->
         <resultMap id="BaseResultMap" type="com.zycw.tuotui.entity.sysroleresource.SysRoleResource">
                     <id column="id" />
                     <result column="role_id" />
                     <result column="resource_id" />
+                    <result column="delFlag" />
         </resultMap>
 
     
@@ -24,17 +27,32 @@
     
     
     <update id="deleteByIdLogic">
-        UPDATE sys_role_resource SET delFlag = 1' 
+        UPDATE sys_role_resource SET delFlag = 1 
         WHERE 
         id=#{sysRoleResourceId}
     </update>
+    
+    
+	 
+    <delete id="deleteBysysRoleResourceRoleId">
+        DELETE FROM sys_role_resource WHERE 
+        role_id=id
+    </delete>
+	 
+    <delete id="deleteBysysRoleResourceResourceId">
+        DELETE FROM sys_role_resource WHERE 
+        resource_id=id
+    </delete>
+    
+    
     
  
  
  	<update id="updateObjById"  parameterType="com.zycw.tuotui.entity.sysroleresource.SysRoleResource">
         UPDATE sys_role_resource SET 
 		            role_id=sysRoleResourceRoleId,
-		            resource_id=#{sysRoleResourceResourceId}
+		            resource_id=sysRoleResourceResourceId,
+		            delFlag=#{sysRoleResourceDelFlag}
         WHERE 
         id=#{sysRoleResourceId}
     </update>
@@ -43,22 +61,26 @@
     <insert id='insertObj' parameterType="com.zycw.tuotui.entity.sysroleresource.SysRoleResource">
     	INSERT INTO sys_role_resource(
     			role_id,
-    			resource_id
+    			resource_id,
+    			delFlag
     	)
         VALUES(
 		           #{sysRoleResourceRoleId},
-		           #{sysRoleResourceResourceId}
+		           #{sysRoleResourceResourceId},
+		           #{sysRoleResourceDelFlag}
         )
     </insert>
     <insert id='batchInsertObj' parameterType="java.util.List">
     	INSERT INTO sys_role_resource(
     			role_id,
-    			resource_id
+    			resource_id,
+    			delFlag
     	)
         VALUES(
         <foreach collection="list" item="item"  separator=",">
 		           #{item.sysRoleResourceRoleId},
-		           #{item.sysRoleResourceResourceId}
+		           #{item.sysRoleResourceResourceId},
+		           #{item.sysRoleResourceDelFlag}
         </foreach>
         )
     </insert>
@@ -66,21 +88,25 @@
     
     <select id="selectObjById" parameterType="java.util.Map" resultType="java.util.HashMap">
     	SELECT  
-com.baomidou.mybatisplus.generator.config.po.TableField@73c0a444
+com.baomidou.mybatisplus.generator.config.po.TableField@1c0c86b
         		sysRoleResource.id AS sysRoleResourceId,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@227b9d83
+com.baomidou.mybatisplus.generator.config.po.TableField@7fa2922f
         		sysRoleResource.role_id AS sysRoleResourceRoleId,
         		sysRole.name AS sysRoleName,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@46f2785
-        		sysRoleResource.resource_id AS sysRoleResourceResourceId
-        		sysResource.${viewColumn.columnName} AS 
+com.baomidou.mybatisplus.generator.config.po.TableField@4dcd2ba0
+        		sysRoleResource.resource_id AS sysRoleResourceResourceId,
+        		sysResource.${viewColumn.columnName} AS ,
+            		
+com.baomidou.mybatisplus.generator.config.po.TableField@7806b2c3
+        		sysRoleResource.delFlag AS sysRoleResourceDelFlag
 		 FROM 
 		 	sys_role_resource sysRoleResource
         	,sys_role	sysRole
         	,sys_resource	sysResource
     	WHERE 1=1
+    	and sysRoleResource.delFlag = 0
 				and sysRoleResource.role_id = sysRole.id
 				and sysRoleResource.resource_id = sysResource.id
 		 and sysResource.id=#{sysRoleResourceId}
@@ -94,6 +120,7 @@ com.baomidou.mybatisplus.generator.config.po.TableField@46f2785
         	,sys_role	sysRole
         	,sys_resource	sysResource
     	WHERE 1=1
+    	and sysRoleResource.delFlag = 0
     	
 				and sysRoleResource.role_id = sysRole.id
 				and sysRoleResource.resource_id = sysResource.id
@@ -110,12 +137,15 @@ com.baomidou.mybatisplus.generator.config.po.TableField@46f2785
             		
         		sysRole.name AS sysRoleName,
             		
-        		sysResource.${viewColumn.columnName} AS 
+        		sysResource.${viewColumn.columnName} AS ,
+            		
+        		sysRoleResource.delFlag AS sysRoleResourceDelFlag
     	FROM
     		sys_role_resource sysRoleResource
         	,sys_role	sysRole
         	,sys_resource	sysResource
     	WHERE 1=1
+    	and sysRoleResource.delFlag = 0
     	
 				and sysRoleResource.role_id = sysRole.id
 				and sysRoleResource.resource_id = sysResource.id
@@ -135,7 +165,9 @@ com.baomidou.mybatisplus.generator.config.po.TableField@46f2785
             		
         		sysRole.name AS sysRoleName,
             		
-        		sysResource.${viewColumn.columnName} AS 
+        		sysResource.${viewColumn.columnName} AS ,
+            		
+        		sysRoleResource.delFlag AS sysRoleResourceDelFlag
     	FROM
     		sys_role_resource sysRoleResource
         	,sys_role	sysRole

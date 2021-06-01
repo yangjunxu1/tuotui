@@ -17,6 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.zycw.common.util.Page;
 import com.zycw.tuotui.readdao.sysuser.SysUserMapper;
 import com.zycw.tuotui.entity.sysuser.SysUser;
+import com.zycw.tuotui.iface.auchatfriends.IAuChatFriendsService;
 
 import java.lang.String;
 import java.lang.Integer;
@@ -32,15 +33,19 @@ import java.util.HashMap;
 @Service("ISysUserService")
 public class ISysUserService extends BaseService<SysUserMapper,SysUser> {
 
+   
+    @Autowired
+    private IAuChatFriendsService iAuChatFriendsService;
    /**
     * 根据主键物理删除
     * @param String 主键ID
     * @return 返回结果
 	* @author junxu.yang
-	* @since 2021-05-30
+	* @since 2021-06-01
     */
 	public void deleteById(String sysUserId){
 		mapper.deleteById(sysUserId);
+     	iAuChatFriendsService.deleteByauChatFriendsFuserId(sysUserId);
 	}
 	
    /**
@@ -48,12 +53,24 @@ public class ISysUserService extends BaseService<SysUserMapper,SysUser> {
     * @param String 主键ID
     * @return 返回结果
 	* @author junxu.yang
-	* @since 2021-05-30
+	* @since 2021-06-01
     */
 	public void deleteByIdLogic(String sysUserId){
 		mapper.deleteByIdLogic(sysUserId);
 	}
 	
+	
+   /**
+    * 根据外键sysUserRoleId删除
+    * @param String 外键ID
+    * @return 返回结果
+	* @author junxu.yang
+	* @since 2021-06-01
+    */
+	public void deleteBysysUserRoleId(String id){
+		mapper.deleteBysysUserRoleId(id);
+	}
+
 	
 	public void updateObjById(SysUser sysUser){
 		mapper.updateObjById(sysUser);
@@ -66,7 +83,7 @@ public class ISysUserService extends BaseService<SysUserMapper,SysUser> {
     * @param SysUser 对象
     * @return 返回结果 void
 	* @author junxu.yang
-	* @since 2021-05-30
+	* @since 2021-06-01
     */
 	public void insertObj(SysUser sysUser){
 		mapper.insertObj(sysUser);
@@ -78,7 +95,7 @@ public class ISysUserService extends BaseService<SysUserMapper,SysUser> {
     * @param List<SysUser> 对象
     * @return 返回结果
 	* @author junxu.yang
-	* @since 2021-05-30
+	* @since 2021-06-01
     */
 	public void batchInsertObj(List<SysUser> list){
 		mapper.batchInsertObj(list);
@@ -89,7 +106,7 @@ public class ISysUserService extends BaseService<SysUserMapper,SysUser> {
     * @param String 主键ID
     * @return 返回结果
 	* @author junxu.yang
-	* @since 2021-05-30
+	* @since 2021-06-01
     */
 	public HashMap<String,Object> selectObjById(String sysUserId){
 		return mapper.selectObjById(sysUserId);
@@ -101,7 +118,7 @@ public class ISysUserService extends BaseService<SysUserMapper,SysUser> {
     * @param HashMap<String,Object> 对象
     * @return 返回结果
 	* @author junxu.yang
-	* @since 2021-05-30
+	* @since 2021-06-01
     */
 	public Integer countNum(HashMap<String,Object> params) {
 		return mapper.countNum(params);
@@ -113,7 +130,7 @@ public class ISysUserService extends BaseService<SysUserMapper,SysUser> {
 	* @param HashMap<String,Object> 对象
 	* @return 返回结果 PageInfo
 	* @author junxu.yang
-	* @since 2021-05-30
+	* @since 2021-06-01
 	 */
 	public PageInfo<SysUser> pageList(HashMap<String,Object> params) throws Exception {
 		Integer pageNum = (Integer)params.get("pageNum");

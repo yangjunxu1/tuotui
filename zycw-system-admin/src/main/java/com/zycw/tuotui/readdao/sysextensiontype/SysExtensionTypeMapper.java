@@ -17,13 +17,14 @@ import java.util.HashMap;
  * </p>
  *
  * @author junxu.yang
- * @since 2021-05-30
+ * @since 2021-06-01
  */
 public interface SysExtensionTypeMapper extends Mapper<SysExtensionType> {
 	
 	public void deleteById(@Param("sysExtensionTypeId") String sysExtensionTypeId);
 	
 	public void deleteByIdLogic(@Param("sysExtensionTypeId") String sysExtensionTypeId);
+	
 	
 	
 	public void updateObjById(SysExtensionType sysExtensionType);

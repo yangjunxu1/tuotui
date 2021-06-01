@@ -17,13 +17,18 @@ import java.util.HashMap;
  * </p>
  *
  * @author junxu.yang
- * @since 2021-05-30
+ * @since 2021-06-01
  */
 public interface SysAreaMapper extends Mapper<SysArea> {
 	
 	public void deleteById(@Param("sysAreaId") String sysAreaId);
 	
 	public void deleteByIdLogic(@Param("sysAreaId") String sysAreaId);
+	
+	public void deleteBysysAreaCityId(@Param("id") String id);
+    
+	public void deleteBysysAreaProvinceId(@Param("id") String id);
+    
 	
 	
 	public void updateObjById(SysArea sysArea);

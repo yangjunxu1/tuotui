@@ -17,6 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.zycw.common.util.Page;
 import com.zycw.tuotui.readdao.sysresource.SysResourceMapper;
 import com.zycw.tuotui.entity.sysresource.SysResource;
+import com.zycw.tuotui.iface.sysroleresource.ISysRoleResourceService;
 
 import java.lang.String;
 import java.lang.Integer;
@@ -32,15 +33,19 @@ import java.util.HashMap;
 @Service("ISysResourceService")
 public class ISysResourceService extends BaseService<SysResourceMapper,SysResource> {
 
+   
+    @Autowired
+    private ISysRoleResourceService iSysRoleResourceService;
    /**
     * 根据主键物理删除
     * @param String 主键ID
     * @return 返回结果
 	* @author junxu.yang
-	* @since 2021-05-30
+	* @since 2021-06-01
     */
 	public void deleteById(String sysResourceId){
 		mapper.deleteById(sysResourceId);
+     	iSysRoleResourceService.deleteBysysRoleResourceResourceId(sysResourceId);
 	}
 	
    /**
@@ -48,12 +53,13 @@ public class ISysResourceService extends BaseService<SysResourceMapper,SysResour
     * @param String 主键ID
     * @return 返回结果
 	* @author junxu.yang
-	* @since 2021-05-30
+	* @since 2021-06-01
     */
 	public void deleteByIdLogic(String sysResourceId){
 		mapper.deleteByIdLogic(sysResourceId);
 	}
 	
+
 	
 	public void updateObjById(SysResource sysResource){
 		mapper.updateObjById(sysResource);
@@ -66,7 +72,7 @@ public class ISysResourceService extends BaseService<SysResourceMapper,SysResour
     * @param SysResource 对象
     * @return 返回结果 void
 	* @author junxu.yang
-	* @since 2021-05-30
+	* @since 2021-06-01
     */
 	public void insertObj(SysResource sysResource){
 		mapper.insertObj(sysResource);
@@ -78,7 +84,7 @@ public class ISysResourceService extends BaseService<SysResourceMapper,SysResour
     * @param List<SysResource> 对象
     * @return 返回结果
 	* @author junxu.yang
-	* @since 2021-05-30
+	* @since 2021-06-01
     */
 	public void batchInsertObj(List<SysResource> list){
 		mapper.batchInsertObj(list);
@@ -89,7 +95,7 @@ public class ISysResourceService extends BaseService<SysResourceMapper,SysResour
     * @param String 主键ID
     * @return 返回结果
 	* @author junxu.yang
-	* @since 2021-05-30
+	* @since 2021-06-01
     */
 	public HashMap<String,Object> selectObjById(String sysResourceId){
 		return mapper.selectObjById(sysResourceId);
@@ -101,7 +107,7 @@ public class ISysResourceService extends BaseService<SysResourceMapper,SysResour
     * @param HashMap<String,Object> 对象
     * @return 返回结果
 	* @author junxu.yang
-	* @since 2021-05-30
+	* @since 2021-06-01
     */
 	public Integer countNum(HashMap<String,Object> params) {
 		return mapper.countNum(params);
@@ -113,7 +119,7 @@ public class ISysResourceService extends BaseService<SysResourceMapper,SysResour
 	* @param HashMap<String,Object> 对象
 	* @return 返回结果 PageInfo
 	* @author junxu.yang
-	* @since 2021-05-30
+	* @since 2021-06-01
 	 */
 	public PageInfo<SysResource> pageList(HashMap<String,Object> params) throws Exception {
 		Integer pageNum = (Integer)params.get("pageNum");

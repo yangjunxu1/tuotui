@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.annotation.IdType;
 import java.util.Date;
 import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableField;
 import java.io.Serializable;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -21,7 +22,7 @@ import lombok.experimental.Accessors;
  * </p>
  *
  * @author junxu.yang
- * @since 2021-05-30
+ * @since 2021-06-01
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
@@ -49,6 +50,10 @@ public class AuChatFriends implements Serializable {
     @ApiModelProperty(name="auChatFriendsAddtime",value = "i添加时间")
     	@Column(name = "addtime")
 	private Date auChatFriendsAddtime;
+
+    @ApiModelProperty(name="auChatFriendsDelFlag",value = "逻辑删除:0-未删除,1-已删除")
+        	@Column(name = "delFlag")
+	private Integer auChatFriendsDelFlag;
 
 
 }

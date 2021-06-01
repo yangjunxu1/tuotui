@@ -32,12 +32,13 @@ import java.util.HashMap;
 @Service("ISysAdvertService")
 public class ISysAdvertService extends BaseService<SysAdvertMapper,SysAdvert> {
 
+   
    /**
     * 根据主键物理删除
     * @param String 主键ID
     * @return 返回结果
 	* @author junxu.yang
-	* @since 2021-05-30
+	* @since 2021-06-01
     */
 	public void deleteById(String sysAdvertId){
 		mapper.deleteById(sysAdvertId);
@@ -48,12 +49,35 @@ public class ISysAdvertService extends BaseService<SysAdvertMapper,SysAdvert> {
     * @param String 主键ID
     * @return 返回结果
 	* @author junxu.yang
-	* @since 2021-05-30
+	* @since 2021-06-01
     */
 	public void deleteByIdLogic(String sysAdvertId){
 		mapper.deleteByIdLogic(sysAdvertId);
 	}
 	
+	
+   /**
+    * 根据外键sysAdvertPostitionId删除
+    * @param String 外键ID
+    * @return 返回结果
+	* @author junxu.yang
+	* @since 2021-06-01
+    */
+	public void deleteBysysAdvertPostitionId(String id){
+		mapper.deleteBysysAdvertPostitionId(id);
+	}
+	
+   /**
+    * 根据外键sysAdvertTypeId删除
+    * @param String 外键ID
+    * @return 返回结果
+	* @author junxu.yang
+	* @since 2021-06-01
+    */
+	public void deleteBysysAdvertTypeId(String id){
+		mapper.deleteBysysAdvertTypeId(id);
+	}
+
 	
 	public void updateObjById(SysAdvert sysAdvert){
 		mapper.updateObjById(sysAdvert);
@@ -66,7 +90,7 @@ public class ISysAdvertService extends BaseService<SysAdvertMapper,SysAdvert> {
     * @param SysAdvert 对象
     * @return 返回结果 void
 	* @author junxu.yang
-	* @since 2021-05-30
+	* @since 2021-06-01
     */
 	public void insertObj(SysAdvert sysAdvert){
 		mapper.insertObj(sysAdvert);
@@ -78,7 +102,7 @@ public class ISysAdvertService extends BaseService<SysAdvertMapper,SysAdvert> {
     * @param List<SysAdvert> 对象
     * @return 返回结果
 	* @author junxu.yang
-	* @since 2021-05-30
+	* @since 2021-06-01
     */
 	public void batchInsertObj(List<SysAdvert> list){
 		mapper.batchInsertObj(list);
@@ -89,7 +113,7 @@ public class ISysAdvertService extends BaseService<SysAdvertMapper,SysAdvert> {
     * @param String 主键ID
     * @return 返回结果
 	* @author junxu.yang
-	* @since 2021-05-30
+	* @since 2021-06-01
     */
 	public HashMap<String,Object> selectObjById(String sysAdvertId){
 		return mapper.selectObjById(sysAdvertId);
@@ -101,7 +125,7 @@ public class ISysAdvertService extends BaseService<SysAdvertMapper,SysAdvert> {
     * @param HashMap<String,Object> 对象
     * @return 返回结果
 	* @author junxu.yang
-	* @since 2021-05-30
+	* @since 2021-06-01
     */
 	public Integer countNum(HashMap<String,Object> params) {
 		return mapper.countNum(params);
@@ -113,7 +137,7 @@ public class ISysAdvertService extends BaseService<SysAdvertMapper,SysAdvert> {
 	* @param HashMap<String,Object> 对象
 	* @return 返回结果 PageInfo
 	* @author junxu.yang
-	* @since 2021-05-30
+	* @since 2021-06-01
 	 */
 	public PageInfo<SysAdvert> pageList(HashMap<String,Object> params) throws Exception {
 		Integer pageNum = (Integer)params.get("pageNum");
@@ -126,6 +150,20 @@ public class ISysAdvertService extends BaseService<SysAdvertMapper,SysAdvert> {
 		pagelist.setPageNum(pageNum);
 		return new PageInfo(list);
 
+	}
+   
+	/**
+	 * <p>
+	 * getAdvertBypositonAndType 根据广告位置和类型查询广告
+	 * </p>
+	 *
+	 * @author junxu.yang
+	 * @since 2021-06-01
+	 */
+	
+	public List<HashMap> getAdvertBypositonAndType(HashMap<String,Object> param){
+		List<HashMap> result = mapper.getAdvertBypositonAndType(param);
+		return result;
 	}
 	
 	
