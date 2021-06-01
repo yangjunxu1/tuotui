@@ -196,6 +196,33 @@ com.baomidou.mybatisplus.generator.config.po.TableField@3df56ef6
 				and fuser_id =#(param.auChatFriendsFuserId) 
 			</if>
     </select>
-    
-    
+
+	<select id="sysUserCountNum" parameterType="java.util.Map" resultType="Integer">
+		SELECT
+		COUNT(1)
+		FROM
+		sys_user
+		WHERE 1=1 and
+		id NOT IN ( SELECT fuser_id FROM au_chat_friends WHERE 1=1
+		<if test="param.auChatFriendsUserId != null and param.auChatFriendsUserId != '' ">
+			and user_id =#{param.auChatFriendsUserId}
+		</if>
+		)
+	</select>
+
+	<select id="sysUserPageList" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT
+		sysUser.id AS sysUserId,
+		sysUser.nike AS sysUserNike,
+		sysUser.uimg AS sysUserUimg
+		FROM
+		sys_user sysUser
+		WHERE 1=1 AND
+		id NOT IN
+		( SELECT fuser_id FROM au_chat_friends WHERE 1=1
+		<if test="param.auChatFriendsUserId != null and param.auChatFriendsUserId != '' ">
+			and user_id =#{param.auChatFriendsUserId}
+		</if>
+		)
+	</select>
 </mapper>

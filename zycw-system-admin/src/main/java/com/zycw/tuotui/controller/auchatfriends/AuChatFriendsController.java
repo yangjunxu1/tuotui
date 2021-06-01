@@ -33,7 +33,7 @@ import java.util.HashMap;
 
 
 @ApiOperation(value = "")
-@Api(value = "接口", tags = { "接口" })
+@Api(value = "即时通讯接口", tags = { "即时通讯接口" })
 @Slf4j
 @RestController
 @RequestMapping("/auChatFriends")
@@ -168,9 +168,39 @@ public class AuChatFriendsController extends BaseController <IAuChatFriendsServi
 		List<AuChatFriends> result = baseService.allList(param);
 		 return resultBeanFactory.getBean(result);
 	}
-	
-	     
-	
 
+	@ApiOperation(value = "点击查询分页查询")
+	@ApiImplicitParams({
+			@ApiImplicitParam(name = "auChatFriendsUserId", value = "用户", required = false, dataType = "${dataType}"),
+			@ApiImplicitParam(name = "pageSize", value = "每页条数", required = false, dataType = "int"),
+			@ApiImplicitParam(name = "pageNum", value = "当前页数", required = false, dataType = "int")})
+	@RequestMapping(value = "/searchSysUserPageList", method = RequestMethod.POST)
+	public ResultBeanFactory.ResultBean<PageInfo<AuChatFriends>> searchSysUserPageList(@RequestBody HashMap<String,Object> params) {
+		try {
+			logger.info("auChatFriends.pageList页面请求参数："+params);
+			int count = baseService.sysUserCountNum(params);
+			PageInfo<AuChatFriends> result=baseService.sysUserPageList(params);
+			result.setTotal(count);
+			return resultBeanFactory.getBean(result);
+		} catch (Exception e) {
+			logger.error("AuChatFriendsController.pageList Exception:{}", e);
+			return resultBeanFactory.getException(e);
+		}
+	}
+
+	@ApiOperation(value = "添加好友")
+	@ApiImplicitParam(name = "addAuChatFriends", value = "添加好友", required = true, dataType = "AuChatFriends")
+	@RequestMapping(value = "/addAuChatFriends", method = RequestMethod.POST)
+	public ResultBean<String> addAuChatFriends(@RequestBody AuChatFriends auChatFriends) {
+		try {
+			logger.info("auChatFriends.insertObj页面请求参数："+auChatFriends);
+			auChatFriends.setAuChatFriendsAddtime(new Date());
+			baseService.insert(auChatFriends);
+			return resultBeanFactory.getBean("插入记录成功");
+		} catch (Exception e) {
+			logger.error("插入记录失败:{}", e);
+			return resultBeanFactory.getException(e);
+		}
+	}
 }
 
