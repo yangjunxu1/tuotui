@@ -53,11 +53,11 @@
  
  	<update id="updateObjById"  parameterType="com.zycw.tuotui.entity.auaccountwithdrawal.AuAccountWithdrawal">
         UPDATE au_account_withdrawal SET 
-		            user_id=auAccountWithdrawalUserId,
-		            task_id=auAccountWithdrawalTaskId,
-		            withdrawal_time=auAccountWithdrawalWithdrawalTime,
-		            withdrawal_status=auAccountWithdrawalWithdrawalStatus,
-		            withdrawal_path=auAccountWithdrawalWithdrawalPath,
+		            user_id=#{auAccountWithdrawalUserId},
+		            task_id=#{auAccountWithdrawalTaskId},
+		            withdrawal_time=#{auAccountWithdrawalWithdrawalTime},
+		            withdrawal_status=#{auAccountWithdrawalWithdrawalStatus},
+		            withdrawal_path=#{auAccountWithdrawalWithdrawalPath},
 		            deFlag=#{auAccountWithdrawalDeFlag}
         WHERE 
         id=#{auAccountWithdrawalId}
@@ -106,27 +106,27 @@
     
     <select id="selectObjById" parameterType="java.util.Map" resultType="java.util.HashMap">
     	SELECT  
-com.baomidou.mybatisplus.generator.config.po.TableField@1131d585
+com.baomidou.mybatisplus.generator.config.po.TableField@24014c06
         		auAccountWithdrawal.id AS auAccountWithdrawalId,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@2375140f
+com.baomidou.mybatisplus.generator.config.po.TableField@ebac942
         		auAccountWithdrawal.user_id AS auAccountWithdrawalUserId,
         		auUser.mobile AS auUserMobile,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@6a896776
+com.baomidou.mybatisplus.generator.config.po.TableField@625b81ce
         		auAccountWithdrawal.task_id AS auAccountWithdrawalTaskId,
         		auCustomTask.task_title AS auCustomTaskTaskTitle,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@67066541
+com.baomidou.mybatisplus.generator.config.po.TableField@42755b15
         		auAccountWithdrawal.withdrawal_time AS auAccountWithdrawalWithdrawalTime,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@1ddee74
+com.baomidou.mybatisplus.generator.config.po.TableField@78c2e125
         		auAccountWithdrawal.withdrawal_status AS auAccountWithdrawalWithdrawalStatus,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@30a8e48d
+com.baomidou.mybatisplus.generator.config.po.TableField@620cee4
         		auAccountWithdrawal.withdrawal_path AS auAccountWithdrawalWithdrawalPath,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@113b9739
+com.baomidou.mybatisplus.generator.config.po.TableField@384b7a1f
         		auAccountWithdrawal.deFlag AS auAccountWithdrawalDeFlag
 		 FROM 
 		 	au_account_withdrawal auAccountWithdrawal

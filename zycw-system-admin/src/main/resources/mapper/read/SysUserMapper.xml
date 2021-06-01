@@ -52,15 +52,15 @@
  
  	<update id="updateObjById"  parameterType="com.zycw.tuotui.entity.sysuser.SysUser">
         UPDATE sys_user SET 
-		            username=sysUserUsername,
-		            password=sysUserPassword,
-		            nike=sysUserNike,
-		            uimg=sysUserUimg,
-		            role_id=sysUserRoleId,
-		            true_name=sysUserTrueName,
-		            mobile=sysUserMobile,
-		            created_time=sysUserCreatedTime,
-		            updated_time=sysUserUpdatedTime,
+		            username=#{sysUserUsername},
+		            password=#{sysUserPassword},
+		            nike=#{sysUserNike},
+		            uimg=#{sysUserUimg},
+		            role_id=#{sysUserRoleId},
+		            true_name=#{sysUserTrueName},
+		            mobile=#{sysUserMobile},
+		            created_time=#{sysUserCreatedTime},
+		            updated_time=#{sysUserUpdatedTime},
 		            delFlag=#{sysUserDelFlag}
         WHERE 
         id=#{sysUserId}
@@ -125,38 +125,38 @@
     
     <select id="selectObjById" parameterType="java.util.Map" resultType="java.util.HashMap">
     	SELECT  
-com.baomidou.mybatisplus.generator.config.po.TableField@2b41f2b1
+com.baomidou.mybatisplus.generator.config.po.TableField@5cee4adf
         		sysUser.id AS sysUserId,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@580dff21
+com.baomidou.mybatisplus.generator.config.po.TableField@350a030f
         		sysUser.username AS sysUserUsername,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@1c6b0fdb
+com.baomidou.mybatisplus.generator.config.po.TableField@4c07d7a6
         		sysUser.password AS sysUserPassword,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@547efeb8
+com.baomidou.mybatisplus.generator.config.po.TableField@1ad5753c
         		sysUser.nike AS sysUserNike,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@6358becb
+com.baomidou.mybatisplus.generator.config.po.TableField@337beb8d
         		sysUser.uimg AS sysUserUimg,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@541bb176
+com.baomidou.mybatisplus.generator.config.po.TableField@560c9496
         		sysUser.role_id AS sysUserRoleId,
         		sysRole.name AS sysRoleName,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@15c12283
+com.baomidou.mybatisplus.generator.config.po.TableField@1a81eff8
         		sysUser.true_name AS sysUserTrueName,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@2ad6cb55
+com.baomidou.mybatisplus.generator.config.po.TableField@12a134bc
         		sysUser.mobile AS sysUserMobile,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@713f735d
+com.baomidou.mybatisplus.generator.config.po.TableField@7ea9b1f7
         		sysUser.created_time AS sysUserCreatedTime,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@77e7f6d4
+com.baomidou.mybatisplus.generator.config.po.TableField@21e2ad5d
         		sysUser.updated_time AS sysUserUpdatedTime,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@6b2e0791
+com.baomidou.mybatisplus.generator.config.po.TableField@348978b6
         		sysUser.delFlag AS sysUserDelFlag
 		 FROM 
 		 	sys_user sysUser

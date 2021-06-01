@@ -57,20 +57,20 @@
  
  	<update id="updateObjById"  parameterType="com.zycw.tuotui.entity.aucompanyapp.AuCompanyApp">
         UPDATE au_company_app SET 
-		            company_id=auCompanyAppCompanyId,
-		            name=auCompanyAppName,
-		            remark=auCompanyAppRemark,
-		            icon_path=auCompanyAppIconPath,
-		            app_size=auCompanyAppAppSize,
-		            down_url=auCompanyAppDownUrl,
-		            verify_status=auCompanyAppVerifyStatus,
-		            veruft_refuse=auCompanyAppVeruftRefuse,
-		            verify_time=auCompanyAppVerifyTime,
-		            review_status=auCompanyAppReviewStatus,
-		            review_refuse=auCompanyAppReviewRefuse,
-		            review_time=auCompanyAppReviewTime,
-		            created_time=auCompanyAppCreatedTime,
-		            updated_time=auCompanyAppUpdatedTime,
+		            company_id=#{auCompanyAppCompanyId},
+		            name=#{auCompanyAppName},
+		            remark=#{auCompanyAppRemark},
+		            icon_path=#{auCompanyAppIconPath},
+		            app_size=#{auCompanyAppAppSize},
+		            down_url=#{auCompanyAppDownUrl},
+		            verify_status=#{auCompanyAppVerifyStatus},
+		            veruft_refuse=#{auCompanyAppVeruftRefuse},
+		            verify_time=#{auCompanyAppVerifyTime},
+		            review_status=#{auCompanyAppReviewStatus},
+		            review_refuse=#{auCompanyAppReviewRefuse},
+		            review_time=#{auCompanyAppReviewTime},
+		            created_time=#{auCompanyAppCreatedTime},
+		            updated_time=#{auCompanyAppUpdatedTime},
 		            delFlag=#{auCompanyAppDelFlag}
         WHERE 
         id=#{auCompanyAppId}
@@ -155,53 +155,53 @@
     
     <select id="selectObjById" parameterType="java.util.Map" resultType="java.util.HashMap">
     	SELECT  
-com.baomidou.mybatisplus.generator.config.po.TableField@1b2e3892
+com.baomidou.mybatisplus.generator.config.po.TableField@24855e81
         		auCompanyApp.id AS auCompanyAppId,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@5ac7833d
+com.baomidou.mybatisplus.generator.config.po.TableField@706c8116
         		auCompanyApp.company_id AS auCompanyAppCompanyId,
         		auCompany.name AS auCompanyAppName,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@305931d2
+com.baomidou.mybatisplus.generator.config.po.TableField@3434b0fb
         		auCompanyApp.name AS auCompanyAppName,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@dc15d50
+com.baomidou.mybatisplus.generator.config.po.TableField@1013d4fe
         		auCompanyApp.remark AS auCompanyAppRemark,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@645dd006
+com.baomidou.mybatisplus.generator.config.po.TableField@20b1285e
         		auCompanyApp.icon_path AS auCompanyAppIconPath,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@a52c4d2
+com.baomidou.mybatisplus.generator.config.po.TableField@4f73b6a1
         		auCompanyApp.app_size AS auCompanyAppAppSize,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@73fca3eb
+com.baomidou.mybatisplus.generator.config.po.TableField@5ed164dc
         		auCompanyApp.down_url AS auCompanyAppDownUrl,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@74d04b19
+com.baomidou.mybatisplus.generator.config.po.TableField@50ebffdc
         		auCompanyApp.verify_status AS auCompanyAppVerifyStatus,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@7e076865
+com.baomidou.mybatisplus.generator.config.po.TableField@79b1ce47
         		auCompanyApp.veruft_refuse AS auCompanyAppVeruftRefuse,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@626f5723
+com.baomidou.mybatisplus.generator.config.po.TableField@2ba5b96e
         		auCompanyApp.verify_time AS auCompanyAppVerifyTime,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@749a537e
+com.baomidou.mybatisplus.generator.config.po.TableField@7e87df42
         		auCompanyApp.review_status AS auCompanyAppReviewStatus,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@2644677
+com.baomidou.mybatisplus.generator.config.po.TableField@711dda51
         		auCompanyApp.review_refuse AS auCompanyAppReviewRefuse,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@47e5521e
+com.baomidou.mybatisplus.generator.config.po.TableField@629f1c3
         		auCompanyApp.review_time AS auCompanyAppReviewTime,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@5fabc38e
+com.baomidou.mybatisplus.generator.config.po.TableField@c156a1
         		auCompanyApp.created_time AS auCompanyAppCreatedTime,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@798c7aa6
+com.baomidou.mybatisplus.generator.config.po.TableField@40fcf434
         		auCompanyApp.updated_time AS auCompanyAppUpdatedTime,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@597bcc1e
+com.baomidou.mybatisplus.generator.config.po.TableField@5f2c7128
         		auCompanyApp.delFlag AS auCompanyAppDelFlag
 		 FROM 
 		 	au_company_app auCompanyApp

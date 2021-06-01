@@ -40,8 +40,8 @@
  
  	<update id="updateObjById"  parameterType="com.zycw.tuotui.entity.sysadverttype.SysAdvertType">
         UPDATE sys_advert_type SET 
-		            type_name=sysAdvertTypeTypeName,
-		            type_code=sysAdvertTypeTypeCode,
+		            type_name=#{sysAdvertTypeTypeName},
+		            type_code=#{sysAdvertTypeTypeCode},
 		            delFlag=#{sysAdvertTypeDelFlag}
         WHERE 
         id=#{sysAdvertTypeId}
@@ -78,16 +78,16 @@
     
     <select id="selectObjById" parameterType="java.util.Map" resultType="java.util.HashMap">
     	SELECT  
-com.baomidou.mybatisplus.generator.config.po.TableField@3c0599e4
+com.baomidou.mybatisplus.generator.config.po.TableField@59a5b34a
         		sysAdvertType.id AS sysAdvertTypeId,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@6a06510d
+com.baomidou.mybatisplus.generator.config.po.TableField@45be1312
         		sysAdvertType.type_name AS sysAdvertTypeTypeName,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@c1ab8e0
+com.baomidou.mybatisplus.generator.config.po.TableField@187f40a7
         		sysAdvertType.type_code AS sysAdvertTypeTypeCode,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@60317e02
+com.baomidou.mybatisplus.generator.config.po.TableField@2b72360b
         		sysAdvertType.delFlag AS sysAdvertTypeDelFlag
 		 FROM 
 		 	sys_advert_type sysAdvertType

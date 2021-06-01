@@ -54,6 +54,9 @@ public interface AuUserMapper extends Mapper<AuUser> {
 	
 	
 	
+	public Integer getUserByMobileAndUUiDCountNum(@Param("param") HashMap<String,Object> param);
+	public List<AuUser> getUserByMobileAndUUiD(@Param("param") HashMap<String,Object> param);
+	
 	
 	
 }

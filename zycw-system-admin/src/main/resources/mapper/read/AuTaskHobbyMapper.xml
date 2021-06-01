@@ -50,8 +50,8 @@
  
  	<update id="updateObjById"  parameterType="com.zycw.tuotui.entity.autaskhobby.AuTaskHobby">
         UPDATE au_task_hobby SET 
-		            task_id=auTaskHobbyTaskId,
-		            hobby_id=auTaskHobbyHobbyId,
+		            task_id=#{auTaskHobbyTaskId},
+		            hobby_id=#{auTaskHobbyHobbyId},
 		            delFlag=#{auTaskHobbyDelFlag}
         WHERE 
         id=#{auTaskHobbyId}
@@ -88,27 +88,27 @@
     
     <select id="selectObjById" parameterType="java.util.Map" resultType="java.util.HashMap">
     	SELECT  
-com.baomidou.mybatisplus.generator.config.po.TableField@4d89d0b4
+com.baomidou.mybatisplus.generator.config.po.TableField@389c9b95
         		auTaskHobby.id AS auTaskHobbyId,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@49907330
+com.baomidou.mybatisplus.generator.config.po.TableField@2d3fcd29
         		auTaskHobby.task_id AS auTaskHobbyTaskId,
         		auCustomTask.task_title AS auCustomTaskTaskTitle,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@60ccfb5d
+com.baomidou.mybatisplus.generator.config.po.TableField@4ae73ef
         		auTaskHobby.hobby_id AS auTaskHobbyHobbyId,
         		sysHobby.hobby_title AS sysHobbyHobbyTitle,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@718cb970
+com.baomidou.mybatisplus.generator.config.po.TableField@3f4ac6e6
         		auTaskHobby.delFlag AS auTaskHobbyDelFlag
 		 FROM 
 		 	au_task_hobby auTaskHobby
-        	,au_custom_task	auCustomTask
         	,sys_hobby	sysHobby
+        	,au_custom_task	auCustomTask
     	WHERE 1=1
     	and auTaskHobby.delFlag = 0
-				and auTaskHobby.task_id = auCustomTask.id
 				and auTaskHobby.hobby_id = sysHobby.id
+				and auTaskHobby.task_id = auCustomTask.id
 		 and sysHobby.id=#{auTaskHobbyId}
     </select>
     
@@ -117,18 +117,18 @@ com.baomidou.mybatisplus.generator.config.po.TableField@718cb970
     		COUNT(1)
     	FROM
     		au_task_hobby auTaskHobby
-        	,au_custom_task	auCustomTask
         	,sys_hobby	sysHobby
+        	,au_custom_task	auCustomTask
     	WHERE 1=1
     	and auTaskHobby.delFlag = 0
     	
-				and auTaskHobby.task_id = auCustomTask.id
 				and auTaskHobby.hobby_id = sysHobby.id
-        	<if test="param.auTaskHobbyTaskId != null and param.auTaskHobbyTaskId != '' ">
-				and task_id =#(param.auTaskHobbyTaskId) 
-			</if>
+				and auTaskHobby.task_id = auCustomTask.id
         	<if test="param.auTaskHobbyHobbyId != null and param.auTaskHobbyHobbyId != '' ">
 				and hobby_id =#(param.auTaskHobbyHobbyId) 
+			</if>
+        	<if test="param.auTaskHobbyTaskId != null and param.auTaskHobbyTaskId != '' ">
+				and task_id =#(param.auTaskHobbyTaskId) 
 			</if>
     </select>
     <select id="pageList" parameterType="java.util.Map" resultType="java.util.Map">
@@ -142,18 +142,18 @@ com.baomidou.mybatisplus.generator.config.po.TableField@718cb970
         		auTaskHobby.delFlag AS auTaskHobbyDelFlag
     	FROM
     		au_task_hobby auTaskHobby
-        	,au_custom_task	auCustomTask
         	,sys_hobby	sysHobby
+        	,au_custom_task	auCustomTask
     	WHERE 1=1
     	and auTaskHobby.delFlag = 0
     	
-				and auTaskHobby.task_id = auCustomTask.id
 				and auTaskHobby.hobby_id = sysHobby.id
-        	<if test="param.auTaskHobbyTaskId != null and param.auTaskHobbyTaskId != '' ">
-				and task_id =#(param.auTaskHobbyTaskId) 
-			</if>
+				and auTaskHobby.task_id = auCustomTask.id
         	<if test="param.auTaskHobbyHobbyId != null and param.auTaskHobbyHobbyId != '' ">
 				and hobby_id =#(param.auTaskHobbyHobbyId) 
+			</if>
+        	<if test="param.auTaskHobbyTaskId != null and param.auTaskHobbyTaskId != '' ">
+				and task_id =#(param.auTaskHobbyTaskId) 
 			</if>
     		LIMIT #{param.pageStart},#{param.pageNum}
     </select>
@@ -170,17 +170,17 @@ com.baomidou.mybatisplus.generator.config.po.TableField@718cb970
         		auTaskHobby.delFlag AS auTaskHobbyDelFlag
     	FROM
     		au_task_hobby auTaskHobby
-        	,au_custom_task	auCustomTask
         	,sys_hobby	sysHobby
+        	,au_custom_task	auCustomTask
     	WHERE 1=1
     	
-				and auTaskHobby.task_id = auCustomTask.id
 				and auTaskHobby.hobby_id = sysHobby.id
-        	<if test="param.auTaskHobbyTaskId != null and param.auTaskHobbyTaskId != '' ">
-				and task_id =#(param.auTaskHobbyTaskId) 
-			</if>
+				and auTaskHobby.task_id = auCustomTask.id
         	<if test="param.auTaskHobbyHobbyId != null and param.auTaskHobbyHobbyId != '' ">
 				and hobby_id =#(param.auTaskHobbyHobbyId) 
+			</if>
+        	<if test="param.auTaskHobbyTaskId != null and param.auTaskHobbyTaskId != '' ">
+				and task_id =#(param.auTaskHobbyTaskId) 
 			</if>
     </select>
     

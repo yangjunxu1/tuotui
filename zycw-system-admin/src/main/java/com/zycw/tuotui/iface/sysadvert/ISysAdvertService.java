@@ -161,8 +161,8 @@ public class ISysAdvertService extends BaseService<SysAdvertMapper,SysAdvert> {
 	 * @since 2021-06-01
 	 */
 	
-	public List<HashMap> getAdvertBypositonAndType(HashMap<String,Object> param){
-		List<HashMap> result = mapper.getAdvertBypositonAndType(param);
+	public List<HashMap> getAdvertBypositonAndType( HashMap<String,Object> param){
+		List<HashMap> result = mapper.getAdvertBypositonAndType( param);
 		return result;
 	}
 	

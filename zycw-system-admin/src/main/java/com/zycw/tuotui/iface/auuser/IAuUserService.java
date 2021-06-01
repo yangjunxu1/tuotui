@@ -193,6 +193,20 @@ public class IAuUserService extends BaseService<AuUserMapper,AuUser> {
 		return new PageInfo(list);
 
 	}
+   
+	/**
+	 * <p>
+	 * getUserByMobileAndUUiD 根据手机号或设备查询用户
+	 * </p>
+	 *
+	 * @author junxu.yang
+	 * @since 2021-06-01
+	 */
+	
+	public List<AuUser> getUserByMobileAndUUiD( HashMap<String,Object> param){
+		List<AuUser> result = mapper.getUserByMobileAndUUiD( param);
+		return result;
+	}
 	
 	
 	public List<AuUser> allList(HashMap<String,Object> param){

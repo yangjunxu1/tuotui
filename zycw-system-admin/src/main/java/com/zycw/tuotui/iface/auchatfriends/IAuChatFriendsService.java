@@ -156,37 +156,7 @@ public class IAuChatFriendsService extends BaseService<AuChatFriendsMapper,AuCha
 	public List<AuChatFriends> allList(HashMap<String,Object> param){
 		return mapper.allList(param);
 	}
-
-	/**
-	 * 获取总数
-	 * @param page 分页条件
-	 * @param HashMap<String,Object> 对象
-	 * @return 返回结果
-	 * @author junxu.yang
-	 * @since 2021-05-30
-	 */
-	public Integer sysUserCountNum(HashMap<String,Object> params) {
-		return mapper.sysUserCountNum(params);
-	}
-
-	/**
-	 * 分页查询
-	 * @param page 分页条件
-	 * @param HashMap<String,Object> 对象
-	 * @return 返回结果 PageInfo
-	 * @author junxu.yang
-	 * @since 2021-05-30
-	 */
-	public PageInfo<AuChatFriends> sysUserPageList(HashMap<String,Object> params) throws Exception {
-		Integer pageNum = (Integer)params.get("pageNum");
-		Integer pageSize = (Integer)params.get("pageSize");
-		Integer pageStart = (pageNum-1)* pageSize;
-		params.put("pageStart",pageStart);
-		List<AuChatFriends> list = mapper.sysUserPageList(params);
-		PageInfo pagelist = new PageInfo(list);
-		pagelist.setPageSize(pageSize);
-		pagelist.setPageNum(pageNum);
-		return new PageInfo(list);
-
-	}
+	
+	
+	
 }

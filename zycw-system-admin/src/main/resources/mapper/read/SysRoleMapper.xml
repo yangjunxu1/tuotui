@@ -39,7 +39,7 @@
  
  	<update id="updateObjById"  parameterType="com.zycw.tuotui.entity.sysrole.SysRole">
         UPDATE sys_role SET 
-		            name=sysRoleName,
+		            name=#{sysRoleName},
 		            delFlag=#{sysRoleDelFlag}
         WHERE 
         id=#{sysRoleId}
@@ -72,13 +72,13 @@
     
     <select id="selectObjById" parameterType="java.util.Map" resultType="java.util.HashMap">
     	SELECT  
-com.baomidou.mybatisplus.generator.config.po.TableField@39326c6d
+com.baomidou.mybatisplus.generator.config.po.TableField@14d144b0
         		sysRole.id AS sysRoleId,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@5a1b9515
+com.baomidou.mybatisplus.generator.config.po.TableField@3dfce035
         		sysRole.name AS sysRoleName,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@7b9553bb
+com.baomidou.mybatisplus.generator.config.po.TableField@390bd987
         		sysRole.delFlag AS sysRoleDelFlag
 		 FROM 
 		 	sys_role sysRole

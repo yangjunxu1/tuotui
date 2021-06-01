@@ -43,11 +43,11 @@
  
  	<update id="updateObjById"  parameterType="com.zycw.tuotui.entity.auchatmsg.AuChatMsg">
         UPDATE au_chat_msg SET 
-		            senduserid=auChatMsgSenduserid,
-		            reciveuserid=auChatMsgReciveuserid,
-		            sendtime=auChatMsgSendtime,
-		            sendtext=auChatMsgSendtext,
-		            msgtype=auChatMsgMsgtype,
+		            senduserid=#{auChatMsgSenduserid},
+		            reciveuserid=#{auChatMsgReciveuserid},
+		            sendtime=#{auChatMsgSendtime},
+		            sendtext=#{auChatMsgSendtext},
+		            msgtype=#{auChatMsgMsgtype},
 		            delFlag=#{auChatMsgDelFlag}
         WHERE 
         id=#{auChatMsgId}
@@ -96,25 +96,25 @@
     
     <select id="selectObjById" parameterType="java.util.Map" resultType="java.util.HashMap">
     	SELECT  
-com.baomidou.mybatisplus.generator.config.po.TableField@7e277f82
+com.baomidou.mybatisplus.generator.config.po.TableField@42efca02
         		auChatMsg.id AS auChatMsgId,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@37fd29a3
+com.baomidou.mybatisplus.generator.config.po.TableField@1e3c349e
         		auChatMsg.senduserid AS auChatMsgSenduserid,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@4f47faad
+com.baomidou.mybatisplus.generator.config.po.TableField@1ee4fbc3
         		auChatMsg.reciveuserid AS auChatMsgReciveuserid,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@73386cae
+com.baomidou.mybatisplus.generator.config.po.TableField@32372d60
         		auChatMsg.sendtime AS auChatMsgSendtime,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@1d2ee92b
+com.baomidou.mybatisplus.generator.config.po.TableField@dce228a
         		auChatMsg.sendtext AS auChatMsgSendtext,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@43406b1c
+com.baomidou.mybatisplus.generator.config.po.TableField@72297f69
         		auChatMsg.msgtype AS auChatMsgMsgtype,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@33a2734b
+com.baomidou.mybatisplus.generator.config.po.TableField@4b2aa80c
         		auChatMsg.delFlag AS auChatMsgDelFlag
 		 FROM 
 		 	au_chat_msg auChatMsg

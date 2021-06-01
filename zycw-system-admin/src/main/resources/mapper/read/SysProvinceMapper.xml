@@ -39,7 +39,7 @@
  
  	<update id="updateObjById"  parameterType="com.zycw.tuotui.entity.sysprovince.SysProvince">
         UPDATE sys_province SET 
-		            name=sysProvinceName,
+		            name=#{sysProvinceName},
 		            delFlag=#{sysProvinceDelFlag}
         WHERE 
         id=#{sysProvinceId}
@@ -72,13 +72,13 @@
     
     <select id="selectObjById" parameterType="java.util.Map" resultType="java.util.HashMap">
     	SELECT  
-com.baomidou.mybatisplus.generator.config.po.TableField@14815e10
+com.baomidou.mybatisplus.generator.config.po.TableField@48aaf318
         		sysProvince.id AS sysProvinceId,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@564c0745
+com.baomidou.mybatisplus.generator.config.po.TableField@41641c32
         		sysProvince.name AS sysProvinceName,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@7389b920
+com.baomidou.mybatisplus.generator.config.po.TableField@664a398c
         		sysProvince.delFlag AS sysProvinceDelFlag
 		 FROM 
 		 	sys_province sysProvince

@@ -41,9 +41,9 @@
  
  	<update id="updateObjById"  parameterType="com.zycw.tuotui.entity.systaskdepth.SysTaskDepth">
         UPDATE sys_task_depth SET 
-		            depth_title=sysTaskDepthDepthTitle,
-		            depth_price=sysTaskDepthDepthPrice,
-		            depth_content=sysTaskDepthDepthContent,
+		            depth_title=#{sysTaskDepthDepthTitle},
+		            depth_price=#{sysTaskDepthDepthPrice},
+		            depth_content=#{sysTaskDepthDepthContent},
 		            delFlag=#{sysTaskDepthDelFlag}
         WHERE 
         id=#{sysTaskDepthId}
@@ -84,19 +84,19 @@
     
     <select id="selectObjById" parameterType="java.util.Map" resultType="java.util.HashMap">
     	SELECT  
-com.baomidou.mybatisplus.generator.config.po.TableField@ef24a0a
+com.baomidou.mybatisplus.generator.config.po.TableField@c756460
         		sysTaskDepth.id AS sysTaskDepthId,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@f7bcfba
+com.baomidou.mybatisplus.generator.config.po.TableField@79117b3a
         		sysTaskDepth.depth_title AS sysTaskDepthDepthTitle,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@56eeee4a
+com.baomidou.mybatisplus.generator.config.po.TableField@1dadcc0a
         		sysTaskDepth.depth_price AS sysTaskDepthDepthPrice,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@248262e4
+com.baomidou.mybatisplus.generator.config.po.TableField@1bdca274
         		sysTaskDepth.depth_content AS sysTaskDepthDepthContent,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@722239cd
+com.baomidou.mybatisplus.generator.config.po.TableField@73f58f23
         		sysTaskDepth.delFlag AS sysTaskDepthDelFlag
 		 FROM 
 		 	sys_task_depth sysTaskDepth

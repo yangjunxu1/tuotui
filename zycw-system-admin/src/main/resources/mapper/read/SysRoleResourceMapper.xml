@@ -50,8 +50,8 @@
  
  	<update id="updateObjById"  parameterType="com.zycw.tuotui.entity.sysroleresource.SysRoleResource">
         UPDATE sys_role_resource SET 
-		            role_id=sysRoleResourceRoleId,
-		            resource_id=sysRoleResourceResourceId,
+		            role_id=#{sysRoleResourceRoleId},
+		            resource_id=#{sysRoleResourceResourceId},
 		            delFlag=#{sysRoleResourceDelFlag}
         WHERE 
         id=#{sysRoleResourceId}
@@ -88,18 +88,18 @@
     
     <select id="selectObjById" parameterType="java.util.Map" resultType="java.util.HashMap">
     	SELECT  
-com.baomidou.mybatisplus.generator.config.po.TableField@1c0c86b
+com.baomidou.mybatisplus.generator.config.po.TableField@38ad7389
         		sysRoleResource.id AS sysRoleResourceId,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@7fa2922f
+com.baomidou.mybatisplus.generator.config.po.TableField@aa0ec82
         		sysRoleResource.role_id AS sysRoleResourceRoleId,
         		sysRole.name AS sysRoleName,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@4dcd2ba0
+com.baomidou.mybatisplus.generator.config.po.TableField@3ac8b787
         		sysRoleResource.resource_id AS sysRoleResourceResourceId,
         		sysResource.${viewColumn.columnName} AS ,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@7806b2c3
+com.baomidou.mybatisplus.generator.config.po.TableField@34a23a64
         		sysRoleResource.delFlag AS sysRoleResourceDelFlag
 		 FROM 
 		 	sys_role_resource sysRoleResource

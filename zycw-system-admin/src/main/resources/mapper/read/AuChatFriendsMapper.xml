@@ -51,9 +51,9 @@
  
  	<update id="updateObjById"  parameterType="com.zycw.tuotui.entity.auchatfriends.AuChatFriends">
         UPDATE au_chat_friends SET 
-		            user_id=auChatFriendsUserId,
-		            fuser_id=auChatFriendsFuserId,
-		            addtime=auChatFriendsAddtime,
+		            user_id=#{auChatFriendsUserId},
+		            fuser_id=#{auChatFriendsFuserId},
+		            addtime=#{auChatFriendsAddtime},
 		            delFlag=#{auChatFriendsDelFlag}
         WHERE 
         id=#{auChatFriendsId}
@@ -94,30 +94,30 @@
     
     <select id="selectObjById" parameterType="java.util.Map" resultType="java.util.HashMap">
     	SELECT  
-com.baomidou.mybatisplus.generator.config.po.TableField@343fd8a3
+com.baomidou.mybatisplus.generator.config.po.TableField@73938ad5
         		auChatFriends.id AS auChatFriendsId,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@6a119629
+com.baomidou.mybatisplus.generator.config.po.TableField@2aa0d2c7
         		auChatFriends.user_id AS auChatFriendsUserId,
         		auUser.mobile AS auUserMobile,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@6b7d7a54
+com.baomidou.mybatisplus.generator.config.po.TableField@5c222521
         		auChatFriends.fuser_id AS auChatFriendsFuserId,
         		sysUser.username AS sysUserUsername,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@212e0f03
+com.baomidou.mybatisplus.generator.config.po.TableField@c8eba26
         		auChatFriends.addtime AS auChatFriendsAddtime,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@3df56ef6
+com.baomidou.mybatisplus.generator.config.po.TableField@56cb6fa6
         		auChatFriends.delFlag AS auChatFriendsDelFlag
 		 FROM 
 		 	au_chat_friends auChatFriends
-        	,au_user	auUser
         	,sys_user	sysUser
+        	,au_user	auUser
     	WHERE 1=1
     	and auChatFriends.delFlag = 0
-				and auChatFriends.user_id = auUser.id
 				and auChatFriends.fuser_id = sysUser.id
+				and auChatFriends.user_id = auUser.id
 		 and sysUser.id=#{auChatFriendsId}
     </select>
     
@@ -126,18 +126,18 @@ com.baomidou.mybatisplus.generator.config.po.TableField@3df56ef6
     		COUNT(1)
     	FROM
     		au_chat_friends auChatFriends
-        	,au_user	auUser
         	,sys_user	sysUser
+        	,au_user	auUser
     	WHERE 1=1
     	and auChatFriends.delFlag = 0
     	
-				and auChatFriends.user_id = auUser.id
 				and auChatFriends.fuser_id = sysUser.id
-        	<if test="param.auChatFriendsUserId != null and param.auChatFriendsUserId != '' ">
-				and user_id =#(param.auChatFriendsUserId) 
-			</if>
+				and auChatFriends.user_id = auUser.id
         	<if test="param.auChatFriendsFuserId != null and param.auChatFriendsFuserId != '' ">
 				and fuser_id =#(param.auChatFriendsFuserId) 
+			</if>
+        	<if test="param.auChatFriendsUserId != null and param.auChatFriendsUserId != '' ">
+				and user_id =#(param.auChatFriendsUserId) 
 			</if>
     </select>
     <select id="pageList" parameterType="java.util.Map" resultType="java.util.Map">
@@ -153,18 +153,18 @@ com.baomidou.mybatisplus.generator.config.po.TableField@3df56ef6
         		auChatFriends.delFlag AS auChatFriendsDelFlag
     	FROM
     		au_chat_friends auChatFriends
-        	,au_user	auUser
         	,sys_user	sysUser
+        	,au_user	auUser
     	WHERE 1=1
     	and auChatFriends.delFlag = 0
     	
-				and auChatFriends.user_id = auUser.id
 				and auChatFriends.fuser_id = sysUser.id
-        	<if test="param.auChatFriendsUserId != null and param.auChatFriendsUserId != '' ">
-				and user_id =#(param.auChatFriendsUserId) 
-			</if>
+				and auChatFriends.user_id = auUser.id
         	<if test="param.auChatFriendsFuserId != null and param.auChatFriendsFuserId != '' ">
 				and fuser_id =#(param.auChatFriendsFuserId) 
+			</if>
+        	<if test="param.auChatFriendsUserId != null and param.auChatFriendsUserId != '' ">
+				and user_id =#(param.auChatFriendsUserId) 
 			</if>
     		LIMIT #{param.pageStart},#{param.pageNum}
     </select>
@@ -183,46 +183,19 @@ com.baomidou.mybatisplus.generator.config.po.TableField@3df56ef6
         		auChatFriends.delFlag AS auChatFriendsDelFlag
     	FROM
     		au_chat_friends auChatFriends
-        	,au_user	auUser
         	,sys_user	sysUser
+        	,au_user	auUser
     	WHERE 1=1
     	
-				and auChatFriends.user_id = auUser.id
 				and auChatFriends.fuser_id = sysUser.id
-        	<if test="param.auChatFriendsUserId != null and param.auChatFriendsUserId != '' ">
-				and user_id =#(param.auChatFriendsUserId) 
-			</if>
+				and auChatFriends.user_id = auUser.id
         	<if test="param.auChatFriendsFuserId != null and param.auChatFriendsFuserId != '' ">
 				and fuser_id =#(param.auChatFriendsFuserId) 
 			</if>
+        	<if test="param.auChatFriendsUserId != null and param.auChatFriendsUserId != '' ">
+				and user_id =#(param.auChatFriendsUserId) 
+			</if>
     </select>
-
-	<select id="sysUserCountNum" parameterType="java.util.Map" resultType="Integer">
-		SELECT
-		COUNT(1)
-		FROM
-		sys_user
-		WHERE 1=1 and
-		id NOT IN ( SELECT fuser_id FROM au_chat_friends WHERE 1=1
-		<if test="param.auChatFriendsUserId != null and param.auChatFriendsUserId != '' ">
-			and user_id =#{param.auChatFriendsUserId}
-		</if>
-		)
-	</select>
-
-	<select id="sysUserPageList" parameterType="java.util.Map" resultType="java.util.Map">
-		SELECT
-		sysUser.id AS sysUserId,
-		sysUser.nike AS sysUserNike,
-		sysUser.uimg AS sysUserUimg
-		FROM
-		sys_user sysUser
-		WHERE 1=1 AND
-		id NOT IN
-		( SELECT fuser_id FROM au_chat_friends WHERE 1=1
-		<if test="param.auChatFriendsUserId != null and param.auChatFriendsUserId != '' ">
-			and user_id =#{param.auChatFriendsUserId}
-		</if>
-		)
-	</select>
+    
+    
 </mapper>

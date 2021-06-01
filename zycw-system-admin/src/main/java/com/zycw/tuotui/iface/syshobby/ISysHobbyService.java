@@ -40,6 +40,8 @@ public class ISysHobbyService extends BaseService<SysHobbyMapper,SysHobby> {
     private IAuTaskHobbyService iAuTaskHobbyService;
     @Autowired
     private IAuUserHobbyService iAuUserHobbyService;
+    @Autowired
+    private IAuUserHobbyService iAuUserHobbyService;
    /**
     * 根据主键物理删除
     * @param String 主键ID

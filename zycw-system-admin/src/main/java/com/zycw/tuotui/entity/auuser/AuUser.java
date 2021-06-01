@@ -43,6 +43,10 @@ public class AuUser implements Serializable {
     	@Column(name = "mobile")
 	private String auUserMobile;
 
+    @ApiModelProperty(name="auUserIsAgent",value = "lvs是否是代理:0-不是，1-是")
+    	@Column(name = "is_agent")
+	private Integer auUserIsAgent;
+
     @ApiModelProperty(name="auUserNick",value = "lv昵称")
     	@Column(name = "nick")
 	private String auUserNick;

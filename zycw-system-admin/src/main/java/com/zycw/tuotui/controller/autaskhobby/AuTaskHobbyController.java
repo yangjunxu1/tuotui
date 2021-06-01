@@ -107,8 +107,8 @@ public class AuTaskHobbyController extends BaseController <IAuTaskHobbyService, 
      
      @ApiOperation(value = "分页查询")
      @ApiImplicitParams({
-    	@ApiImplicitParam(name = "auTaskHobbyTaskId", value = "任务id", required = false, dataType = "${dataType}"),
     	@ApiImplicitParam(name = "auTaskHobbyHobbyId", value = "任务id", required = false, dataType = "${dataType}"),
+    	@ApiImplicitParam(name = "auTaskHobbyTaskId", value = "任务id", required = false, dataType = "${dataType}"),
 		@ApiImplicitParam(name = "pageSize", value = "每页条数", required = false, dataType = "int"),
 		@ApiImplicitParam(name = "pageNum", value = "当前页数", required = false, dataType = "int"),
 
@@ -150,8 +150,8 @@ public class AuTaskHobbyController extends BaseController <IAuTaskHobbyService, 
 	
      @ApiOperation(value = "allList")
      @ApiImplicitParams({
-    	@ApiImplicitParam(name = "auTaskHobbyTaskId", value = "任务id", required = false, dataType = "String"),
     	@ApiImplicitParam(name = "auTaskHobbyHobbyId", value = "任务id", required = false, dataType = "String"),
+    	@ApiImplicitParam(name = "auTaskHobbyTaskId", value = "任务id", required = false, dataType = "String"),
     	@ApiImplicitParam(name = "auTaskHobbyId", value = "return-id", required = false, dataType = "String"),
     	@ApiImplicitParam(name = "auCustomTaskTaskTitle", value = "return-lvM任务标题", required = false, dataType = "String"),
     	@ApiImplicitParam(name = "sysHobbyHobbyTitle", value = "return-lvM爱好", required = false, dataType = "String"),

@@ -41,9 +41,9 @@
  
  	<update id="updateObjById"  parameterType="com.zycw.tuotui.entity.systasktype.SysTaskType">
         UPDATE sys_task_type SET 
-		            type_title=sysTaskTypeTypeTitle,
-		            type_price=sysTaskTypeTypePrice,
-		            type_content=sysTaskTypeTypeContent,
+		            type_title=#{sysTaskTypeTypeTitle},
+		            type_price=#{sysTaskTypeTypePrice},
+		            type_content=#{sysTaskTypeTypeContent},
 		            delFlag=#{sysTaskTypeDelFlag}
         WHERE 
         id=#{sysTaskTypeId}
@@ -84,19 +84,19 @@
     
     <select id="selectObjById" parameterType="java.util.Map" resultType="java.util.HashMap">
     	SELECT  
-com.baomidou.mybatisplus.generator.config.po.TableField@7d87a1cf
+com.baomidou.mybatisplus.generator.config.po.TableField@59eec826
         		sysTaskType.id AS sysTaskTypeId,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@33fe4c7
+com.baomidou.mybatisplus.generator.config.po.TableField@4dae57d5
         		sysTaskType.type_title AS sysTaskTypeTypeTitle,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@17c1c659
+com.baomidou.mybatisplus.generator.config.po.TableField@144e6930
         		sysTaskType.type_price AS sysTaskTypeTypePrice,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@618538e4
+com.baomidou.mybatisplus.generator.config.po.TableField@bd9806f
         		sysTaskType.type_content AS sysTaskTypeTypeContent,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@d15d57
+com.baomidou.mybatisplus.generator.config.po.TableField@333b8ccc
         		sysTaskType.delFlag AS sysTaskTypeDelFlag
 		 FROM 
 		 	sys_task_type sysTaskType

@@ -51,9 +51,9 @@
  
  	<update id="updateObjById"  parameterType="com.zycw.tuotui.entity.sysarea.SysArea">
         UPDATE sys_area SET 
-		            name=sysAreaName,
-		            city_id=sysAreaCityId,
-		            province_id=sysAreaProvinceId,
+		            name=#{sysAreaName},
+		            city_id=#{sysAreaCityId},
+		            province_id=#{sysAreaProvinceId},
 		            defFlag=#{sysAreaDefFlag}
         WHERE 
         id=#{sysAreaId}
@@ -94,21 +94,21 @@
     
     <select id="selectObjById" parameterType="java.util.Map" resultType="java.util.HashMap">
     	SELECT  
-com.baomidou.mybatisplus.generator.config.po.TableField@6953df72
+com.baomidou.mybatisplus.generator.config.po.TableField@70d39752
         		sysArea.id AS sysAreaId,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@552f230d
+com.baomidou.mybatisplus.generator.config.po.TableField@4a35be37
         		sysArea.name AS sysAreaName,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@347114ce
+com.baomidou.mybatisplus.generator.config.po.TableField@43bb32b
         		sysArea.city_id AS sysAreaCityId,
         		sysCity.name AS sysCityName,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@210b9fe0
+com.baomidou.mybatisplus.generator.config.po.TableField@639b1786
         		sysArea.province_id AS sysAreaProvinceId,
         		sysProvince.name AS sysProvinceName,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@673b539f
+com.baomidou.mybatisplus.generator.config.po.TableField@1c0cfebb
         		sysArea.defFlag AS sysAreaDefFlag
 		 FROM 
 		 	sys_area sysArea
