@@ -51,6 +51,9 @@
  
  	<update id="updateObjById"  parameterType="com.zycw.tuotui.entity.auchatfriends.AuChatFriends">
         UPDATE au_chat_friends SET 
+		            user_id={auChatFriendsUserId},
+		            fuser_id={auChatFriendsFuserId},
+		            addtime={auChatFriendsAddtime},
 		            user_id=#{auChatFriendsUserId},
 		            fuser_id=#{auChatFriendsFuserId},
 		            addtime=#{auChatFriendsAddtime},
@@ -94,21 +97,13 @@
     
     <select id="selectObjById" parameterType="java.util.Map" resultType="java.util.HashMap">
     	SELECT  
-com.baomidou.mybatisplus.generator.config.po.TableField@73938ad5
         		auChatFriends.id AS auChatFriendsId,
-            		
-com.baomidou.mybatisplus.generator.config.po.TableField@2aa0d2c7
         		auChatFriends.user_id AS auChatFriendsUserId,
         		auUser.mobile AS auUserMobile,
-            		
-com.baomidou.mybatisplus.generator.config.po.TableField@5c222521
         		auChatFriends.fuser_id AS auChatFriendsFuserId,
         		sysUser.username AS sysUserUsername,
             		
-com.baomidou.mybatisplus.generator.config.po.TableField@c8eba26
         		auChatFriends.addtime AS auChatFriendsAddtime,
-            		
-com.baomidou.mybatisplus.generator.config.po.TableField@56cb6fa6
         		auChatFriends.delFlag AS auChatFriendsDelFlag
 		 FROM 
 		 	au_chat_friends auChatFriends
@@ -198,4 +193,29 @@ com.baomidou.mybatisplus.generator.config.po.TableField@56cb6fa6
     </select>
     
     
+
+	<select id="sysFriendsCountNum" parameterType="java.util.Map" resultType="Integer">
+		SELECT
+		COUNT(1)
+		FROM
+		au_chat_friends
+		WHERE 1=1
+		<if test="param.auChatFriendsUserId != null and param.auChatFriendsUserId != '' ">
+			and user_id =#{param.auChatFriendsUserId}
+		</if>
+		<if test="param.auChatFriendsFuserId != null and param.auChatFriendsFuserId != '' ">
+			and fuser_id =#{param.auChatFriendsFuserId}
+		</if>
+	</select>
+
+	<select id="sysFriendsPageList" parameterType="java.util.Map" resultType="java.util.Map">
+		<if test="param.auChatFriendsUserId != null and param.auChatFriendsUserId != '' ">
+			select user.id,user.nike,user.uimg from sys_user user left join au_chat_friends friend on user.id = friend.fuser_id
+			where 1=1 and friend.user_id =#{param.auChatFriendsUserId}
+		</if>
+		<if test="param.auChatFriendsFuserId != null and param.auChatFriendsFuserId != '' ">
+			select user.id,user.nick,user.uimg from au_user user left join au_chat_friends friend on user.id = friend.user_id
+			where 1=1 and friend.fuser_id = #{param.auChatFriendsFuserId}
+		</if>
+	</select>
 </mapper>

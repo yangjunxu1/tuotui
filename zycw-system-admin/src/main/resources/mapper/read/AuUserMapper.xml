@@ -271,7 +271,7 @@ com.baomidou.mybatisplus.generator.config.po.TableField@5421aa12
 		 and auOccupation.id=#{auUserId}
     </select>
     
-    <select id="countNum" parameterType="java.util.Map" resultType="Integer">
+    <select id="countNum" parameterType="java.util.Map" resultType="java.lang.Integer">
     	SELECT 	
     		COUNT(1)
     	FROM
