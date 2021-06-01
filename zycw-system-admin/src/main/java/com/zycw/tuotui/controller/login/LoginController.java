@@ -1,5 +1,6 @@
 package com.zycw.tuotui.controller.login;
 
+import com.alibaba.fastjson.JSON;
 import com.zycw.common.util.wxwUtil.ResultBeanFactory;
 import com.zycw.tuotui.controller.sysadvert.SysAdvertController;
 import com.zycw.tuotui.iface.login.ILoginService;
@@ -12,6 +13,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.HashMap;
 
 /**
  * @author Inspiry
@@ -36,16 +39,15 @@ public class LoginController {
     @PostMapping(value = "/app/doLogin")
     @ApiOperation(value = "登陆注册", notes = "app登陆注册")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "uid", value = "账号/手机号", required = true, dataType = "String"),
-            @ApiImplicitParam(name = "password", value = "密码", required = true, dataType = "String"),
+            @ApiImplicitParam(name = "auUserMobile", value = "账号/手机号", required = true, dataType = "String"),
+            @ApiImplicitParam(name = "auUserPassword", value = "密码", required = true, dataType = "String"),
             @ApiImplicitParam(name = "code", value = "密码/验证码", required = false, dataType = "String"),
-            @ApiImplicitParam(name = "type", value = "登陆类型,1-账户+密码 2-手机号+验证码 3-邮箱+密码 4-手机号+密码", required = true),
-            @ApiImplicitParam(name = "deviceNo", value = "设备编号", required = true)
+            @ApiImplicitParam(name = "auUserUseruuid", value = "设备编号", required = true)
     })
-    public ResultBeanFactory.ResultBean<String> login(String uid, String password, String code, Integer type, String deviceNo) {
-        logger.info("[LoginController] uid:" + uid + "code:" + code + "type:" + type + "deviceNo:" + deviceNo);
+    public ResultBeanFactory.ResultBean<String> login(@RequestBody HashMap<String, Object> params) {
+        logger.info("[LoginController] param" + JSON.toJSONString(params));
         try {
-            String token = loginService.login(uid, password, code, type, deviceNo);
+            String token = loginService.login(params);
             return resultBeanFactory.getBean(token);
         } catch (Exception e) {
             logger.error("失败原因:{}", e);
