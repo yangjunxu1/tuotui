@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.HashMap;
+
 /**
  * @author Inspiry
  * Created on 2021/6/1.
@@ -19,7 +21,12 @@ public class ILoginServiceTest {
 
     @Test
     public void testLogin() {
-        String login = loginService.login("184101792561", "123456", "123456", "741852");
+        HashMap<String, Object> map = new HashMap<>();
+        map.put("auUserMobile", "184101792561");
+        map.put("auUserPassword", "123456");
+//        map.put("code", "123456");
+        map.put("auUserUseruuid", "741852");
+        String login = loginService.login(map);
         System.out.println(login);
     }
 

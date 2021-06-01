@@ -1,16 +1,18 @@
 package com.zycw.tuotui.iface.login;
 
+import com.zycw.common.constant.CommonConstants;
 import com.zycw.common.exception.BaseException;
-import com.zycw.common.jwt.IJWTInfo;
 import com.zycw.common.jwt.JWTHelper;
 import com.zycw.common.jwt.JWTInfo;
+import com.zycw.common.redis.RedisClient;
 import com.zycw.common.util.StringUtil;
 import com.zycw.tuotui.entity.auuser.AuUser;
-import com.zycw.tuotui.readdao.auuser.AuUserMapper;
+import com.zycw.tuotui.iface.auuser.IAuUserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -19,56 +21,48 @@ import java.util.Objects;
  */
 @Service("loginService")
 public class ILoginService {
-
-
     @Autowired
-    private RedisTemplate redisTemplate;
-
-    @Autowired
-    private AuUserMapper auUserMapper;
+    private IAuUserService iAuUserService;
 
     /**
      * 登陆业务
      *
-     * @param uid
-     * @param password
-     * @param code
-     * @param deviceNo
      * @return
      */
-    public String login(String uid, String password, String code, String deviceNo) {
+    public String login(HashMap<String, Object> params) {
+        String auUserMobile = (String) params.get("auUserMobile");
+        String auUserUseruuid = (String) params.get("auUserUseruuid");
+        String auUserPassword = (String) params.get("auUserPassword");
+        if (StringUtil.isEmpty(auUserMobile) || StringUtil.isEmpty(auUserPassword) || StringUtil.isEmpty(auUserUseruuid))
+            throw new BaseException("参数错误");
         //1.如果验证码不为null,先校验验证码 TODO 验证码校验
-        if (!StringUtil.isEmpty(code)) {
-            //a 校验验证码
+        if (!StringUtil.isEmpty(params.get("code"))) {
             //b 校验手机号是否存在,存在即更新设备信息,不存在新增用户信息
-            AuUser auUser = new AuUser();
-            auUser.setAuUserMobile(uid);
-            auUser = auUserMapper.selectOne(auUser);
+            //a 校验验证码
+            List<AuUser> auUsers = iAuUserService.getUserByMobileAndUUiD(params);
             //注册用户新增
-            if (Objects.isNull(auUser)) {
-                auUser = new AuUser();
-                auUser.setAuUserMobile(uid);
-                auUser.setAuUserUseruuid(deviceNo);
-                auUser.setAuUserPassword(password);
-                auUserMapper.insert(auUser);
+            if (Objects.isNull(auUsers) || auUsers.isEmpty()) {
+                AuUser auUser = new AuUser();
+                auUser.setAuUserMobile(auUserMobile);
+                auUser.setAuUserUseruuid(auUserUseruuid);
+                auUser.setAuUserPassword(auUserPassword);
+                iAuUserService.insert(auUser);
             } else {
                 //更新用户设备信息
-                auUser.setAuUserUseruuid(deviceNo);
-                auUserMapper.updateObjById(auUser);
+                AuUser auUser = auUsers.get(0);
+                auUser.setAuUserUseruuid((String) params.get("auUserUseruuid"));
+                iAuUserService.updateObjById(auUser);
             }
-            return generateToken(uid, deviceNo);
+            return generateToken(auUserMobile, auUserUseruuid);
         } else {
             //2.先根据手机号+设备号查询用户信息
-            AuUser auUser = new AuUser();
-            auUser.setAuUserMobile(uid);
-            auUser.setAuUserUseruuid(deviceNo);
-            auUser = auUserMapper.selectOne(auUser);
-            if (Objects.isNull(auUser))
+            List<AuUser> auUsers = iAuUserService.getUserByMobileAndUUiD(params);
+            if (Objects.isNull(auUsers) || auUsers.isEmpty())
                 throw new BaseException("登陆失败,用户不存在");
             //3.用户信息存在,校验密码
-            if (!auUser.getAuUserPassword().equals(password))
-                throw new BaseException("登陆失败,用户不存在");
-            return generateToken(uid, deviceNo);
+            if (!auUserPassword.equals(auUsers.get(0).getAuUserPassword()))
+                throw new BaseException("登陆失败,密码错误");
+            return generateToken(auUserMobile, auUserUseruuid);
         }
     }
 
@@ -76,7 +70,7 @@ public class ILoginService {
         AuUser auUser = new AuUser();
         auUser.setAuUserMobile(uid);
         auUser.setAuUserUseruuid(deviceNo);
-        AuUser userInfo = auUserMapper.selectOne(auUser);
+        AuUser userInfo = iAuUserService.selectOne(auUser);
         if (Objects.isNull(userInfo)) throw new BaseException("登陆失败,用户不存在");
         JWTInfo jwtInfo = new JWTInfo(userInfo.getAuUserTrueName(), userInfo.getAuUserId() + "", userInfo.getAuUserNick());
         String token = "";
@@ -85,7 +79,7 @@ public class ILoginService {
         } catch (Exception e) {
             throw new BaseException("登陆失败,token生成异常");
         }
-//        redisTemplate.opsForValue().set();
+        RedisClient.put(CommonConstants.REDIS_USER_TOKEN_PREFIX + userInfo.getAuUserId(), token);
         return token;
     }
 }
