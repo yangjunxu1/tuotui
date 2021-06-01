@@ -53,6 +53,7 @@ public interface AuChatFriendsMapper extends Mapper<AuChatFriends> {
 
 	public List<AuChatFriends> sysUserPageList(@Param("param") HashMap<String,Object> param);
 
+	public Integer sysFriendsCountNum(@Param("param") HashMap<String,Object> params);
 
-
+	public List<AuChatFriends> sysFriendsPageList(@Param("param") HashMap<String,Object> param);
 }
