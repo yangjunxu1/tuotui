@@ -24,7 +24,7 @@ public class JwtTokenFilter implements GatewayFilter {
     @Autowired
     private TokenValidateHandler tokenValidateHandler;
 
-    @Value("${inspiry.config.ignoreUrls}")
+    @Value("${inspiry.config.ignoreUrls:}")
     private String ignoreUrls;
     private PathMatcher pathMatcher = new AntPathMatcher();
 
@@ -42,7 +42,7 @@ public class JwtTokenFilter implements GatewayFilter {
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
         String path = exchange.getRequest().getURI().getPath();
-        if (validateRequestPathUrl(path)) return chain.filter(exchange);
+        if (!validateRequestPathUrl(path)) return chain.filter(exchange);
         String authToken = exchange.getRequest().getHeaders().getFirst("Authorization");
         if (StringUtil.isEmpty(authToken)) {
             authToken = exchange.getRequest().getQueryParams().getFirst("token");
