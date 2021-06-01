@@ -167,7 +167,7 @@ com.baomidou.mybatisplus.generator.config.po.TableField@6b2e0791
 		 and sysRole.id=#{sysUserId}
     </select>
     
-    <select id="countNum" parameterType="java.util.Map" resultType="Integer">
+    <select id="countNum" parameterType="java.util.Map" resultType="java.lang.Integer">
     	SELECT 	
     		COUNT(1)
     	FROM
